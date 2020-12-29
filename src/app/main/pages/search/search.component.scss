@@ -1,0 +1,20 @@
+@import "src/@noctua/scss/noctua";
+@import "src/@noctua.common/scss/noctua.common";
+
+:host {
+  width: 100%;
+
+  .noc-left-drawer {
+    width: 400px;
+    border-right: #111 solid 1px;
+
+    .phtr-menu-section {
+      width: 100%;
+    }
+  }
+}
+
+.noc-search-form {
+  padding: 15px;
+  @include deep-width(500px);
+}

@@ -1,0 +1,28 @@
+<div class="w-100-p" fxLayout="row" fxLayoutAlign="start start">
+  <mat-drawer-container class="w-100-p h-100-p" fxLayout="row" fxLayoutAlign="start start">
+    <mat-drawer #leftDrawer opened="true" class="noc-left-drawer" mode="side" position="start">
+      <div fxLayout="column" fxLayoutAlign="start stretch" class="noc-drawer w-100-p h-100-p">
+        <div class="noc-drawer-header" fxLayout="row" fxLayoutAlign="start center">
+          <span class="noc-drawer-header-title">
+            Variants Annotation Query Provided by IMAGE Project
+          </span>
+          <span fxFlex></span>
+          <button *ngIf="false" mat-icon-button (click)="noctuaMenuService.closeLeftDrawer()" aria-label="Close dialog">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+        <div class="noc-drawer-body w-100-p" fxFlex>
+          <ann-annotation></ann-annotation>
+        </div>
+      </div>
+    </mat-drawer>
+    <mat-drawer-content class="w-100-p">
+      <ann-snp-table class="w-100-p h-100-p"></ann-snp-table>
+    </mat-drawer-content>
+    <mat-drawer #rightDrawer class="noc-right-drawer" noctuaPerfectScrollbar mode="side" position="end">
+      <div class="h-100-p">
+        <ann-snp-detail [panelDrawer]="rightDrawer"> </ann-snp-detail>
+      </div>
+    </mat-drawer>
+  </mat-drawer-container>
+</div>

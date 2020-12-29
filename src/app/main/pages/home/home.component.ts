@@ -1,9 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormArray } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-
-import { MatDrawer } from '@angular/material';
-
+import { Component, OnInit } from '@angular/core';
 import { NoctuaMenuService } from '@noctua.common/services/noctua-menu.service';
 
 @Component({
@@ -13,23 +8,9 @@ import { NoctuaMenuService } from '@noctua.common/services/noctua-menu.service';
 })
 export class HomeComponent implements OnInit {
 
-  @ViewChild('leftDrawer', { static: true })
-  leftDrawer: MatDrawer;
-
-  @ViewChild('rightDrawer', { static: true })
-  rightDrawer: MatDrawer;
-
-  searchCriteria: any = {};
-  searchForm: FormGroup;
-  leftPanelMenu;
-
-  constructor(public noctuaMenuService: NoctuaMenuService,
-    private route: ActivatedRoute,
-    private router: Router) {
+  constructor(public noctuaMenuService: NoctuaMenuService) {
   }
 
   ngOnInit() {
-    this.noctuaMenuService.setLeftDrawer(this.leftDrawer);
-    this.noctuaMenuService.setRightDrawer(this.rightDrawer);
   }
 }

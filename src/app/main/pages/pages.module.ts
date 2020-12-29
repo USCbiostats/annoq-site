@@ -6,9 +6,13 @@ import { AppsModule } from './../apps/apps.module';
 
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
+import { SearchComponent } from './search/search.component';
+import { DetailComponent } from './detail/detail.component';
 
 const routes = [{
   path: '', component: HomeComponent
+}, {
+  path: 'search', component: SearchComponent
 }, {
   path: 'about', component: AboutComponent
 }];
@@ -16,7 +20,9 @@ const routes = [{
 @NgModule({
   declarations: [
     HomeComponent,
-    AboutComponent
+    SearchComponent,
+    AboutComponent,
+    DetailComponent
   ],
   imports: [
     RouterModule.forChild(routes),
