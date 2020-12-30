@@ -1,6 +1,5 @@
 @import "theming";
 @import "mixins/breakpoints";
-$noc-primary-color: #039be5;
 $noc-secondary-color: #995014;
 
 @mixin deep-width($number) {
@@ -21,9 +20,14 @@ $noc-secondary-color: #995014;
   @include deep-height($number);
 }
 
-.navbar {
-  display: none !important;
-  visibility: hidden
+.ann-container {
+  padding: 0;
+  margin: 0 auto;
+  width: 1020px;
+
+  @include media-breakpoint('xs') {
+    width: 100%;
+  }
 }
 
 .noc-search-database-dialog {

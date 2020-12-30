@@ -1,50 +1,15 @@
-<div class="w-100-p" fxLayout="row" fxLayoutAlign="start start">
+<div class="w-100-p" noctuaPerfectScrollbar>
 
-  <!-- Header -->
-  <div class="header-container gradient">
-
-    <!-- Static navbar -->
-    <div class="container">
-      <div class="header-nav">
-        <div class="header-logo">
-          <a class="pull-left" href="/">AnnoQ</a>
-        </div>
-        <div class="nav pull-right">
-          <a routerLink="/search" target="_blank">Interactive Query</a>
-          <a href="https://uscbiostats.github.io/AnnoQ/api" target="_blank">Data Access</a>
-          <a href="/detail.html" target="_blank">Annotation Document</a>
-          <a href="https://uscbiostats.github.io/AnnoQ/" target="_blank">About</a>
-        </div>
-      </div>
+  <div class="header accent p-8 w-100-p" fxLayout="column" fxLayoutAlign="center center">
+    <div class="ann-container">
+      <h1 [@animate]="{value:'*',params:{delay:'100ms', y:'25px'}}">
+        AnnoQ: An integrated and interactive platform for large-scale genetic variant
+        annotation.
+      </h1>
     </div>
-    <!-- /Static navbar -->
-
-    <!-- Header -->
-    <!-- Header -->
-    <div class="container header-wrapper">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="header-content">
-            <h1 class="header-title">AnnoQ: An integrated and interactive platform for large-scale genetic variant
-              annotation.</h1>
-
-            <div class="header-underline"></div>
-            <div class="clearfix"></div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- /Header -->
-    <!-- /Header -->
-
   </div>
-  <!-- /Header -->
 
-
-  <!-- Content -->
-
-  <div class="container content">
+  <div class="ann-container" fxLayout="column" fxLayoutAlign="start stretch">
     <h1>Introduction</h1>
     <p>The Annotation Query (AnnoQ) is an integrated functional annotation platform for large scale genetic variant
       annotation. It serves researchers with different background and interests. Its easy-to-use user interface and
@@ -56,54 +21,58 @@
       following three ways.
     </p>
 
-    <div class="row">
-      <div class="col-md-4">
-        <div class="card mb-4 box-shadow">
-          <a href="http://annoq.org:4206/">
-            <img class="card-img-top" alt="GUI" style="" src="/static/main/img/gui.png" data-holder-rendered="true">
-            <div class="centered item">Interactive Query</div>
-          </a>
-          <div class="card-body">
-            <p class="card-text">Getting the annotation data with a graphic interface.</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <a href="http://annoq.org:4206/" type="button" class="btn btn-sm btn-outline-secondary">View</a>
-              </div>
-            </div>
+    <div fxLayout="row" fxLayoutAlign="start start">
+      <div class="card" fxFlex="33%">
+        <div class="ann-card">
+          <div class="ann-image position-relative">
+            <img class="" src="assets/images/gui.png">
+          </div>
+          <div class="ann-card-title p-8 text-truncate">
+            <div class="secondary-text">Interactive Query</div>
+          </div>
+          <div class="ann-card-description p-8 pt-0">
+            Getting the annotation data with a graphic interface.
+          </div>
+          <div class="p-8 pt-0 ann-card-footer" fxLayout="row" fxLayoutAlign="center center">
+            <button link-button [routerLink]="['/search']" mat-link-button class="">
+              VIEW
+            </button>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card mb-4 box-shadow">
-          <a href="https://uscbiostats.github.io/AnnoQ/api">
-            <img class="card-img-top" alt="API" style="" src="/static/main/img/api.png" data-holder-rendered="true">
-            <div class="centered item">API Data Access</div>
-          </a>
-          <div class="card-body">
-            <p class="card-text">Retrieving annotation data using scripts.</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <a href="https://uscbiostats.github.io/AnnoQ/api" type="button"
-                  class="btn btn-sm btn-outline-secondary">View</a>
-              </div>
-            </div>
+      <div class="card" fxFlex="33%">
+        <div class="ann-card">
+          <div class="ann-image position-relative">
+            <img class="" src="assets/images/api.png">
+          </div>
+          <div class="ann-card-title p-8 text-truncate">
+            <div class="secondary-text">API Data Access</div>
+          </div>
+          <div class="ann-card-description p-8 pt-0">
+            Retrieving annotation data using scripts.
+          </div>
+          <div class="p-8 pt-0 ann-card-footer" fxLayout="row" fxLayoutAlign="center center">
+            <button href="https://uscbiostats.github.io/AnnoQ/api" target="_blank" mat-link-button class="">
+              VIEW
+            </button>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card mb-4 box-shadow">
-          <a href="/detail.html">
-            <img class="card-img-top" alt="doc" style="height: 60%;width: 60%;display: block;"
-              src="/static/main/img/document.png" data-holder-rendered="true">
-            <div class="centered item">R Package</div>
-          </a>
-          <div class="card-body">
-            <p class="card-text">Getting annotation data via R programming language.</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <a href="/detail.html" type="button" class="btn btn-sm btn-outline-secondary">View</a>
-              </div>
-            </div>
+      <div class="card" fxFlex="33%">
+        <div class="ann-card">
+          <div class="ann-image position-relative">
+            <img class="" src="assets/images/document.png">
+          </div>
+          <div class="ann-card-title p-8 text-truncate">
+            <div class="secondary-text">R Package</div>
+          </div>
+          <div class="ann-card-description p-8 pt-0">
+            Getting annotation data via R programming language.
+          </div>
+          <div class="p-8 pt-0 ann-card-footer" fxLayout="row" fxLayoutAlign="center center">
+            <button [routerLink]="['/detail']" mat-link-button class="">
+              VIEW
+            </button>
           </div>
         </div>
       </div>
@@ -116,7 +85,7 @@
     <p>Here is a 20 second summary looping gif for tutorial. This can be handy to the editor or any user to know
       the UI. Also, I just quickly added to the UI Tutorial part below with bite sized sections. Kinda step by
       step</p>
-    <p><img alt="short" src="/static/main/img/short.gif"></p>
+    <p><img alt="short" src="assets/images/short.gif"></p>
     <p>The UI is composed of 3 main panels, the Query Panel, Result Panel and Result Summary Panel</p>
     <h2>1 Queries (Query Panel)</h2>
     <p>There 5 types of supported queries as described below (1-5). Choose a query type from the dropdown labeled
@@ -163,38 +132,7 @@
 
 
   </div>
+  <ann-footer></ann-footer>
 
-
-  <!-- /Content -->
-
-  <!-- Footer -->
-  <div class="footer gradient-2">
-    <div class="container footer-container ">
-      <div class="row">
-        <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-          <div class="footer-title"><img src="/static/main/img/image_logo.gif" style="height:80px" alt="USC IMAGE logo">
-          </div>
-          <ul class="list-unstyled">
-          </ul>
-        </div>
-        <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-
-        </div>
-        <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-          <div class="footer-title"></div>
-          <ul class="list-unstyled">
-            <li><a href="http://annoq.org:4206/" target="_blank">Interactive Query</a></li>
-            <li><a href="https://uscbiostats.github.io/AnnoQ/api" target="_blank">Data Access</a></li>
-            <li><a href="/detail.html" target="_blank">Annotation Document</a></li>
-            <li><a href="https://uscbiostats.github.io/AnnoQ/" target="_blank">About</a></li>
-            <li><a href="mailto:annoqfeedback@gmail.com" target="_blank">Email US: annoqfeedback@gmail.com</a></li>
-          </ul>
-        </div>
-        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- /Footer -->
 
 </div>

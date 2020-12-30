@@ -2,19 +2,132 @@
 @import "src/@noctua.common/scss/noctua.common";
 
 :host {
-  width: 100%;
+  .header {
+    padding-bottom: 10px;
+    background-image: linear-gradient(to right, $noc-primary-color, $noc-primary-color, rgba($noc-primary-color, 0.6));
+    background-blend-mode: initial;
+    background-size: cover;
+    background-position: top;
+    padding-top: 50px !important;
+    position: relative;
+    flex: 1 0 auto;
+    height: 280px;
+    min-width: 800px;
+    max-height: 280px;
+    text-align: center;
+    overflow: hidden;
 
-  .noc-left-drawer {
-    width: 400px;
-    border-right: #111 solid 1px;
+    @include media-breakpoint('lt-md') {
+      height: 200px;
+      min-width: 600px;
+    }
 
-    .phtr-menu-section {
-      width: 100%;
+    h1 {
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 16px;
+      color: #FFF;
+      font-weight: 700;
+
+      @include media-breakpoint('lt-md') {
+        font-size: 24px;
+      }
+    }
+
+    h3 {
+      max-width: 80%;
+      text-align: center;
+      font-weight: 300;
+      letter-spacing: 0.03em;
+      margin: 0;
+      color: #ffffff;
+      line-height: 1.5;
+
+      @include media-breakpoint('lt-md') {
+        font-size: 14px;
+      }
+    }
+
+    h4 {
+      padding-top: 10px;
+      max-width: 80%;
+      text-align: center;
+      font-weight: 300;
+      font-size: 12px;
+      margin: 0;
+      color: rgba(#ffffff, 0.8);
     }
   }
-}
 
-.noc-search-form {
-  padding: 15px;
-  @include deep-width(500px);
+  .card {
+    // @include deep-width(185px);
+    @include deep-height(250px);
+    padding: 0 8px;
+    margin-bottom: 16px;
+    height: 250px;
+  }
+
+  .ann-card {
+    @include deep-width(100%);
+    @include deep-height(100%);
+
+    overflow: hidden;
+
+    @include mat-elevation(3);
+
+    .ann-image {
+      height: 120px;
+      overflow: hidden;
+
+      img {
+        min-height: 100%;
+      }
+    }
+
+    .ann-card-title {
+      overflow: hidden;
+      height: 35px;
+    }
+
+    .ann-card-chips {
+      overflow: hidden;
+      height: 35px;
+    }
+
+    .ann-card-footer {
+
+      .ann-action-button {
+        margin: 0 6px;
+        @include mat-elevation(2);
+      }
+
+      .ann-action-love {
+        @include deep-width(50px);
+        @include deep-height(50px);
+        font-size: 36px;
+        color: #da7979;
+      }
+
+      .ann-action-skip {
+        @include deep-width(30px);
+        @include deep-height(30px);
+        font-size: 14px;
+        line-height: 30px;
+        // color: #e28a8a;
+        color: #AAA;
+      }
+
+      .ann-action-ok {
+        @include deep-width(40px);
+        @include deep-height(40px);
+        line-height: 40px;
+        font-size: 26px;
+        color: #91d691;
+      }
+    }
+  }
+
 }

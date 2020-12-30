@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { SearchComponent } from './search/search.component';
 import { DetailComponent } from './detail/detail.component';
+import { NoctuaFooterModule } from 'app/layout/components/footer/footer.module';
 
 const routes = [{
   path: '', component: HomeComponent
@@ -28,6 +29,7 @@ const routes = [{
     RouterModule.forChild(routes),
     TranslateModule,
     NoctuaSharedModule,
+    NoctuaFooterModule,
     AppsModule
   ],
   providers: [

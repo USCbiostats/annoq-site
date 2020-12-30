@@ -1,0 +1,21 @@
+@import "src/@noctua/scss/noctua";
+@import "src/@noctua.common/scss/noctua.common";
+
+:host {
+  footer {
+    background-color: $noc-primary-color;
+    color: #F7F7F7;
+
+    .ann-image-logo {
+      width: 100%;
+    }
+
+    a {
+      color: #FFFFFF;
+
+      &:hover {
+        color: #DDDDDD;
+      }
+    }
+  }
+}
