@@ -2,15 +2,15 @@
   <div class="ann-container">
     <div class="" fxLayout="row" fxLayoutAlign="start start">
       <div class="" fxFlex="25%">
-        <img class="ann-image-logo" src="assets/images/logos/image-logo.gif">
+        <img class="ann-image-logo" src="assets/images/logos/image-logo-yellow.gif">
         <p> <strong>&copy; Copyright</strong> University of Southern California</p>
       </div>
       <span fxFlex=""></span>
       <div class="" fxLayout="column" fxLayoutAlign="start start">
         <ul class="">
-          <li><a href="http://annoq.org:4206/" target="_blank">Interactive Query</a></li>
+          <li><a [routerLink]="['/search']" target="_blank">Interactive Query</a></li>
           <li><a href="https://uscbiostats.github.io/AnnoQ/api" target="_blank">Data Access</a></li>
-          <li><a href="/detail.html" target="_blank">Annotation Document</a></li>
+          <li><a [routerLink]="['/detail']" target="_blank">Annotation Document</a></li>
           <li><a href="https://uscbiostats.github.io/AnnoQ/" target="_blank">About</a></li>
           <li><a href="mailto:annoqfeedback@gmail.com" target="_blank">Email US: annoqfeedback@gmail.com</a></li>
         </ul>

@@ -11,9 +11,8 @@
     padding-top: 50px !important;
     position: relative;
     flex: 1 0 auto;
-    height: 280px;
+    height: 500px;
     min-width: 800px;
-    max-height: 280px;
     text-align: center;
     overflow: hidden;
 
@@ -22,15 +21,21 @@
       min-width: 600px;
     }
 
+    .ann-container {
+      overflow: hidden;
+    }
+
     h1 {
-      font-size: 28px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-align: center;
+      font-size: 30px;
+      font-weight: normal;
       margin-top: 0;
-      margin-bottom: 16px;
       color: #FFF;
-      font-weight: 700;
+
+      strong {
+        font-size: 54px;
+        letter-spacing: 3px;
+      }
+
 
       @include media-breakpoint('lt-md') {
         font-size: 24px;
@@ -38,11 +43,11 @@
     }
 
     h3 {
+      font-size: 18px;
       max-width: 80%;
-      text-align: center;
       font-weight: 300;
       letter-spacing: 0.03em;
-      margin: 0;
+      margin: 0px;
       color: #ffffff;
       line-height: 1.5;
 
@@ -60,6 +65,22 @@
       margin: 0;
       color: rgba(#ffffff, 0.8);
     }
+
+
+    .ann-image {
+      height: 400px;
+      overflow: hidden;
+
+      img {
+        height: 100%;
+      }
+    }
+
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 24px;
   }
 
   .card {
@@ -83,7 +104,7 @@
       overflow: hidden;
 
       img {
-        min-height: 100%;
+        height: 100%;
       }
     }
 

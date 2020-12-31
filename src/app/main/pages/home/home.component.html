@@ -1,11 +1,27 @@
 <div class="w-100-p" noctuaPerfectScrollbar>
 
-  <div class="header accent p-8 w-100-p" fxLayout="column" fxLayoutAlign="center center">
-    <div class="ann-container">
-      <h1 [@animate]="{value:'*',params:{delay:'100ms', y:'25px'}}">
-        AnnoQ: An integrated and interactive platform for large-scale genetic variant
-        annotation.
-      </h1>
+  <div class="header accent p-8 w-100-p">
+    <div class="ann-container" fxLayout="row" fxLayoutAlign="start center">
+      <div fxLayout="column" fxLayoutAlign="start center" fxFlex="30%">
+        <h1 [@animate]="{value:'*',params:{delay:'100ms', y:'25px'}}">
+          The Annotation Query<br>
+          <strong>
+            (AnnoQ)
+          </strong>
+        </h1>
+        <h3>
+          An integrated and interactive platform for large-scale genetic variant
+          annotation.
+        </h3>
+
+        <button mat-raised-button [routerLink]="['/search']" mat-link-button class="">
+          View Interactive Query
+        </button>
+      </div>
+      <span fxFlex=""></span>
+      <div class="ann-image" fxFlex="60%">
+        <img class="" src="assets/images/gui.png">
+      </div>
     </div>
   </div>
 
