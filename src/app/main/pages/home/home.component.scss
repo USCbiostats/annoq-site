@@ -4,7 +4,7 @@
 :host {
   .header {
     padding-bottom: 10px;
-    background-image: linear-gradient(to right, $noc-primary-color, $noc-primary-color, rgba($noc-primary-color, 0.6));
+    background-image: linear-gradient(to right, $annoq-primary-color, $annoq-primary-color, rgba($annoq-primary-color, 0.6));
     background-blend-mode: initial;
     background-size: cover;
     background-position: top;
@@ -21,11 +21,24 @@
       min-width: 600px;
     }
 
-    .ann-container {
+    .anooq-section {
+      padding: 20px 10px;
+
+      &.section-1 {
+        background-color: #EEE;
+      }
+
+      &.section-2 {
+        background-color: rgba($annoq-primary-color, 0.1);
+      }
+    }
+
+    .annoq-container {
       overflow: hidden;
     }
 
     h1 {
+      width: 100%;
       font-size: 30px;
       font-weight: normal;
       margin-top: 0;
@@ -42,12 +55,12 @@
       }
     }
 
-    h3 {
+    h2 {
+      width: 100%;
       font-size: 18px;
-      max-width: 80%;
       font-weight: 300;
       letter-spacing: 0.03em;
-      margin: 0px;
+      margin: 0 0 18px 0;
       color: #ffffff;
       line-height: 1.5;
 
@@ -67,7 +80,7 @@
     }
 
 
-    .ann-image {
+    .annoq-image {
       height: 400px;
       overflow: hidden;
 
@@ -91,7 +104,7 @@
     height: 250px;
   }
 
-  .ann-card {
+  .annoq-card {
     @include deep-width(100%);
     @include deep-height(100%);
 
@@ -99,7 +112,7 @@
 
     @include mat-elevation(3);
 
-    .ann-image {
+    .annoq-image {
       height: 120px;
       overflow: hidden;
 
@@ -108,31 +121,31 @@
       }
     }
 
-    .ann-card-title {
+    .annoq-card-title {
       overflow: hidden;
       height: 35px;
     }
 
-    .ann-card-chips {
+    .annoq-card-chips {
       overflow: hidden;
       height: 35px;
     }
 
-    .ann-card-footer {
+    .annoq-card-footer {
 
-      .ann-action-button {
+      .annoq-action-button {
         margin: 0 6px;
         @include mat-elevation(2);
       }
 
-      .ann-action-love {
+      .annoq-action-love {
         @include deep-width(50px);
         @include deep-height(50px);
         font-size: 36px;
         color: #da7979;
       }
 
-      .ann-action-skip {
+      .annoq-action-skip {
         @include deep-width(30px);
         @include deep-height(30px);
         font-size: 14px;
@@ -141,7 +154,7 @@
         color: #AAA;
       }
 
-      .ann-action-ok {
+      .annoq-action-ok {
         @include deep-width(40px);
         @include deep-height(40px);
         line-height: 40px;

@@ -11,7 +11,7 @@ import { environment } from 'environments/environment';
 import { SampleVCFFile } from '@noctua.common/data/sample-vcf';
 
 @Component({
-  selector: 'ann-annotation',
+  selector: 'annoq-annotation',
   templateUrl: './annotation.component.html',
   styleUrls: ['./annotation.component.scss']
 })

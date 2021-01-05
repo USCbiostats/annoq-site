@@ -4,7 +4,7 @@
 :host {
   width: 100%;
 
-  .noc-left-drawer {
+  .annoq-left-drawer {
     width: 400px;
     border-right: #111 solid 1px;
 
@@ -14,7 +14,7 @@
   }
 }
 
-.noc-search-form {
+.annoq-search-form {
   padding: 15px;
   @include deep-width(500px);
 }

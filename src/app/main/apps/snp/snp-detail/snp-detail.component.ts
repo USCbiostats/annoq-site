@@ -13,7 +13,7 @@ declare const require: any;
 const each = require('lodash/forEach');
 
 @Component({
-  selector: 'ann-snp-detail',
+  selector: 'annoq-snp-detail',
   templateUrl: './snp-detail.component.html',
   styleUrls: ['./snp-detail.component.scss']
 })

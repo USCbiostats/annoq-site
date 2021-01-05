@@ -6,7 +6,7 @@
   background-color: white;
   @include mat-elevation(4);
 
-  .noc-header {
+  .annoq-header {
     @include deep-height(35px);
     background-color: #EEE;
     border-bottom: #CCC solid 1px;
@@ -17,17 +17,17 @@
       line-height: 35px;
     }
 
-    .noc-title {
+    .annoq-title {
       font-size: 10px;
       padding: 0 14px;
     }
   }
 
-  .noc-body {
+  .annoq-body {
     padding: 0 14px 14px 14px;
   }
 
-  .noc-form-section {
+  .annoq-form-section {
     width: 100%;
     background-color: #FFF;
 
@@ -57,25 +57,25 @@
       }
     }
 
-    .noc-section-header {
+    .annoq-section-header {
       padding: 0 8px;
       @include deep-height(35px);
-      background-color: $noc-primary-color-light;
+      background-color: $annoq-primary-color-light;
 
-      .noc-section-heading {
+      .annoq-section-heading {
 
         font-size: 12px;
         line-height: 35px;
         color: #555;
       }
 
-      .noc-action-button {
+      .annoq-action-button {
         margin: 0px;
         height: 40px; // line-height: 36px;
       }
     }
 
-    .noc-section-body {
+    .annoq-section-body {
       padding: 5px 5px;
     }
   }

@@ -5,7 +5,7 @@ $primary: map-get($theme, primary);
 $accent: map-get($theme, accent);
 
 :host {
-  .noc-table-menu-row {
+  .annoq-table-menu-row {
     height: 60px;
   }
 
@@ -34,7 +34,7 @@ $accent: map-get($theme, accent);
     white-space: nowrap;
   }
 
-  .noc-loading-container {
+  .annoq-loading-container {
     background-color: rgba(#555, 0.4);
     position: absolute;
     top: 0;
@@ -45,7 +45,7 @@ $accent: map-get($theme, accent);
   }
 
 
-  .noc-form-section {
+  .annoq-form-section {
     width: 100%;
     background-color: #FFF;
 
@@ -53,24 +53,24 @@ $accent: map-get($theme, accent);
       display: none;
     }
 
-    .noc-section-header {
+    .annoq-section-header {
       height: 30px;
-      background-color: $noc-primary-color-light;
+      background-color: $annoq-primary-color-light;
 
-      .noc-section-heading {
+      .annoq-section-heading {
         padding-left: 8px;
         font-size: 12px;
         line-height: 40px;
         color: #555;
       }
 
-      .noc-action-button {
+      .annoq-action-button {
         margin: 0px;
         height: 40px; // line-height: 36px;
       }
     }
 
-    .noc-section-body {
+    .annoq-section-body {
       padding: 5px 5px;
     }
   }

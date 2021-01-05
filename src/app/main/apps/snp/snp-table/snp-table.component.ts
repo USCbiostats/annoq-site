@@ -16,7 +16,7 @@ import { DataSource } from '@angular/cdk/table';
 
 import 'rxjs/add/observable/of';
 @Component({
-  selector: 'ann-snp-table',
+  selector: 'annoq-snp-table',
   templateUrl: './snp-table.component.html',
   styleUrls: ['./snp-table.component.scss']
 })
@@ -89,15 +89,15 @@ export class SnpTableComponent implements OnInit {
       this.displayedColumns = this.columns.map(c => c.columnDef);
 
 
-          if (snpPage.gene) {
-          this.gene = new Gene()
-          this.gene.gene_id = snpPage.gene.gene_id;
-          this.gene.contig = snpPage.gene.contig;
-          this.gene.start = snpPage.gene.start;
-          this.gene.end = snpPage.gene.end;
-        } else {
-          this.gene = null
-        } 
+      if (snpPage.gene) {
+        this.gene = new Gene()
+        this.gene.gene_id = snpPage.gene.gene_id;
+        this.gene.contig = snpPage.gene.contig;
+        this.gene.start = snpPage.gene.start;
+        this.gene.end = snpPage.gene.end;
+      } else {
+        this.gene = null
+      }
     }
   }
 

@@ -16,7 +16,7 @@ import { AnnotationDialogService } from '../services/dialog.service';
 
 
 @Component({
-  selector: 'noc-annotation-tree',
+  selector: 'annoq-annotation-tree',
   templateUrl: './annotation-tree.component.html',
   styleUrls: ['./annotation-tree.component.scss'],
 })
@@ -44,7 +44,7 @@ export class AnnotationTreeComponent implements OnInit {
     public noctuaMenuService: NoctuaMenuService,
     private annotationService: AnnotationService,
     private snpService: SnpService,
-    private renderer: Renderer2, ) {
+    private renderer: Renderer2,) {
 
     this.treeFlattener = new MatTreeFlattener(this.transformer, this._getLevel,
       this._isExpandable, this._getChildren);

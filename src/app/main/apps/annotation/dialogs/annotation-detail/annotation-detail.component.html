@@ -4,52 +4,52 @@
       <span class="title dialog-title">
         Detail: {{annotationDetail.name}}</span>
       <span fxFlex></span>
-      <button mat-stroked-button (click)="close()" class="noc-rounded-button noc-sm" color="primary"
+      <button mat-stroked-button (click)="close()" class="annoq-rounded-button annoq-sm" color="primary"
         aria-label="Close dialog">
         <mat-icon>close</mat-icon> Close
       </button>
     </mat-toolbar-row>
   </mat-toolbar>
-  <div mat-dialog-content class="noc-dialog-body" noctuaPerfectScrollbar>
+  <div mat-dialog-content class="annoq-dialog-body" noctuaPerfectScrollbar>
     <div class="w-100-p" fxLayout="column" fxLayoutAlign="start stretch">
-      <div class="ann-detail-row" fxLayout="row" fxLayoutAlign="start start">
-        <div class="ann-title" fxFlex="30%">
+      <div class="annoq-detail-row" fxLayout="row" fxLayoutAlign="start start">
+        <div class="annoq-title" fxFlex="30%">
           <div class="text-truncate">
             ID
           </div>
         </div>
-        <div class="ann-description" fxFlex="70%">
-          {{  annotationDetail.id }}
+        <div class="annoq-description" fxFlex="70%">
+          {{ annotationDetail.id }}
         </div>
       </div>
-      <div class="ann-detail-row" fxLayout="row" fxLayoutAlign="start start">
-        <div class="ann-title" fxFlex="30%">
+      <div class="annoq-detail-row" fxLayout="row" fxLayoutAlign="start start">
+        <div class="annoq-title" fxFlex="30%">
           <div class="text-truncate">
             Name
           </div>
         </div>
-        <div class="ann-description" fxFlex="70%">
-          {{  annotationDetail.name }}
+        <div class="annoq-description" fxFlex="70%">
+          {{ annotationDetail.name }}
         </div>
       </div>
-      <div class="ann-detail-row" fxLayout="row" fxLayoutAlign="start start">
-        <div class="ann-title" fxFlex="30%">
+      <div class="annoq-detail-row" fxLayout="row" fxLayoutAlign="start start">
+        <div class="annoq-title" fxFlex="30%">
           <div class="text-truncate">
             Description
           </div>
         </div>
-        <div class="ann-description" fxFlex="70%">
-          {{  annotationDetail.detail }}
+        <div class="annoq-description" fxFlex="70%">
+          {{ annotationDetail.detail }}
         </div>
       </div>
-      <div class="ann-detail-row" fxLayout="row" fxLayoutAlign="start start">
-        <div class="ann-title" fxFlex="30%">
+      <div class="annoq-detail-row" fxLayout="row" fxLayoutAlign="start start">
+        <div class="annoq-title" fxFlex="30%">
           <div class="text-truncate">
             Parent
           </div>
         </div>
-        <div class="ann-description" fxFlex="70%">
-          {{  annotationDetail.parent_id }}
+        <div class="annoq-description" fxFlex="70%">
+          {{ annotationDetail.parent_id }}
         </div>
       </div>
     </div>

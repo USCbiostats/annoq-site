@@ -1,28 +1,29 @@
-<div fxLayout="column" fxLayoutAlign="start stretch" class="noc-drawer w-100-p h-100-p">
-  <div class="noc-drawer-header" fxLayout="row" fxLayoutAlign="start center">
-    <span class="noc-drawer-header-title">
+<div fxLayout="column" fxLayoutAlign="start stretch" class="annoq-drawer w-100-p h-100-p">
+  <div class="annoq-drawer-header" fxLayout="row" fxLayoutAlign="start center">
+    <span class="annoq-drawer-header-title">
       Selected Row</span>
     <span fxFlex></span>
-    <button mat-stroked-button (click)="close()" class="noc-rounded-button noc-sm" color="primary"
+    <button mat-stroked-button (click)="close()" class="annoq-rounded-button annoq-sm" color="primary"
       aria-label="Close dialog">
       <mat-icon>close</mat-icon> Close
     </button>
   </div>
-  <div class="noc-drawer-body" fxLayout="row" fxLayoutAlign="start start" noctuaPerfectScrollbar>
+  <div class="annoq-drawer-body" fxLayout="row" fxLayoutAlign="start start" noctuaPerfectScrollbar>
     <div class="w-100-p" fxLayout="column" fxLayoutAlign="start stretch">
-      <div class="ann-snp-detail-row" *ngFor="let item of snpRow | keyvalue" fxLayout="row" fxLayoutAlign="start start">
-        <div class="ann-title" fxFlex="30%">
+      <div class="annoq-snp-detail-row" *ngFor="let item of snpRow | keyvalue" fxLayout="row"
+        fxLayoutAlign="start start">
+        <div class="annoq-title" fxFlex="30%">
           <div class="text-truncate">
             {{item.key}}
           </div>
         </div>
-        <div class="ann-description" fxFlex="70%">
+        <div class="annoq-description" fxFlex="70%">
           {{item.value}}
         </div>
       </div>
     </div>
   </div>
-  <div fxLayout="row" fxLayoutAlign="start center" class="noc-drawer-footer noc-submit-row">
+  <div fxLayout="row" fxLayoutAlign="start center" class="annoq-drawer-footer annoq-submit-row">
     <span fxFlex></span>
     <button (click)='close()' type="button" mat-raised-button color="" class="mr-8">Close</button>
   </div>

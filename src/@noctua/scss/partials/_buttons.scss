@@ -1,13 +1,13 @@
-$noc-border-color: #BBB;
+$annoq-border-color: #BBB;
 
-.noc-rounded-button {
+.annoq-rounded-button {
   border-radius: 20px;
   @include deep-height(40px);
   line-height: 40px;
   font-size: 14px;
   font-weight: normal;
 
-  &.noc-xxs {
+  &.annoq-xxs {
     padding: 0 5px;
     @include deep-height(20px);
     line-height: 20px;
@@ -16,7 +16,7 @@ $noc-border-color: #BBB;
     font-weight: normal;
   }
 
-  &.noc-xs {
+  &.annoq-xs {
     border-radius: 12px;
     @include deep-height(24px);
     line-height: 24px;
@@ -24,7 +24,7 @@ $noc-border-color: #BBB;
     font-weight: normal;
   }
 
-  &.noc-sm {
+  &.annoq-sm {
     border-radius: 15px;
     @include deep-height(30px);
     line-height: 30px;

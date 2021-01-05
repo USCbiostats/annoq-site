@@ -1,26 +1,27 @@
-<div fxLayout="column" fxLayoutAlign="start stretch" class="ann-sidenav mat-elevation-z4">
+<div fxLayout="column" fxLayoutAlign="start stretch" class="annoq-sidenav mat-elevation-z4">
 
-  <div class="ann-tree-container" noctuaPerfectScrollbar>
+  <div class="annoq-tree-container" noctuaPerfectScrollbar>
     <mat-tree #tree [dataSource]="dataSource" [treeControl]="treeControl">
-      <mat-tree-node class="ann-tree-node text-truncate" *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding
-        matTreeNodePaddingIndent="10" [ngClass]="{ 'background-highlight': activeAnnotation === node.short_name }">
-        <button mat-icon-button disabled class="ann-icon-button"></button>
+      <mat-tree-node class="annoq-tree-node text-truncate" *matTreeNodeDef="let node" matTreeNodeToggle
+        matTreeNodePadding matTreeNodePaddingIndent="10"
+        [ngClass]="{ 'background-highlight': activeAnnotation === node.short_name }">
+        <button mat-icon-button disabled class="annoq-icon-button"></button>
         <mat-checkbox class="checklist-leaf-node mr-8" [checked]="checklistSelection.isSelected(node)"
           (change)="annotationLeafItemSelectionToggle(node)"></mat-checkbox>
         {{node.name}}
         <span fxFlex></span>
         <diV class="" fxFlex="20px">
-          <button mat-icon-button class="ann-icon-button" (click)="selectAnnotation(node)">
+          <button mat-icon-button class="annoq-icon-button" (click)="selectAnnotation(node)">
             <mat-icon class="s-18">
               info
             </mat-icon>
           </button>
         </diV>
       </mat-tree-node>
-      <mat-tree-node fxLayout="row" class="ann-tree-node text-truncate" *matTreeNodeDef="let node;when: hasChild"
+      <mat-tree-node fxLayout="row" class="annoq-tree-node text-truncate" *matTreeNodeDef="let node;when: hasChild"
         matTreeNodePadding matTreeNodePaddingIndent="10"
         [ngClass]="{ 'background-highlight': activeAnnotation === node.short_name }">
-        <button mat-icon-button matTreeNodeToggle class="ann-icon-button"
+        <button mat-icon-button matTreeNodeToggle class="annoq-icon-button"
           [attr.aria-label]="'toggle ' + node.long_name">
           <mat-icon *ngIf="!treeControl.isExpanded(node)" class="mat-icon-rtl-mirror s-16 fa fa-caret-right">
           </mat-icon>
@@ -34,7 +35,7 @@
         {{node.name}}
         <span fxFlex></span>
         <diV class="" fxFlex="20px">
-          <button mat-icon-button class="ann-icon-button" (click)="selectAnnotation(node)">
+          <button mat-icon-button class="annoq-icon-button" (click)="selectAnnotation(node)">
             <mat-icon class="s-18">
               info
             </mat-icon>

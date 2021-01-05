@@ -1,6 +1,6 @@
-<div class="w-100-p h-100-p noc-drawer" fxLayout="column" fxLayoutAlign="start streych">
-  <div class="noc-drawer-header" fxLayout="row" fxLayoutAlign="start center">
-    <div class="noc-section-heading">
+<div class="w-100-p h-100-p annoq-drawer" fxLayout="column" fxLayoutAlign="start streych">
+  <div class="annoq-drawer-header" fxLayout="row" fxLayoutAlign="start center">
+    <div class="annoq-section-heading">
       <div *ngIf="gene">
         <span>
           <small>Gene Id:</small> {{gene.gene_id}}
@@ -18,26 +18,26 @@
       </div>
     </div>
     <span fxFlex></span>
-    <button mat-flat-button color="" class="noc-rounded-button noc-sm" (click)="download()">
+    <button mat-flat-button color="" class="annoq-rounded-button annoq-sm" (click)="download()">
       Download
     </button>
   </div>
-  <div *ngIf="snpService.loading" class="noc-loading-container" fxLayout="column" fxLayoutAlign="center center">
+  <div *ngIf="snpService.loading" class="annoq-loading-container" fxLayout="column" fxLayoutAlign="center center">
     <mat-progress-spinner class="example-margin" [color]="loadingSpinner.color" [mode]="loadingSpinner.mode">
     </mat-progress-spinner>
   </div>
-  <div *ngIf="snpPage" class="noc-drawer-body" fxLayout="column" fxLayoutAlign="start stretch" noctuaPerfectScrollbar>
+  <div *ngIf="snpPage" class="annoq-drawer-body" fxLayout="column" fxLayoutAlign="start stretch" noctuaPerfectScrollbar>
     <table fxFlex="1 1 auto" mat-table [dataSource]="snpPage.snps" class="">
       <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
         <th mat-header-cell *matHeaderCellDef> {{column}} </th>
         <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'ann-row-selected': false}"
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'annoq-row-selected': false}"
         (click)="selectSnp(row)"></tr>
     </table>
   </div>
-  <mat-paginator *ngIf="snpPage" class="noc-paginator noc-drawer-footer" #paginator [length]="snpPage.total"
+  <mat-paginator *ngIf="snpPage" class="annoq-paginator annoq-drawer-footer" #paginator [length]="snpPage.total"
     [pageIndex]="snpPage.pageNumber" [pageSize]="snpPage.size" (page)="pageEvent = $event; setPage($event)">
   </mat-paginator>
 </div>

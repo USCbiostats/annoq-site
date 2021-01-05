@@ -1,6 +1,6 @@
 @import "theming";
 @import "mixins/breakpoints";
-$noc-secondary-color: #995014;
+$annoq-secondary-color: #995014;
 
 @mixin deep-width($number) {
   width: $number;
@@ -14,13 +14,13 @@ $noc-secondary-color: #995014;
   max-height: $number;
 }
 
-@mixin noc-icon-size($number) {
+@mixin annoq-icon-size($number) {
   font-size: $number;
   @include deep-width($number);
   @include deep-height($number);
 }
 
-.ann-container {
+.annoq-container {
   padding: 0;
   margin: 0 auto;
   width: 1000px;
@@ -30,7 +30,7 @@ $noc-secondary-color: #995014;
   }
 }
 
-.noc-search-database-dialog {
+.annoq-search-database-dialog {
   @include deep-height(90%);
   @include deep-width(1100px);
 }
@@ -49,7 +49,7 @@ textarea {
     bottom: 0;
   }
 
-  &.noc-sm {
+  &.annoq-sm {
     .mat-form-field-wrapper {
       font-size: 12px;
     }
@@ -58,21 +58,21 @@ textarea {
 
 
 
-.noc-dropdown-menu {
-  .noc-menu-heading {
+.annoq-dropdown-menu {
+  .annoq-menu-heading {
     margin: 0;
     padding: 10px 14px;
     background-color: #E2E2E2;
   }
 
-  .noc-item {
+  .annoq-item {
     @include deep-height(30px);
     margin: 0;
     padding: 10px 14px;
   }
 }
 
-.noc-paginator {
+.annoq-paginator {
   overflow: hidden;
   @include deep-height(40px);
   background-color: #DDD;
@@ -83,7 +83,7 @@ textarea {
 }
 
 input[type=text] {
-  &.noc-textbox-legacy {
+  &.annoq-textbox-legacy {
     padding-left: 10px;
     height: 36px;
     line-height: 36px;
@@ -101,7 +101,7 @@ input[type=text] {
   }
 }
 
-.noc-button-border {
+.annoq-button-border {
   border: 1px solid #bbb;
   height: 36px;
   line-height: 36px;
@@ -110,7 +110,7 @@ input[type=text] {
   background-color: #F2F2F2;
 }
 
-.noc-truncate {
+.annoq-truncate {
   display: block;
   margin: 0;
   white-space: nowrap;
@@ -119,22 +119,22 @@ input[type=text] {
   text-overflow: ellipsis;
 }
 
-.noc-page-container {
+.annoq-page-container {
   width: 100%;
   padding: 20px;
 }
 
-.noc-container {
+.annoq-container {
   position: relative;
   width: 1100px;
 
-  .noc-full-w {
+  .annoq-full-w {
     width: 100% !important;
   }
 }
 
-.noc-breadcrumbs {
-  .noc-breadcrumb {
+.annoq-breadcrumbs {
+  .annoq-breadcrumb {
     font-size: 20px;
     color: #777;
 
@@ -145,7 +145,7 @@ input[type=text] {
       padding-right: 8px;
     }
 
-    &.noc-active {
+    &.annoq-active {
       color: #000;
     }
   }

@@ -1,35 +1,35 @@
-<form class="noc-form-section h-100-p w-100-p" fxLayout="column" fxLayoutAlign="start stretch" name="annotationForm"
+<form class="annoq-form-section h-100-p w-100-p" fxLayout="column" fxLayoutAlign="start stretch" name="annotationForm"
   [formGroup]="annotationForm">
-  <div class="noc-section-header" fxLayout="row" fxLayoutAlign="start center">
-    <div class="noc-section-heading">
+  <div class="annoq-section-header" fxLayout="row" fxLayoutAlign="start center">
+    <div class="annoq-section-heading">
       Input Query
       <small>(Selected: {{snpService.inputTypes?.selected.label}})</small>
     </div>
     <span fxFlex></span>
-    <button mat-stroked-button class="noc-rounded-button noc-sm" [matMenuTriggerFor]="configurationMenu">
+    <button mat-stroked-button class="annoq-rounded-button annoq-sm" [matMenuTriggerFor]="configurationMenu">
       CHANGE
     </button>
-    <mat-menu #configurationMenu="matMenu" class="noc-dropdown-menu">
+    <mat-menu #configurationMenu="matMenu" class="annoq-dropdown-menu">
       <button mat-menu-item *ngFor="let inputType of snpService.inputTypes.options" class=""
         (click)="snpService.selectInputType(inputType)">
         {{inputType.label}}
       </button>
     </mat-menu>
   </div>
-  <div [ngSwitch]="snpService.inputTypes.selected.id" class="noc-section-body" fxLayout="column"
+  <div [ngSwitch]="snpService.inputTypes.selected.id" class="annoq-section-body" fxLayout="column"
     fxLayoutAlign="start stretch">
     <div class="" *ngSwitchCase="snpService.inputType.chromosome.id">
       <mat-form-field class="w-100-p">
         <mat-label>Chromosome</mat-label>
         <input matInput formControlName="chrom" placeholder="Chromosome" />
       </mat-form-field>
-      <div class="noc-section-header" fxLayout="row" fxLayoutAlign="start center">
-        <div class="noc-section-heading">
+      <div class="annoq-section-header" fxLayout="row" fxLayoutAlign="start center">
+        <div class="annoq-section-heading">
           Position
         </div>
         <span fxFlex></span>
       </div>
-      <div class="noc-section-body" fxLayout="row" fxLayoutAlign="start center">
+      <div class="annoq-section-body" fxLayout="row" fxLayoutAlign="start center">
         <mat-form-field class=mr-4 fxFlex="50">
           <mat-label>Start</mat-label>
           <input matInput formControlName="start" placeholder="Start">
@@ -55,18 +55,18 @@
     <div class="" *ngSwitchCase="snpService.inputType.chromosomeList.id">
       <div [formGroupName]="'uploadList'" fxLayout="column" fxLayoutAlign="start stretch" class="">
         <div fxLayout="row" fxLayoutAlign="start center" class="pthr-file-upload-header">
-          <button mat-stroked-button class="noc-rounded-button noc-xs" (click)="addSampleVCF()">
+          <button mat-stroked-button class="annoq-rounded-button annoq-xs" (click)="addSampleVCF()">
             Sample VCF File
           </button>
           <span fxFlex=""></span>
-          <label for="noc-upload-snp-browse" fxLayout="row" fxLayoutAlign="start center" class="pthr-file-upload">
-            <button mat-stroked-button class="pthr-file-button noc-rounded-button noc-xs">
+          <label for="annoq-upload-snp-browse" fxLayout="row" fxLayoutAlign="start center" class="pthr-file-upload">
+            <button mat-stroked-button class="pthr-file-button annoq-rounded-button annoq-xs">
               <mat-icon class="s-16 mr-4">cloud_upload</mat-icon> Populate from a FIle
             </button>
           </label>
-          <input type="file" id="noc-upload-snp-browse" formControlName="browse" (change)="onFileChange($event)"
+          <input type="file" id="annoq-upload-snp-browse" formControlName="browse" (change)="onFileChange($event)"
             class="pthr-file-upload" />
-          <button mat-stroked-button class="noc-rounded-button noc-xs">Clear</button>
+          <button mat-stroked-button class="annoq-rounded-button annoq-xs">Clear</button>
         </div>
         <mat-form-field class="mr-8 w-100-p" appearance="outline">
           <textarea matInput formControlName="ids" placeholder="Enter IDs" rows="5"></textarea>
@@ -81,15 +81,15 @@
     </div>
   </div>
 
-  <div class="noc-section-header" fxLayout="row" fxLayoutAlign="start center">
-    <div class="noc-section-heading">
+  <div class="annoq-section-header" fxLayout="row" fxLayoutAlign="start center">
+    <div class="annoq-section-heading">
       Select Annotations
     </div>
     <span fxFlex></span>
   </div>
-  <div class="noc-form-section" fxFlex="" fxLayout="column" fxLayoutAlign="start stretch" noctuaPerfectScrollbar>
-    <div class="noc-section-body" fxLayout="column" fxLayoutAlign="start stretch">
-      <noc-annotation-tree [checklistSelection]="checklistSelection" class="h-100-p w-100-p"></noc-annotation-tree>
+  <div class="annoq-form-section" fxFlex="" fxLayout="column" fxLayoutAlign="start stretch" noctuaPerfectScrollbar>
+    <div class="annoq-section-body" fxLayout="column" fxLayoutAlign="start stretch">
+      <annoq-annotation-tree [checklistSelection]="checklistSelection" class="h-100-p w-100-p"></annoq-annotation-tree>
     </div>
   </div>
   <div class="w-100-p p-8" fxFlex="60px" fxLayout="row" fxLayoutAlign="start center">

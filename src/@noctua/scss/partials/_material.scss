@@ -2,7 +2,7 @@ $primary: map-get($theme, primary);
 $accent: map-get($theme, accent);
 
 .mat-autocomplete-panel {
-  &.noc-term-autocomplete {
+  &.annoq-term-autocomplete {
     @include deep-width(500px !important);
 
     .mat-option {
@@ -12,12 +12,12 @@ $accent: map-get($theme, accent);
       line-height: 18px !important;
       white-space: normal !important;
 
-      .noc-term-id {
+      .annoq-term-id {
         font-size: 10px;
         //margin-right: 
       }
 
-      .noc-term-label {
+      .annoq-term-label {
         font-size: 12px;
         //margin-right: 
       }

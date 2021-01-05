@@ -1,55 +1,81 @@
 <div class="w-100-p" noctuaPerfectScrollbar>
 
   <div class="header accent p-8 w-100-p">
-    <div class="ann-container" fxLayout="row" fxLayoutAlign="start center">
-      <div fxLayout="column" fxLayoutAlign="start center" fxFlex="30%">
+    <div class="annoq-container" fxLayout="row" fxLayoutAlign="start center">
+      <div fxLayout="column" fxLayoutAlign="center center" fxFlex="30%">
         <h1 [@animate]="{value:'*',params:{delay:'100ms', y:'25px'}}">
           The Annotation Query<br>
           <strong>
             (AnnoQ)
           </strong>
         </h1>
-        <h3>
+        <h2>
           An integrated and interactive platform for large-scale genetic variant
           annotation.
-        </h3>
+        </h2>
 
         <button mat-raised-button [routerLink]="['/search']" mat-link-button class="">
           View Interactive Query
         </button>
       </div>
       <span fxFlex=""></span>
-      <div class="ann-image" fxFlex="60%">
+      <div class="annoq-image" fxFlex="60%">
         <img class="" src="assets/images/gui.png">
       </div>
     </div>
   </div>
 
-  <div class="ann-container" fxLayout="column" fxLayoutAlign="start stretch">
-    <h1>Introduction</h1>
-    <p>The Annotation Query (AnnoQ) is an integrated functional annotation platform for large scale genetic variant
-      annotation. It serves researchers with different background and interests. Its easy-to-use user interface and
-      search capabilities suit better for scientists with less bioinformatics skills, including bench scientists and
-      statistician. The backend of the system is a large collection of pre-annotated variants from the Haplotype
-      Reference Consortium (HRC) (~39 million) with sequence features (by WGSA) and functions (PANTHER and Gene
-      Ontology) (we plan to add ~300 millions more variants from dbSNP in the future). The data is built in an
-      Elasticsearch framework and an API was built to allow users to quickly access the annotation data, with one of the
-      following three ways.
-    </p>
-
-    <div fxLayout="row" fxLayoutAlign="start start">
+  <div class="annoq-section section-2">
+    <div class="annoq-container" fxLayout="row wrap" fxLayoutAlign="start start">
       <div class="card" fxFlex="33%">
-        <div class="ann-card">
-          <div class="ann-image position-relative">
-            <img class="" src="assets/images/gui.png">
+        <div class="annoq-card">
+          <div class="annoq-stat">
+            ~39 million
           </div>
-          <div class="ann-card-title p-8 text-truncate">
+          <div class="annoq-card-title p-8 text-truncate">
             <div class="secondary-text">Interactive Query</div>
           </div>
-          <div class="ann-card-description p-8 pt-0">
+          <div class="annoq-card-description p-8 pt-0">
             Getting the annotation data with a graphic interface.
           </div>
-          <div class="p-8 pt-0 ann-card-footer" fxLayout="row" fxLayoutAlign="center center">
+          <div class="p-8 pt-0 annoq-card-footer" fxLayout="row" fxLayoutAlign="center center">
+            <button link-button [routerLink]="['/search']" mat-link-button class="">
+              VIEW
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="annoq-section section-1">
+    <div class="annoq-container" fxLayout="column" fxLayoutAlign="start stretch">
+      <h1>Introduction</h1>
+      <p>The Annotation Query (AnnoQ) is an integrated functional annotation platform for large scale genetic variant
+        annotation. It serves researchers with different background and interests. Its easy-to-use user interface and
+        search capabilities suit better for scientists with less bioinformatics skills, including bench scientists and
+        statistician. The backend of the system is a large collection of pre-annotated variants from the Haplotype
+        Reference Consortium (HRC) (~39 million) with sequence features (by WGSA) and functions (PANTHER and Gene
+        Ontology) (we plan to add ~300 millions more variants from dbSNP in the future). The data is built in an
+        Elasticsearch framework and an API was built to allow users to quickly access the annotation data, with one of
+        the
+        following three ways.
+      </p>
+    </div>
+  </div>
+  <div class="annoq-section section-2">
+    <div class="annoq-container" fxLayout="row wrap" fxLayoutAlign="start start">
+      <div class="card" fxFlex="33%">
+        <div class="annoq-card">
+          <div class="annoq-image position-relative">
+            <img class="" src="assets/images/gui.png">
+          </div>
+          <div class="annoq-card-title p-8 text-truncate">
+            <div class="secondary-text">Interactive Query</div>
+          </div>
+          <div class="annoq-card-description p-8 pt-0">
+            Getting the annotation data with a graphic interface.
+          </div>
+          <div class="p-8 pt-0 annoq-card-footer" fxLayout="row" fxLayoutAlign="center center">
             <button link-button [routerLink]="['/search']" mat-link-button class="">
               VIEW
             </button>
@@ -57,17 +83,17 @@
         </div>
       </div>
       <div class="card" fxFlex="33%">
-        <div class="ann-card">
-          <div class="ann-image position-relative">
+        <div class="annoq-card">
+          <div class="annoq-image position-relative">
             <img class="" src="assets/images/api.png">
           </div>
-          <div class="ann-card-title p-8 text-truncate">
+          <div class="annoq-card-title p-8 text-truncate">
             <div class="secondary-text">API Data Access</div>
           </div>
-          <div class="ann-card-description p-8 pt-0">
+          <div class="annoq-card-description p-8 pt-0">
             Retrieving annotation data using scripts.
           </div>
-          <div class="p-8 pt-0 ann-card-footer" fxLayout="row" fxLayoutAlign="center center">
+          <div class="p-8 pt-0 annoq-card-footer" fxLayout="row" fxLayoutAlign="center center">
             <button href="https://uscbiostats.github.io/AnnoQ/api" target="_blank" mat-link-button class="">
               VIEW
             </button>
@@ -75,17 +101,17 @@
         </div>
       </div>
       <div class="card" fxFlex="33%">
-        <div class="ann-card">
-          <div class="ann-image position-relative">
+        <div class="annoq-card">
+          <div class="annoq-image position-relative">
             <img class="" src="assets/images/document.png">
           </div>
-          <div class="ann-card-title p-8 text-truncate">
+          <div class="annoq-card-title p-8 text-truncate">
             <div class="secondary-text">R Package</div>
           </div>
-          <div class="ann-card-description p-8 pt-0">
+          <div class="annoq-card-description p-8 pt-0">
             Getting annotation data via R programming language.
           </div>
-          <div class="p-8 pt-0 ann-card-footer" fxLayout="row" fxLayoutAlign="center center">
+          <div class="p-8 pt-0 annoq-card-footer" fxLayout="row" fxLayoutAlign="center center">
             <button [routerLink]="['/detail']" mat-link-button class="">
               VIEW
             </button>
@@ -95,60 +121,60 @@
 
 
     </div>
-    <h1>GUI Tutorial</h1>
-    <p>The UI for variants annotation query is available at <a href="http://annoq.org:4206/">http://annoq.org:4206/</a>
-      .</p>
-    <p>Here is a 20 second summary looping gif for tutorial. This can be handy to the editor or any user to know
-      the UI. Also, I just quickly added to the UI Tutorial part below with bite sized sections. Kinda step by
-      step</p>
-    <p><img alt="short" src="assets/images/short.gif"></p>
-    <p>The UI is composed of 3 main panels, the Query Panel, Result Panel and Result Summary Panel</p>
-    <h2>1 Queries (Query Panel)</h2>
-    <p>There 5 types of supported queries as described below (1-5). Choose a query type from the dropdown labeled
-      “Change”.</p>
-    <h3>1.1 Choose Query Type</h3>
-    <p>Genome Coordinates Query: Chromosome location. Specify the chromosome number and the range. All data is
-      based on hg19.
-      Query by Upload VCF file: Variants List. Upload a VCF file of up to 10,000 variants by clicking the
-      "Populate from a File" button. A sample VCF file can be found at here. Note that only first 50 rows of
-      result will be displayed by our website. For retrieving the full result please using the download function.
-      Gene Product Query: Gene Product. Input a gene or protein ID (e.g., ZMYND11). All variants located in the
-      gene region will be returned. Currently, the system can only query one gene at a time. Gene name will be
-      mapped to HGNC gene id by PANTHER gene mapping API.
-      rsID query: Input a single rs ID and retrieve annotations.
-      General Keyword Search: AnnoQ also supports full-text search by using a keyword. This keyword can be a gene
-      name, a phenotype name or a GO term (e.g. Signaling by GPCR).</p>
-    <h3>1.2 Select annotations</h3>
-    <p>The annotations are organized in tree structure of categories and its individual annotations.</p>
-    <p>Select the entire category by clicking on the checkbox (such as ANNOVAR).</p>
-    <p>To choose individual annotations in a category, expand the tree by clicking the triangle next to the
-      checkbox and click the desired checkboxes.</p>
-    <h3>1.3 Submit query</h3>
-    <p>Submit query by clicking the “Submit” button in the bottom of the panel. The results will be displayed on
-      the result panel of the page.</p>
-    <h3>1.4 Export configuration file</h3>
-    <p>There are over 400 annotation types stored in our database. Users may not need all of them in their
-      analysis. Through the process above, users can view the results and decide which annotation to use in their
-      analysis. The configuration file stores the annotation selections the user chooses (from B above), and is
-      used for command-line query or embedded in a programming script such as R. To generate a configuration
-      file, simply click the “Export Config” button, and follow the instruction to save the file on the computer.
-      For instructions how to use the configuration file in the command-line query or programming scripts, please
-      visit link and AnnoQR. </p>
-    <h2>2. Query Results (Results Panel)</h2>
-    <p>The results are represented in a table format where each column ….</p>
-    <p>To select an individual row for detailed result, click the row and the summary panel will appear</p>
-    <h3>2.1 Download results</h3>
-    <p>The results displayed on the results panel can be downloaded. To do so, click the “Download” button on the
-      right upper corner of the results panel. The downloaded file is generated on the server. A link will be
-      displayed. The user can click the link to download the file.</p>
-    <p>It may take some time to generate the file for downloading.</p>
-    <h2>3. Summary Panel</h2>
-    <p>Select a row to see it in a detailed summary</p>
-
-
-
   </div>
-  <ann-footer></ann-footer>
-
-
+  <div class="annoq-section">
+    <div class="annoq-container" fxLayout="row" fxLayoutAlign="start start">
+      <h1>GUI Tutorial</h1>
+      <p>The UI for variants annotation query is available at <a
+          href="http://annoq.org:4206/">http://annoq.org:4206/</a>
+        .</p>
+      <p>Here is a 20 second summary looping gif for tutorial. This can be handy to the editor or any user to know
+        the UI. Also, I just quickly added to the UI Tutorial part below with bite sized sections. Kinda step by
+        step</p>
+      <p><img alt="short" src="assets/images/short.gif"></p>
+      <p>The UI is composed of 3 main panels, the Query Panel, Result Panel and Result Summary Panel</p>
+      <h2>1 Queries (Query Panel)</h2>
+      <p>There 5 types of supported queries as described below (1-5). Choose a query type from the dropdown labeled
+        “Change”.</p>
+      <h3>1.1 Choose Query Type</h3>
+      <p>Genome Coordinates Query: Chromosome location. Specify the chromosome number and the range. All data is
+        based on hg19.
+        Query by Upload VCF file: Variants List. Upload a VCF file of up to 10,000 variants by clicking the
+        "Populate from a File" button. A sample VCF file can be found at here. Note that only first 50 rows of
+        result will be displayed by our website. For retrieving the full result please using the download function.
+        Gene Product Query: Gene Product. Input a gene or protein ID (e.g., ZMYND11). All variants located in the
+        gene region will be returned. Currently, the system can only query one gene at a time. Gene name will be
+        mapped to HGNC gene id by PANTHER gene mapping API.
+        rsID query: Input a single rs ID and retrieve annotations.
+        General Keyword Search: AnnoQ also supports full-text search by using a keyword. This keyword can be a gene
+        name, a phenotype name or a GO term (e.g. Signaling by GPCR).</p>
+      <h3>1.2 Select annotations</h3>
+      <p>The annotations are organized in tree structure of categories and its individual annotations.</p>
+      <p>Select the entire category by clicking on the checkbox (such as ANNOVAR).</p>
+      <p>To choose individual annotations in a category, expand the tree by clicking the triangle next to the
+        checkbox and click the desired checkboxes.</p>
+      <h3>1.3 Submit query</h3>
+      <p>Submit query by clicking the “Submit” button in the bottom of the panel. The results will be displayed on
+        the result panel of the page.</p>
+      <h3>1.4 Export configuration file</h3>
+      <p>There are over 400 annotation types stored in our database. Users may not need all of them in their
+        analysis. Through the process above, users can view the results and decide which annotation to use in their
+        analysis. The configuration file stores the annotation selections the user chooses (from B above), and is
+        used for command-line query or embedded in a programming script such as R. To generate a configuration
+        file, simply click the “Export Config” button, and follow the instruction to save the file on the computer.
+        For instructions how to use the configuration file in the command-line query or programming scripts, please
+        visit link and AnnoQR. </p>
+      <h2>2. Query Results (Results Panel)</h2>
+      <p>The results are represented in a table format where each column ….</p>
+      <p>To select an individual row for detailed result, click the row and the summary panel will appear</p>
+      <h3>2.1 Download results</h3>
+      <p>The results displayed on the results panel can be downloaded. To do so, click the “Download” button on the
+        right upper corner of the results panel. The downloaded file is generated on the server. A link will be
+        displayed. The user can click the link to download the file.</p>
+      <p>It may take some time to generate the file for downloading.</p>
+      <h2>3. Summary Panel</h2>
+      <p>Select a row to see it in a detailed summary</p>
+    </div>
+  </div>
+  <annoq-footer></annoq-footer>
 </div>

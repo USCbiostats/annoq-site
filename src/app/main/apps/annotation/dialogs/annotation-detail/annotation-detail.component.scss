@@ -14,23 +14,23 @@
     width: 600px;
   }
 
-  .noc-dialog-body {
+  .annoq-dialog-body {
     margin: 0;
     padding: 15px 10px;
     @include deep-width(100%);
   }
 
-  .ann-detail-row {
+  .annoq-detail-row {
     padding: 5px 10px;
     border-bottom: #CCC solid 1px;
     font-size: 14px;
 
-    .ann-title {
+    .annoq-title {
       color: #999;
       font-size: 12px;
     }
 
-    .ann-description {
+    .annoq-description {
       word-break: break-all;
     }
   }

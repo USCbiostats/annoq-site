@@ -6,7 +6,7 @@
   flex: 0 0 auto;
   z-index: 4;
 
-  .noc-logo-filler {
+  .annoq-logo-filler {
     @include deep-width(50px);
 
     img {
@@ -21,10 +21,12 @@
     color: inherit;
     position: relative;
 
+    .annoq--query-button {}
+
     mat-toolbar-row {
       @include deep-height(40px);
 
-      &.noc-subtoolbar {
+      &.annoq-subtoolbar {
         button {
           margin-right: 8px;
           height: 30px;
@@ -45,11 +47,11 @@
     }
   }
 
-  .noc-logo {
+  .annoq-logo {
 
     //@include deep-width(130px);
-    .noc-main-logo,
-    .noc-sub-logo {
+    .annoq-main-logo,
+    .annoq-sub-logo {
       cursor: pointer;
       font-size: 20px;
       text-decoration: none !important;
@@ -61,17 +63,17 @@
       }
     }
 
-    .noc-main-logo {
+    .annoq-main-logo {
       margin-right: 4px;
       font-weight: bold;
     }
 
-    .noc-sub-logo {
+    .annoq-sub-logo {
       font-weight: normal;
     }
   }
 
-  .noc-search-bar {
+  .annoq-search-bar {
     max-width: 600px !important;
   }
 }
