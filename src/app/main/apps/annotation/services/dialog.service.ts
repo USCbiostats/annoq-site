@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
-
-
-import 'rxjs/add/operator/map';
 import { AnnotationDetailDialogComponent } from '../dialogs/annotation-detail/annotation-detail.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Injectable({
@@ -15,7 +12,7 @@ export class AnnotationDialogService {
 
     dialogRef: any;
 
-    constructor(private httpClient: HttpClient,
+    constructor(
         private snackBar: MatSnackBar,
         private _matDialog: MatDialog) {
     }

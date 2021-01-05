@@ -26,7 +26,6 @@ export class NoctuaToolbarComponent {
         private noctuaConfig: NoctuaConfigService,
         private translate: TranslateService
     ) {
-        console.log(window.location)
         this.languages = [{
             'id': 'en',
             'title': 'English',
@@ -38,8 +37,6 @@ export class NoctuaToolbarComponent {
         }];
 
         this.selectedLanguage = this.languages[0];
-
-
 
         this.router.events.subscribe(
             (event) => {

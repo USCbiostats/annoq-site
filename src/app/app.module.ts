@@ -8,7 +8,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { FakeDbService } from '@noctua.common/fakedb/services/fake-db.service';
 import 'hammerjs';
-import { MatSidenavModule } from '@angular/material';
 import { NoctuaModule } from '@noctua/noctua.module';
 import { NoctuaProgressBarModule } from '@noctua/components';
 
@@ -19,6 +18,7 @@ import { LayoutModule } from 'app/layout/layout.module';
 
 import { PagesModule } from './main/pages/pages.module';
 import { AppsModule } from './main/apps/apps.module';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 const appRoutes: Routes = [
     {

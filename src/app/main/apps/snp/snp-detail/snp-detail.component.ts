@@ -1,16 +1,10 @@
-import { Component, Inject, Input, OnInit, ElementRef, OnDestroy, ViewEncapsulation, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { MatPaginator, MatSort, MatDrawer } from '@angular/material';
-import { DataSource } from '@angular/cdk/collections';
-import { merge, Observable, Subscription, BehaviorSubject, fromEvent, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { MatDrawer } from '@angular/material/sidenav';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 
-import * as _ from 'lodash';
 import { SnpService } from '../services/snp.service';
-declare const require: any;
-const each = require('lodash/forEach');
 
 @Component({
   selector: 'annoq-snp-detail',

@@ -3,14 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { saveAs } from 'file-saver';
-
-
-
-import 'rxjs/add/operator/map';
-
-import * as _ from 'lodash';
-
 import { Annotation, AnnotationNode, AnnotationFlatNode } from './../models/annotation'
+import { each, find } from 'lodash';
 
 @Injectable({
     providedIn: 'root',
@@ -90,11 +84,11 @@ export class AnnotationService {
 
 
     private _addHeirarchyLevel(annotationNodes: Annotation[]) {
-        _.each(annotationNodes, function (annotationNode) {
+        each(annotationNodes, function (annotationNode) {
             let level = 0;
             let parent = annotationNode;
             while (parent) {
-                parent = _.find(annotationNodes, { id: parent.parent_id });
+                parent = find(annotationNodes, { id: parent.parent_id });
                 level++;
             }
             // annotationNode.level = level;

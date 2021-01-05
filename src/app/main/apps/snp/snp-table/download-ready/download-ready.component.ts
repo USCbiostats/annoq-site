@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material';
 import { SnpService } from './../../services/snp.service'
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { environment } from 'environments/environment';
+import { MatSnackBarRef, MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-download-ready',

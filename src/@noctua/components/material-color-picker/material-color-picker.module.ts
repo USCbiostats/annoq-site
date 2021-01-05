@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatButtonModule, MatIconModule, MatMenuModule, MatRippleModule } from '@angular/material';
 import { NoctuaPipesModule } from '../../pipes/pipes.module';
 import { NoctuaMaterialColorPickerComponent } from './material-color-picker.component';
+import { MatRippleModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
     declarations: [

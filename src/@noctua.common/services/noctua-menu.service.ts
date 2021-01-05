@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { MatDrawer } from '@angular/material/sidenav';
 
 const noctuaTypes = require('@noctua.common/data/config/noctua-types.json');
 
-import { MatDrawer } from '@angular/material';
 
 declare const require: any;
 const each = require('lodash/forEach');

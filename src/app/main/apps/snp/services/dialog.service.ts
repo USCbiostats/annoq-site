@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
-
-
-import 'rxjs/add/operator/map';
 import { DownloadReadyComponent } from '../snp-table/download-ready/download-ready.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Injectable({

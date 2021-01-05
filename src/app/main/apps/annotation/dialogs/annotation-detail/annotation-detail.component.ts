@@ -1,12 +1,9 @@
 
-import { Component, OnInit, OnDestroy, ViewChild, Inject, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormArray } from '@angular/forms';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatMenuTrigger } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
-import * as _ from 'lodash';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-annotation-detail',
@@ -20,8 +17,6 @@ export class AnnotationDetailDialogComponent implements OnInit, OnDestroy {
   constructor(
     private _matDialogRef: MatDialogRef<AnnotationDetailDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private _data: any,
-    private _matDialog: MatDialog,
-    private route: ActivatedRoute,
   ) {
     this._unsubscribeAll = new Subject();
 

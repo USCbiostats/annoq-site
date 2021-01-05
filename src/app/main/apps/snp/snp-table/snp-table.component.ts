@@ -3,18 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import * as _ from 'lodash';
-
 import { NoctuaMenuService } from '@noctua.common/services/noctua-menu.service';
 
 import { SnpService } from './../services/snp.service'
 import { SnpPage } from '../models/page';
 import { Gene } from '../models/gene';
 import { SnpDialogService } from '../services/dialog.service';
-import { MatPaginator } from '@angular/material';
 import { DataSource } from '@angular/cdk/table';
 
-import 'rxjs/add/observable/of';
+import { MatPaginator } from '@angular/material/paginator';
 @Component({
   selector: 'annoq-snp-table',
   templateUrl: './snp-table.component.html',
