@@ -21,17 +21,7 @@
       min-width: 600px;
     }
 
-    .anooq-section {
-      padding: 20px 10px;
 
-      &.section-1 {
-        background-color: #EEE;
-      }
-
-      &.section-2 {
-        background-color: rgba($annoq-primary-color, 0.1);
-      }
-    }
 
     .annoq-container {
       overflow: hidden;
@@ -91,6 +81,55 @@
 
   }
 
+  .annoq-section {
+    padding: 20px 10px;
+
+    h2 {
+      //padding-bottom: 20px;
+      font-size: 40px;
+    }
+
+    &.section-1 {
+      background-color: #FFF;
+    }
+
+    &.section-2 {
+      background-color: rgba($annoq-primary-color, 0.1);
+    }
+  }
+
+  .annoq-row-description {
+    padding: 20px 10px;
+
+    img {
+      width: 100%;
+    }
+
+    h3 {
+      font-size: 30px;
+    }
+
+    &.annoq-easyuse {
+      .annoq-img {
+        @include deep-width(40%);
+      }
+
+      .annoq-description {
+        @include deep-width(50%);
+      }
+    }
+
+    &.annoq-ui {
+      .annoq-img {
+        @include deep-width(20%);
+      }
+
+      .annoq-description {
+        @include deep-width(50%);
+      }
+    }
+  }
+
   p {
     font-size: 14px;
     line-height: 24px;
@@ -101,65 +140,85 @@
     @include deep-height(250px);
     padding: 0 8px;
     margin-bottom: 16px;
-    height: 250px;
-  }
 
-  .annoq-card {
-    @include deep-width(100%);
-    @include deep-height(100%);
+    .annoq-card {
+      @include deep-width(100%);
+      @include deep-height(100%);
 
-    overflow: hidden;
-
-    @include mat-elevation(3);
-
-    .annoq-image {
-      height: 120px;
       overflow: hidden;
 
-      img {
-        height: 100%;
+      @include mat-elevation(3);
+
+      .annoq-image {
+        height: 120px;
+        overflow: hidden;
+
+        img {
+          height: 100%;
+        }
+
+      }
+
+      .annoq-icon {
+        height: 120px;
+        overflow: hidden;
+        font-size: 70px;
+
+      }
+
+      .annoq-stat {
+        height: 100px;
+        font-size: 50px;
+        font-weight: bold;
+        overflow: hidden;
+        color: rgba($annoq-primary-color, 0.6);
+
+        &.annoq-lg-font {
+          font-size: 60px;
+        }
+
+        &.annoq-sm-font {
+          font-size: 40px;
+        }
+      }
+
+      .annoq-card-title {
+        overflow: hidden;
+        height: 35px;
+      }
+
+      .annoq-card-chips {
+        overflow: hidden;
+        height: 35px;
+      }
+
+      .annoq-card-footer {
+        .annoq-action-button {
+          margin: 0 6px;
+          @include mat-elevation(2);
+        }
       }
     }
 
-    .annoq-card-title {
-      overflow: hidden;
-      height: 35px;
-    }
+    &.card-stats {
+      @include deep-height(200px);
 
-    .annoq-card-chips {
-      overflow: hidden;
-      height: 35px;
-    }
+      .annoq-card {
+        @include mat-elevation(6);
 
-    .annoq-card-footer {
+        .annoq-card-title {
+          padding: 8px 12px;
+          overflow: hidden;
+          text-align: center;
+          height: 50px;
+        }
 
-      .annoq-action-button {
-        margin: 0 6px;
-        @include mat-elevation(2);
-      }
+        .annoq-card-footer {
+          .annoq-rounded-button {
+            border-color: rgba($annoq-primary-color, 0.6);
+          }
+        }
 
-      .annoq-action-love {
-        @include deep-width(50px);
-        @include deep-height(50px);
-        font-size: 36px;
-        color: #da7979;
-      }
-
-      .annoq-action-skip {
-        @include deep-width(30px);
-        @include deep-height(30px);
-        font-size: 14px;
-        line-height: 30px;
-        // color: #e28a8a;
-        color: #AAA;
-      }
-
-      .annoq-action-ok {
-        @include deep-width(40px);
-        @include deep-height(40px);
-        line-height: 40px;
-        font-size: 26px;
-        color: #91d691;
       }
     }
   }

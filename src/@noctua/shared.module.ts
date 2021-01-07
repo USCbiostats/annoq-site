@@ -8,6 +8,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NoctuaDirectivesModule } from './directives/directives';
 import { NoctuaPipesModule } from './pipes/pipes.module';
 import { DragDropModule } from '@angular/cdk/drag-drop'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
     imports: [
@@ -18,7 +19,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop'
         FlexLayoutModule,
         NoctuaDirectivesModule,
         NoctuaPipesModule,
-        DragDropModule
+        DragDropModule,
+        FontAwesomeModule
     ],
     exports: [
         CommonModule,
@@ -28,7 +30,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop'
         FlexLayoutModule,
         NoctuaDirectivesModule,
         NoctuaPipesModule,
-        DragDropModule
+        DragDropModule,
+        FontAwesomeModule
     ]
 })
 
