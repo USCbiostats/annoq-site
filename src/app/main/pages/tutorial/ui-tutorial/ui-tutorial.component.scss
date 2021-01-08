@@ -16,13 +16,13 @@
     padding-top: 50px !important;
     position: relative;
     flex: 1 0 auto;
-    height: 500px;
+    height: 100px;
     min-width: 800px;
     text-align: center;
     overflow: hidden;
 
     @include media-breakpoint('lt-md') {
-      height: 200px;
+      height: 100px;
       min-width: 600px;
     }
 
@@ -209,24 +209,17 @@
     }
 
     &.card-logo {
-      @include deep-height(60px);
+      @include deep-height(40px);
 
       .annoq-card {
         @include mat-elevation(0);
 
         .annoq-image {
-          font-size: 40px;
-          @include deep-height(40px);
+          font-size: 50px;
           height: 100%;
           overflow: hidden;
 
           img {
-            height: 100%;
-          }
-
-          a {
-            line-height: 50px;
-            color: #000;
             height: 100%;
           }
         }
