@@ -2,6 +2,11 @@
 @import "src/@noctua.common/scss/noctua.common";
 
 :host {
+
+  h2 {
+    margin: 0;
+  }
+
   .header {
     padding-bottom: 10px;
     background-image: linear-gradient(to right, $annoq-primary-color, $annoq-primary-color, rgba($annoq-primary-color, 0.6));
@@ -81,60 +86,6 @@
 
   }
 
-  .annoq-section {
-    padding: 20px 10px;
-
-    h2 {
-      //padding-bottom: 20px;
-      font-size: 40px;
-    }
-
-    &.section-1 {
-      background-color: #FFF;
-    }
-
-    &.section-2 {
-      background-color: rgba($annoq-primary-color, 0.1);
-    }
-  }
-
-  .annoq-row-description {
-    padding: 20px 10px;
-
-    img {
-      width: 100%;
-    }
-
-    h3 {
-      font-size: 30px;
-    }
-
-    &.annoq-easyuse {
-      .annoq-img {
-        @include deep-width(40%);
-      }
-
-      .annoq-description {
-        @include deep-width(50%);
-      }
-    }
-
-    &.annoq-ui {
-      .annoq-img {
-        @include deep-width(20%);
-      }
-
-      .annoq-description {
-        @include deep-width(50%);
-      }
-    }
-  }
-
-  p {
-    font-size: 14px;
-    line-height: 24px;
-  }
-
   .card {
     // @include deep-width(185px);
     @include deep-height(250px);
@@ -147,7 +98,7 @@
 
       overflow: hidden;
 
-      @include mat-elevation(3);
+      @include mat-elevation(6);
 
       .annoq-image {
         height: 120px;
@@ -164,10 +115,11 @@
         overflow: hidden;
         font-size: 70px;
 
+        color: rgba($annoq-primary-color, 0.5);
       }
 
       .annoq-stat {
-        height: 100px;
+        height: 80px;
         font-size: 50px;
         font-weight: bold;
         overflow: hidden;
@@ -201,10 +153,10 @@
     }
 
     &.card-stats {
-      @include deep-height(200px);
+      @include deep-height(150px);
 
       .annoq-card {
-        @include mat-elevation(6);
+        @include mat-elevation(0);
 
         .annoq-card-title {
           padding: 8px 12px;
@@ -221,6 +173,157 @@
 
       }
     }
+
+    &.card-step {
+      @include deep-height(80px);
+      width: 100%;
+
+      .annoq-card {
+        @include mat-elevation(6);
+        padding: 8px 12px;
+
+        .annoq-icon {
+          width: 60px;
+          height: 100%;
+          font-size: 40px;
+          text-align: center;
+        }
+
+        .annoq-card-title {
+          padding: 0px 12px;
+          overflow: hidden;
+          height: 50px;
+          font-size: 20px;
+
+          .annoq-lg {
+            font-size: 30px;
+          }
+        }
+
+        .annoq-card-footer {
+          .annoq-rounded-button {
+            border-color: rgba($annoq-primary-color, 0.6);
+          }
+        }
+      }
+    }
+
+    &.card-logo {
+      @include deep-height(40px);
+
+      .annoq-card {
+        @include mat-elevation(0);
+
+        .annoq-image {
+          font-size: 50px;
+          height: 100%;
+          overflow: hidden;
+
+          img {
+            height: 100%;
+          }
+        }
+
+      }
+    }
+
   }
+
+  .annoq-section {
+    padding: 40px 10px;
+
+    .annoq-heading {
+      margin: 0 auto;
+      width: 800px;
+
+      h3 {
+        font-size: 28px;
+      }
+    }
+
+    h2 {
+      //padding-bottom: 20px;
+      font-size: 40px;
+    }
+
+    &.section-1 {
+      background-color: #FFF;
+    }
+
+    &.section-2 {
+      background-color: rgba($annoq-primary-color, 0.1);
+    }
+  }
+
+  .annoq-row-description {
+    padding: 20px 10px;
+
+    img {
+      width: 100%;
+    }
+
+    h3 {
+      font-size: 30px;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 24px;
+    }
+
+    &.annoq-easyuse {
+      .annoq-img {
+        @include deep-width(60%);
+      }
+
+      .annoq-description {
+        @include deep-width(30%);
+        text-align: left;
+      }
+    }
+
+    &.annoq-ui {
+      .annoq-img {
+        @include deep-width(25%);
+      }
+
+      .annoq-description {
+        @include deep-width(75%);
+        text-align: right;
+
+        &.annoq-steps {
+          .card-step {
+            margin-bottom: 30px;
+          }
+
+          .card-step:nth-child(1) {
+            //margin-bottom: 10px;
+          }
+
+          .card-step:nth-child(2) {
+            //margin-bottom: 50px;
+            padding-left: 60px;
+          }
+
+          .card-step:nth-child(3) {
+            // margin-bottom: 50px;
+            padding-left: 100px;
+          }
+
+          .card-step:nth-child(4) {
+            // margin-bottom: 10px;
+            padding-left: 60px;
+          }
+        }
+      }
+    }
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+
 
 }

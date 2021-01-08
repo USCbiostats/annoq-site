@@ -1,7 +1,7 @@
 $annoq-border-color: #BBB;
 
 .annoq-rounded-button {
-  border-radius: 20px;
+  border-radius: 20px !important;
   @include deep-height(40px);
   line-height: 40px;
   font-size: 14px;
@@ -12,12 +12,12 @@ $annoq-border-color: #BBB;
     @include deep-height(20px);
     line-height: 20px;
     font-size: 10px;
-    border-radius: 10px;
+    border-radius: 10px !important;
     font-weight: normal;
   }
 
   &.annoq-xs {
-    border-radius: 12px;
+    border-radius: 12px !important;
     @include deep-height(24px);
     line-height: 24px;
     font-size: 12px;
@@ -25,7 +25,7 @@ $annoq-border-color: #BBB;
   }
 
   &.annoq-sm {
-    border-radius: 15px;
+    border-radius: 15px !important;
     @include deep-height(30px);
     line-height: 30px;
     font-size: 12px;
