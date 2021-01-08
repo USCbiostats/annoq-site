@@ -3,22 +3,23 @@
 - title: "Tutorials"
   url: "docs/tutorials"
   links:
-    - title: Using the Interactive Query
+    - title: Interactive Query UI
       url: "docs/tutorials/ui-query"
       children:
-        - title: Creating a basic Activity Unit
+        - title: Quick UI Overview
           url: "docs/tutorials/ui-query"
+    - title: Using AnnoQ API
+      url: "docs/tutorials/api"
+    - title: Using AnnoQR (R Package)
+      url: "docs/tutorials/r-package"
 - title: "Changelog"
   url:
   links:
-    - title: AnnoQ 2.0
-      url: "docs/changelog/annoq-2"
     - title: AnnoQ 1.0
       url: "docs/changelog/annoq-1"
+    - title: AnnoQ 0.1
+      url: "docs/changelog/annoq-0"
     - title: Feature Changelog
       url: "docs/changelog/features"
 - title: "Guides"
   url: "docs/guides"
-  links:
-    - title: Authentication
-      url: "docs/guides/authentication"

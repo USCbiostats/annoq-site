@@ -60,7 +60,7 @@
     <div class="noc-navbar-nav-scroll ml-md-auto" id="main_navbar">
       <ul class="navbar-nav mt-2 mt-lg-0">
         <li class="nav-item mr-4 mb-3 mb-lg-0">
-          <a class="nav-link" href="" target="_blank"><span>AnnoQ</span></a>
+          <a class="nav-link" href="http://annoq.org/" target="_blank"><span>AnnoQ</span></a>
         </li>
         
         <li class="nav-item mr-4 mb-2 mb-lg-0">
@@ -130,14 +130,32 @@
             
             <li class="noc-sidebar-nav__section-title">
               <a href="/annoq-site/docs/tutorials/ui-query"
-                class="align-left pl-0 pr-2 noc-sidebar-link noc-sidebar-link__section">Using the Interactive Query</a>
+                class="align-left pl-0 pr-2 noc-sidebar-link noc-sidebar-link__section">Interactive Query UI</a>
             </li>
             <ul>
               <li class="collapse show" id="">
                 <a class="noc-sidebar-link noc-sidebar-link__page "
-                  id="m-tutorials-using-the-interactive-query-creating-a-basic-activity-unit"
-                  href="/annoq-site/docs/tutorials/ui-query">Creating a basic Activity Unit</a>
+                  id="m-tutorials-interactive-query-ui-quick-ui-overview"
+                  href="/annoq-site/docs/tutorials/ui-query">Quick UI Overview</a>
                 
+              </li>
+            </ul>
+            
+            <li class="noc-sidebar-nav__section-title">
+              <a href="/annoq-site/docs/tutorials/api"
+                class="align-left pl-0 pr-2 noc-sidebar-link noc-sidebar-link__section">Using AnnoQ API</a>
+            </li>
+            <ul>
+              <li class="collapse show" id="">
+              </li>
+            </ul>
+            
+            <li class="noc-sidebar-nav__section-title">
+              <a href="/annoq-site/docs/tutorials/r-package"
+                class="align-left pl-0 pr-2 noc-sidebar-link noc-sidebar-link__section">Using AnnoQR (R Package)</a>
+            </li>
+            <ul>
+              <li class="collapse show" id="">
               </li>
             </ul>
             
@@ -157,8 +175,8 @@
           <ul class="noc-sidebar-nav__section pr-md-3">
             
             <li class="noc-sidebar-nav__section-title">
-              <a href="/annoq-site/docs/changelog/annoq-2"
-                class="align-left pl-0 pr-2 noc-sidebar-link noc-sidebar-link__section">AnnoQ 2.0</a>
+              <a href="/annoq-site/docs/changelog/annoq-1"
+                class="align-left pl-0 pr-2 noc-sidebar-link noc-sidebar-link__section">AnnoQ 1.0</a>
             </li>
             <ul>
               <li class="collapse show" id="">
@@ -166,8 +184,8 @@
             </ul>
             
             <li class="noc-sidebar-nav__section-title">
-              <a href="/annoq-site/docs/changelog/annoq-1"
-                class="align-left pl-0 pr-2 noc-sidebar-link noc-sidebar-link__section">AnnoQ 1.0</a>
+              <a href="/annoq-site/docs/changelog/annoq-0"
+                class="align-left pl-0 pr-2 noc-sidebar-link noc-sidebar-link__section">AnnoQ 0.1</a>
             </li>
             <ul>
               <li class="collapse show" id="">
@@ -194,22 +212,6 @@
           class="align-left pl-0 pr-2 active noc-sidebar-link noc-sidebar-link__section">Guides</a>
       </li>
       
-      <ul>
-        <li class="collapse show" id="guides">
-          <ul class="noc-sidebar-nav__section pr-md-3">
-            
-            <li class="noc-sidebar-nav__section-title">
-              <a href="/annoq-site/docs/guides/authentication"
-                class="align-left pl-0 pr-2 noc-sidebar-link noc-sidebar-link__section">Authentication</a>
-            </li>
-            <ul>
-              <li class="collapse show" id="">
-              </li>
-            </ul>
-            
-          </ul>
-      </ul>
-      
     </ul>
     
   </nav>
@@ -217,13 +219,14 @@
         </div>
         <div class="d-none d-xl-block col-xl-2 noc-toc d-print-none">
           <div class="noc-page-meta ml-2 pb-1 pt-2 mb-0">
-            <a href="https://github.com/USCbiostats/annoq-site/edit/master/_docs/tutorials/ui-query.md" target="_blank"><i class="fa fa-edit fa-fw"></i> Edit this page</a>
-<a href="https://github.com/USCbiostats/annoq-site/issues/new?labels=question&title=Question:&body=Question on: https://github.com/USCbiostats/annoq-site/tree/master/_docs/tutorials/ui-query.md" target="_blank"><i class="fab fa-github fa-fw"></i> Create documentation issue</a>
+            <a href="https://github.com/USCbiostats/annoq-site/edit/gh-pages/_docs/tutorials/ui-query.md" target="_blank"><i class="fa fa-edit fa-fw"></i> Edit this
+     page</a>
+<a href="https://github.com/USCbiostats/annoq-site/issues/new?labels=question&title=Question:&body=Question on: https://github.com/USCbiostats/annoq-site/tree/master/_docs/tutorials/ui-query.md"
+     target="_blank"><i class="fab fa-github fa-fw"></i> Create documentation issue</a>
 <a href="https://github.com/USCbiostats/annoq-site/issues/new" target="_blank"><i class="fas fa-tasks fa-fw"></i> Create project issue</a>
 <!-- this will parse through the header fields and add a button to open
      an issue / ask a question on Github. The editable field should be in
      the post frontend matter, and refer to the label to open the issue for -->
-
           </div>
           <nav id="TableOfContents">
             <ul>
@@ -244,123 +247,79 @@
             </ol>
           </nav> -->
           <div class="noc-content">
-            <h1 id="creating-go-annotations-in-annoq">Creating GO Annotations In Annoq</h1>
+            <h1 id="interactive-query-ui-tutorial">Interactive Query UI Tutorial</h1>
 
-<h2 id="creating-a-basic-activity-unit-mf-part-of-bp-occurs-in-cc">Creating a basic Activity Unit (MF, part of BP, occurs in CC)</h2>
+<p>The UI for variants annotation query is available at <a href="http://annoq.org/search">Interactive Query UI</a></p>
 
-<p>In this hands-on tutorial, you will learn how to create a basic activity using
-<strong>C. elegans</strong> as an example:</p>
+<p>It is composed of 3 main panels, the Query Panel, Result Panel and Result Summary Panel</p>
 
-<h3 id="1-open-the-activity-unit-form">1. Open the Activity Unit Form</h3>
+<p><img src="/annoq-site/assets/img/ui-overview.gif" alt="" /></p>
 
-<ul>
-  <li>Click on ‘Create Activity’ to select an Activity Unit Form</li>
-  <li>A new empty form will slide in from left side</li>
-</ul>
+<h2 id="1-queries-query-panel">1 Queries (Query Panel)</h2>
 
-<h3 id="2-add-a-gene-product">2. Add a Gene Product</h3>
+<p>Select a query type and input the query term. Choose a query type from the dropdown labeled “Change”.</p>
 
-<ul>
-  <li>Type in gene name: <strong>mpk-1</strong> (explain that returned entities are what is
-      in gpi file and therefore in NEO)</li>
-  <li>Autocomplete options are presented in a pop-up window</li>
-  <li>Gene products link out to respective gene product pages via dbxrefs.yaml</li>
-</ul>
+<h3 id="11-choose-query-type">1.1 Choose Query Type</h3>
 
-<p><img src="/annoq-site/assets/img/create-autocomplete.gif" alt="" /></p>
+<p>There 5 types of supported queries as described below (1.1.1 - 1.1.5).</p>
 
-<h3 id="3-add-a-molecular-function">3. Add a Molecular Function</h3>
+<h4 id="111-genome-coordinates-query">1.1.1 Genome Coordinates Query</h4>
 
-<ul>
-  <li>Search for ‘<strong>protein kinase activity</strong>’</li>
-  <li>Autocomplete options are presented in a pop-up window</li>
-  <li>Terms link out to AmiGO</li>
-</ul>
+<p>Chromosome location. Specify the chromosome number and the range. All data is based on hg19.</p>
 
-<p><img src="/annoq-site/assets/img/create-autocomplete-mf-linkouts.gif" alt="" /></p>
+<h4 id="112-query-by-upload-vcf-file-variants-list">1.1.2 Query by Upload VCF file (Variants List)</h4>
 
-<h4 id="31-evidence-code-autocomplete-using-eco-term-names">3.1. Evidence code autocomplete using ECO term names</h4>
+<p>Upload a VCF file of up to 10,000 variants by clicking the “Populate from a File” button. A sample VCF file can be found at here. Note that only first 50 rows of result will be displayed by our website. For retrieving the full result please using the download function.</p>
 
-<ul>
-  <li>Search for ‘<strong>direct assay</strong>’</li>
-  <li>GO codes are indicated with bold three-letter GO code</li>
-</ul>
+<h4 id="113-gene-product-query">1.1.3 Gene Product Query</h4>
 
-<p><img src="/annoq-site/assets/img/create-autocomplete-evidence.gif" alt="" /></p>
+<p>Input a gene or protein ID (e.g., ZMYND11). All variants located in the gene region will be returned. Currently, the system can only query one gene at a time. Gene name will be mapped to HGNC gene id by PANTHER gene mapping API.</p>
 
-<h4 id="32-add-a-reference-two-options">3.2. Add a reference. Two options:</h4>
+<h4 id="114-rsid-query">1.1.4 rsID query</h4>
 
-<ul>
-  <li>Cut and paste a DB and id, e.g. <strong>PMID:31296532 OR</strong></li>
-  <li>Click on the +/lines symbol
-    <ul>
-      <li>Pop-up appears with a select drop-down of dbs for references: PMID,</li>
-      <li>DOI, GO_REF</li>
-      <li>Select <strong>PMID</strong></li>
-      <li>Add identifier: <strong>31296532</strong></li>
-    </ul>
-  </li>
-</ul>
+<p>Input a single rs ID and retrieve annotations</p>
 
-<p><img src="/annoq-site/assets/img/create-autocomplete-ref.gif" alt="" /></p>
+<h4 id="115-general-keyword-search">1.1.5 General Keyword Search</h4>
 
-<blockquote>
-  <p>Note that at this point you can save just your MF annotation by clicking on
-the SAVE button. This will save the MF annotation and automatically save the
-resulting model. However, if you want to add contextual information, such as
-MF inputs, or a Biological Process or Cellular Component annotation, you
-should wait until you’ve added all information before saving.</p>
-</blockquote>
+<p>AnnoQ also supports full-text search by using a keyword. This keyword can be a gene name, a phenotype name or a GO term (e.g. Signaling by GPCR).</p>
 
-<h3 id="4-add-that-mf-is-part-of-a-bp">4. Add that MF is ‘part of’ a BP</h3>
+<h3 id="12-select-annotations">1.2 Select annotations</h3>
 
-<ul>
-  <li>Search for ‘<strong>DNA damage response, detection of DNA damage</strong>’</li>
-  <li>Autocomplete options are presented in a pop-up window</li>
-  <li>Terms link out to AmiGO</li>
-  <li>Evidence code autocomplete using ECO term names
-    <ul>
-      <li>Search for ‘<strong>mutant phenotype</strong>’</li>
-      <li>GO codes are indicated with bold three-letter GO code</li>
-    </ul>
-  </li>
-  <li>Add a reference. Two options:
-    <ul>
-      <li>Cut and paste a DB and id, e.g. <strong>PMID:31296532 OR</strong></li>
-      <li>Click on the +/lines symbol</li>
-      <li>Pop-up appears with a select drop-down of dbs for references: PMID, DOI,
-  GO_REF</li>
-      <li>Select <strong>PMID</strong></li>
-      <li>Add identifier: <strong>31296532</strong></li>
-    </ul>
-  </li>
-</ul>
+<p>The annotations are organized in a tree structure of categories and its individual annotations.</p>
 
-<h3 id="5-add-that-mf-occurs-in-a-cc">5. Add that MF ‘occurs in’ a CC</h3>
+<p>Select the entire category by clicking on the checkbox (such as ANNOVAR).</p>
+
+<p>To choose individual annotations in a category, expand the tree by clicking the triangle next to the checkbox and click the desired checkboxes.</p>
+
+<h3 id="13-submit-query">1.3 Submit query</h3>
+
+<p>Submit query by clicking the “Submit” button in the bottom of the panel. The results will be displayed on the result panel of the page.</p>
+
+<h3 id="14-export-configuration-file">1.4 Export configuration file</h3>
+
+<p>There are over 400 annotation types stored in our database. Users may not need all of them in their analysis. Through the process above, users can view the results and decide which annotation to use in their analysis. The configuration file stores the annotation selections the user chooses (from B above), and is used for command-line query or embedded in a programming script such as R. To generate a configuration file, simply click the “Export Config” button, and follow the instruction to save the file on the computer. For instructions how to use the configuration file in the command-line query or programming scripts, please visit link and AnnoQR.</p>
+
+<h2 id="2-query-results-results-panel">2. Query Results (Results Panel)</h2>
+
+<p>The results are represented in a table format where each column ….</p>
+
+<p>To select an individual row for detailed result, click the row and the summary panel will appear</p>
+
+<h3 id="21-download-results">2.1 Download results</h3>
+
+<p>The results displayed on the results panel can be downloaded. To do so, click the “Download” button on the right upper corner of the results panel. The downloaded file is generated on the server. A link will be displayed. The user can click the link to download the file.</p>
+
+<p>It may take some time to generate the file for downloading.</p>
+
+<h2 id="3-summary-panel">3. Summary Panel</h2>
+
+<p>Select a row to see it in a detailed summary</p>
+
+<p><strong>Whats Next</strong></p>
 
 <ul>
-  <li>Search for ‘<strong>nucleus</strong>’</li>
-  <li>Autocomplete options are presented in a pop-up window</li>
-  <li>Terms link out to AmiGO</li>
-  <li>Evidence code autocomplete using ECO term names
-    <ul>
-      <li>Search for ‘<strong>direct assay</strong>’</li>
-      <li>GO codes are indicated with bold three-letter GO code</li>
-    </ul>
-  </li>
-  <li>Add a reference. Two options:
-    <ul>
-      <li>Cut and paste a DB and id, e.g. <strong>PMID:31296532 OR</strong></li>
-      <li>Click on the +/lines symbol
-        <ul>
-          <li>Pop-up appears with a select drop-down of dbs for references: PMID,
-  DOI, GO_REF</li>
-          <li>Select <strong>PMID</strong></li>
-          <li>Add identifier: <strong>31296532</strong></li>
-        </ul>
-      </li>
-    </ul>
-  </li>
+  <li><a href="/annoq-site/docs/tutorials/api">API Documentation Tutorial</a></li>
+  <li><a href="/annoq-site/docs/tutorials/r-package">R package (AnnoQR) Tutorial</a></li>
 </ul>
 
 <script
@@ -441,7 +400,7 @@ $('h1').first().append('<div></div>')</script>
         </ul>
       </div>
       <div class="col-12 col-sm-4 text-center py-2 order-sm-2">
-        <small class="text-white">© 2019 Tremayne Mushayahama All Rights Reserved</small>
+        <small class="text-white">© 2021 AnnoQ All Rights Reserved</small>
       </div>
     </div>
   </div>

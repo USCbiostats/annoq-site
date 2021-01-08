@@ -1,93 +1,74 @@
 ---
 ---
+# Interactive Query UI Tutorial
 
-# Creating GO Annotations In Annoq
+The UI for variants annotation query is available at [Interactive Query UI]({{site.annoq_search_url}})
 
-## Creating a basic Activity Unit (MF, part of BP, occurs in CC)
+It is composed of 3 main panels, the Query Panel, Result Panel and Result Summary Panel
 
-In this hands-on tutorial, you will learn how to create a basic activity using
-**C. elegans** as an example:
+![]({{ site.baseurl }}/assets/img/ui-overview.gif)
 
-### 1. Open the Activity Unit Form
- 
-- Click on ‘Create Activity’ to select an Activity Unit Form
-- A new empty form will slide in from left side
-  
-### 2. Add a Gene Product
+## 1 Queries (Query Panel)
 
-- Type in gene name: **mpk-1** (explain that returned entities are what is
-        in gpi file and therefore in NEO)
-- Autocomplete options are presented in a pop-up window
-- Gene products link out to respective gene product pages via dbxrefs.yaml
+Select a query type and input the query term. Choose a query type from the dropdown labeled “Change”.
 
-![]({{ site.baseurl }}/assets/img/create-autocomplete.gif)
+### 1.1 Choose Query Type
 
+There 5 types of supported queries as described below (1.1.1 - 1.1.5).
 
-### 3. Add a Molecular Function
+#### 1.1.1 Genome Coordinates Query
 
-- Search for ‘**protein kinase activity**’
-- Autocomplete options are presented in a pop-up window
-- Terms link out to AmiGO
+Chromosome location. Specify the chromosome number and the range. All data is based on hg19. 
 
+#### 1.1.2 Query by Upload VCF file (Variants List)
 
-![]({{ site.baseurl }}/assets/img/create-autocomplete-mf-linkouts.gif)
+Upload a VCF file of up to 10,000 variants by clicking the "Populate from a File" button. A sample VCF file can be found at here. Note that only first 50 rows of result will be displayed by our website. For retrieving the full result please using the download function.
 
+#### 1.1.3 Gene Product Query
 
-#### 3.1. Evidence code autocomplete using ECO term names
+Input a gene or protein ID (e.g., ZMYND11). All variants located in the gene region will be returned. Currently, the system can only query one gene at a time. Gene name will be mapped to HGNC gene id by PANTHER gene mapping API. 
 
-- Search for ‘**direct assay**’
-- GO codes are indicated with bold three-letter GO code
+#### 1.1.4 rsID query
 
-![]({{ site.baseurl }}/assets/img/create-autocomplete-evidence.gif)
+Input a single rs ID and retrieve annotations
 
-#### 3.2. Add a reference. Two options:
+#### 1.1.5 General Keyword Search
 
-- Cut and paste a DB and id, e.g. **PMID:31296532 OR**
-- Click on the +/lines symbol
-  - Pop-up appears with a select drop-down of dbs for references: PMID,
-  - DOI, GO_REF
-  - Select **PMID**
-  - Add identifier: **31296532**
+AnnoQ also supports full-text search by using a keyword. This keyword can be a gene name, a phenotype name or a GO term (e.g. Signaling by GPCR).
 
+### 1.2 Select annotations
 
-![]({{ site.baseurl }}/assets/img/create-autocomplete-ref.gif)
+The annotations are organized in a tree structure of categories and its individual annotations.
 
+Select the entire category by clicking on the checkbox (such as ANNOVAR).
 
-> Note that at this point you can save just your MF annotation by clicking on
-> the SAVE button. This will save the MF annotation and automatically save the
-> resulting model. However, if you want to add contextual information, such as
-> MF inputs, or a Biological Process or Cellular Component annotation, you
-> should wait until you’ve added all information before saving.
+To choose individual annotations in a category, expand the tree by clicking the triangle next to the checkbox and click the desired checkboxes.
 
+### 1.3 Submit query
 
-### 4. Add that MF is ‘part of’ a BP
+Submit query by clicking the “Submit” button in the bottom of the panel. The results will be displayed on the result panel of the page.
 
-- Search for ‘**DNA damage response, detection of DNA damage**’
-- Autocomplete options are presented in a pop-up window
-- Terms link out to AmiGO
-- Evidence code autocomplete using ECO term names
-    - Search for ‘**mutant phenotype**’
-    - GO codes are indicated with bold three-letter GO code
-- Add a reference. Two options:
-    - Cut and paste a DB and id, e.g. **PMID:31296532 OR**
-    - Click on the +/lines symbol
-    - Pop-up appears with a select drop-down of dbs for references: PMID, DOI,
-        GO_REF
-    - Select **PMID**
-    - Add identifier: **31296532**
+### 1.4 Export configuration file
 
-### 5. Add that MF ‘occurs in’ a CC
+There are over 400 annotation types stored in our database. Users may not need all of them in their analysis. Through the process above, users can view the results and decide which annotation to use in their analysis. The configuration file stores the annotation selections the user chooses (from B above), and is used for command-line query or embedded in a programming script such as R. To generate a configuration file, simply click the “Export Config” button, and follow the instruction to save the file on the computer. For instructions how to use the configuration file in the command-line query or programming scripts, please visit link and AnnoQR.
 
-- Search for ‘**nucleus**’
-- Autocomplete options are presented in a pop-up window
-- Terms link out to AmiGO
-- Evidence code autocomplete using ECO term names
-    - Search for ‘**direct assay**’
-    - GO codes are indicated with bold three-letter GO code
-- Add a reference. Two options:
-    - Cut and paste a DB and id, e.g. **PMID:31296532 OR**
-    - Click on the +/lines symbol
-        - Pop-up appears with a select drop-down of dbs for references: PMID,
-            DOI, GO_REF
-        - Select **PMID**
-        - Add identifier: **31296532**
+## 2. Query Results (Results Panel)
+
+The results are represented in a table format where each column ….
+
+To select an individual row for detailed result, click the row and the summary panel will appear
+
+### 2.1 Download results
+
+The results displayed on the results panel can be downloaded. To do so, click the “Download” button on the right upper corner of the results panel. The downloaded file is generated on the server. A link will be displayed. The user can click the link to download the file.
+
+It may take some time to generate the file for downloading.
+
+## 3. Summary Panel
+
+Select a row to see it in a detailed summary
+
+**Whats Next**
+
+- [API Documentation Tutorial]({{site.baseurl}}/docs/tutorials/api)
+- [R package (AnnoQR) Tutorial]({{site.baseurl}}/docs/tutorials/r-package)

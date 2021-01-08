@@ -7,4 +7,12 @@ New to AnnoQ? Well, you came to the right place: read this material to quickly g
 
 ## Interactive Query
 
-- [Interactive Query]({{site.baseurl}}/docs/tutorials/ui-query)
+- [Interactive Query UI]({{site.baseurl}}/docs/tutorials/ui-query)
+
+## AnnoQ API
+
+- [Using AnnoQ API]({{site.baseurl}}/docs/tutorials/api)
+
+## AnnoQR (R Package)
+
+- [Using AnnoQR (R Package)]({{site.baseurl}}/docs/tutorials/r-package)

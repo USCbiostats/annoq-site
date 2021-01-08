@@ -67,6 +67,7 @@ exclude: [_site, CHANGELOG.md, LICENSE, README.md, vendor]
 # External Links
 USCbiostats_url: "http://USCbiostats.org/"
 annoq_url: "http://annoq.org/"
+annoq_search_url: "http://annoq.org/search"
 
 # Collections
 collections:

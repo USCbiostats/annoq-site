@@ -20,8 +20,8 @@
   <link rel="icon" type="image/png" href="/annoq-site/assets/favicons/android-144x144.png" sizes="144x144">
   <link rel="icon" type="image/png" href="/annoq-site/assets/favicons/android-192x192.png" sizes="192x192">
 
-  <title>Index</title>
-  <meta property="og:title" content="Index" />
+  <title>R Package</title>
+  <meta property="og:title" content="R Package" />
   <meta property="og:description"
     content="AnnoQ Documentation and Tutorial.
 " />
@@ -29,13 +29,13 @@
   <meta property="og:url" content="http://localhost:4000" />
   <meta property="og:site_name" content="http://localhost:4000" />
 
-  <meta itemprop="name" content="Index">
+  <meta itemprop="name" content="R Package">
   <meta itemprop="description"
     content="AnnoQ Documentation and Tutorial.
 ">
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Index" />
+  <meta name="twitter:title" content="R Package" />
   <meta name="twitter:description"
     content="AnnoQ Documentation and Tutorial.
 " />
@@ -219,9 +219,9 @@
         </div>
         <div class="d-none d-xl-block col-xl-2 noc-toc d-print-none">
           <div class="noc-page-meta ml-2 pb-1 pt-2 mb-0">
-            <a href="https://github.com/USCbiostats/annoq-site/edit/gh-pages/_docs/guides/index.md" target="_blank"><i class="fa fa-edit fa-fw"></i> Edit this
+            <a href="https://github.com/USCbiostats/annoq-site/edit/gh-pages/_docs/tutorials/r-package.md" target="_blank"><i class="fa fa-edit fa-fw"></i> Edit this
      page</a>
-<a href="https://github.com/USCbiostats/annoq-site/issues/new?labels=question&title=Question:&body=Question on: https://github.com/USCbiostats/annoq-site/tree/master/_docs/guides/index.md"
+<a href="https://github.com/USCbiostats/annoq-site/issues/new?labels=question&title=Question:&body=Question on: https://github.com/USCbiostats/annoq-site/tree/master/_docs/tutorials/r-package.md"
      target="_blank"><i class="fab fa-github fa-fw"></i> Create documentation issue</a>
 <a href="https://github.com/USCbiostats/annoq-site/issues/new" target="_blank"><i class="fas fa-tasks fa-fw"></i> Create project issue</a>
 <!-- this will parse through the header fields and add a button to open
@@ -242,15 +242,121 @@
           <!--      <nav aria-label="breadcrumb" class="d-none d-md-block d-print-none">
             <ol class="breadcrumb spb-1">
               <li class="breadcrumb-item active" aria-current="page">
-                <a href="/docs/guides/index">Index</a>
+                <a href="/docs/tutorials/r-package">R Package</a>
               </li>
             </ol>
           </nav> -->
           <div class="noc-content">
-            <h1 id="using-annoq">Using AnnoQ</h1>
+            <h1 id="annoqr-r-package">AnnoQR (R Package)</h1>
 
-<p>This is more in depth discussion of some topics.</p>
+<p><a href="https://github.com/USCbiostats/AnnoQR" target="_blank">GitHub Repo</a></p>
 
+<h2 id="introduction">Introduction</h2>
+
+<p>This is an R client for performing queries with AnnoQ API.</p>
+
+<h2 id="installation">Installation</h2>
+
+<p>Install from <a href="https://github.com/USCbiostats/AnnoQR" target="_blank">GitHub Repo</a>
+Make sure you have installed <code class="language-plaintext highlighter-rouge">devtools</code>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">install.packages("devtools")</code></p>
+
+<p>Then</p>
+
+<p><code class="language-plaintext highlighter-rouge">library(devtools)</code></p>
+
+<p><code class="language-plaintext highlighter-rouge"> install_github("blueOwl/AnnoQR")</code></p>
+
+<h2 id="function-list">Function list</h2>
+
+<ul>
+  <li>add_query_filter</li>
+  <li>add_source</li>
+  <li>exists_filter</li>
+  <li>init_query_js_body</li>
+  <li>keywordsQuery</li>
+  <li>perform_search</li>
+  <li>query_obj_to_json</li>
+  <li>range_filter</li>
+  <li>read_config</li>
+  <li>regionQuery</li>
+  <li>rsidQuery</li>
+  <li>term_filter</li>
+</ul>
+
+<h2 id="examples">Examples</h2>
+
+<p>Query Variants with <code class="language-plaintext highlighter-rouge">ANNOVAR_ensembl_Effect </code> Annotation</p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">AnnoQR</span><span class="p">)</span><span class="w">
+</span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">init_query_js_body</span><span class="p">()</span><span class="w">
+</span><span class="n">ex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">exists_filter</span><span class="p">(</span><span class="s2">"ANNOVAR_ensembl_Effect"</span><span class="p">)</span><span class="w">
+</span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">add_query_filter</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w">
+</span><span class="n">variants</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">perform_search</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="w">
+</span><span class="n">variants</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Only retrieve <code class="language-plaintext highlighter-rouge">ANNOVAR_ensembl_Effect </code> column</p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">add_source</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"ANNOVAR_ensembl_Effect"</span><span class="p">))</span><span class="w">
+</span><span class="n">variants</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">perform_search</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="w">
+</span><span class="n">variants</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Query variants field <code class="language-plaintext highlighter-rouge">SnpEff_ensembl_Effect</code> marked as <code class="language-plaintext highlighter-rouge">intergenic_region</code></p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">init_query_js_body</span><span class="p">()</span><span class="w">
+</span><span class="n">term_f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">term_filter</span><span class="p">(</span><span class="s1">'SnpEff_ensembl_Effect'</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="s1">'intergenic_region'</span><span class="p">)</span><span class="w">
+</span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">add_query_filter</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="n">term_f</span><span class="p">)</span><span class="w">
+</span><span class="n">variants</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">perform_search</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="w">
+</span><span class="n">variants</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Query variants field <code class="language-plaintext highlighter-rouge">SnpEff_ensembl_Effect</code> marked as `intergenic_region with in chromosome 20</p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">init_query_js_body</span><span class="p">()</span><span class="w">
+</span><span class="n">term_f1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">term_filter</span><span class="p">(</span><span class="s1">'SnpEff_ensembl_Effect'</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="s1">'intergenic_region'</span><span class="p">)</span><span class="w">
+</span><span class="n">term_f2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">term_filter</span><span class="p">(</span><span class="s1">'chr'</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="s1">'20'</span><span class="p">)</span><span class="w">
+</span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">add_query_filter</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="n">term_f1</span><span class="p">)</span><span class="w">
+</span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">add_query_filter</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="n">term_f2</span><span class="p">)</span><span class="w">
+</span><span class="c1">#q = add_source(q, c('SnpEff_ensembl_Effect'))</span><span class="w">
+</span><span class="n">variants</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">perform_search</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="w">
+</span><span class="n">variants</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Query variants with 1000 genome allel count <code class="language-plaintext highlighter-rouge">1000Gp3_AC</code> larger than 5</p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">init_query_js_body</span><span class="p">()</span><span class="w">
+</span><span class="n">range_f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">range_filter</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">'1000Gp3_AC'</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">gt</span><span class="o">=</span><span class="m">5</span><span class="p">)</span><span class="w">
+</span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">add_query_filter</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="n">range_f</span><span class="p">)</span><span class="w">
+</span><span class="n">variants</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">perform_search</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="w">
+</span><span class="n">variants</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Chromosome range query</p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">variants</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">regionQuery</span><span class="p">(</span><span class="n">contig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'20'</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="o">=</span><span class="m">31710367</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="o">=</span><span class="m">31820367</span><span class="p">)</span><span class="w">
+</span><span class="n">variants</span><span class="w">
+</span></code></pre></div></div>
+
+<p>rsID query</p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">variant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rsidQuery</span><span class="p">(</span><span class="s1">'rs193031179'</span><span class="p">)</span><span class="w">
+</span><span class="n">variant</span><span class="w">
+</span></code></pre></div></div>
+
+<p>keywordsQuery</p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">keywordsQuery</span><span class="p">(</span><span class="s1">'protein_coding'</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>Whats Next</strong></p>
+
+<ul>
+  <li><a href="/annoq-site/docs/tutorials/ui-query">Interactive Query UI Tutorial</a></li>
+  <li><a href="/annoq-site/docs/tutorials/api">API Documentation Tutorial</a></li>
+</ul>
 
 <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
