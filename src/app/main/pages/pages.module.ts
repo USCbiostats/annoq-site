@@ -9,14 +9,11 @@ import { AboutComponent } from './about/about.component';
 import { SearchComponent } from './search/search.component';
 import { DetailComponent } from './detail/detail.component';
 import { NoctuaFooterModule } from 'app/layout/components/footer/footer.module';
-import { UiTutorialComponent } from './tutorial/ui-tutorial/ui-tutorial.component';
 
 const routes = [{
   path: '', component: HomeComponent
 }, {
   path: 'search', component: SearchComponent
-}, {
-  path: 'ui-tutorial', component: UiTutorialComponent
 }, {
   path: 'details', component: DetailComponent
 }, {
@@ -29,7 +26,6 @@ const routes = [{
     SearchComponent,
     AboutComponent,
     DetailComponent,
-    UiTutorialComponent
   ],
   imports: [
     RouterModule.forChild(routes),
