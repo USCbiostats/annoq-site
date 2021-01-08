@@ -1,7 +1,7 @@
 ---
 ---
 
-# Creating GO Annotations In Noctua
+# Creating GO Annotations In Annoq
 
 ## Creating a basic Activity Unit (MF, part of BP, occurs in CC)
 

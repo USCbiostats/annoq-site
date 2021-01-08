@@ -1,12 +1,12 @@
 ---
-title: Noctua Form 1.0
+title: AnnoQ 1.0
 ---
 
-# Noctua Form 1.0
+# AnnoQ 1.0
 
-Welcome to the first release of Noctua Form formerly known as the Simple Annoton
+Welcome to the first release of AnnoQ formerly known as the Simple Annoton
 Editor. The focus of this version was working closely with curators to get
-initial release, layout and overall feel of Noctua Form. This version is packed
+initial release, layout and overall feel of AnnoQ. This version is packed
 with awesome features, mainly on different concepts of data input form structure
 and displaying existing annotations. We hope you enjoy some of the features.
 Some of the key highlights include
@@ -33,7 +33,7 @@ Highlights
 - Clone Evidence
 - Easily switch user groups while creating annotations and populating assigned
     by evidence annotation
-- Links to other workbenches from the Noctua Form
+- Links to other workbenches from the AnnoQ
 
 ### Changed
 

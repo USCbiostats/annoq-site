@@ -66,7 +66,7 @@ exclude: [_site, CHANGELOG.md, LICENSE, README.md, vendor]
 
 # External Links
 USCbiostats_url: "http://USCbiostats.org/"
-noctua_url: "http://noctua-dev.berkeleybop.org/"
+annoq_url: "http://annoq.org/"
 
 # Collections
 collections:
