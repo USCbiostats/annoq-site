@@ -9,7 +9,7 @@
 
   .header {
     padding-bottom: 10px;
-    background-image: linear-gradient(to right, $annoq-primary-color, $annoq-primary-color, rgba($annoq-primary-color, 0.6));
+    background-image: linear-gradient(to right, $annoq-primary-color-light, $annoq-primary-color-light, rgba($annoq-primary-color-light, 0.6));
     background-blend-mode: initial;
     background-size: cover;
     background-position: top;
@@ -86,11 +86,32 @@
 
   }
 
+  .annoq-query-buttons {
+    padding: 8px;
+
+    button {
+      color: #FFF;
+      background-color: map-get($primary, default);
+      @include mat-elevation(8);
+      font-size: 14px;
+
+      &.annoq-l {
+        background-color: #1C7ED6;
+      }
+    }
+  }
+
   .card {
     // @include deep-width(185px);
-    @include deep-height(250px);
+    @include deep-height(300px);
     padding: 0 8px;
     margin-bottom: 16px;
+
+    .annoq-query-buttons {
+      button {
+        @include mat-elevation(2);
+      }
+    }
 
     .annoq-card {
       @include deep-width(100%);
@@ -136,7 +157,14 @@
 
       .annoq-card-title {
         overflow: hidden;
-        height: 35px;
+        height: 50px;
+        font-size: 24px;
+      }
+
+      .annoq-card-description {
+        overflow: hidden;
+        height: 50px;
+        font-size: 14px;
       }
 
       .annoq-card-chips {
@@ -162,6 +190,7 @@
           padding: 8px 12px;
           overflow: hidden;
           text-align: center;
+          font-size: 14px;
           height: 50px;
         }
 

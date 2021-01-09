@@ -13,9 +13,17 @@
           An integrated and interactive platform for large-scale genetic variant
           annotation.
         </h2>
-        <button mat-raised-button [routerLink]="['/search']" mat-link-button class="">
-          Launch Interactive Query
-        </button>
+        <div class="annoq-query-buttons w-100-p" fxLayout="row" fxLayoutAlign="start center">
+          <button mat-raised-button [routerLink]="['/search']" fxFlex="50"
+            class="annoq-rounded-button mr-4 annoq-half-button annoq-r">
+            LAUNCH QUERY UI
+          </button>
+          <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" fxFlex="50" target="_blank">
+            <button mat-raised-button class="annoq-rounded-button annoq-half-button annoq-l w-100-p">
+              UI TUTORIAL
+            </button>
+          </a>
+        </div>
       </div>
       <span fxFlex=""></span>
       <div class="annoq-image" fxFlex="60%">
@@ -199,10 +207,17 @@
             Getting the annotation data with a graphic interface.
           </div>
           <div class="p-8 pt-0 annoq-card-footer" fxLayout="row" fxLayoutAlign="center center">
-            <button link-button [routerLink]="['/search']" mat-raised-button class="annoq-rounded-button"
-              color="primary">
-              Launch Interactive Query
-            </button>
+            <div class="annoq-query-buttons w-100-p" fxLayout="row" fxLayoutAlign="start center">
+              <button mat-raised-button [routerLink]="['/search']" fxFlex="50"
+                class="annoq-rounded-button mr-4 annoq-half-button annoq-sm annoq-r">
+                LAUNCH QUERY UI
+              </button>
+              <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" fxFlex="50" target="_blank">
+                <button mat-raised-button class="annoq-rounded-button annoq-half-button annoq-sm annoq-l w-100-p">
+                  UI TUTORIAL
+                </button>
+              </a>
+            </div>
           </div>
         </div>
       </div>

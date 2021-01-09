@@ -7,10 +7,16 @@
       </a>
     </div>
   </div>
-  <a mat-raised-button class="annoq-query-button" color="primary" [routerLink]="['/search']">Interactive Query</a>
-  <a mat-raised-button class="annoq-query-button" color=""
-    href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" target="_blank">UI Tutorial</a>
-
+  <div class="annoq-query-buttons" fxLayout="row" fxLayoutAlign="start start">
+    <button mat-stroked-button [routerLink]="['/search']" fxFlex="50"
+      class="annoq-rounded-button mr-4 annoq-half-button annoq-sm annoq-r">
+      LAUNCH QUERY UI
+    </button>
+    <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" fxFlex="50" target="_blank"
+      mat-stroked-button class="annoq-rounded-button annoq-half-button annoq-sm annoq-l">
+      UI TUTORIAL
+    </a>
+  </div>
   <span fxFlex=""></span>
   <a mat-button href="https://uscbiostats.github.io/annoq-site/docs/tutorials/api" target="_blank">Data Access</a>
   <a mat-button href="https://uscbiostats.github.io/annoq-site/" target="_blank">Documentation</a>

@@ -32,3 +32,21 @@ $annoq-border-color: #BBB;
     font-weight: normal;
   }
 }
+
+.annoq-half-button {
+  &.annoq-r {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    margin-right: 2px;
+  }
+
+  &.annoq-m {
+    border-radius: 0 !important;
+    margin-right: 2px;
+  }
+
+  &.annoq-l {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+  }
+}

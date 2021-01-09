@@ -23,10 +23,11 @@
         [ngClass]="{ 'background-highlight': activeAnnotation === node.short_name }">
         <button mat-icon-button matTreeNodeToggle class="annoq-icon-button"
           [attr.aria-label]="'toggle ' + node.long_name">
-          <mat-icon *ngIf="!treeControl.isExpanded(node)" class="mat-icon-rtl-mirror s-16 fa fa-caret-right">
+          <mat-icon *ngIf="!treeControl.isExpanded(node)" class="annoq-tree-icon">
+            <fa-icon [icon]="['fas', 'caret-right']"></fa-icon>
           </mat-icon>
-          <mat-icon *ngIf="treeControl.isExpanded(node)" class="mat-icon-rtl-mirror s-10">
-            signal_cellular_4_bar
+          <mat-icon *ngIf="treeControl.isExpanded(node)" class="annoq-tree-icon">
+            <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
           </mat-icon>
         </button>
         <mat-checkbox class="mr-8" [checked]="descendantsAllSelected(node)"

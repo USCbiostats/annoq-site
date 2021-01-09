@@ -21,7 +21,23 @@
     color: inherit;
     position: relative;
 
-    .annoq--query-button {}
+    .annoq-query-buttons {
+      padding: 8px;
+      width: 290px;
+
+      button,
+      a {
+        text-decoration: none;
+        color: map-get($primary, default);
+        //@include mat-elevation(4);
+        font-size: 12px;
+        border: map-get($primary, default) solid 1px;
+
+        &.annoq-l {
+          // background-color: transparent;
+        }
+      }
+    }
 
     mat-toolbar-row {
       @include deep-height(40px);
