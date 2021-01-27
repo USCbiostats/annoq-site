@@ -51,7 +51,6 @@ export class AnnotationTreeComponent implements OnInit {
     this.treeControl = new FlatTreeControl<AnnotationFlatNode>(this._getLevel, this._isExpandable);
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-    console.log(this.noctuaMenuService.noctuaTypes)
     this._unsubscribeAll = new Subject();
 
   }
