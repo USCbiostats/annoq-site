@@ -19,7 +19,7 @@ const routes = [{
 }, {
   path: 'contact', component: ContactComponent
 }, {
-  path: 'details', component: DetailComponent
+  path: 'detail', component: DetailComponent
 }, {
   path: 'about', component: AboutComponent
 }];
