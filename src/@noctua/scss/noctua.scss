@@ -146,3 +146,59 @@ input[type=text] {
     margin-right: 10px;
   }
 }
+
+.annoq-alert {
+  padding: 16px;
+  background: #607D8B !important;
+  border-left: 6px solid #37474F;
+  color: rgba(255, 255, 255, 1);
+
+  &.alert-success {
+    color: #285b2a !important;
+    background: #dbefdc !important;
+    border-left-color: #cde9ce;
+
+
+    a {
+      color: #18381a;
+    }
+  }
+
+  &.alert-info {
+    color: #00626e !important;
+    background: #ccf2f6 !important;
+    border-left-color: #b8ecf3;
+
+
+    a {
+      color: #00353b !important;
+    }
+  }
+
+  &.alert-warning {
+    color: #854f00 !important;
+    background: #ffeacc !important;
+    border-left-color: #ffe2b8;
+
+    a {
+      color: #523100 !important;
+    }
+  }
+
+  &.alert-error {
+    color: #7f231c !important;
+    background: #fdd9d7 !important;
+    border-left-color: #fccac7;
+
+    a {
+      color: #551713 !important;
+    }
+  }
+
+  annoq-footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}

@@ -33,24 +33,24 @@ export class AnnotationService {
         this.httpClient.get<Annotation[]>(`${api}/anno_tree`)
             .subscribe((response: Annotation[]) => {
                 this.annotation = response['header_tree_array'];
-                const p = [], r = []
-                this.annotation.forEach((x) => {
-
-                    if (x.name.length > 4 && x.name.length < 20 && x.leaf) {
-                        console.log(x.name)
-                        p.push(x.name)
-                    }
-                    console.log('Now Panther')
-
-                    if ((x.name.toLowerCase().includes('panther') || x.name.toLowerCase().includes('ontology')) && x.name.length < 20) {
-                        console.log(x.name)
-                        r.push(x.name)
-
-                    }
-                })
-                console.log(p)
-                console.log(r)
-
+                /*       const p = [], r = []
+                      this.annotation.forEach((x) => {
+      
+                          if (x.name.length > 4 && x.name.length < 20 && x.leaf) {
+                              console.log(x.name)
+                              p.push(x.name)
+                          }
+                          console.log('Now Panther')
+      
+                          if ((x.name.toLowerCase().includes('panther') || x.name.toLowerCase().includes('ontology')) && x.name.length < 20) {
+                              console.log(x.name)
+                              r.push(x.name)
+      
+                          }
+                      })
+                      console.log(p)
+                      console.log(r)
+       */
 
                 this.annotationNodes = this._buildAnnotationTree(this.annotation);
                 this.onAnnotationTreeChanged.next(this.annotationNodes);
