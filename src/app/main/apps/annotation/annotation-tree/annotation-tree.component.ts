@@ -38,13 +38,11 @@ export class AnnotationTreeComponent implements OnInit {
 
   private _unsubscribeAll: Subject<any>;
 
-  constructor(private router: Router,
+  constructor(
     private annotationDialogService: AnnotationDialogService,
-    private route: ActivatedRoute,
     public noctuaMenuService: NoctuaMenuService,
     private annotationService: AnnotationService,
-    private snpService: SnpService,
-    private renderer: Renderer2,) {
+  ) {
 
     this.treeFlattener = new MatTreeFlattener(this.transformer, this._getLevel,
       this._isExpandable, this._getChildren);

@@ -27,6 +27,13 @@ export class AnnotationService {
     "api/region/chr/1/start/3/end/2"
     "api/region?chr=1&start=3&end=2&header_idx=1 2 3"
 */
+
+    getPlaneAnnotationList() {
+        const api = environment.annotationApi;
+
+        return this.httpClient.get<Annotation[]>(`${api}/anno_tree`)
+    }
+
     getAnnotationList() {
         const api = environment.annotationApi;
         const dataset = environment.dataset;
