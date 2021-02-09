@@ -1,19 +1,13 @@
-import { Component, OnInit, Input, Injectable, ViewChild, ViewChildren, Renderer2, ElementRef } from '@angular/core';
-
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input, ViewChild, ViewChildren, ElementRef } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeNode } from '@angular/material/tree';
-import { BehaviorSubject, Subject, Observable, of as observableOf } from 'rxjs';
+import { Subject, Observable, of as observableOf } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-
-import { Annotation, AnnotationNode, AnnotationFlatNode } from './../models/annotation'
-
+import { AnnotationNode, AnnotationFlatNode } from './../models/annotation'
 import { NoctuaMenuService } from '@noctua.common/services/noctua-menu.service';
 import { AnnotationService } from './../services/annotation.service';
-import { SnpService } from './../../snp/services/snp.service'
 import { AnnotationDialogService } from '../services/dialog.service';
-
 
 @Component({
   selector: 'annoq-annotation-tree',
@@ -33,8 +27,6 @@ export class AnnotationTreeComponent implements OnInit {
   treeControl: FlatTreeControl<AnnotationFlatNode>;
   treeFlattener: MatTreeFlattener<AnnotationNode, AnnotationFlatNode>;
   dataSource: MatTreeFlatDataSource<AnnotationNode, AnnotationFlatNode>;
-
-  // checklistSelection = new SelectionModel<AnnotationFlatNode>(true);
 
   private _unsubscribeAll: Subject<any>;
 
