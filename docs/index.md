@@ -47,4 +47,4 @@ your web browser—no special software is required.
 
 For a Quick Tutorial, check out [Quick Tutorial Docs]({{site.baseurl}}/docs/tutorials)
 
-For release notes, check out [Changelog]({{site.baseurl}}/docs/changelog/annoq-site-2)
+For release notes, check out [Changelog]({{site.baseurl}}/docs/changelog/features)

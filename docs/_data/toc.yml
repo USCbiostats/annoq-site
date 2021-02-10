@@ -13,7 +13,7 @@
     - title: Using AnnoQR (R Package)
       url: "docs/tutorials/r-package"
 - title: "Changelog"
-  url:
+  url: "docs/changelog/features"
   links:
     - title: AnnoQ 1.0
       url: "docs/changelog/annoq-1"
