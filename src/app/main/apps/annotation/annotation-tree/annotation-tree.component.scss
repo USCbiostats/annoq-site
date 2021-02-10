@@ -8,6 +8,12 @@
     //background-color: #DDD;
   }
 
+  button {
+    &.annoq-sm {
+      font-size: 12px
+    }
+  }
+
   .annoq-sidenav {
     position: relative;
     @include deep-width(100%);
@@ -40,6 +46,17 @@
     .annoq-tree-icon {
       color: #000;
       font-size: 14px;
+    }
+
+    .annoq-annotation-row {
+      padding: 8px 5px;
+
+      .annoq-title {
+        // font-weight: bold;
+        //font-size: 20px;
+        //margin-bottom: 5px;
+        word-break: break-all;
+      }
     }
 
     &:hover {

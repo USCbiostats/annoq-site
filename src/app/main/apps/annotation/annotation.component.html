@@ -86,6 +86,9 @@
       Select Annotations
     </div>
     <span fxFlex></span>
+    <button mat-stroked-button class="pthr-file-button annoq-rounded-button annoq-xs"
+      (click)='annotationService.clear()' type="button" color="">Clear Selection</button>
+
   </div>
   <div class="annoq-form-section" fxFlex="" fxLayout="column" fxLayoutAlign="start stretch" noctuaPerfectScrollbar>
     <div class="annoq-section-body" fxLayout="column" fxLayoutAlign="start stretch">
@@ -93,18 +96,17 @@
     </div>
   </div>
   <div class="w-100-p p-8" fxFlex="60px" fxLayout="row" fxLayoutAlign="start center">
-
     <label for="annoq-upload-config" fxLayout="row" fxLayoutAlign="start center" class="annoq-file-upload">
-      <button mat-raised-button class="annoq-file-button">
-        <mat-icon class="s-16 mr-4">cloud_upload</mat-icon> Upload Config
+      <button mat-raised-button class="annoq-sm annoq-file-button">
+        Upload Config
       </button>
     </label>
     <input #configFileInput type="file" id="annoq-upload-config" (click)="configFileInput.value = null" value=""
       (change)="annotationService.onConfigFileChange($event)" class="annoq-file-upload" />
-    <button (click)='annotationService.downloadConfig()' type="button" mat-raised-button color="" class="mr-8">Export
+    <button (click)='annotationService.downloadConfig()' type="button" mat-raised-button color=""
+      class="annoq-sm mr-8">Export
       Config</button>
-    <button (click)='annotationService.clear()' type="button" mat-raised-button color="" class="mr-8">Clear</button>
     <span fxFlex></span>
-    <button (click)="submit()" type="button" mat-raised-button color="primary">Submit</button>
+    <button class="annoq-sm" (click)="submit()" type="button" mat-raised-button color="primary">Submit</button>
   </div>
 </form>
