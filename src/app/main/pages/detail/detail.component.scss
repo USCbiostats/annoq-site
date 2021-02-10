@@ -52,6 +52,13 @@
     }
   }
 
+  .annoq-hide {
+    @include deep-height(0);
+    background-color: aquamarine;
+    visibility: hidden;
+    display: none;
+  }
+
   .annoq-search-form {
     width: 500px;
     background-color: #ffffff;

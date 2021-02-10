@@ -5,7 +5,6 @@
                 <h1>
                     Supported Annotations <br>
                 </h1>
-
                 <form class="annoq-search-form" fxLayout="column" fxLayoutAlign="start stretch" name="searchForm"
                     [formGroup]="searchForm">
                     <mat-form-field appearance="outline" class="annoq-sm">
@@ -21,32 +20,18 @@
         <button (click)='clear()' type="button" mat-raised-button color="" class="mr-8">Clear Selection</button>
     </div>
     <div class="annoq-section section-1" fxFlex="" noctuaPerfectScrollbar>
-        <!--      <div class="annoq-container" fxLayout="column" fxLayoutAlign="start stretch">
-            <div class="annoq-annotation-row" *ngFor="let annotation of filteredAnnotations" fxLayout="column"
-                fxLayoutAlign="start stretch">
-                <div class="annoq-title">
-                    {{annotation.name}}
-                </div>
-                <div class="annoq-description">
-                    {{annotation.detail}}
-                </div>
-            </div>
-        </div> -->
-
-
 
         <div class="annoq-container" fxLayout="column" fxLayoutAlign="start stretch">
             <div class="annoq-tree-container" noctuaPerfectScrollbar>
                 <mat-tree #tree [dataSource]="dataSource" [treeControl]="treeControl">
-                    <mat-tree-node class="annoq-tree-node " *matTreeNodeDef="let node" matTreeNodeToggle
-                        matTreeNodePadding matTreeNodePaddingIndent="10"
-                        [ngClass]="{ 'background-highlight': activeAnnotation === node.short_name }">
+                    <mat-tree-node class="annoq-tree-node" *matTreeNodeDef="let node" matTreeNodeToggle
+                        matTreeNodePadding matTreeNodePaddingIndent="20" [ngClass]="{ 'background-highlight': activeAnnotation === node.short_name,
+                    'annoq-hide':!node.visible }">
                         <div class="" fxLayout="row" fxLayoutAlign="start center">
                             <button mat-icon-button disabled class="annoq-icon-button"></button>
                             <mat-checkbox class="checklist-leaf-node mr-8"
                                 [checked]="checklistSelection.isSelected(node)"
                                 (change)="annotationLeafItemSelectionToggle(node)"></mat-checkbox>
-
                             <div class="annoq-annotation-row" fxFlex="" fxLayout="column" fxLayoutAlign="start stretch">
                                 <div class="annoq-title">
                                     {{node.name}}
@@ -58,8 +43,8 @@
                         </div>
                     </mat-tree-node>
                     <mat-tree-node fxLayout="row" class="annoq-tree-node" *matTreeNodeDef="let node;when: hasChild"
-                        matTreeNodePadding matTreeNodePaddingIndent="10"
-                        [ngClass]="{ 'background-highlight': activeAnnotation === node.short_name }">
+                        matTreeNodePadding matTreeNodePaddingIndent="20" [ngClass]="{ 'background-highlight': activeAnnotation === node.short_name,
+                        'annoq-hide':!node.visible }">
                         <div class="" fxLayout="row" fxLayoutAlign="start center">
                             <button mat-icon-button matTreeNodeToggle class="annoq-icon-button"
                                 [attr.aria-label]="'toggle ' + node.long_name">

@@ -13,6 +13,7 @@ export class AnnotationNode {
     parent_id: number;
     leaf: boolean;
     level: number;
+    visible: boolean;
     expandable: boolean;
     children: AnnotationNode[];
 }
@@ -24,6 +25,7 @@ export class AnnotationFlatNode {
         public detail: string,
         public parent_id: number,
         public leaf: boolean,
+        public visible: boolean,
         public expandable: boolean,
         public level: number) { }
 }

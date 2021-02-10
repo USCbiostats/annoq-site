@@ -75,6 +75,7 @@ export class DetailComponent implements OnInit {
         this.dataSource.data = this.annotationList;
 
         this.treeControl.expand(this.treeControl.dataNodes[0])
+        this.setAllVisible(this.treeControl.dataNodes);
       });
 
     this.annotationService.getAnnotationList();
@@ -91,6 +92,7 @@ export class DetailComponent implements OnInit {
       node.detail,
       node.parent_id,
       node.leaf,
+      node.visible,
       !!node.children,
       level);
   }
@@ -162,9 +164,11 @@ export class DetailComponent implements OnInit {
       this.checklistSelection.select(node);
     }
   }
+
   openAnnotationPreview(name: String) {
     console.log(name);
   }
+
   /* Get the parent node of a node */
   getParentNode(node: AnnotationFlatNode): AnnotationFlatNode | null {
     const currentLevel = this._getLevel(node);
@@ -191,14 +195,41 @@ export class DetailComponent implements OnInit {
     });
   }
 
+
+  setParentVisibility(node) {
+
+    let parent: AnnotationFlatNode | null = this.getParentNode(node);
+    while (parent) {
+      parent.visible = node.visible
+      parent = this.getParentNode(parent);
+    }
+  }
+
+  setChildVisibility(text: string, nodes: AnnotationFlatNode[]) {
+    nodes.forEach((x: AnnotationFlatNode) => {
+      x.visible = x.name.indexOf(text) >= 0;
+      if (x.parent_id) this.setParentVisibility(x);
+
+      const children = this.treeControl.getDescendants(x);
+      if (children) this.setChildVisibility(text, children);
+    });
+  }
+
+  setAllVisible(nodes: AnnotationFlatNode[]) {
+    nodes.forEach((x: AnnotationFlatNode) => {
+      x.visible = true;
+    });
+  }
+
   onValueChanges() {
     const self = this;
 
     this.searchForm.controls.title.valueChanges
       .pipe(
         takeUntil(this._unsubscribeAll)
-      ).subscribe((annotation) => {
-        this.filteredAnnotations = annotation ? this.filterAnnotations(annotation) : this.annotations.slice()
+      ).subscribe((q) => {
+        self.setChildVisibility(q, self.treeControl.dataNodes)
+        self.treeControl.expandAll();
       })
   }
 

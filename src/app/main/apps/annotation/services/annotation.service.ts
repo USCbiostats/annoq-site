@@ -82,8 +82,23 @@ export class AnnotationService {
 
     }
 
-    getChildren() {
+    filterNode() {
 
+
+
+    }
+
+    setParentOk(text, node, ok) {
+        node.ok = ok || node.ok || node.name.indexOf(text) >= 0;
+        if (node.parent) this.setParentOk(text, node.parent, node.ok);
+    }
+
+    setChildOk(text: string, node: any) {
+        node.forEach(x => {
+            x.ok = x.name.indexOf(text) >= 0;
+            if (x.parent) this.setParentOk(text, x.parent, x.ok);
+            if (x.children) this.setChildOk(text, x.children);
+        });
     }
 
     private _buildAnnotationTree(annotation: Annotation[]): AnnotationNode[] {

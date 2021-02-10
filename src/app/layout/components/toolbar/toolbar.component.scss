@@ -6,6 +6,10 @@
   flex: 0 0 auto;
   z-index: 4;
 
+  a {
+    color: #222;
+  }
+
   .annoq-logo-filler {
     @include deep-width(50px);
 
