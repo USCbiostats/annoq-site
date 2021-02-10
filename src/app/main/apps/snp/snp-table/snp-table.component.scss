@@ -9,6 +9,11 @@ $accent: map-get($theme, accent);
     height: 60px;
   }
 
+  .annoq-drawer-body {
+    @include deep-height(calc(100% - 90px));
+    overflow: auto;
+  }
+
   .mat-cell {
     padding: 0 10px;
     font-size: 12px !important;

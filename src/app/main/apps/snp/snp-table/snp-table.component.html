@@ -26,7 +26,7 @@
     <mat-progress-spinner class="example-margin" [color]="loadingSpinner.color" [mode]="loadingSpinner.mode">
     </mat-progress-spinner>
   </div>
-  <div *ngIf="snpPage" class="annoq-drawer-body" fxLayout="column" fxLayoutAlign="start stretch">
+  <div *ngIf="snpPage" class="annoq-drawer-body" fxFlex="" fxLayout="column" fxLayoutAlign="start stretch">
     <table fxFlex="1 1 auto" mat-table [dataSource]="snpPage.snps" class="">
       <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
         <th mat-header-cell *matHeaderCellDef> {{column}} </th>
