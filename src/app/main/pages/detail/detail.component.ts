@@ -35,7 +35,6 @@ export class DetailComponent implements OnInit {
   activeAnnotation: any;
   annotationList: AnnotationNode[];
 
-  treeControl: FlatTreeControl<AnnotationFlatNode>;
   dataSource: MatTreeFlatDataSource<AnnotationNode, AnnotationFlatNode>;
 
 
@@ -64,7 +63,6 @@ export class DetailComponent implements OnInit {
         if (!annotationTree) return;
 
         this.dataSource = this.annotationService.dataSource
-        this.treeControl = this.annotationService.treeControl
 
         // this.treeControl.expand(this.treeControl.dataNodes[0]) 
         this.annotationService.treeControl.expand(this.annotationService.treeControl.dataNodes[0])

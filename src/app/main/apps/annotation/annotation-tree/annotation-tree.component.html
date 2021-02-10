@@ -1,47 +1,59 @@
 <div fxLayout="column" fxLayoutAlign="start stretch" class="annoq-sidenav mat-elevation-z4">
 
+
   <div class="annoq-tree-container" noctuaPerfectScrollbar>
-    <mat-tree #tree [dataSource]="dataSource" [treeControl]="treeControl">
-      <mat-tree-node class="annoq-tree-node text-truncate" *matTreeNodeDef="let node" matTreeNodeToggle
-        matTreeNodePadding matTreeNodePaddingIndent="10"
-        [ngClass]="{ 'background-highlight': activeAnnotation === node.short_name }">
-        <button mat-icon-button disabled class="annoq-icon-button"></button>
-        <mat-checkbox class="checklist-leaf-node mr-8" [checked]="checklistSelection.isSelected(node)"
-          (change)="annotationLeafItemSelectionToggle(node)"></mat-checkbox>
-        {{node.name}}
-        <span fxFlex></span>
-        <diV class="" fxFlex="20px">
-          <button mat-icon-button class="annoq-icon-button" (click)="selectAnnotation(node)">
-            <mat-icon class="s-18">
-              info
-            </mat-icon>
-          </button>
-        </diV>
+    <mat-tree #tree *ngIf="dataSource?.data" [dataSource]="dataSource" [treeControl]="annotationService.treeControl">
+      <mat-tree-node class="annoq-tree-node" *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding
+        matTreeNodePaddingIndent="20" [ngClass]="{ 'background-highlight': annotationService.activeAnnotation === node.short_name,
+        'annoq-hide':!node.visible }">
+        <div class="" fxLayout="row" fxLayoutAlign="start center">
+          <button mat-icon-button disabled class="annoq-icon-button"></button>
+          <mat-checkbox class="checklist-leaf-node mr-8"
+            [checked]="annotationService.checklistSelection.isSelected(node)"
+            (change)="annotationService.annotationLeafItemSelectionToggle(node)"></mat-checkbox>
+          <div class="annoq-annotation-row" fxFlex="" fxLayout="row" fxLayoutAlign="start center">
+            <div class="annoq-title">
+              {{node.name}}
+            </div>
+            <span fxFlex></span>
+            <button mat-icon-button class="annoq-icon-button" (click)="selectAnnotation(node)">
+              <mat-icon class="s-18">
+                info
+              </mat-icon>
+            </button>
+          </div>
+        </div>
       </mat-tree-node>
-      <mat-tree-node fxLayout="row" class="annoq-tree-node text-truncate" *matTreeNodeDef="let node;when: hasChild"
-        matTreeNodePadding matTreeNodePaddingIndent="10"
-        [ngClass]="{ 'background-highlight': activeAnnotation === node.short_name }">
-        <button mat-icon-button matTreeNodeToggle class="annoq-icon-button"
-          [attr.aria-label]="'toggle ' + node.long_name">
-          <mat-icon *ngIf="!treeControl.isExpanded(node)" class="annoq-tree-icon">
-            <fa-icon [icon]="['fas', 'caret-right']"></fa-icon>
-          </mat-icon>
-          <mat-icon *ngIf="treeControl.isExpanded(node)" class="annoq-tree-icon">
-            <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
-          </mat-icon>
-        </button>
-        <mat-checkbox class="mr-8" [checked]="descendantsAllSelected(node)"
-          [indeterminate]="descendantsPartiallySelected(node)" (change)="annotationItemSelectionToggle(node)">
-        </mat-checkbox>
-        {{node.name}}
-        <span fxFlex></span>
-        <diV class="" fxFlex="20px">
-          <button mat-icon-button class="annoq-icon-button" (click)="selectAnnotation(node)">
-            <mat-icon class="s-18">
-              info
-            </mat-icon>
+      <mat-tree-node fxLayout="row" class="annoq-tree-node" *matTreeNodeDef="let node;when: annotationService.hasChild"
+        matTreeNodePadding matTreeNodePaddingIndent="20" [ngClass]="{ 'background-highlight': activeAnnotation === node.short_name,
+            'annoq-hide':!node.visible }">
+        <div class="" fxLayout="row" fxLayoutAlign="start center">
+          <button mat-icon-button matTreeNodeToggle class="annoq-icon-button"
+            [attr.aria-label]="'toggle ' + node.long_name">
+            <fa-icon *ngIf="!annotationService.treeControl.isExpanded(node)" class="annoq-tree-icon"
+              [icon]="['fas', 'caret-right']"></fa-icon>
+            <fa-icon *ngIf="annotationService.treeControl.isExpanded(node)" class="annoq-tree-icon"
+              [icon]="['fas', 'caret-down']"></fa-icon>
+
           </button>
-        </diV>
+          <mat-checkbox class="mr-8" [checked]="annotationService.descendantsAllSelected(node)"
+            [indeterminate]="annotationService.descendantsPartiallySelected(node)"
+            (change)="annotationService.annotationItemSelectionToggle(node)">
+          </mat-checkbox>
+          <div class="annoq-annotation-row" fxFlex="" fxLayout="row" fxLayoutAlign="start center">
+            <div class="annoq-title">
+              {{node.name}}
+            </div>
+            <span fxFlex></span>
+            <div class="" fxFlex="20px">
+              <button mat-icon-button class="annoq-icon-button" (click)="selectAnnotation(node)">
+                <mat-icon class="s-18">
+                  info
+                </mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
       </mat-tree-node>
     </mat-tree>
   </div>

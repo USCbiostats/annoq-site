@@ -17,7 +17,6 @@ import { SampleVCFFile } from '@noctua.common/data/sample-vcf';
 })
 export class AnnotationComponent implements OnInit {
 
-  checklistSelection = new SelectionModel<AnnotationFlatNode>(true);
   annotationForm: FormGroup;
 
   isConnected = false;
@@ -32,7 +31,7 @@ export class AnnotationComponent implements OnInit {
   public esData: any[];
 
   constructor(public noctuaMenuService: NoctuaMenuService,
-    private annotationService: AnnotationService,
+    public annotationService: AnnotationService,
     private snpDialogService: SnpDialogService,
     private cd: ChangeDetectorRef,
     public snpService: SnpService) {
@@ -65,12 +64,12 @@ export class AnnotationComponent implements OnInit {
   }
 
   clear() {
-    this.checklistSelection.clear();
+    this.annotationService.checklistSelection.clear();
   }
 
   submit() {
     const query = this.annotationForm.value;
-    const annotations = this.checklistSelection.selected as any[];
+    const annotations = this.annotationService.checklistSelection.selected as any[];
     const source = annotations.filter(item => item.leaf).map((item: AnnotationFlatNode) => {
       return item.name; //item.leaf ? item.name : false;
     }, []);
@@ -100,25 +99,4 @@ export class AnnotationComponent implements OnInit {
     }
   }
 
-  downloadConfig() {/*
-    const annotations = this.checklistSelection.selected as any[];
-    const source = annotations.reduce((annotationString, item) => {
-      return annotationString + ' ' + item.id
-    }, []);
-
-    if (source.length > 0) {
-      this.annotationService.downloadConfig(source.trim());
-    } else {
-      this.snpDialogService.openMessageToast('Select at least one annotation from the tree', 'OK');
-    }*/
-    const annotations = this.checklistSelection.selected as any[];
-    const source = annotations.map((item: AnnotationFlatNode) => {
-      return item.name; //item.leaf ? item.name : false;
-    }, []);
-    if (source.length > 0) {
-      this.annotationService.saveConfig(JSON.stringify({ "_source": source }));
-    } else {
-      this.snpDialogService.openMessageToast('Select at least one annotation from the tree', 'OK');
-    }
-  }
 }
