@@ -116,7 +116,7 @@ export class AnnotationComponent implements OnInit {
       return item.name; //item.leaf ? item.name : false;
     }, []);
     if (source.length > 0) {
-      this.annotationService.downloadConfig(JSON.stringify({ "_source": source }));
+      this.annotationService.saveConfig(JSON.stringify({ "_source": source }));
     } else {
       this.snpDialogService.openMessageToast('Select at least one annotation from the tree', 'OK');
     }

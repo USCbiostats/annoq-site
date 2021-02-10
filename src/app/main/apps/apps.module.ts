@@ -8,6 +8,7 @@ import { AnnotationComponent } from './annotation/annotation.component';
 import { DownloadReadyComponent } from './snp/snp-table/download-ready/download-ready.component';
 import { SnpDetailComponent } from './snp/snp-detail/snp-detail.component';
 import { AnnotationDetailDialogComponent } from './annotation/dialogs/annotation-detail/annotation-detail.component';
+import { NoctuaConfirmDialogModule } from '@noctua/components/confirm-dialog/confirm-dialog.module';
 
 const routes = [];
 
@@ -24,6 +25,7 @@ const routes = [];
     RouterModule.forChild(routes),
     TranslateModule,
     NoctuaSharedModule,
+    NoctuaConfirmDialogModule,
   ],
   exports: [
     SnpTableComponent,

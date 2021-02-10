@@ -179,5 +179,25 @@
   }
 
 
+  input[type="file"] {
+    display: none;
+  }
+
+  button {
+
+    &.annoq-file-button {
+      pointer-events: none;
+    }
+  }
+
+  label {
+    padding: 0;
+  }
+
+  .annoq-file-upload-title {
+    margin-left: 4px;
+    color: #888;
+    font-weight: bold;
+  }
 
 }

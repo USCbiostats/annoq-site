@@ -11,6 +11,7 @@ import { DetailComponent } from './detail/detail.component';
 import { NoctuaFooterModule } from 'app/layout/components/footer/footer.module';
 import { PublicationComponent } from './publication/publication.component';
 import { ContactComponent } from './contact/contact.component';
+import { NoctuaConfirmDialogModule } from '@noctua/components/confirm-dialog/confirm-dialog.module';
 
 const routes = [{
   path: '', component: HomeComponent
@@ -38,6 +39,7 @@ const routes = [{
     TranslateModule,
     NoctuaSharedModule,
     NoctuaFooterModule,
+    NoctuaConfirmDialogModule,
     AppsModule
   ],
   providers: [

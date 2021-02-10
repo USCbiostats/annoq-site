@@ -93,9 +93,17 @@
     </div>
   </div>
   <div class="w-100-p p-8" fxFlex="60px" fxLayout="row" fxLayoutAlign="start center">
-    <span fxFlex></span>
+
+    <label for="annoq-upload-config" fxLayout="row" fxLayoutAlign="start center" class="annoq-file-upload">
+      <button mat-raised-button class="annoq-file-button">
+        <mat-icon class="s-16 mr-4">cloud_upload</mat-icon> Upload Config
+      </button>
+    </label>
+    <input #configFileInput type="file" id="annoq-upload-config" (click)="configFileInput.value = null" value=""
+      (change)="onFileChange($event)" class="annoq-file-upload" />
     <button (click)='downloadConfig()' type="button" mat-raised-button color="" class="mr-8">Export Config</button>
     <button (click)='clear()' type="button" mat-raised-button color="" class="mr-8">Clear</button>
+    <span fxFlex></span>
     <button (click)="submit()" type="button" mat-raised-button color="primary">Submit</button>
   </div>
 </form>
