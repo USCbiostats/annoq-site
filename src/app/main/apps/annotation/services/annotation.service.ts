@@ -27,6 +27,8 @@ export class AnnotationService {
     treeFlattener: MatTreeFlattener<AnnotationNode, AnnotationFlatNode>;
     dataSource: MatTreeFlatDataSource<AnnotationNode, AnnotationFlatNode>;
 
+    count = 0;
+
     constructor(
         private httpClient: HttpClient,
         private confirmDialogService: NoctuaConfirmDialogService,) {
@@ -141,10 +143,6 @@ export class AnnotationService {
         }
     }
 
-    openAnnotationPreview(name: String) {
-        console.log(name);
-    }
-
     /* Get the parent node of a node */
     getParentNode(node: AnnotationFlatNode): AnnotationFlatNode | null {
         const currentLevel = this._getLevel(node);
@@ -166,22 +164,30 @@ export class AnnotationService {
     }
 
 
-    setParentVisibility(node) {
+    setParentVisibility(node, q, nodeVvisible) {
+        const visible = nodeVvisible || node.visible || node.name.indexOf(q) >= 0;
 
         let parent: AnnotationFlatNode | null = this.getParentNode(node);
         while (parent) {
-            parent.visible = node.visible
+            parent.visible = visible
             parent = this.getParentNode(parent);
         }
     }
 
-    setChildVisibility(text: string, nodes: AnnotationFlatNode[]) {
+    setChildVisibility(q: string, nodes: AnnotationFlatNode[]) {
         nodes.forEach((x: AnnotationFlatNode) => {
-            x.visible = x.name.indexOf(text) >= 0;
-            if (x.parent_id) this.setParentVisibility(x);
-
+            x.visible = x.name.indexOf(q) >= 0;
+            if (x.name === 'VEP') {
+                console.log(x.name)
+            }
+            if (x.parent_id) {
+                const parent = this.getParentNode(x)
+                this.setParentVisibility(parent, q, x.visible);
+            }
+            //this.count++
+            // console.log(this.count)
             const children = this.treeControl.getDescendants(x);
-            if (children) this.setChildVisibility(text, children);
+            if (children) this.setChildVisibility(q, children);
         });
     }
 
