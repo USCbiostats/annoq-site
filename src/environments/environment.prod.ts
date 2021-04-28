@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  dataset: 'vs-index',
+  dataset: 'annoq-test',
   annotationApi: 'http://bioghost2.usc.edu:3404',
   snpResultsSize: 50
 };
