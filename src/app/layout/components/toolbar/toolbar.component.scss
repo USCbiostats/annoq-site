@@ -1,4 +1,4 @@
-@import 'src/@noctua/scss/noctua';
+@import "src/@noctua/scss/noctua";
 
 :host {
   position: relative;
@@ -20,7 +20,7 @@
 
   .mat-toolbar {
     padding-right: 10px;
-    background-color: #FFF;
+    background-color: #f3e1ae;
     @include deep-height(50px);
     color: inherit;
     position: relative;
@@ -68,7 +68,6 @@
   }
 
   .annoq-logo {
-
     //@include deep-width(130px);
     .annoq-main-logo,
     .annoq-sub-logo {

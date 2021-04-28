@@ -1,10 +1,10 @@
 <mat-toolbar class="mat-elevation-z1" fxLayout="row" fxLayoutAlign="start center">
   <mat-progress-bar *ngIf="showLoadingBar" class="loading-bar" color="accent" mode="indeterminate"></mat-progress-bar>
-  <div fxLayout="row" fxLayoutAlign="start center" fxFlex="100px">
+  <div fxLayout="row" fxLayoutAlign="start center" fxFlex="200px">
     <div class="annoq-logo" fxLayout="row" fxLayoutAlign="start">
       <a class="annoq-main-logo" [routerLink]="['/']">
         AnnoQ
-      </a>
+      </a> <small>(development site)</small>
     </div>
   </div>
   <div class="annoq-query-buttons" fxLayout="row" fxLayoutAlign="start start">
