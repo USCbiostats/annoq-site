@@ -2,6 +2,9 @@ export interface Annotation {
     id: number;
     name: string;
     detail: string;
+    label: string;
+    link: string;
+    pmid: string;
     parent_id: number;
     leaf: boolean;
 }
@@ -9,7 +12,10 @@ export interface Annotation {
 export class AnnotationNode {
     id: number;
     name: string;
+    label: string;
     detail: string;
+    link: string;
+    pmid: string;
     parent_id: number;
     leaf: boolean;
     level: number;
@@ -19,13 +25,18 @@ export class AnnotationNode {
 }
 
 export class AnnotationFlatNode {
+    label: string;
+    detail: string;
+    link: string;
+    pmid: string;
+    parent_id: number;
+    leaf: boolean;
+    visible: boolean;
+    expandable: boolean;
+    level: number;
     constructor(
         public id: number,
         public name: string,
-        public detail: string,
-        public parent_id: number,
-        public leaf: boolean,
-        public visible: boolean,
-        public expandable: boolean,
-        public level: number) { }
+    ) { }
+
 }

@@ -6,7 +6,9 @@ export const environment = {
   dataset: 'annoq-test',
   production: false,
   annotationApi: 'http://bioghost2.usc.edu:3403',//'http://68.181.46.17:3403/annoq-test', //'http://bioghost.usc.edu:5000',
-  snpResultsSize: 50
+  snpResultsSize: 50,
+  amigoTermUrl: "http://amigo.geneontology.org/amigo/term/",
+  pubmedUrl: "https://www.ncbi.nlm.nih.gov/pubmed/",
 };
 
 /*

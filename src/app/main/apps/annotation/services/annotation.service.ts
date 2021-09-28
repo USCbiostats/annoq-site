@@ -29,6 +29,8 @@ export class AnnotationService {
 
     count = 0;
 
+    labelLookup = {}
+
     constructor(
         private httpClient: HttpClient,
         private confirmDialogService: NoctuaConfirmDialogService,) {
@@ -36,20 +38,22 @@ export class AnnotationService {
         this.onAnnotationDetailChanged = new BehaviorSubject({});
 
         this.getAnnotationList();
-
     }
 
     getAnnotationList() {
         const api = environment.annotationApi;
         this.httpClient.get<Annotation[]>(`${api}/anno_tree`)
-            .subscribe((response: Annotation[]) => {
-                if (!response) return;
+            .subscribe((response: any) => {
+                if (!response || !response.result) return;
+
+                this.annotations = response.result;
+                this.formatLabel(this.annotations);
+                this.labelLookup = this.makeLabelLookup(this.annotations);
                 this.checklistSelection = new SelectionModel<AnnotationFlatNode>(true);
                 this.treeFlattener = new MatTreeFlattener(this.transformer, this._getLevel,
                     this._isExpandable, this._getChildren);
                 this.treeControl = new FlatTreeControl<AnnotationFlatNode>(this._getLevel, this._isExpandable);
                 this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
-                this.annotations = response['header_tree_array'];
                 this.annotationNodes = this._buildAnnotationTree(this.annotations);
                 this.dataSource.data = this.annotationNodes;
                 this.onAnnotationTreeChanged.next(this.annotationNodes);
@@ -64,15 +68,23 @@ export class AnnotationService {
 */
 
     transformer = (node: AnnotationNode, level: number) => {
-        return new AnnotationFlatNode(
+
+        const flatNode = new AnnotationFlatNode(
             node.id,
             node.name,
-            node.detail,
-            node.parent_id,
-            node.leaf,
-            node.visible,
-            !!node.children,
-            level);
+        );
+
+        flatNode.label = node.label;
+        flatNode.detail = node.detail;
+        flatNode.link = node.link;
+        flatNode.pmid = node.pmid
+        flatNode.parent_id = node.parent_id;
+        flatNode.leaf = node.leaf;
+        flatNode.visible = node.visible;
+        flatNode.expandable = !!node.children;
+        flatNode.level = level;
+
+        return flatNode
     }
 
     private _getLevel = (node: AnnotationFlatNode) => node.level;
@@ -143,6 +155,7 @@ export class AnnotationService {
         }
     }
 
+
     /* Get the parent node of a node */
     getParentNode(node: AnnotationFlatNode): AnnotationFlatNode | null {
         const currentLevel = this._getLevel(node);
@@ -162,7 +175,6 @@ export class AnnotationService {
         }
         return null;
     }
-
 
     setParentVisibility(node, q, nodeVvisible) {
         const visible = nodeVvisible || node.visible || node.name.indexOf(q) >= 0;
@@ -195,6 +207,14 @@ export class AnnotationService {
         nodes.forEach((x: AnnotationFlatNode) => {
             x.visible = true;
         });
+    }
+
+    formatLabel(annotations: Annotation[]) {
+        annotations.forEach((annotation: Annotation) => {
+            if (!annotation.label) {
+                annotation.label = annotation.name
+            }
+        })
     }
 
     clear() {
@@ -279,6 +299,21 @@ export class AnnotationService {
         saveAs(blob, "config.txt");
     }
 
+    makeLabelLookup(annotations: Annotation[]) {
+        return annotations.reduce((lookup, annotation) => {
+            lookup[annotation.name] = annotation
+            return lookup
+        }, {})
+    }
+
+    findLabelByName(name) {
+        const found = this.labelLookup[name]
+        if (found) {
+            return found.label;
+        }
+
+        return name
+    }
 
 
     private _buildAnnotationTree(annotation: Annotation[]): AnnotationNode[] {
@@ -297,7 +332,7 @@ export class AnnotationService {
             return out
         }
 
-        return getNestedChildren(annotation, null, 1);
+        return getNestedChildren(annotation, undefined, 1);
     }
 
 

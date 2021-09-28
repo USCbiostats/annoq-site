@@ -12,6 +12,7 @@ import { SnpDialogService } from '../services/dialog.service';
 import { DataSource } from '@angular/cdk/table';
 
 import { MatPaginator } from '@angular/material/paginator';
+import { AnnotationService } from '../../annotation/services/annotation.service';
 @Component({
   selector: 'annoq-snp-table',
   templateUrl: './snp-table.component.html',
@@ -42,6 +43,7 @@ export class SnpTableComponent implements OnInit {
     private _httpClient: HttpClient,
     private snpDialogService: SnpDialogService,
     public noctuaMenuService: NoctuaMenuService,
+    private annotationService: AnnotationService,
     public snpService: SnpService
   ) {
     this.loadingIndicator = false;
@@ -79,11 +81,12 @@ export class SnpTableComponent implements OnInit {
       this.snpPage = snpPage;
       this.columns = snpPage.source.map((header) => (
         {
-          columnDef: header,
+          name: header,
+          label: this.annotationService.findLabelByName(header),
           cell: (element: any) => `${element[header]}`
         }));
 
-      this.displayedColumns = this.columns.map(c => c.columnDef);
+      this.displayedColumns = this.columns.map(c => c.name);
 
 
       if (snpPage.gene) {
