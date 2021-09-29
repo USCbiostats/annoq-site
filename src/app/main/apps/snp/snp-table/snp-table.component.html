@@ -30,7 +30,18 @@
     <table fxFlex="1 1 auto" mat-table [dataSource]="snpPage.snps" class="">
       <ng-container [matColumnDef]="column.name" *ngFor="let column of columns">
         <th mat-header-cell *matHeaderCellDef> {{column.label}} </th>
-        <td mat-cell *matCellDef="let element"> {{element[column.name]}} </td>
+        <td mat-cell *matCellDef="let element" [ngSwitch]="column.valueType">
+
+          <div *ngSwitchCase="ColumnValueType.GO_ID">
+            <ng-container *ngFor="let item of mapGOids(column.valueType, element[column.name])">
+              <a (click)="$event.stopPropagation()" href="{{item.url}}" target="_blank">
+                {{item.label}}
+              </a>
+            </ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            {{element[column.name]}}</div>
+        </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'annoq-row-selected': false}"

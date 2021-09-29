@@ -26,11 +26,15 @@ export class SnpDetailComponent implements OnInit, OnDestroy {
     this.snpService.onSnpChanged
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe(snpRow => {
+        if (!snpRow) {
+          return
+        }
         this.snpRow = snpRow;
 
-        console.log(snpRow)
       });
   }
+
+
 
   close() {
     this.panelDrawer.close()

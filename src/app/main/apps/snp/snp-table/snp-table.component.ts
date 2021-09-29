@@ -13,12 +13,15 @@ import { DataSource } from '@angular/cdk/table';
 
 import { MatPaginator } from '@angular/material/paginator';
 import { AnnotationService } from '../../annotation/services/annotation.service';
+import { ColumnValueType } from '@noctua.common/models/annotation';
+import { environment } from 'environments/environment';
 @Component({
   selector: 'annoq-snp-table',
   templateUrl: './snp-table.component.html',
   styleUrls: ['./snp-table.component.scss']
 })
 export class SnpTableComponent implements OnInit {
+  ColumnValueType = ColumnValueType;
   snpPage: SnpPage;
   gene;
   genes: any[] = [];
@@ -76,15 +79,32 @@ export class SnpTableComponent implements OnInit {
       });
   }
 
+  mapGOids(valueType, value) {
+    if (!value) {
+      return []
+    }
+    const list = value.split('|').map(item => {
+      return {
+        url: environment.amigoTermUrl + item,
+        label: item
+      }
+    })
+
+    return list
+  }
+
   setSnpPage(snpPage: SnpPage) {
     if (snpPage.source) {
       this.snpPage = snpPage;
-      this.columns = snpPage.source.map((header) => (
-        {
+      this.columns = snpPage.source.map((header) => {
+        const detail = this.annotationService.findDetailByName(header);
+        return {
           name: header,
-          label: this.annotationService.findLabelByName(header),
+          label: detail.label ? detail.label : header,
+          valueType: detail.value_type,
           cell: (element: any) => `${element[header]}`
-        }));
+        }
+      });
 
       this.displayedColumns = this.columns.map(c => c.name);
 

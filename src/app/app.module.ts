@@ -7,7 +7,6 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { FakeDbService } from '@noctua.common/fakedb/services/fake-db.service';
-import 'hammerjs';
 import { NoctuaModule } from '@noctua/noctua.module';
 import { NoctuaProgressBarModule } from '@noctua/components';
 

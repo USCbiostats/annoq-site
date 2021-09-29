@@ -9,6 +9,8 @@ export const environment = {
   snpResultsSize: 50,
   amigoTermUrl: "http://amigo.geneontology.org/amigo/term/",
   pubmedUrl: "https://www.ncbi.nlm.nih.gov/pubmed/",
+
+  tempTreeApi: 'http://localhost:3403'
 };
 
 /*

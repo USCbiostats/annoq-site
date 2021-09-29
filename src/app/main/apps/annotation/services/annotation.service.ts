@@ -41,7 +41,7 @@ export class AnnotationService {
     }
 
     getAnnotationList() {
-        const api = environment.annotationApi;
+        const api = environment.tempTreeApi //environment.annotationApi;
         this.httpClient.get<Annotation[]>(`${api}/anno_tree`)
             .subscribe((response: any) => {
                 if (!response || !response.result) return;
@@ -306,13 +306,9 @@ export class AnnotationService {
         }, {})
     }
 
-    findLabelByName(name) {
+    findDetailByName(name) {
         const found = this.labelLookup[name]
-        if (found) {
-            return found.label;
-        }
-
-        return name
+        return found
     }
 
 
