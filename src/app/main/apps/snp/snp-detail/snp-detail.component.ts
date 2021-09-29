@@ -1,7 +1,10 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
+import { ColumnValueType } from '@noctua.common/models/annotation';
+import { environment } from 'environments/environment';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { AnnotationService } from '../../annotation/services/annotation.service';
 
 
 import { SnpService } from '../services/snp.service';
@@ -12,13 +15,16 @@ import { SnpService } from '../services/snp.service';
   styleUrls: ['./snp-detail.component.scss']
 })
 export class SnpDetailComponent implements OnInit, OnDestroy {
+  ColumnValueType = ColumnValueType
 
   @Input('panelDrawer')
   panelDrawer: MatDrawer;
 
-  snpRow: any;
+  rows: any;
   private _unsubscribeAll: Subject<any>;
-  constructor(private snpService: SnpService) {
+  constructor(
+    private snpService: SnpService,
+    private annotationService: AnnotationService) {
     this._unsubscribeAll = new Subject();
   }
 
@@ -29,20 +35,49 @@ export class SnpDetailComponent implements OnInit, OnDestroy {
         if (!snpRow) {
           return
         }
-        this.snpRow = snpRow;
+        this.rows = this.foo(snpRow);
 
       });
-  }
-
-
-
-  close() {
-    this.panelDrawer.close()
   }
 
   ngOnDestroy(): void {
     this._unsubscribeAll.next();
     this._unsubscribeAll.complete();
   }
+
+  foo(snpRow) {
+    const columns = [...Object.keys(snpRow)].map((name) => {
+      const detail = this.annotationService.findDetailByName(name);
+      return {
+        name: name,
+        label: detail.label ? detail.label : name,
+        valueType: detail.value_type,
+        value: snpRow[name]
+      }
+    });
+
+    return columns;
+  }
+
+  mapGOids(valueType, value) {
+    if (!value) {
+      return []
+    }
+    const list = value.split('|').map(item => {
+      return {
+        url: environment.amigoTermUrl + item,
+        label: item
+      }
+    })
+
+    return list
+  }
+
+
+  close() {
+    this.panelDrawer.close()
+  }
+
+
 }
 
