@@ -67,6 +67,8 @@ export class SnpTableComponent implements OnInit {
       .subscribe((snpPage: SnpPage) => {
         if (snpPage) {
           this.setSnpPage(snpPage);
+        } else {
+          this.snpPage = null
         }
       });
 

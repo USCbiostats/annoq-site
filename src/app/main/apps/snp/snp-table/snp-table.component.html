@@ -26,6 +26,12 @@
     <mat-progress-spinner class="example-margin" [color]="loadingSpinner.color" [mode]="loadingSpinner.mode">
     </mat-progress-spinner>
   </div>
+
+  <div *ngIf="!snpPage" class="annoq-drawer-body" fxFlex="" fxLayout="column" fxLayoutAlign="start stretch">
+    <div class="annoq-no-info">
+      No Results
+    </div>
+  </div>
   <div *ngIf="snpPage" class="annoq-drawer-body" fxFlex="" fxLayout="column" fxLayoutAlign="start stretch">
     <table fxFlex="1 1 auto" mat-table [dataSource]="snpPage.snps" class="">
       <ng-container [matColumnDef]="column.name" *ngFor="let column of columns">

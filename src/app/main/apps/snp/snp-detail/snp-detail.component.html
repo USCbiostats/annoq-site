@@ -17,11 +17,20 @@
           </div>
         </div>
         <div class="annoq-description" [ngSwitch]="row.valueType">
-          <div *ngSwitchCase="ColumnValueType.GO_ID">
+          <div *ngSwitchCase="ColumnValueType.GO_ID" fxLayout="column" fxLayoutAlign="start stretch">
             <ng-container *ngFor="let item of mapGOids(row.valueType, row.value)">
-              <a (click)="$event.stopPropagation()" href="{{item.url}}" target="_blank">
+              <div class="annoq-item">
+                <a (click)="$event.stopPropagation()" href="{{item.url}}" target="_blank">
+                  {{item.label}}
+                </a>
+              </div>
+            </ng-container>
+          </div>
+          <div *ngSwitchCase="ColumnValueType.GO_LABEL" fxLayout="column" fxLayoutAlign="start stretch">
+            <ng-container *ngFor="let item of mapGOids(row.valueType, row.value)">
+              <div class="annoq-item">
                 {{item.label}}
-              </a>
+              </div>
             </ng-container>
           </div>
           <div *ngSwitchDefault>

@@ -35,7 +35,7 @@ export class SnpDetailComponent implements OnInit, OnDestroy {
         if (!snpRow) {
           return
         }
-        this.rows = this.foo(snpRow);
+        this.rows = this.columnsToRows(snpRow);
 
       });
   }
@@ -45,8 +45,8 @@ export class SnpDetailComponent implements OnInit, OnDestroy {
     this._unsubscribeAll.complete();
   }
 
-  foo(snpRow) {
-    const columns = [...Object.keys(snpRow)].map((name) => {
+  columnsToRows(snpRow) {
+    const rows = [...Object.keys(snpRow)].map((name) => {
       const detail = this.annotationService.findDetailByName(name);
       return {
         name: name,
@@ -56,7 +56,7 @@ export class SnpDetailComponent implements OnInit, OnDestroy {
       }
     });
 
-    return columns;
+    return rows;
   }
 
   mapGOids(valueType, value) {
@@ -66,6 +66,19 @@ export class SnpDetailComponent implements OnInit, OnDestroy {
     const list = value.split('|').map(item => {
       return {
         url: environment.amigoTermUrl + item,
+        label: item
+      }
+    })
+
+    return list
+  }
+
+  mapGOlabel(valueType, value) {
+    if (!value) {
+      return []
+    }
+    const list = value.split('|').map(item => {
+      return {
         label: item
       }
     })

@@ -41,7 +41,7 @@ export class AnnotationService {
     }
 
     getAnnotationList() {
-        const api = environment.tempTreeApi //environment.annotationApi;
+        const api = environment.annotationApi; //environment.annotationApi;
         this.httpClient.get<Annotation[]>(`${api}/anno_tree`)
             .subscribe((response: any) => {
                 if (!response || !response.result) return;
