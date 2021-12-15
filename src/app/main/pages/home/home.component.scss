@@ -2,14 +2,18 @@
 @import "src/@noctua.common/scss/noctua.common";
 
 :host {
-
   h2 {
     margin: 0;
   }
 
   .header {
     padding-bottom: 10px;
-    background-image: linear-gradient(to right, rgba($annoq-primary-color, 0.8), rgba($annoq-primary-color, 0.9), $annoq-primary-color, );
+    background-image: linear-gradient(
+      to right,
+      rgba($annoq-primary-color, 0.8),
+      rgba($annoq-primary-color, 0.9),
+      $annoq-primary-color
+    );
     background-blend-mode: initial;
     background-size: cover;
     background-position: top;
@@ -20,12 +24,10 @@
     text-align: center;
     overflow: hidden;
 
-    @include media-breakpoint('lt-md') {
+    @include media-breakpoint("lt-md") {
       height: 200px;
       min-width: 600px;
     }
-
-
 
     .annoq-container {
       overflow: hidden;
@@ -36,15 +38,14 @@
       font-size: 30px;
       font-weight: normal;
       margin-top: 0;
-      color: #FFF;
+      color: #fff;
 
       strong {
         font-size: 54px;
         letter-spacing: 3px;
       }
 
-
-      @include media-breakpoint('lt-md') {
+      @include media-breakpoint("lt-md") {
         font-size: 24px;
       }
     }
@@ -58,7 +59,7 @@
       color: #ffffff;
       line-height: 1.5;
 
-      @include media-breakpoint('lt-md') {
+      @include media-breakpoint("lt-md") {
         font-size: 14px;
       }
     }
@@ -73,7 +74,6 @@
       color: rgba(#ffffff, 0.8);
     }
 
-
     .annoq-image {
       height: 500px;
       overflow: hidden;
@@ -82,20 +82,19 @@
         height: 100%;
       }
     }
-
   }
 
   .annoq-query-buttons {
     padding: 8px;
 
     button {
-      color: #FFF;
+      color: #fff;
       background-color: map-get($primary, default);
       @include mat-elevation(8);
       font-size: 14px;
 
       &.annoq-l {
-        background-color: #1C7ED6;
+        background-color: #1c7ed6;
       }
     }
   }
@@ -127,7 +126,6 @@
         img {
           height: 100%;
         }
-
       }
 
       .annoq-icon {
@@ -198,7 +196,6 @@
             border-color: rgba($annoq-primary-color, 0.6);
           }
         }
-
       }
     }
 
@@ -258,10 +255,8 @@
             height: 100%;
           }
         }
-
       }
     }
-
   }
 
   .annoq-section {
@@ -282,11 +277,15 @@
     }
 
     &.section-1 {
-      background-color: #FFF;
+      background-color: #fff;
     }
 
     &.section-2 {
       background-color: rgba($annoq-primary-color, 0.1);
+    }
+
+    &.section-3 {
+      background-color: #d9e1f2;
     }
   }
 
@@ -358,7 +357,4 @@
     font-size: 18px;
     line-height: 24px;
   }
-
-
-
 }
