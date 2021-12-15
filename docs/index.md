@@ -1,12 +1,18 @@
 ---
 layout: page
-title: AnnoQ Documentation
+title: AnnoQ Help/Tutorial
 permalink: /
 ---
 
-# AnnoQ Documentation
+# AnnoQ Help/Tutorial
 
  The backend of the system is a large collection of pre-annotated variants from the Haplotype Reference Consortium ([HRC](http://www.haplotype-reference-consortium.org/){:target="_blank"})  (~39 million) with sequence features by [WGSA](https://sites.google.com/site/jpopgen/wgsa){:target="_blank"} and functions by [PANTHER](http://pantherdb.org){:target="_blank"} and [Gene Ontology](http://geneontology.org/){:target="_blank"}. The data is built in an Elasticsearch framework and an API was built to allow users to quickly access the annotation data.
+
+ **This website is free and open to all users and there is no login requirement.**
+
+## Browser Compatibility 
+
+![]({{ site.baseurl }}/assets/img/supported-versions.png)
 
 ## How the documentation is organized
 
