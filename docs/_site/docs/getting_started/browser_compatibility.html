@@ -20,25 +20,22 @@
   <link rel="icon" type="image/png" href="/annoq-site/assets/favicons/android-144x144.png" sizes="144x144">
   <link rel="icon" type="image/png" href="/annoq-site/assets/favicons/android-192x192.png" sizes="192x192">
 
-  <title>AnnoQ 1.0</title>
-  <meta property="og:title" content="AnnoQ 1.0" />
+  <title>Browser Compatibility</title>
+  <meta property="og:title" content="Browser Compatibility" />
   <meta property="og:description"
-    content="AnnoQ Documentation and Tutorial.
-" />
+    content="Browser Compatibility in detail" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="http://localhost:4000" />
   <meta property="og:site_name" content="http://localhost:4000" />
 
-  <meta itemprop="name" content="AnnoQ 1.0">
+  <meta itemprop="name" content="Browser Compatibility">
   <meta itemprop="description"
-    content="AnnoQ Documentation and Tutorial.
-">
+    content="Browser Compatibility in detail">
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="AnnoQ 1.0" />
+  <meta name="twitter:title" content="Browser Compatibility" />
   <meta name="twitter:description"
-    content="AnnoQ Documentation and Tutorial.
-" />
+    content="Browser Compatibility in detail" />
 
   <link rel="stylesheet" href="/annoq-site/assets/scss/main.css">
   <link rel="stylesheet" href="/annoq-site/assets/css/palette.css">
@@ -235,9 +232,9 @@
         </div>
         <div class="d-none d-xl-block col-xl-2 noc-toc d-print-none">
           <div class="noc-page-meta ml-2 pb-1 pt-2 mb-0">
-            <!-- <a href="https://github.com/USCbiostats/annoq-site/edit/gh-pages/docs/_docs/changelog/annoq-1.md" target="_blank"><i class="fa fa-edit fa-fw"></i> Edit this
+            <!-- <a href="https://github.com/USCbiostats/annoq-site/edit/gh-pages/docs/_docs/getting_started/browser_compatibility.md" target="_blank"><i class="fa fa-edit fa-fw"></i> Edit this
      page</a>
-<a href="https://github.com/USCbiostats/annoq-site/issues/new?labels=question&title=Question:&body=Question on: https://github.com/USCbiostats/annoq-site/tree/master/_docs/changelog/annoq-1.md"
+<a href="https://github.com/USCbiostats/annoq-site/issues/new?labels=question&title=Question:&body=Question on: https://github.com/USCbiostats/annoq-site/tree/master/_docs/getting_started/browser_compatibility.md"
      target="_blank"><i class="fab fa-github fa-fw"></i> Create documentation issue</a>
 <a href="https://github.com/USCbiostats/annoq-site/issues/new" target="_blank"><i class="fas fa-tasks fa-fw"></i> Create project issue</a> -->
 <!-- this will parse through the header fields and add a button to open
@@ -258,43 +255,50 @@
           <!--      <nav aria-label="breadcrumb" class="d-none d-md-block d-print-none">
             <ol class="breadcrumb spb-1">
               <li class="breadcrumb-item active" aria-current="page">
-                <a href="/docs/changelog/annoq-1">AnnoQ 1.0</a>
+                <a href="/docs/getting_started/browser_compatibility">Browser Compatibility</a>
               </li>
             </ol>
           </nav> -->
           <div class="noc-content">
-            <h1 id="annoq-10">AnnoQ 1.0</h1>
+            <h1 id="browser-compatibility">Browser Compatibility</h1>
 
-<p>Welcome to the first release of AnnoQ. The focus of this version was working closely with 
-researchers with different background and interests. Therefore, we created 3 ways of accessing the annotation data, UI, API and R Package. Its easy-to-use user interface and search capabilities suit better for scientists with less bioinformatics skills, including bench scientists and statistician
-We focused on the layout and overall feel of AnnoQ. This version is packed
-with awesome features, mainly on utilizing ElasticSearch and different concepts of data query. We hope you enjoy some of the features.
-Some of the key highlights include</p>
+<p><strong>AnnoQ Site</strong> strives to provide the best possible user experience in both modern (fully capable browsers) and older browser versions (browsers which do not support all required features). Therefore, the general level of support differs depending on an environment used and some features may not be available in certain cases.</p>
 
-<h2 id="highlights">Highlights</h2>
+<h2 id="officially-supported-browsers">Officially Supported Browsers</h2>
 
-<h3 id="added">Added</h3>
+<p>The list of officially supported browsers contains those which the AnnoQ team actively uses during the development and testing. This means AnnoQ may also work in browsers which are not included in the following list or labeled “not tested” in table, because due to the huge number of various environments available the team is not able to check all of them.</p>
+
+<p>Below is a summary of tested and officially supported browsers
+<img src="/annoq-site/assets/img/supported-versions.png" alt="" /></p>
+
+<h2 id="future-work">Future Work</h2>
+
+<p>We will continue testing other browsers used by our users to increase coverage of tested and supported browsers</p>
+
+<h3 id="mobile-environments">Mobile Environments</h3>
+
+<p>Full mobile support will be introduced in AnnoQ future versions. We first aim to support most popular mobile platforms in <strong>desktop browser modes</strong> and then work to implement responsive site.</p>
+
+<p>Although AnnoQ is generally compatible with Chrome for Android, Safari for  iPhone, iPad in desktop mode, we still think that the usability aspect needs further development in terms of smaller screen real estate.</p>
+
+<h3 id="accessibility-support">Accessibility Support</h3>
+
+<p>Besides the browser support described above, we will also work on improving accessibility support and assistive technologies supported.</p>
+
+<p>We think this will be very beneficial and important to AnnoQ users as we would like to give them equal opportunities, no matter what their ability or circumstances. We traditionally think of this as being about people with disabilities, but the practice of making AnnoQ accessible also benefits other groups such as those using mobile devices or those with slow network connections.</p>
+
+<p>We will start by already supported features by modern browsers</p>
+
+<p>The list of future work includes</p>
+
 <ul>
-  <li>ElasticSearch Backend</li>
-  <li>AnnoQR (R Package)</li>
-  <li>AnnoQ API</li>
-  <li>Thorough Documentation</li>
-  <li>Row Summary</li>
+  <li>Keyboard shortcuts</li>
+  <li>WAI-ARIA Support</li>
+  <li>Responsive design for smaller screens</li>
+  <li>HTML screen readers</li>
+  <li>Navigation (using tabs, arrows)</li>
+  <li>Visual Aids like high contrast</li>
 </ul>
-
-<h3 id="changed">Changed</h3>
-
-<ul>
-  <li>Details on Tree View</li>
-  <li>Faster Table View and supports many columns and rows on web</li>
-</ul>
-
-<h3 id="removed">Removed</h3>
-
-<ul>
-  <li>Retired SQL</li>
-</ul>
-
 
 <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"

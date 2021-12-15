@@ -10,7 +10,9 @@ permalink: /
 
  **This website is free and open to all users and there is no login requirement.**
 
-## Browser Compatibility 
+## Browser Compatibility Summary
+
+For more details on AnnoQ's browser support and future work check out [further reading]({{site.baseurl}}/docs/getting_started/browser_compatibility)
 
 ![]({{ site.baseurl }}/assets/img/supported-versions.png)
 

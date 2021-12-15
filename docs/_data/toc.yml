@@ -1,5 +1,8 @@
 - title: "Getting Started"
   url: "/"
+  links:
+    - title: Browser Compatibility
+      url: "docs/getting_started/browser_compatibility"
 - title: "Tutorials"
   url: "docs/tutorials"
   links:
