@@ -366,4 +366,39 @@
     font-size: 18px;
     line-height: 24px;
   }
+
+  .annoq-compatibility-table {
+    width: 100%;
+    text-align: left;
+    @include mat-elevation(6);
+
+    .mat-header-cell {
+      padding: 0 10px;
+      font-size: 10px !important;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-right: #bbb solid 1px;
+      border-bottom: $annoq-secondary-color solid 3px;
+
+      &.annoq-os-header-cell {
+        text-align: right;
+      }
+    }
+
+    .mat-header-row {
+      background-color: #fff;
+      @include deep-height(50px);
+
+      z-index: 10;
+    }
+
+    .mat-cell {
+      padding: 6px;
+      border-right: #bbb solid 1px;
+      &.annoq-os-cell {
+        font-weight: bold;
+        text-align: right;
+      }
+    }
+  }
 }

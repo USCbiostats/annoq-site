@@ -188,10 +188,7 @@ export class AnnotationService {
 
     setChildVisibility(q: string, nodes: AnnotationFlatNode[]) {
         nodes.forEach((x: AnnotationFlatNode) => {
-            x.visible = x.name.indexOf(q) >= 0;
-            if (x.name === 'VEP') {
-                console.log(x.name)
-            }
+            x.visible = x.label.includes(q);
             if (x.parent_id) {
                 const parent = this.getParentNode(x)
                 this.setParentVisibility(parent, q, x.visible);

@@ -326,14 +326,48 @@
     <div class="annoq-heading mb-12">
       <h2>Browser Compatibility Summary</h2>
     </div>
-    <div class="annoq-card-description p-8 pt-0">
+    <div class="annoq-card-description p-8 pt-0 mb-16">
       For more details on AnnoQ’s browser support and future work, please check out
       <a href="https://uscbiostats.github.io/annoq-site/docs/getting_started/browser_compatibility" target="_blank">
         more details
       </a>
     </div>
     <div class="annoq-container" fxLayout="row" fxLayoutAlign="start center">
-      <img class="w-100-p" src="assets/images/supported-versions.png">
+      <table mat-table [dataSource]="dataSource" class=" annoq-compatibility-table">
+        <ng-container matColumnDef="os">
+          <th mat-header-cell *matHeaderCellDef class="annoq-os-header-cell"> OS </th>
+          <td mat-cell *matCellDef="let element" class="annoq-os-cell"> {{element.os}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="version">
+          <th mat-header-cell *matHeaderCellDef> Version </th>
+          <td mat-cell *matCellDef="let element"> {{element.version}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="chrome">
+          <th mat-header-cell *matHeaderCellDef> Chrome </th>
+          <td mat-cell *matCellDef="let element"> {{element.chrome}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="firefox">
+          <th mat-header-cell *matHeaderCellDef> Firefox </th>
+          <td mat-cell *matCellDef="let element"> {{element.firefox}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="edge">
+          <th mat-header-cell *matHeaderCellDef> Microsoft Edge </th>
+          <td mat-cell *matCellDef="let element"> {{element.edge}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="safari">
+          <th mat-header-cell *matHeaderCellDef> Safari </th>
+          <td mat-cell *matCellDef="let element"> {{element.safari}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
     </div>
   </div>
   <annoq-footer></annoq-footer>

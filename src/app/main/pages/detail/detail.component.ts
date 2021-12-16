@@ -40,7 +40,6 @@ export class DetailComponent implements OnInit {
 
   // checklistSelection = new SelectionModel<AnnotationFlatNode>(true);
 
-  private _unsubscribeAll: Subject<any>;
 
   constructor(
     public noctuaMenuService: NoctuaMenuService,
