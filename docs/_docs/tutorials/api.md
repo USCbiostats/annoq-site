@@ -120,7 +120,7 @@ in query body:
 }
 ```
 
-**Whats Next**
+**What's Next**
 
 - [Interactive Query UI Tutorial]({{site.baseurl}}/docs/tutorials/ui-query)
 - [R package (AnnoQR) Tutorial]({{site.baseurl}}/docs/tutorials/r-package)

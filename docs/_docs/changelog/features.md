@@ -4,7 +4,6 @@ title: AnnoQ 0.1
 
 # Component History
 
-
 ## Researcher Friendly Table Results
 
 | Version   | Details                                                                    |
@@ -22,5 +21,4 @@ title: AnnoQ 0.1
 | --------- | ---------------------------------- |
 | AnnoQ 1.0 | -  Summary view to view a long row |
 |           |                                    |
-
 

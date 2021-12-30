@@ -18,7 +18,7 @@ Select a query type and input the query term. There are 5 types of supported que
 
 #### 1.1.1 Genome Coordinates Query
 
-Sekect "Chromosome" from the dropdown menu to query by chromosome location. Specify the chromosome number, start and end positions. Please note that the current release supports hg19. 
+Select "Chromosome" from the dropdown menu to query by chromosome location. Specify the chromosome number, start and end positions. Please note that the current release supports hg19. 
 
 #### 1.1.2 Query by Upload VCF file (Variants List)
 
@@ -42,7 +42,7 @@ Select "Gene Product" from the dropdown menu. Input a gene or protein ID (e.g., 
 
 #### 1.1.4 rsID query
 
-Select "rsID" from the dropdown menu. Current system allsows user to input a single rsID and retrieve annotations.
+Select "rsID" from the dropdown menu. Current system allows user to input a single rsID and retrieve annotations.
 
 #### 1.1.5 General Keyword Search
 
@@ -68,7 +68,7 @@ There are over 400 annotation types stored in our database. Users may not need a
 
 ## 2. Query Results (Results Panel)
 
-The results are represented in a table format, one row for each variant. The first 5 columns contain the basic information of the variant: chrosome number, position, reference base, alternative allele, and rsID if available. The remaining columns are annotations corresponding to the selection made in 1.2. When there are more than one annotations for a particular annotation type, each annotation is separated by a pipe sign ("|").
+The results are represented in a table format, one row for each variant. The first 5 columns contain the basic information of the variant: chromosome number, position, reference base, alternative allele, and rsID if available. The remaining columns are annotations corresponding to the selection made in 1.2. When there are more than one annotations for a particular annotation type, each annotation is separated by a pipe sign ("|").
 
 To select an individual row for detailed result, click the row and the summary panel will appear
 
@@ -82,7 +82,7 @@ It may take some time to generate the file for downloading.
 
 Click a row to see the summery page of the variant. The summary page is a reformat of the annotation data by displaying each annotation type as a row.
 
-**Whats Next**
+**What's Next**
 
 - [API Documentation Tutorial]({{site.baseurl}}/docs/tutorials/api)
 - [R package (AnnoQR) Tutorial]({{site.baseurl}}/docs/tutorials/r-package)
