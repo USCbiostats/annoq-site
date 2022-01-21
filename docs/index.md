@@ -53,6 +53,10 @@ your web browser—no special software is required.
 
 ## Quick Start
 
+  <iframe width="1000" height="563" src="https://www.youtube.com/embed/plaU42-x4jE" title="YouTube video player"
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+
 For a Quick Tutorial, check out [Quick Tutorial Docs]({{site.baseurl}}/docs/tutorials)
 
 For release notes, check out [Changelog]({{site.baseurl}}/docs/changelog/features)

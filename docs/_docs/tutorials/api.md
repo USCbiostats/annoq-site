@@ -3,7 +3,7 @@
 
 # AnnoQ API based on Elasticsearch
 
-Currently this API is under domain `http://annoq.org:3404/` and index name (\<idx\>) is `vs-index`.
+Currently this API is under domain `http://annoq.org:3403/` and index name (\<idx\>) is `annoq-test`.
 
 ## Examples
 
