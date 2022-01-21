@@ -6,7 +6,11 @@ The UI for variants annotation query is available at [Interactive Query UI]({{si
 
 It is composed of 3 main panels, the Query Panel, Result Panel and Result Summary Panel
 
-![]({{ site.baseurl }}/assets/img/ui-overview.gif)
+  <iframe width="1000" height="563" src="https://www.youtube.com/embed/plaU42-x4jE" title="YouTube video player"
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+
+
 
 ## 1 Queries (Query Panel)
 
@@ -81,6 +85,10 @@ It may take some time to generate the file for downloading.
 ## 3. Summary Panel
 
 Click a row to see the summery page of the variant. The summary page is a reformat of the annotation data by displaying each annotation type as a row.
+
+## Query UI in 20 seconds
+
+![]({{ site.baseurl }}/assets/img/ui-overview.gif)
 
 **What's Next**
 
