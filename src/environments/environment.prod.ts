@@ -1,6 +1,8 @@
 export const environment = {
   production: true,
-  dataset: 'vs-index',
-  annotationApi: 'http://bioghost2.usc.edu:3404',
-  snpResultsSize: 50
+  dataset: 'annoq-test',
+  annotationApi: 'http://bioghost2.usc.edu:3403',
+  snpResultsSize: 50,
+  amigoTermUrl: "http://amigo.geneontology.org/amigo/term/",
+  pubmedUrl: "https://www.ncbi.nlm.nih.gov/pubmed/",
 };

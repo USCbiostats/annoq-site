@@ -4,6 +4,7 @@ import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-annotation-detail',
@@ -13,6 +14,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dial
 export class AnnotationDetailDialogComponent implements OnInit, OnDestroy {
   private _unsubscribeAll: Subject<any>;
   annotationDetail
+  pubmedUrl = environment.pubmedUrl
 
   constructor(
     private _matDialogRef: MatDialogRef<AnnotationDetailDialogComponent>,
@@ -25,6 +27,10 @@ export class AnnotationDetailDialogComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+  }
+
+  getPMIDUrl(pmid) {
+    return this.pubmedUrl + pmid
   }
 
   close() {

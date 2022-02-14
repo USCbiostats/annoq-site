@@ -1,5 +1,11 @@
 <div class="w-100-p" noctuaPerfectScrollbar>
 
+  <div class="annoq-free-banner">
+    <div class="annoq-container text-center" fxLayout="column" fxLayoutAlign="center stretch">
+      This website is free and open to all users and there is no login requirement.
+    </div>
+  </div>
+
   <div class="header accent p-8 w-100-p">
     <div class="annoq-container" fxLayout="row" fxLayoutAlign="start center">
       <div fxLayout="column" fxLayoutAlign="center center" fxFlex="30%">
@@ -314,6 +320,54 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="annoq-section section-3 text-center">
+    <div class="annoq-heading mb-12">
+      <h2>Browser Compatibility Summary</h2>
+    </div>
+    <div class="annoq-card-description p-8 pt-0 mb-16">
+      For more details on AnnoQ’s browser support and future work, please check out
+      <a href="https://uscbiostats.github.io/annoq-site/docs/getting_started/browser_compatibility" target="_blank">
+        more details
+      </a>
+    </div>
+    <div class="annoq-container" fxLayout="row" fxLayoutAlign="start center">
+      <table mat-table [dataSource]="dataSource" class=" annoq-compatibility-table">
+        <ng-container matColumnDef="os">
+          <th mat-header-cell *matHeaderCellDef class="annoq-os-header-cell"> OS </th>
+          <td mat-cell *matCellDef="let element" class="annoq-os-cell"> {{element.os}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="version">
+          <th mat-header-cell *matHeaderCellDef> Version </th>
+          <td mat-cell *matCellDef="let element"> {{element.version}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="chrome">
+          <th mat-header-cell *matHeaderCellDef> Chrome </th>
+          <td mat-cell *matCellDef="let element"> {{element.chrome}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="firefox">
+          <th mat-header-cell *matHeaderCellDef> Firefox </th>
+          <td mat-cell *matCellDef="let element"> {{element.firefox}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="edge">
+          <th mat-header-cell *matHeaderCellDef> Microsoft Edge </th>
+          <td mat-cell *matCellDef="let element"> {{element.edge}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="safari">
+          <th mat-header-cell *matHeaderCellDef> Safari </th>
+          <td mat-cell *matCellDef="let element"> {{element.safari}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
     </div>
   </div>
   <annoq-footer></annoq-footer>

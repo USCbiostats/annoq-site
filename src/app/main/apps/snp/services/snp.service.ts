@@ -129,7 +129,7 @@ export class SnpService {
 
                     query.ids = ids;
                     // console.log(query);
-                    this.httpClient.post(`${environment.annotationApi}/vs-index/ids`, query)
+                    this.httpClient.post(`${environment.annotationApi}/annoq-test/ids`, query)
                         .subscribe((response: any) => {
                             const snpPage = new SnpPage();
                             const esData = response.hits.hits as [];

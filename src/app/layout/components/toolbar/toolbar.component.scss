@@ -1,4 +1,4 @@
-@import 'src/@noctua/scss/noctua';
+@import "src/@noctua/scss/noctua";
 
 :host {
   position: relative;
@@ -68,7 +68,6 @@
   }
 
   .annoq-logo {
-
     //@include deep-width(130px);
     .annoq-main-logo,
     .annoq-sub-logo {

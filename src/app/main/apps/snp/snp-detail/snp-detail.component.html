@@ -10,15 +10,32 @@
   </div>
   <div class="annoq-drawer-body" fxLayout="row" fxLayoutAlign="start start" noctuaPerfectScrollbar>
     <div class="w-100-p" fxLayout="column" fxLayoutAlign="start stretch">
-      <div class="annoq-snp-detail-row" *ngFor="let item of snpRow | keyvalue" fxLayout="row"
-        fxLayoutAlign="start start">
-        <div class="annoq-title" fxFlex="30%">
-          <div class="text-truncate">
-            {{item.key}}
+      <div class="annoq-snp-detail-row" *ngFor="let row of rows" fxLayout="column" fxLayoutAlign="start stretch">
+        <div class="annoq-title">
+          <div class="">
+            {{row.name}}
           </div>
         </div>
-        <div class="annoq-description" fxFlex="70%">
-          {{item.value}}
+        <div class="annoq-description" [ngSwitch]="row.valueType">
+          <div *ngSwitchCase="ColumnValueType.GO_ID" fxLayout="column" fxLayoutAlign="start stretch">
+            <ng-container *ngFor="let item of mapGOids(row.valueType, row.value)">
+              <div class="annoq-item">
+                <a (click)="$event.stopPropagation()" href="{{item.url}}" target="_blank">
+                  {{item.label}}
+                </a>
+              </div>
+            </ng-container>
+          </div>
+          <div *ngSwitchCase="ColumnValueType.GO_LABEL" fxLayout="column" fxLayoutAlign="start stretch">
+            <ng-container *ngFor="let item of mapGOids(row.valueType, row.value)">
+              <div class="annoq-item">
+                {{item.label}}
+              </div>
+            </ng-container>
+          </div>
+          <div *ngSwitchDefault>
+            {{row.value}}
+          </div>
         </div>
       </div>
     </div>

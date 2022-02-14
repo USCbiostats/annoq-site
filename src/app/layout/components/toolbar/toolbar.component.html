@@ -1,10 +1,10 @@
 <mat-toolbar class="mat-elevation-z1" fxLayout="row" fxLayoutAlign="start center">
   <mat-progress-bar *ngIf="showLoadingBar" class="loading-bar" color="accent" mode="indeterminate"></mat-progress-bar>
-  <div fxLayout="row" fxLayoutAlign="start center" fxFlex="100px">
+  <div fxLayout="row" fxLayoutAlign="start center">
     <div class="annoq-logo" fxLayout="row" fxLayoutAlign="start">
       <a class="annoq-main-logo" [routerLink]="['/']">
         AnnoQ
-      </a>
+      </a> <!-- <small>(development site)</small> -->
     </div>
   </div>
   <div class="annoq-query-buttons" fxLayout="row" fxLayoutAlign="start start">
@@ -21,5 +21,5 @@
   <a mat-button [routerLink]="['/detail']">Supported Annotations</a>
   <a mat-button href="https://uscbiostats.github.io/annoq-site/docs/tutorials/api">Data Access</a>
   <a mat-button [routerLink]="['/about']">About</a>
-  <a mat-button href="https://uscbiostats.github.io/annoq-site/" target="_blank">Documentation</a>
+  <a mat-button href="https://uscbiostats.github.io/annoq-site/" target="_blank">Help/Tutorial</a>
 </mat-toolbar>

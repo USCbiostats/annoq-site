@@ -25,11 +25,11 @@
       <div class="annoq-detail-row" fxLayout="row" fxLayoutAlign="start start">
         <div class="annoq-title" fxFlex="30%">
           <div class="text-truncate">
-            Name
+            Label
           </div>
         </div>
         <div class="annoq-description" fxFlex="70%">
-          {{ annotationDetail.name }}
+          {{ annotationDetail.label }}
         </div>
       </div>
       <div class="annoq-detail-row" fxLayout="row" fxLayoutAlign="start start">
@@ -50,6 +50,30 @@
         </div>
         <div class="annoq-description" fxFlex="70%">
           {{ annotationDetail.parent_id }}
+        </div>
+      </div>
+      <div *ngIf="annotationDetail.link" class="annoq-detail-row" fxLayout="row" fxLayoutAlign="start start">
+        <div class="annoq-title" fxFlex="30%">
+          <div class="text-truncate">
+            External Website
+          </div>
+        </div>
+        <div class="annoq-description" fxFlex="70%">
+          <a href="{{ annotationDetail.link }}" target="_blank">
+            {{ annotationDetail.link }}
+          </a>
+        </div>
+      </div>
+      <div *ngIf="annotationDetail.pmid" class="annoq-detail-row" fxLayout="row" fxLayoutAlign="start start">
+        <div class="annoq-title" fxFlex="30%">
+          <div class="text-truncate">
+            PMID
+          </div>
+        </div>
+        <div class="annoq-description" fxFlex="70%">
+          <a href="{{ getPMIDUrl(annotationDetail.pmid) }}" target="_blank">
+            {{ annotationDetail.pmid }}
+          </a>
         </div>
       </div>
     </div>
