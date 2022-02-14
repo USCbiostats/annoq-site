@@ -19,6 +19,7 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { PagesModule } from './main/pages/pages.module';
 import { AppsModule } from './main/apps/apps.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
 
 import {
     faPaw,
@@ -58,6 +59,35 @@ const appRoutes: Routes = [
     }
 ];
 
+const cookieConfig: NgcCookieConsentConfig = {
+    "cookie": {
+        "domain": "tinesoft.github.io"
+    },
+    "position": "top-left",
+    "theme": "edgeless",
+    "palette": {
+        "popup": {
+            "background": "#000000",
+            "text": "#ffffff",
+            "link": "#ffffff"
+        },
+        "button": {
+            "background": "#f1d600",
+            "text": "#000000",
+            "border": "transparent"
+        }
+    },
+    "type": "opt-in",
+    "content": {
+        "message": "This website uses cookies to ensure you get the best experience on our website.",
+        "dismiss": "Got it!",
+        "deny": "Refuse cookies",
+        "link": "Learn more",
+        "href": "https://cookiesandyou.com",
+        "policy": "Cookie Policy"
+    }
+};
+
 @NgModule({
     declarations: [
         AppComponent
@@ -69,6 +99,7 @@ const appRoutes: Routes = [
         HttpClientJsonpModule,
         RouterModule.forRoot(appRoutes),
         TranslateModule.forRoot(),
+        NgcCookieConsentModule.forRoot(cookieConfig),
 
         // Noctua Main and Shared modules
         NoctuaModule.forRoot(noctuaConfig),
