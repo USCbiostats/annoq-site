@@ -65,6 +65,7 @@
     "ngx-contextmenu": "^5.4.0",
     "ngx-datatable": "^1.0.3",
     "ngx-scrollbar": "^7.5.4",
+    "cookieconsent": "^3.1.1",
     "node-bourbon": "^4.2.8",
     "npm-check-updates": "^11.5.10",
     "perfect-scrollbar": "1.5.1",
