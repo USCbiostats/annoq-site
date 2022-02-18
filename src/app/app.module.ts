@@ -50,6 +50,7 @@ import {
 import { faCheckCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons';
 import { faGithub, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 const appRoutes: Routes = [
     {
@@ -60,10 +61,10 @@ const appRoutes: Routes = [
 
 const cookieConfig: NgcCookieConsentConfig = {
     "cookie": {
-        "domain": "tinesoft.github.io"
+        "domain": "http://annoq.org"
     },
     "position": "top-left",
-    "theme": "edgeless",
+    "theme": "classic",
     "palette": {
         "popup": {
             "background": "#000000",
@@ -76,9 +77,9 @@ const cookieConfig: NgcCookieConsentConfig = {
             "border": "transparent"
         }
     },
-    "type": "opt-in",
+    "type": "info",
     "content": {
-        "message": "This website uses cookies to ensure you get the best experience on our website.",
+        "message": "AnnoQ site uses cookies to ensure you get the best experience on our website.",
         "dismiss": "Got it!",
         "deny": "Refuse cookies",
         "link": "Learn more",
