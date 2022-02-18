@@ -63,7 +63,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     "cookie": {
         "domain": "http://annoq.org"
     },
-    "position": "top-left",
+    "position": "bottom-right",
     "theme": "classic",
     "palette": {
         "popup": {
