@@ -1,0 +1,42 @@
+@import "src/@noctua/scss/noctua";
+@import "src/@noctua.common/scss/noctua.common";
+
+:host {
+  .annoq-sm-container {
+    width: 800px;
+  }
+
+  .annoq-section {
+    padding: 40px 10px;
+
+    .annoq-heading {
+      margin: 0 auto;
+      width: 800px;
+
+      h3 {
+        font-size: 28px;
+      }
+    }
+
+    h1 {
+      font-size: 40px;
+    }
+
+    h2 {
+      font-size: 30px;
+    }
+
+    &.section-1 {
+      background-color: #fff;
+    }
+
+    &.section-2 {
+      background-color: rgba($annoq-primary-color, 0.1);
+    }
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}

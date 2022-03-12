@@ -12,6 +12,7 @@ import { NoctuaFooterModule } from 'app/layout/components/footer/footer.module';
 import { PublicationComponent } from './publication/publication.component';
 import { ContactComponent } from './contact/contact.component';
 import { NoctuaConfirmDialogModule } from '@noctua/components/confirm-dialog/confirm-dialog.module';
+import { CookiePolicyComponent } from './cookie-policy/cookie-policy.component';
 
 const routes = [{
   path: '', component: HomeComponent
@@ -23,6 +24,8 @@ const routes = [{
   path: 'detail', component: DetailComponent
 }, {
   path: 'about', component: AboutComponent
+}, {
+  path: 'cookie-policy', component: CookiePolicyComponent
 }];
 
 @NgModule({
@@ -33,6 +36,7 @@ const routes = [{
     DetailComponent,
     PublicationComponent,
     ContactComponent,
+    CookiePolicyComponent,
   ],
   imports: [
     RouterModule.forChild(routes),

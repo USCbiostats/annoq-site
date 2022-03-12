@@ -1,14 +1,13 @@
-import { Component, ElementRef, HostBinding, Inject, OnInit, OnDestroy, Renderer2, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, OnDestroy, Renderer2, ViewEncapsulation } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Platform } from '@angular/cdk/platform';
-import { Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { NoctuaConfigService } from '@noctua/services/config.service';
 import { TranslateService } from '@ngx-translate/core';
 import { NoctuaSplashScreenService } from '@noctua/services/splash-screen.service';
 import { NoctuaTranslationLoaderService } from '@noctua/services/translation-loader.service';
-import { NgcCookieConsentService, NgcNoCookieLawEvent, NgcStatusChangeEvent } from 'ngx-cookieconsent';
 
 
 @Component({
@@ -23,18 +22,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
     private _unsubscribeAll: Subject<any>;
 
-    private popupOpenSubscription!: Subscription;
-    private popupCloseSubscription!: Subscription;
-    private initializingSubscription!: Subscription;
-    private initializedSubscription!: Subscription;
-    private initializationErrorSubscription!: Subscription;
-    private statusChangeSubscription!: Subscription;
-    private revokeChoiceSubscription!: Subscription;
-    private noCookieLawSubscription!: Subscription;
-
 
     constructor(
-        private ccService: NgcCookieConsentService,
         private translate: TranslateService,
         private noctuaSplashScreen: NoctuaSplashScreenService,
         private noctuaTranslationLoader: NoctuaTranslationLoaderService,
@@ -63,47 +52,11 @@ export class AppComponent implements OnInit, OnDestroy {
             .subscribe((config) => {
                 this.noctuaConfig = config;
             });
-        /* 
-                this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
-                    () => {
-                        // you can use this.ccService.getConfig() to do stuff...
-                    });
-        
-                this.popupCloseSubscription = this.ccService.popupClose$.subscribe(
-                    () => {
-                        // you can use this.ccService.getConfig() to do stuff...
-                    });
-        
-        
-                this.statusChangeSubscription = this.ccService.statusChange$.subscribe(
-                    (event: NgcStatusChangeEvent) => {
-                        // you can use this.ccService.getConfig() to do stuff...
-                    });
-        
-                this.revokeChoiceSubscription = this.ccService.revokeChoice$.subscribe(
-                    () => {
-                        // you can use this.ccService.getConfig() to do stuff...
-                    });
-        
-                this.noCookieLawSubscription = this.ccService.noCookieLaw$.subscribe(
-                    (event: NgcNoCookieLawEvent) => {
-                        // you can use this.ccService.getConfig() to do stuff...
-                    }); */
     }
 
     ngOnDestroy() {
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
-
-        // unsubscribe to cookieconsent observables to prevent memory leaks
-        this.popupOpenSubscription.unsubscribe();
-        this.popupCloseSubscription.unsubscribe();
-        this.initializingSubscription.unsubscribe();
-        this.initializedSubscription.unsubscribe();
-        this.initializationErrorSubscription.unsubscribe();
-        this.statusChangeSubscription.unsubscribe();
-        this.revokeChoiceSubscription.unsubscribe();
-        this.noCookieLawSubscription.unsubscribe();
     }
 
 
