@@ -19,14 +19,14 @@
     background-position: top;
     position: relative;
     flex: 1 0 auto;
-    height: 500px;
+    height: 450px;
     min-width: 800px;
     text-align: center;
     overflow: hidden;
 
     @include media-breakpoint("lt-md") {
-      height: 200px;
-      min-width: 600px;
+      // height: 200px;
+      //  min-width: 600px;
     }
 
     .annoq-container {
@@ -74,12 +74,18 @@
       color: rgba(#ffffff, 0.8);
     }
 
-    .annoq-image {
-      height: 500px;
+    .annoq-video {
+      padding-top: 30px;
+      height: 450px;
       overflow: hidden;
 
       img {
         height: 100%;
+      }
+
+      iframe {
+        width: 600px;
+        height: calc(600px / 1.77);
       }
     }
   }
