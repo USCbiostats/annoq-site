@@ -57,8 +57,6 @@ export class AnnotationService {
                 this.annotationNodes = this._buildAnnotationTree(this.annotations);
                 this.dataSource.data = this.annotationNodes;
                 this.onAnnotationTreeChanged.next(this.annotationNodes);
-
-                console.log(this.annotationNodes)
             });
     }
 

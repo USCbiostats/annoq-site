@@ -130,8 +130,16 @@ export class SnpTableComponent implements OnInit {
   }
 
   selectSnp(row) {
-    this.snpService.onSnpChanged.next(row);
-
+    const details = this.snpPage.source.map((key) => {
+      const detail = this.annotationService.findDetailByName(key);
+      return {
+        name: key,
+        label: detail.label ? detail.label : key,
+        valueType: detail.value_type,
+        value: row[key]
+      }
+    });
+    this.snpService.onSnpChanged.next(details);
     this.noctuaMenuService.openRightDrawer();
 
   }
