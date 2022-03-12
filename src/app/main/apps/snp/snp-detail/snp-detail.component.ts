@@ -35,7 +35,7 @@ export class SnpDetailComponent implements OnInit, OnDestroy {
         if (!snpRow) {
           return
         }
-        this.rows = this.columnsToRows(snpRow);
+        this.rows = snpRow;
 
       });
   }
@@ -45,19 +45,6 @@ export class SnpDetailComponent implements OnInit, OnDestroy {
     this._unsubscribeAll.complete();
   }
 
-  columnsToRows(snpRow) {
-    const rows = [...Object.keys(snpRow)].map((name) => {
-      const detail = this.annotationService.findDetailByName(name);
-      return {
-        name: name,
-        label: detail.label ? detail.label : name,
-        valueType: detail.value_type,
-        value: snpRow[name]
-      }
-    });
-
-    return rows;
-  }
 
   mapGOids(valueType, value) {
     if (!value) {
