@@ -108,8 +108,12 @@ export class SnpTableComponent implements OnInit, OnDestroy {
       this.snpPage = snpPage;
       this.columns = snpPage.source.map((header) => {
         const detail = this.annotationService.findDetailByName(header);
+
+        const agg = snpPage.aggs[header]
+        const count = agg ? agg['doc_count'] : '';
         return {
           name: header,
+          count: count,
           label: detail.label ? detail.label : header,
           valueType: detail.value_type,
           cell: (element: any) => `${element[header]}`
@@ -169,7 +173,7 @@ export class SnpTableComponent implements OnInit, OnDestroy {
 
   openSnpTable() {
     this.snpMenuService.selectLeftPanel(LeftPanel.snpTable);
-    this.snpMenuService.openLeftDrawer()
+    this.snpMenuService.closeLeftDrawer()
   }
 
   openSnpSummary() {
@@ -181,7 +185,5 @@ export class SnpTableComponent implements OnInit, OnDestroy {
     this.snpMenuService.selectLeftPanel(LeftPanel.snpStats);
     this.snpMenuService.openLeftDrawer()
   }
-
-
 }
 

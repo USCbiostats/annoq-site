@@ -1,4 +1,4 @@
-<div class="w-100-p h-100-p" fxLayout="row" fxLayoutAlign="start start">
+<div *ngIf="snpPage" class="w-100-p h-100-p" fxLayout="row" fxLayoutAlign="start start">
   <div class="annoq-sidemenu" fxLayout="column" fxLayoutAlign="start center">
     <button mat-icon-button color="" class="annoq-rounded-button"
       [ngClass]="{'annoq-active': snpMenuService.selectedLeftPanel === LeftPanel.snpTable}" (click)="openSnpTable()"
@@ -21,22 +21,12 @@
       <fa-icon [icon]="['fas', 'chart-bar']"></fa-icon>
     </button>
   </div>
-
-
   <mat-drawer-container class="w-100-p h-100-p" fxLayout="row" fxLayoutAlign="start start">
     <mat-drawer #leftDrawer opened="true" class="annoq-left-drawer" mode="side" position="start">
       <div fxLayout="column" fxLayoutAlign="start stretch" class="annoq-drawer w-100-p h-100-p">
-        <div class="annoq-drawer-header" fxLayout="row" fxLayoutAlign="start center">
-          <span class="annoq-drawer-header-title">
-            Variants Annotation Query Provided by IMAGE Project
-          </span>
-          <span fxFlex></span>
-          <button *ngIf="false" mat-icon-button (click)="noctuaMenuService.closeLeftDrawer()" aria-label="Close dialog">
-            <mat-icon>close</mat-icon>
-          </button>
-        </div>
-        <div class="annoq-drawer-body w-100-p" fxFlex>
-          <annoq-annotation></annoq-annotation>
+        <div [ngSwitch]="snpMenuService.selectedLeftPanel" class="h-100-p">
+          <annoq-snp-summary [panelDrawer]="leftDrawer" *ngSwitchCase="LeftPanel.snpSummary">
+          </annoq-snp-summary>
         </div>
       </div>
     </mat-drawer>
@@ -69,16 +59,12 @@
           <mat-progress-spinner class="example-margin" [color]="loadingSpinner.color" [mode]="loadingSpinner.mode">
           </mat-progress-spinner>
         </div>
-
-        <div *ngIf="!snpPage" class="annoq-drawer-body" fxFlex="" fxLayout="column" fxLayoutAlign="start stretch">
-          <div class="annoq-no-info">
-            No Results
-          </div>
-        </div>
-        <div *ngIf="snpPage" class="annoq-drawer-body" fxFlex="" fxLayout="column" fxLayoutAlign="start stretch">
+        <div class="annoq-drawer-body" fxFlex="" fxLayout="column" fxLayoutAlign="start stretch">
           <table fxFlex="1 1 auto" mat-table [dataSource]="snpPage.snps" class="">
             <ng-container [matColumnDef]="column.name" *ngFor="let column of columns">
-              <th mat-header-cell *matHeaderCellDef> {{column.label}} </th>
+              <th mat-header-cell *matHeaderCellDef> {{column.label}}<br>
+                <div class="annoq-count">({{column.count}})</div>
+              </th>
               <td mat-cell *matCellDef="let element">
                 {{element[column.name]}}
               </td>
@@ -94,4 +80,10 @@
       </div>
     </mat-drawer-content>
   </mat-drawer-container>
+</div>
+
+<div *ngIf="!snpPage" class="w-100-p h-100-p" fxFlex="" fxLayout="column" fxLayoutAlign="start stretch">
+  <div class="annoq-no-info">
+    No Results
+  </div>
 </div>

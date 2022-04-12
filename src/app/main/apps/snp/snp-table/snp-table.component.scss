@@ -46,6 +46,10 @@ $accent: map-get($theme, accent);
     font-size: 10px !important;
     color: map-get($primary, default);
     font-weight: bold;
+
+    .annoq-count {
+      font-weight: normal;
+    }
   }
 
   .mat-header-cell,

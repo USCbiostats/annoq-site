@@ -8,6 +8,7 @@ export class SnpPage extends Page {
     query;
     source: string[];
     snps: any;
+    aggs: any;
     gene;
     vcfUrl: string;
 }

@@ -17,6 +17,7 @@ export class SnpService {
     onSnpsDownloadReady: BehaviorSubject<any>;
     snpPage: SnpPage;
     loading = false;
+    selectedQuery;
     query;
 
     private client: Client;
@@ -68,17 +69,17 @@ export class SnpService {
         const self = this;
         self.loading = true;
 
-        let a = uniqBy([...['chr', 'pos', 'ref', 'alt', 'rs_dbSNP151'], ...annotationQuery.source], function (e) {
-            return e;
+        let headers = uniqBy([...['chr', 'pos', 'ref', 'alt', 'rs_dbSNP151'], ...annotationQuery.source], (header) => {
+            return header;
         });
 
         const query: any = {
-            '_source': a
+            '_source': headers
         };
 
         const aggs = {}
-        a.forEach((field) => {
-            aggs[`${field}_count`] = {
+        headers.forEach((field) => {
+            aggs[`${field}`] = {
                 "filter": {
                     "exists": {
                         "field": field
@@ -86,6 +87,8 @@ export class SnpService {
                 }
             }
         })
+
+        query.aggs = aggs;
 
         switch (this.inputTypes.selected) {
             case this.inputType.chromosome:
@@ -96,7 +99,6 @@ export class SnpService {
                             { 'range': { 'pos': { 'gte': annotationQuery.start, 'lte': annotationQuery.end } } }]
                     },
                 }
-                query.aggs = aggs;
                 break;
             case this.inputType.geneProduct:
                 this.httpClient.get(`${environment.annotationApi}/gene`, { params: { 'gene': annotationQuery.geneProduct } })
@@ -187,12 +189,14 @@ export class SnpService {
                 const snpData = esData.map((snp: any) => {
                     return snp._source;
                 });
+
                 //console.log(gene);
                 snpPage.gene = gene;
                 snpPage.query = query;
                 snpPage.total = body.hits.total.value;
                 snpPage.size = self.snpResultsSize;
                 snpPage.snps = snpData;
+                snpPage.aggs = body.aggregations;
                 snpPage.source = query._source;
                 this.snpPage = snpPage;
                 this.onSnpsChanged.next(snpPage);
