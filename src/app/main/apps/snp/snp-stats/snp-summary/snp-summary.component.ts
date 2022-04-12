@@ -62,11 +62,11 @@ export class SnpSummaryComponent implements OnInit, OnDestroy {
         const detail = this.annotationService.findDetailByName(header);
         const agg = snpPage.aggs[header]
         const count = agg ? agg['doc_count'] : '';
-
+        const label = detail.label ? detail.label : header;
         return {
           name: header,
           count: count,
-          label: detail.label ? detail.label : header,
+          label: label.replaceAll('_', ' '),
           valueType: detail.value_type,
         }
       });
@@ -74,6 +74,10 @@ export class SnpSummaryComponent implements OnInit, OnDestroy {
       this.treeNodes = this.snpService.buildSummaryTree(this.columns)
 
     }
+  }
+
+  addExistFilter(field) {
+    this.snpService.addExistFilter(field);
   }
 
   close() {

@@ -40,8 +40,13 @@ export class SnpTableComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator, { static: true })
   paginator: MatPaginator;
 
-  @ViewChild('leftDrawer', { static: true })
-  leftDrawer: MatDrawer;
+  leftDrawer: MatDrawer
+  @ViewChild('leftDrawer', { static: false }) set elemOnHTML(el: MatDrawer) {
+    if (el) {
+      this.leftDrawer = el;
+      this.snpMenuService.setLeftDrawer(this.leftDrawer);
+    }
+  }
 
   displayedColumns = [];
 
@@ -65,7 +70,7 @@ export class SnpTableComponent implements OnInit, OnDestroy {
 
     const self = this;
 
-    this.snpMenuService.setLeftDrawer(this.leftDrawer);
+
 
     this.columns = [];
 
@@ -87,6 +92,8 @@ export class SnpTableComponent implements OnInit, OnDestroy {
         }
       });
   }
+
+
 
   mapGOids(valueType, value) {
     if (!value) {
@@ -138,6 +145,10 @@ export class SnpTableComponent implements OnInit, OnDestroy {
     if (this.snpPage) {
       this.snpService.getSnpsPage(this.snpPage.query, $event.pageIndex + 1);
     }
+  }
+
+  addExistFilter(field) {
+    this.snpService.addExistFilter(field);
   }
 
   selectSnp(row) {

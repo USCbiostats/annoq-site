@@ -2,7 +2,6 @@ import { environment } from 'environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { tap, finalize } from 'rxjs/operators';
 import { Client } from 'elasticsearch-browser';
 import { SnpPage } from '../models/page';
 import { uniqBy } from 'lodash';
@@ -18,6 +17,7 @@ export class SnpService {
     snpPage: SnpPage;
     loading = false;
     selectedQuery;
+    queryOriginal;
     query;
 
     private client: Client;
@@ -83,10 +83,18 @@ export class SnpService {
                 "filter": {
                     "exists": {
                         "field": field
-                    }
+                    },
                 }
-            }
+            };
+            /*   aggs[`${field}_unique`] = {
+                  "terms": { "field": field + '.keyword', "min_doc_count": 0 },
+  
+              } */
         })
+
+        aggs['pos_agg'] = {
+            "terms": { "field": "ref.keyword", "size": 25 }
+        }
 
         query.aggs = aggs;
 
@@ -209,6 +217,19 @@ export class SnpService {
         });
     }
 
+    addExistFilter(field) {
+        if (this.snpPage) {
+            if (this.snpPage.query.query?.bool?.filter)
+                this.snpPage.query.query.bool.filter.push(
+                    {
+                        "exists": {
+                            "field": field
+                        }
+                    });
+            this.getSnpsPage(this.snpPage.query, 1);
+        }
+    }
+
     downloadSnp() {
         if (!this.query) {
             if (this.snpPage.vcfUrl) {
@@ -238,12 +259,13 @@ export class SnpService {
                 id: agg.name,
                 label: agg.label,
                 count: agg.count,
+                name: agg.name,
                 isCategory: true,
                 children: [
                     {
-                        label: agg.label,
-                        count: agg.count,
-                        isCategory: true,
+                        name: agg.name,
+                        label: "With Values",
+                        count: agg.count
                     }
                 ]
             }

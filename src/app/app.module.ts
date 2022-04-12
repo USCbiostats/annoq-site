@@ -45,7 +45,7 @@ import {
     faCaretDown,
     faCaretRight,
     faAngleDoubleDown,
-    faAngleDoubleUp, faUndo, faSave, faExclamationTriangle, faAngleDoubleLeft, faAngleDoubleRight, faAngleLeft, faAngleRight, faCode, faFileCode, faSearchPlus, faTable, faChartBar, faList
+    faAngleDoubleUp, faUndo, faSave, faExclamationTriangle, faAngleDoubleLeft, faAngleDoubleRight, faAngleLeft, faAngleRight, faCode, faFileCode, faSearchPlus, faTable, faChartBar, faList, faBars
 } from '@fortawesome/free-solid-svg-icons';
 import { faCheckCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons';
 import { faGithub, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
@@ -136,6 +136,7 @@ export class AppModule {
             faAngleDoubleDown,
             faAngleLeft,
             faAngleRight,
+            faBars,
             faCalendarDay,
             faCalendarWeek,
             faCaretDown,

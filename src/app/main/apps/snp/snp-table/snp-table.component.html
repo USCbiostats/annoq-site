@@ -63,7 +63,7 @@
           <table fxFlex="1 1 auto" mat-table [dataSource]="snpPage.snps" class="">
             <ng-container [matColumnDef]="column.name" *ngFor="let column of columns">
               <th mat-header-cell *matHeaderCellDef> {{column.label}}<br>
-                <div class="annoq-count">({{column.count}})</div>
+                <a class="annoq-count" (click)="addExistFilter(column.name)">({{column.count}})</a>
               </th>
               <td mat-cell *matCellDef="let element">
                 {{element[column.name]}}

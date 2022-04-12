@@ -5,7 +5,10 @@ $primary: map-get($theme, primary);
 $accent: map-get($theme, accent);
 
 :host {
-  width: 100%;
+  @include deep-width(380px);
+  height: 100%;
+
+  display: block;
   background-color: white;
   @include mat-elevation(4);
 
@@ -19,7 +22,7 @@ $accent: map-get($theme, accent);
   }
 
   .annoq-drawer {
-    @include deep-width(380px);
+    width: 100%;
 
     .annoq-drawer-header {
       padding: 0 12px;
@@ -107,9 +110,11 @@ $accent: map-get($theme, accent);
 
         .annoq-title {
           // font-weight: bold;
-          //font-size: 20px;
-          //margin-bottom: 5px;
-          // word-break: break-all;
+          font-size: 12px;
+          padding-right: 8px;
+          overflow-wrap: break-word;
+          word-wrap: break-word;
+          hyphens: auto;
         }
 
         .annoq-subtitle {
@@ -117,44 +122,20 @@ $accent: map-get($theme, accent);
           color: #777;
         }
 
-        .annoq-article-title {
-          font-size: 10px;
-          max-height: 60px;
-          overflow: hidden;
-        }
-
-        .annoq-article-author {
-          font-size: 10px;
-          max-height: 60px;
-          color: #777;
-          overflow: hidden;
-        }
-
-        .annoq-badge,
-        .annoq-aspect-badge {
+        .annoq-badge {
+          padding: 0 5px;
           margin: 2px 5px;
-          @include deep-width(20px);
           // background-color: #91b995;
           color: #777;
           border-radius: 6px;
-          font-size: 8px;
+          font-size: 10px;
           font-weight: bold;
           border: #000 solid 1px;
           border-top: none;
           border-bottom: none;
         }
 
-        .annoq-aspect-badge {
-          margin: 2px 5px;
-          @include deep-width(30px);
-          // background-color: #91b995;
-          color: #777;
-          border-radius: 6px;
-          font-size: 10px;
-        }
-
         .annoq-icon {
-          @include deep-width(25px);
           color: #777;
         }
       }
@@ -163,7 +144,7 @@ $accent: map-get($theme, accent);
         //padding-right: 50px;
         .annoq-title {
           // font-weight: bold;
-          font-size: 18px;
+          font-size: 12px;
           //margin-bottom: 5px;
           // word-break: break-all;
         }

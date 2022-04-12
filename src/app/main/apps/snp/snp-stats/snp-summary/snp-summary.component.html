@@ -10,7 +10,6 @@
   </div>
   <div class="annoq-drawer-body" noctuaPerfectScrollbar>
     <div class="annoq-tree-container">
-
       <div class="annoq-tree">
         <tree-root #tree (initialized)="onTreeLoad()" [nodes]="treeNodes" [options]="treeOptions">
           <ng-template #treeNodeWrapperTemplate let-node let-index="index">
@@ -29,10 +28,9 @@
                 (dblclick)="node.mouseAction('dblClick', $event)"
                 (contextmenu)="node.mouseAction('contextMenu', $event)" (treeDrop)="node.onDrop($event)"
                 [treeAllowDrop]="node.allowDrop" [treeDrag]="node" [treeDragEnabled]="node.allowDrag()">
-
                 <div *ngIf="node.data.isCategory" class="annoq-term-row annoq-category-row" fxFlex="" fxLayout="row"
                   fxLayoutAlign="start center">
-                  <div>
+                  <div class="annoq-title">
                     {{node.data.label}}
                   </div>
                   <span fxFlex=""></span>
@@ -44,29 +42,16 @@
                 <div *ngIf="!node.data.isCategory" class="annoq-term-row" fxFlex="" fxLayout="row"
                   fxLayoutAlign="start center">
                   <ng-container [ngSwitch]="node.data.entityType">
-                    <ng-container *default>
-                      <div (click)="search(node.data)" class="annoq-title">
+                    <ng-container *ngSwitchDefault>
+                      <div class="annoq-title">
                         {{node.data.label}}
                       </div>
                       <span fxFlex=""></span>
-                      <div class="annoq-badge" (click)="openSearch(node.data)" fxLayout="row"
+                      <div class="annoq-badge" (click)="addExistFilter(node.data.name)" fxLayout="row"
                         fxLayoutAlign="center center">
                         {{node.data.count}}
                       </div>
-                      <div class="annoq-icon" (click)="openTermDetail(node.data)" fxLayout="row"
-                        fxLayoutAlign="center center">
-                        <fa-icon [icon]="['fas', 'info-circle']"></fa-icon>
-                      </div>
-                      <button mat-icon-button class="annoq-icon-button" [matMenuTriggerFor]="optionMenu">
-                        <fa-icon [icon]="['fas', 'bars']"></fa-icon>
-                      </button>
-                      <mat-menu #optionMenu="matMenu" class="annoq-dropdown-menu">
-                        <button mat-menu-item class="">
-                          Find in Model
-                        </button>
-                      </mat-menu>
                     </ng-container>
-
                   </ng-container>
                 </div>
               </div>
