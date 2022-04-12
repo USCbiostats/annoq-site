@@ -1,1 +1,79 @@
-<p>snp-summary works!</p>
+<div fxLayout="column" fxLayoutAlign="start stretch" class="annoq-drawer h-100-p">
+  <div class="annoq-drawer-header" fxLayout="row" fxLayoutAlign="start center">
+    <span class="annoq-drawer-header-title">
+      Search Summary</span>
+    <span fxFlex></span>
+    <button mat-stroked-button (click)="close()" class="annoq-rounded-button annoq-sm" color="primary"
+      aria-label="Close dialog">
+      <mat-icon>close</mat-icon> CLOSE
+    </button>
+  </div>
+  <div class="annoq-drawer-body" noctuaPerfectScrollbar>
+    <div class="annoq-tree-container">
+
+      <div class="annoq-tree">
+        <tree-root #tree (initialized)="onTreeLoad()" [nodes]="treeNodes" [options]="treeOptions">
+          <ng-template #treeNodeWrapperTemplate let-node let-index="index">
+            <div class="node-wrapper annoq-tree-node" fxLayout="row" fxLayoutAlign="start center"
+              [style.padding-left]="node.getNodePadding()">
+              <button mat-icon-button class="annoq-node-expander-button" color="primary" (click)="node.toggleExpanded()"
+                *ngIf="node.hasChildren">
+                <fa-icon *ngIf="node?.isCollapsed" [icon]="['fas', 'caret-right']"></fa-icon>
+                <fa-icon *ngIf="node?.isExpanded" [icon]="['fas', 'caret-down']"></fa-icon>
+              </button>
+              <div class="annoq-expander-placeholder" *ngIf="!node.hasChildren">
+              </div>
+              <div class="node-content-wrapper" fxFlex="" fxLayout="row" fxLayoutAlign="start center"
+                [class.node-content-wrapper-active]="node.isActive"
+                [class.node-content-wrapper-focused]="node.isFocused" (click)="node.mouseAction('click', $event)"
+                (dblclick)="node.mouseAction('dblClick', $event)"
+                (contextmenu)="node.mouseAction('contextMenu', $event)" (treeDrop)="node.onDrop($event)"
+                [treeAllowDrop]="node.allowDrop" [treeDrag]="node" [treeDragEnabled]="node.allowDrag()">
+
+                <div *ngIf="node.data.isCategory" class="annoq-term-row annoq-category-row" fxFlex="" fxLayout="row"
+                  fxLayoutAlign="start center">
+                  <div>
+                    {{node.data.label}}
+                  </div>
+                  <span fxFlex=""></span>
+                  <div class="annoq-aspect-badge" (click)="openSearch(node.data)" fxLayout="row"
+                    fxLayoutAlign="center center">
+                    {{node.data.count}}
+                  </div>
+                </div>
+                <div *ngIf="!node.data.isCategory" class="annoq-term-row" fxFlex="" fxLayout="row"
+                  fxLayoutAlign="start center">
+                  <ng-container [ngSwitch]="node.data.entityType">
+                    <ng-container *default>
+                      <div (click)="search(node.data)" class="annoq-title">
+                        {{node.data.label}}
+                      </div>
+                      <span fxFlex=""></span>
+                      <div class="annoq-badge" (click)="openSearch(node.data)" fxLayout="row"
+                        fxLayoutAlign="center center">
+                        {{node.data.count}}
+                      </div>
+                      <div class="annoq-icon" (click)="openTermDetail(node.data)" fxLayout="row"
+                        fxLayoutAlign="center center">
+                        <fa-icon [icon]="['fas', 'info-circle']"></fa-icon>
+                      </div>
+                      <button mat-icon-button class="annoq-icon-button" [matMenuTriggerFor]="optionMenu">
+                        <fa-icon [icon]="['fas', 'bars']"></fa-icon>
+                      </button>
+                      <mat-menu #optionMenu="matMenu" class="annoq-dropdown-menu">
+                        <button mat-menu-item class="">
+                          Find in Model
+                        </button>
+                      </mat-menu>
+                    </ng-container>
+
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </tree-root>
+      </div>
+    </div>
+  </div>
+</div>

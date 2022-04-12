@@ -231,6 +231,27 @@ export class SnpService {
         });
     }
 
+    buildSummaryTree(aggs) {
+
+        const treeNodes = aggs.map((agg) => {
+            return {
+                id: agg.name,
+                label: agg.label,
+                count: agg.count,
+                isCategory: true,
+                children: [
+                    {
+                        label: agg.label,
+                        count: agg.count,
+                        isCategory: true,
+                    }
+                ]
+            }
+        })
+
+        return treeNodes;
+    }
+
     private _connect() {
         this.client = new Client({ host: `${environment.annotationApi}/${environment.dataset}` });
     }
