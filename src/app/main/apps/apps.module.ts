@@ -9,6 +9,7 @@ import { DownloadReadyComponent } from './snp/snp-table/download-ready/download-
 import { SnpDetailComponent } from './snp/snp-detail/snp-detail.component';
 import { AnnotationDetailDialogComponent } from './annotation/dialogs/annotation-detail/annotation-detail.component';
 import { NoctuaConfirmDialogModule } from '@noctua/components/confirm-dialog/confirm-dialog.module';
+import { SnpCountComponent } from './snp/snp-stats/snp-count/snp-count.component';
 
 const routes = [];
 
@@ -19,7 +20,8 @@ const routes = [];
     AnnotationTreeComponent,
     DownloadReadyComponent,
     SnpDetailComponent,
-    AnnotationDetailDialogComponent
+    AnnotationDetailDialogComponent,
+    SnpCountComponent
   ],
   imports: [
     RouterModule.forChild(routes),

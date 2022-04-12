@@ -1,63 +1,97 @@
-<div class="w-100-p h-100-p annoq-drawer" fxLayout="column" fxLayoutAlign="start streych">
-  <div class="annoq-drawer-header" fxLayout="row" fxLayoutAlign="start center">
-    <div class="annoq-section-heading">
-      <div *ngIf="gene">
-        <span>
-          <small>Gene Id:</small> {{gene.gene_id}}
-        </span><br />
-        <span>
-          <small>Contig:</small> {{gene.contig}}
-          <small>Start:</small> {{gene.start}}
-          <small>End:</small> {{gene.end}}
-        </span>
-      </div>
-      <div *ngIf="snpPage?.vcfUrl">
-        <small>
-          VCF only display the first 50 results. Please download for all VCF results.
-        </small>
-      </div>
-    </div>
-    <span fxFlex></span>
-    <button mat-flat-button color="" class="annoq-rounded-button annoq-sm" (click)="download()">
-      Download
+<div class="w-100-p h-100-p" fxLayout="row" fxLayoutAlign="start start">
+  <div class="annoq-sidemenu" fxLayout="column" fxLayoutAlign="start center">
+    <button mat-icon-button color="" class="annoq-rounded-button"
+      [ngClass]="{'annoq-active': snpMenuService.selectedLeftPanel === LeftPanel.snpTable}" (click)="openSnpTable()"
+      matTooltip="Table Results" [matTooltipPosition]="'after'" [matTooltipShowDelay]="1500">
+      <fa-icon [icon]="['fas', 'table']"></fa-icon>
+    </button>
+    <button mat-icon-button color="" class="annoq-rounded-button"
+      [ngClass]="{'annoq-active': snpMenuService.selectedLeftPanel === LeftPanel.snpSearch}" (click)="openSnpSearch()"
+      matTooltip="Search and Filter" [matTooltipPosition]="'after'" [matTooltipShowDelay]="1500">
+      <fa-icon [icon]="['fas', 'search']"></fa-icon>
+    </button>
+    <button mat-icon-button color="" class="annoq-rounded-button"
+      [ngClass]="{'annoq-active': snpMenuService.selectedLeftPanel === LeftPanel.snpSummary}" (click)="openSnpSummary()"
+      matTooltip="snps summary" [matTooltipPosition]="'after'" [matTooltipShowDelay]="1500">
+      <fa-icon [icon]="['fas', 'list']"></fa-icon>
+    </button>
+    <button mat-icon-button color="" class="annoq-rounded-button"
+      [ngClass]="{'annoq-active': snpMenuService.selectedLeftPanel === LeftPanel.snpStats}" (click)="openSnpStats()"
+      matTooltip="Results Statistics" [matTooltipPosition]="'after'" [matTooltipShowDelay]="1500">
+      <fa-icon [icon]="['fas', 'chart-bar']"></fa-icon>
     </button>
   </div>
-  <div *ngIf="snpService.loading" class="annoq-loading-container" fxLayout="column" fxLayoutAlign="center center">
-    <mat-progress-spinner class="example-margin" [color]="loadingSpinner.color" [mode]="loadingSpinner.mode">
-    </mat-progress-spinner>
-  </div>
 
-  <div *ngIf="!snpPage" class="annoq-drawer-body" fxFlex="" fxLayout="column" fxLayoutAlign="start stretch">
-    <div class="annoq-no-info">
-      No Results
-    </div>
-  </div>
-  <div *ngIf="snpPage" class="annoq-drawer-body" fxFlex="" fxLayout="column" fxLayoutAlign="start stretch">
-    <table fxFlex="1 1 auto" mat-table [dataSource]="snpPage.snps" class="">
-      <ng-container [matColumnDef]="column.name" *ngFor="let column of columns">
-        <th mat-header-cell *matHeaderCellDef> {{column.label}} </th>
-        <td mat-cell *matCellDef="let element">
-          {{element[column.name]}}
-        </td>
-        <!--       <td mat-cell *matCellDef="let element" [ngSwitch]="column.valueType">
 
-          <div *ngSwitchCase="ColumnValueType.GO_ID">
-            <ng-container *ngFor="let item of mapGOids(column.valueType, element[column.name])">
-              <a (click)="$event.stopPropagation()" href="{{item.url}}" target="_blank">
-                {{item.label}}
-              </a>
-            </ng-container>
+  <mat-drawer-container class="w-100-p h-100-p" fxLayout="row" fxLayoutAlign="start start">
+    <mat-drawer #leftDrawer opened="true" class="annoq-left-drawer" mode="side" position="start">
+      <div fxLayout="column" fxLayoutAlign="start stretch" class="annoq-drawer w-100-p h-100-p">
+        <div class="annoq-drawer-header" fxLayout="row" fxLayoutAlign="start center">
+          <span class="annoq-drawer-header-title">
+            Variants Annotation Query Provided by IMAGE Project
+          </span>
+          <span fxFlex></span>
+          <button *ngIf="false" mat-icon-button (click)="noctuaMenuService.closeLeftDrawer()" aria-label="Close dialog">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+        <div class="annoq-drawer-body w-100-p" fxFlex>
+          <annoq-annotation></annoq-annotation>
+        </div>
+      </div>
+    </mat-drawer>
+    <mat-drawer-content class="w-100-p">
+      <div class="w-100-p h-100-p annoq-drawer" fxLayout="column" fxLayoutAlign="start streych">
+        <div class="annoq-drawer-header" fxLayout="row" fxLayoutAlign="start center">
+          <div class="annoq-section-heading">
+            <div *ngIf="gene">
+              <span>
+                <small>Gene Id:</small> {{gene.gene_id}}
+              </span><br />
+              <span>
+                <small>Contig:</small> {{gene.contig}}
+                <small>Start:</small> {{gene.start}}
+                <small>End:</small> {{gene.end}}
+              </span>
+            </div>
+            <div *ngIf="snpPage?.vcfUrl">
+              <small>
+                VCF only display the first 50 results. Please download for all VCF results.
+              </small>
+            </div>
           </div>
-          <div *ngSwitchDefault>
-            {{element[column.name]}}</div>
-        </td> -->
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'annoq-row-selected': false}"
-        (click)="selectSnp(row)"></tr>
-    </table>
-  </div>
-  <mat-paginator *ngIf="snpPage" class="annoq-paginator annoq-drawer-footer" #paginator [length]="snpPage.total"
-    [pageIndex]="snpPage.pageNumber" [pageSize]="snpPage.size" (page)="pageEvent = $event; setPage($event)">
-  </mat-paginator>
+          <span fxFlex></span>
+          <button mat-flat-button color="" class="annoq-rounded-button annoq-sm" (click)="download()">
+            Download
+          </button>
+        </div>
+        <div *ngIf="snpService.loading" class="annoq-loading-container" fxLayout="column" fxLayoutAlign="center center">
+          <mat-progress-spinner class="example-margin" [color]="loadingSpinner.color" [mode]="loadingSpinner.mode">
+          </mat-progress-spinner>
+        </div>
+
+        <div *ngIf="!snpPage" class="annoq-drawer-body" fxFlex="" fxLayout="column" fxLayoutAlign="start stretch">
+          <div class="annoq-no-info">
+            No Results
+          </div>
+        </div>
+        <div *ngIf="snpPage" class="annoq-drawer-body" fxFlex="" fxLayout="column" fxLayoutAlign="start stretch">
+          <table fxFlex="1 1 auto" mat-table [dataSource]="snpPage.snps" class="">
+            <ng-container [matColumnDef]="column.name" *ngFor="let column of columns">
+              <th mat-header-cell *matHeaderCellDef> {{column.label}} </th>
+              <td mat-cell *matCellDef="let element">
+                {{element[column.name]}}
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'annoq-row-selected': false}"
+              (click)="selectSnp(row)"></tr>
+          </table>
+        </div>
+        <mat-paginator *ngIf="snpPage" class="annoq-paginator annoq-drawer-footer" #paginator [length]="snpPage.total"
+          [pageIndex]="snpPage.pageNumber" [pageSize]="snpPage.size" (page)="pageEvent = $event; setPage($event)">
+        </mat-paginator>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
 </div>

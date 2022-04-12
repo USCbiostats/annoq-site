@@ -45,7 +45,7 @@ import {
     faCaretDown,
     faCaretRight,
     faAngleDoubleDown,
-    faAngleDoubleUp, faUndo, faSave, faExclamationTriangle, faAngleDoubleLeft, faAngleDoubleRight, faAngleLeft, faAngleRight, faCode, faFileCode, faSearchPlus
+    faAngleDoubleUp, faUndo, faSave, faExclamationTriangle, faAngleDoubleLeft, faAngleDoubleRight, faAngleLeft, faAngleRight, faCode, faFileCode, faSearchPlus, faTable, faChartBar, faList
 } from '@fortawesome/free-solid-svg-icons';
 import { faCheckCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons';
 import { faGithub, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
@@ -140,6 +140,7 @@ export class AppModule {
             faCalendarWeek,
             faCaretDown,
             faCaretRight,
+            faChartBar,
             faChevronDown,
             faChevronRight,
             faCheckCircle,
@@ -151,6 +152,7 @@ export class AppModule {
             faLevelDownAlt,
             faLevelUpAlt,
             faLink,
+            faList,
             faListAlt,
             faPaw,
             faPen,
@@ -159,6 +161,7 @@ export class AppModule {
             faSearch,
             faShoppingBasket,
             faSitemap,
+            faTable,
             faTasks,
             faTimesCircle,
             faTwitter,

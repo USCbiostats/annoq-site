@@ -76,34 +76,42 @@ export class SnpService {
             '_source': a
         };
 
+        const aggs = {}
+        a.forEach((field) => {
+            aggs[`${field}_count`] = {
+                "filter": {
+                    "exists": {
+                        "field": field
+                    }
+                }
+            }
+        })
+
         switch (this.inputTypes.selected) {
             case this.inputType.chromosome:
-                {
-                    query.query = {
-                        'bool': {
-                            'filter': [
-                                { 'term': { 'chr': annotationQuery.chrom } },
-                                { 'range': { 'pos': { 'gte': annotationQuery.start, 'lte': annotationQuery.end } } }]
-                        }
-                    }
-                    break;
+                query.query = {
+                    'bool': {
+                        'filter': [
+                            { 'term': { 'chr': annotationQuery.chrom } },
+                            { 'range': { 'pos': { 'gte': annotationQuery.start, 'lte': annotationQuery.end } } }]
+                    },
                 }
+                query.aggs = aggs;
+                break;
             case this.inputType.geneProduct:
-                {
-                    this.httpClient.get(`${environment.annotationApi}/gene`, { params: { 'gene': annotationQuery.geneProduct } })
-                        .subscribe((response) => {
-                            const res: any = response;
-                            query.query = {
-                                'bool': {
-                                    'filter': [
-                                        { 'term': { 'chr': res.gene_info.contig } },
-                                        { 'range': { 'pos': { 'gte': res.gene_info.start, 'lte': res.gene_info.end } } }]
-                                }
-                            };
-                            return self.getSnpsPage(query, page, res.gene_info);
-                        });
-                    return;
-                }
+                this.httpClient.get(`${environment.annotationApi}/gene`, { params: { 'gene': annotationQuery.geneProduct } })
+                    .subscribe((response) => {
+                        const res: any = response;
+                        query.query = {
+                            'bool': {
+                                'filter': [
+                                    { 'term': { 'chr': res.gene_info.contig } },
+                                    { 'range': { 'pos': { 'gte': res.gene_info.start, 'lte': res.gene_info.end } } }]
+                            }
+                        };
+                        return self.getSnpsPage(query, page, res.gene_info);
+                    });
+                return;
             case this.inputType.rsID:
                 {//    q = rs_dbSNP151:% 22rs555419020 % 22
                     query.query = {

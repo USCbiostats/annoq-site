@@ -5,6 +5,27 @@ $primary: map-get($theme, primary);
 $accent: map-get($theme, accent);
 
 :host {
+  .annoq-sidemenu {
+    padding: 0;
+    @include deep-height(100%);
+    @include deep-width(60px);
+    // @include mat-elevation(2);
+    border-right: #999 solid 1px;
+
+    button {
+      @include deep-width(60px);
+      @include deep-height(60px);
+
+      font-size: 20px;
+      color: rgba(map-get($primary, default), 0.5);
+
+      &.annoq-active {
+        font-size: 28px;
+        color: map-get($primary, default);
+      }
+    }
+  }
+
   .annoq-table-menu-row {
     height: 60px;
   }
@@ -49,10 +70,9 @@ $accent: map-get($theme, accent);
     z-index: 1000;
   }
 
-
   .annoq-form-section {
     width: 100%;
-    background-color: #FFF;
+    background-color: #fff;
 
     input[type="file"] {
       display: none;

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { NoctuaMenuService } from '@noctua.common/services/noctua-menu.service';
@@ -9,19 +9,22 @@ import { SnpService } from './../services/snp.service'
 import { SnpPage } from '../models/page';
 import { Gene } from '../models/gene';
 import { SnpDialogService } from '../services/dialog.service';
-import { DataSource } from '@angular/cdk/table';
 
 import { MatPaginator } from '@angular/material/paginator';
 import { AnnotationService } from '../../annotation/services/annotation.service';
 import { ColumnValueType } from '@noctua.common/models/annotation';
 import { environment } from 'environments/environment';
+import { SnpMenuService } from '../services/snp-menu.service';
+import { LeftPanel } from '@noctua.common/models/menu-panels';
+import { MatDrawer } from '@angular/material/sidenav';
 @Component({
   selector: 'annoq-snp-table',
   templateUrl: './snp-table.component.html',
   styleUrls: ['./snp-table.component.scss']
 })
-export class SnpTableComponent implements OnInit {
+export class SnpTableComponent implements OnInit, OnDestroy {
   ColumnValueType = ColumnValueType;
+  LeftPanel = LeftPanel;
   snpPage: SnpPage;
   gene;
   genes: any[] = [];
@@ -38,12 +41,15 @@ export class SnpTableComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true })
   paginator: MatPaginator;
 
+  @ViewChild('leftDrawer', { static: true })
+  leftDrawer: MatDrawer;
+
   displayedColumns = [];
 
   private _unsubscribeAll: Subject<any>;
 
   constructor(
-    private _httpClient: HttpClient,
+    public snpMenuService: SnpMenuService,
     private snpDialogService: SnpDialogService,
     public noctuaMenuService: NoctuaMenuService,
     private annotationService: AnnotationService,
@@ -59,6 +65,8 @@ export class SnpTableComponent implements OnInit {
   ngOnInit(): void {
 
     const self = this;
+
+    this.snpMenuService.setLeftDrawer(this.leftDrawer);
 
     this.columns = [];
 
@@ -149,9 +157,31 @@ export class SnpTableComponent implements OnInit {
     this._unsubscribeAll.complete();
   }
 
+
   download() {
     this.snpService.downloadSnp();
   }
+
+  openSnpSearch() {
+    this.snpMenuService.selectLeftPanel(LeftPanel.snpSearch);
+    this.snpMenuService.openLeftDrawer()
+  }
+
+  openSnpTable() {
+    this.snpMenuService.selectLeftPanel(LeftPanel.snpTable);
+    this.snpMenuService.openLeftDrawer()
+  }
+
+  openSnpSummary() {
+    this.snpMenuService.selectLeftPanel(LeftPanel.snpSummary);
+    this.snpMenuService.openLeftDrawer()
+  }
+
+  openSnpStats() {
+    this.snpMenuService.selectLeftPanel(LeftPanel.snpStats);
+    this.snpMenuService.openLeftDrawer()
+  }
+
 
 }
 
