@@ -38,7 +38,7 @@ $accent: map-get($theme, accent);
     }
 
     .annoq-drawer-body {
-      padding: 24px 8 100px 0;
+      padding: 24px 24px 100px 0;
       min-height: calc(100% - 30px);
     }
   }

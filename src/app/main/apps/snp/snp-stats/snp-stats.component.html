@@ -17,8 +17,7 @@
   </div>
   <div *ngIf="snpAggs" class="annoq-drawer-body" annoqPerfectScrollbar>
     <div [ngSwitch]="selectedStatsType">
-      <annoq-general-stats *ngSwitchCase="StatsType.GENERAL" [snpAggs]="snpAggs"></annoq-general-stats>
-
+      <annoq-general-stats *ngSwitchCase="StatsType.GENERAL"></annoq-general-stats>
     </div>
   </div>
 </div>

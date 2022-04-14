@@ -54,7 +54,7 @@ export class SnpStatsComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((snpPage: SnpPage) => {
         if (snpPage) {
-          this.snpService.getStats('SnpEff_refseq_Transcript_ID')
+          // this.snpService.getStats('SnpEff_refseq_Transcript_ID')
         }
       });
 

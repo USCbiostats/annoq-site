@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { AnnoqSharedModule } from '@annoq/shared.module';
 import { AppsModule } from './../apps/apps.module';
-
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { SearchComponent } from './search/search.component';

@@ -42,7 +42,10 @@ const routes = [];
     SnpDetailComponent,
     AnnotationComponent,
     AnnotationTreeComponent,
-    AnnotationDetailDialogComponent
+    AnnotationDetailDialogComponent,
+    SnpSummaryComponent,
+    SnpStatsComponent,
+    GeneralStatsComponent
   ],
   entryComponents: [
     DownloadReadyComponent,

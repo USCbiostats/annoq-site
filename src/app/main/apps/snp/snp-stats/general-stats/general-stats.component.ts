@@ -13,7 +13,6 @@ import { SnpService } from '../../services/snp.service';
 })
 export class GeneralStatsComponent implements OnInit, OnDestroy {
 
-  @Input('snpAggs')
   snpAggs: SnpAggs;
 
   /*   annotationFrequencyBarOptions = {
@@ -74,6 +73,17 @@ export class GeneralStatsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
+    this.snpService.onSnpsAggsChanged
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((snpAggs: SnpAggs) => {
+        if (snpAggs) {
+          console.log(snpAggs)
+
+          this.snpAggs = snpAggs;
+          this.foo()
+        }
+      });
+
     /*   this.stats.aspect = this._camStatsService.buildTermsStats(this.termsSummary)
       this.stats.aspectPie = this._camStatsService.buildAspectPie([this.termsSummary.mf, this.termsSummary.bp, this.termsSummary.cc])
       this.stats.termsBar = this._camStatsService.buildTermsDistribution([
@@ -85,16 +95,20 @@ export class GeneralStatsComponent implements OnInit, OnDestroy {
 
     //this.getCustomColors(this.stats.termsBar)
 
-    const agg = this.snpAggs?.aggs[`${this.snpAggs.field}_frequency`];
 
-    if (agg?.buckets) {
-      this.stats.annotationFrequencyBar = this.snpService.buildAnnotationBar(agg.buckets)
-    }
   }
 
   ngOnDestroy(): void {
     this._unsubscribeAll.next();
     this._unsubscribeAll.complete();
+  }
+
+  foo() {
+    const agg = this.snpAggs?.aggs[`${this.snpAggs.field}_frequency`];
+
+    if (agg?.buckets) {
+      this.stats.annotationFrequencyBar = this.snpService.buildAnnotationBar(agg.buckets)
+    }
   }
 
   getCustomColors(nodes) {

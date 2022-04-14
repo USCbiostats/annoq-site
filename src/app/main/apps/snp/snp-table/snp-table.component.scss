@@ -30,6 +30,10 @@ $accent: map-get($theme, accent);
     height: 60px;
   }
 
+  .annoq-drawer {
+    @include deep-width(calc(100% - 61px));
+  }
+
   .annoq-drawer-body {
     @include deep-height(calc(100% - 90px));
     overflow: auto;

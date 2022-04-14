@@ -12,10 +12,7 @@ import { SnpDialogService } from '../services/dialog.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { AnnotationService } from '../../annotation/services/annotation.service';
 import { ColumnValueType } from '@annoq.common/models/annotation';
-import { environment } from 'environments/environment';
-import { SnpMenuService } from '../services/snp-menu.service';
-import { LeftPanel, RightPanel } from '@annoq.common/models/menu-panels';
-import { MatDrawer } from '@angular/material/sidenav';
+import { RightPanel } from '@annoq.common/models/menu-panels';
 @Component({
   selector: 'annoq-snp-table',
   templateUrl: './snp-table.component.html',
@@ -23,7 +20,7 @@ import { MatDrawer } from '@angular/material/sidenav';
 })
 export class SnpTableComponent implements OnInit, OnDestroy {
   ColumnValueType = ColumnValueType;
-  LeftPanel = LeftPanel;
+  RightPanel = RightPanel;
   snpPage: SnpPage;
   gene;
   genes: any[] = [];
@@ -40,22 +37,14 @@ export class SnpTableComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator, { static: true })
   paginator: MatPaginator;
 
-  leftDrawer: MatDrawer
-  @ViewChild('leftDrawer', { static: false }) set elemOnHTML(el: MatDrawer) {
-    if (el) {
-      this.leftDrawer = el;
-      this.snpMenuService.setLeftDrawer(this.leftDrawer);
-    }
-  }
 
   displayedColumns = [];
 
   private _unsubscribeAll: Subject<any>;
 
   constructor(
-    public snpMenuService: SnpMenuService,
-    private snpDialogService: SnpDialogService,
     public annoqMenuService: AnnoqMenuService,
+    private snpDialogService: SnpDialogService,
     private annotationService: AnnotationService,
     public snpService: SnpService
   ) {
@@ -69,8 +58,6 @@ export class SnpTableComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     const self = this;
-
-
 
     this.columns = [];
 
@@ -136,6 +123,11 @@ export class SnpTableComponent implements OnInit, OnDestroy {
     this.snpService.addExistFilter(field);
   }
 
+  getStats(field) {
+    this.openSnpStats()
+    this.snpService.getStats(field);
+  }
+
   selectSnp(row) {
     this.annoqMenuService.selectRightPanel(RightPanel.snpDetail);
     this.annoqMenuService.openRightDrawer();
@@ -165,23 +157,23 @@ export class SnpTableComponent implements OnInit, OnDestroy {
 
 
   openSnpSearch() {
-    this.snpMenuService.selectRightPanel(RightPanel.snpSearch);
-    this.snpMenuService.openRightDrawer()
+    this.annoqMenuService.selectRightPanel(RightPanel.snpSearch);
+    this.annoqMenuService.openRightDrawer()
   }
 
   openSnpTable() {
-    this.snpMenuService.selectRightPanel(RightPanel.snpTable);
-    this.snpMenuService.closeRightDrawer()
+    this.annoqMenuService.selectRightPanel(RightPanel.snpTable);
+    this.annoqMenuService.closeRightDrawer()
   }
 
   openSnpSummary() {
-    this.snpMenuService.selectRightPanel(RightPanel.snpSummary);
-    this.snpMenuService.openRightDrawer()
+    this.annoqMenuService.selectRightPanel(RightPanel.snpSummary);
+    this.annoqMenuService.openRightDrawer()
   }
 
   openSnpStats() {
-    this.snpMenuService.selectRightPanel(RightPanel.snpStats);
-    this.snpMenuService.openRightDrawer()
+    this.annoqMenuService.selectRightPanel(RightPanel.snpStats);
+    this.annoqMenuService.openRightDrawer()
   }
 }
 

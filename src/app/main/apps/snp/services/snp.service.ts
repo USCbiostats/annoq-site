@@ -16,7 +16,7 @@ export class SnpService {
     onSnpsAggsChanged: BehaviorSubject<SnpAggs>;
     onSnpChanged: BehaviorSubject<any>;
     onSnpsDownloadReady: BehaviorSubject<any>;
-    snpPage: SnpPage;
+    snpPage: SnpPage = new SnpPage();
     loading = false;
     selectedQuery;
     queryOriginal;
@@ -153,17 +153,16 @@ export class SnpService {
                     // console.log(query);
                     this.httpClient.post(`${environment.annotationApi}/annoq-test-v2/ids`, query)
                         .subscribe((response: any) => {
-                            const snpPage = new SnpPage();
                             const esData = response.hits.hits as [];
                             const snpData = esData;
-                            snpPage.query = query;
-                            snpPage.total = 50;
-                            snpPage.size = 50;
-                            snpPage.snps = snpData;
-                            snpPage.vcfUrl = response.url;
-                            snpPage.source = query._source;
-                            this.snpPage = snpPage;
-                            this.onSnpsChanged.next(snpPage);
+                            this.snpPage.shallowRefresh();
+                            this.snpPage.query = query;
+                            this.snpPage.total = 50;
+                            this.snpPage.size = 50;
+                            this.snpPage.snps = snpData;
+                            this.snpPage.vcfUrl = response.url;
+                            this.snpPage.source = query._source;
+                            this.onSnpsChanged.next(this.snpPage);
                             self.loading = false;
                             //console.log(response);
                         });
@@ -182,7 +181,8 @@ export class SnpService {
 
         }
         //console.log(query);
-        return self.getSnpsPage(query, page);
+        self.getSnpsPage(query, page);
+        self.getSnpsCount(query);
     }
 
     getSnpsPage(query: any, page: number, gene?: any): any {
@@ -196,28 +196,40 @@ export class SnpService {
             body: query
         }).then((body) => {
             if (body.hits.total.value > 0) {
-                const snpPage = new SnpPage();
                 const esData = body.hits.hits as [];
                 const snpData = esData.map((snp: any) => {
                     return snp._source;
                 });
 
                 //console.log(gene);
-                snpPage.gene = gene;
-                snpPage.query = query;
-                snpPage.total = body.hits.total.value;
-                snpPage.size = self.snpResultsSize;
-                snpPage.snps = snpData;
-                snpPage.aggs = body.aggregations;
-                snpPage.source = query._source;
-                this.snpPage = snpPage;
-                this.onSnpsChanged.next(snpPage);
+                this.snpPage.shallowRefresh();
+                this.snpPage.gene = gene;
+                this.snpPage.query = query;
+                this.snpPage.size = self.snpResultsSize;
+                this.snpPage.snps = snpData;
+                this.snpPage.aggs = body.aggregations;
+                this.snpPage.source = query._source;
+                this.onSnpsChanged.next(this.snpPage);
             } else {
                 this.onSnpsChanged.next(null);
             }
             self.loading = false;
         }, (err) => {
             self.loading = false;
+        });
+    }
+
+    getSnpsCount(query: any): any {
+        const self = this;
+        this.query = query;
+        return this.client.count({
+            body: { query: query.query }
+        }).then((res) => {
+            console.log(res)
+            if (res?.count) {
+                this.snpPage.total = res.count;
+            }
+        }, (err) => {
         });
     }
 
@@ -260,10 +272,19 @@ export class SnpService {
             const query = cloneDeep(this.snpPage.query)
 
             const aggs = {}
-            aggs[`${field}`] = {
+            aggs[`${field}_exist`] = {
                 "filter": {
                     "exists": {
                         "field": field
+                    },
+                }
+            };
+            aggs[`${field}_missing`] = {
+                "filter": {
+                    "must_not": {
+                        "exists": {
+                            "field": field
+                        }
                     },
                 }
             };
