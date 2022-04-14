@@ -20,8 +20,11 @@
       <annoq-snp-table class="w-100-p h-100-p"></annoq-snp-table>
     </mat-drawer-content>
     <mat-drawer #rightDrawer class="annoq-right-drawer" noctuaPerfectScrollbar mode="side" position="end">
-      <div class="h-100-p">
-        <annoq-snp-detail [panelDrawer]="rightDrawer"> </annoq-snp-detail>
+      <div class="h-100-p" [ngSwitch]="noctuaMenuService.selectedRightPanel">
+        <annoq-snp-detail [panelDrawer]="rightDrawer" *ngSwitchCase="RightPanel.snpDetail"> </annoq-snp-detail>
+        <annoq-snp-summary [panelDrawer]="rightDrawer" *ngSwitchCase="RightPanel.snpSummary">
+        </annoq-snp-summary>
+        <annoq-snp-stats [panelDrawer]="rightDrawer" *ngSwitchCase="RightPanel.snpStats"> </annoq-snp-stats>
       </div>
     </mat-drawer>
   </mat-drawer-container>

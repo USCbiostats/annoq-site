@@ -85,10 +85,10 @@ export class GeneralStatsComponent implements OnInit, OnDestroy {
 
     //this.getCustomColors(this.stats.termsBar)
 
-    const buckets = this.snpAggs?.aggs[`${this.snpAggs.field}_frequency`];
+    const agg = this.snpAggs?.aggs[`${this.snpAggs.field}_frequency`];
 
-    if (buckets) {
-      this.stats.annotationFrequencyBar = this.snpService.buildAnnotationBar(buckets)
+    if (agg?.buckets) {
+      this.stats.annotationFrequencyBar = this.snpService.buildAnnotationBar(agg.buckets)
     }
   }
 
