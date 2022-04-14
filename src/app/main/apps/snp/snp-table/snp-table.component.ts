@@ -137,6 +137,7 @@ export class SnpTableComponent implements OnInit, OnDestroy {
   }
 
   selectSnp(row) {
+    this.noctuaMenuService.openRightDrawer();
     const details = this.snpPage.source.map((key) => {
       const detail = this.annotationService.findDetailByName(key);
       return {
@@ -148,7 +149,6 @@ export class SnpTableComponent implements OnInit, OnDestroy {
       }
     });
     this.snpService.onSnpChanged.next(details);
-    this.noctuaMenuService.openRightDrawer();
 
   }
 

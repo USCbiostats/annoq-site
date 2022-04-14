@@ -18,16 +18,18 @@
         </div>
         <div class="annoq-description">
           <div fxLayout="column" fxLayoutAlign="start stretch">
-            <ng-container *ngFor="let item of mapFieldValues(row.value, row.rootUrl)">
-              <div class="annoq-item">
-                <a *ngIf="item.url" (click)="$event.stopPropagation()" href="{{item.url}}" target="_blank">
-                  {{item.label}}
-                </a>
-                <span *ngIf="!item.url">
-                  {{item.label}}
-                </span>
-              </div>
-            </ng-container>
+            <div *ngFor="let item of row.values" class="annoq-item">
+              <a *ngIf="item.url" (click)="$event.stopPropagation()" href="{{item.url}}" target="_blank">
+                {{item.label}}
+              </a>
+              <span *ngIf="!item.url">
+                {{item.label}}
+              </span>
+            </div>
+
+            <div *ngIf="row.values?.length===0" class="annoq-no-info">
+              value not available
+            </div>
           </div>
         </div>
       </div>

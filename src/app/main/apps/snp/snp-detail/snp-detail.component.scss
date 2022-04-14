@@ -14,6 +14,11 @@ $accent: map-get($theme, accent);
     border-bottom: #888 solid 1px;
     font-size: 12px;
 
+    .annoq-no-info {
+      padding: 10px 10px;
+      font-size: 10px;
+    }
+
     .annoq-title {
       color: #999;
       font-size: 18px;
@@ -28,6 +33,7 @@ $accent: map-get($theme, accent);
     .annoq-item {
       padding: 4px 0;
       border-bottom: #ccc solid 1px;
+
       &:last-child {
         border-bottom: none;
       }

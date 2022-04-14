@@ -35,7 +35,13 @@ export class SnpDetailComponent implements OnInit, OnDestroy {
         if (!snpRow) {
           return
         }
-        this.rows = snpRow;
+
+        this.rows = snpRow.map(row => {
+          return {
+            name: row.name,
+            values: this.mapFieldValues(row.value, row.rootUrl)
+          }
+        })
 
       });
   }
