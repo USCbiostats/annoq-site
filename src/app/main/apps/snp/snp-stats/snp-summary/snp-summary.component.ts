@@ -68,6 +68,7 @@ export class SnpSummaryComponent implements OnInit, OnDestroy {
           count: count,
           label: label.replaceAll('_', ' '),
           valueType: detail.value_type,
+          rootUrl: detail.root_url
         }
       });
 

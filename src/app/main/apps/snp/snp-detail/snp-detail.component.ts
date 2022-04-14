@@ -46,33 +46,36 @@ export class SnpDetailComponent implements OnInit, OnDestroy {
   }
 
 
-  mapGOids(valueType, value) {
+  mapFieldValues(value, rootUrl) {
+
+    let list = []
     if (!value) {
-      return []
+      return list;
     }
-    const list = value.split('|').map(item => {
-      return {
-        url: environment.amigoTermUrl + item,
-        label: item
+
+    if (typeof value === 'string' || value instanceof String) {
+      list = value.split('|')
+    } else {
+      list = [value.toString()]
+    }
+
+
+    const result = list.map(item => {
+      if (rootUrl) {
+        return {
+          url: rootUrl + item,
+          label: item
+        }
+      } else {
+        return {
+          label: item
+        }
       }
     })
 
-    return list
+    return result;
+
   }
-
-  mapGOlabel(valueType, value) {
-    if (!value) {
-      return []
-    }
-    const list = value.split('|').map(item => {
-      return {
-        label: item
-      }
-    })
-
-    return list
-  }
-
 
   close() {
     this.panelDrawer.close()
@@ -81,3 +84,11 @@ export class SnpDetailComponent implements OnInit, OnDestroy {
 
 }
 
+/* ANNOVAR_ensembl_Closest_gene(intergenic_only)
+ANNOVAR_ensembl_Gene_ID
+VEP_ensembl_Gene_ID
+SnpEff_ensembl_Gene_ID
+ANNOVAR_refseq_Transcript_ID
+VEP_refseq_Transcript_ID
+SnpEff_refseq_Transcript_ID
+rs_dbSNP151 */

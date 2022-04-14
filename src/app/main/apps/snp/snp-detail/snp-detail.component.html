@@ -16,25 +16,18 @@
             {{row.name}}
           </div>
         </div>
-        <div class="annoq-description" [ngSwitch]="row.valueType">
-          <div *ngSwitchCase="ColumnValueType.GO_ID" fxLayout="column" fxLayoutAlign="start stretch">
-            <ng-container *ngFor="let item of mapGOids(row.valueType, row.value)">
+        <div class="annoq-description">
+          <div fxLayout="column" fxLayoutAlign="start stretch">
+            <ng-container *ngFor="let item of mapFieldValues(row.value, row.rootUrl)">
               <div class="annoq-item">
-                <a (click)="$event.stopPropagation()" href="{{item.url}}" target="_blank">
+                <a *ngIf="item.url" (click)="$event.stopPropagation()" href="{{item.url}}" target="_blank">
                   {{item.label}}
                 </a>
+                <span *ngIf="!item.url">
+                  {{item.label}}
+                </span>
               </div>
             </ng-container>
-          </div>
-          <div *ngSwitchCase="ColumnValueType.GO_LABEL" fxLayout="column" fxLayoutAlign="start stretch">
-            <ng-container *ngFor="let item of mapGOids(row.valueType, row.value)">
-              <div class="annoq-item">
-                {{item.label}}
-              </div>
-            </ng-container>
-          </div>
-          <div *ngSwitchDefault>
-            {{row.value}}
           </div>
         </div>
       </div>

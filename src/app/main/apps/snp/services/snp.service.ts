@@ -86,15 +86,16 @@ export class SnpService {
                     },
                 }
             };
-            /*   aggs[`${field}_unique`] = {
-                  "terms": { "field": field + '.keyword', "min_doc_count": 0 },
-  
-              } */
+            if (field === 'ANNOVAR_ensembl_Gene_ID') {
+                aggs[`${field}_bar`] = {
+                    "terms": { "field": field + ".keyword" },
+                };
+            }
         })
 
-        aggs['pos_agg'] = {
-            "terms": { "field": "ref.keyword", "size": 25 }
-        }
+        /*    aggs['pos_agg'] = {
+               "terms": { "field": "ANNOVAR_ensembl_Gene_ID", "size": 25 }
+           } */
 
         query.aggs = aggs;
 
@@ -255,19 +256,21 @@ export class SnpService {
     buildSummaryTree(aggs) {
 
         const treeNodes = aggs.map((agg) => {
+            const children = [
+                {
+                    name: agg.name,
+                    label: "With Values",
+                    count: agg.count
+                }
+            ]
+
             return {
                 id: agg.name,
                 label: agg.label,
                 count: agg.count,
                 name: agg.name,
                 isCategory: true,
-                children: [
-                    {
-                        name: agg.name,
-                        label: "With Values",
-                        count: agg.count
-                    }
-                ]
+                children: children
             }
         })
 

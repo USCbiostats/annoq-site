@@ -93,22 +93,6 @@ export class SnpTableComponent implements OnInit, OnDestroy {
       });
   }
 
-
-
-  mapGOids(valueType, value) {
-    if (!value) {
-      return []
-    }
-    const list = value.split('|').map(item => {
-      return {
-        url: environment.amigoTermUrl + item,
-        label: item
-      }
-    })
-
-    return list
-  }
-
   setSnpPage(snpPage: SnpPage) {
     if (snpPage.source) {
       this.snpPage = snpPage;
@@ -122,6 +106,7 @@ export class SnpTableComponent implements OnInit, OnDestroy {
           count: count,
           label: detail.label ? detail.label : header,
           valueType: detail.value_type,
+          rootUrl: detail.root_url,
           cell: (element: any) => `${element[header]}`
         }
       });
@@ -158,6 +143,7 @@ export class SnpTableComponent implements OnInit, OnDestroy {
         name: key,
         label: detail.label ? detail.label : key,
         valueType: detail.value_type,
+        rootUrl: detail.root_url,
         value: row[key]
       }
     });
