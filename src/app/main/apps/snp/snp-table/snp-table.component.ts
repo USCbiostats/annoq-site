@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { NoctuaMenuService } from '@noctua.common/services/noctua-menu.service';
+import { AnnoqMenuService } from '@annoq.common/services/annoq-menu.service';
 
 import { SnpService } from './../services/snp.service'
 import { SnpPage } from '../models/page';
@@ -11,10 +11,10 @@ import { SnpDialogService } from '../services/dialog.service';
 
 import { MatPaginator } from '@angular/material/paginator';
 import { AnnotationService } from '../../annotation/services/annotation.service';
-import { ColumnValueType } from '@noctua.common/models/annotation';
+import { ColumnValueType } from '@annoq.common/models/annotation';
 import { environment } from 'environments/environment';
 import { SnpMenuService } from '../services/snp-menu.service';
-import { LeftPanel } from '@noctua.common/models/menu-panels';
+import { LeftPanel, RightPanel } from '@annoq.common/models/menu-panels';
 import { MatDrawer } from '@angular/material/sidenav';
 @Component({
   selector: 'annoq-snp-table',
@@ -55,7 +55,7 @@ export class SnpTableComponent implements OnInit, OnDestroy {
   constructor(
     public snpMenuService: SnpMenuService,
     private snpDialogService: SnpDialogService,
-    public noctuaMenuService: NoctuaMenuService,
+    public annoqMenuService: AnnoqMenuService,
     private annotationService: AnnotationService,
     public snpService: SnpService
   ) {
@@ -137,7 +137,8 @@ export class SnpTableComponent implements OnInit, OnDestroy {
   }
 
   selectSnp(row) {
-    this.noctuaMenuService.openRightDrawer();
+    this.annoqMenuService.selectRightPanel(RightPanel.snpDetail);
+    this.annoqMenuService.openRightDrawer();
     const details = this.snpPage.source.map((key) => {
       const detail = this.annotationService.findDetailByName(key);
       return {
@@ -162,24 +163,25 @@ export class SnpTableComponent implements OnInit, OnDestroy {
     this.snpService.downloadSnp();
   }
 
+
   openSnpSearch() {
-    this.snpMenuService.selectLeftPanel(LeftPanel.snpSearch);
-    this.snpMenuService.openLeftDrawer()
+    this.snpMenuService.selectRightPanel(RightPanel.snpSearch);
+    this.snpMenuService.openRightDrawer()
   }
 
   openSnpTable() {
-    this.snpMenuService.selectLeftPanel(LeftPanel.snpTable);
-    this.snpMenuService.closeLeftDrawer()
+    this.snpMenuService.selectRightPanel(RightPanel.snpTable);
+    this.snpMenuService.closeRightDrawer()
   }
 
   openSnpSummary() {
-    this.snpMenuService.selectLeftPanel(LeftPanel.snpSummary);
-    this.snpMenuService.openLeftDrawer()
+    this.snpMenuService.selectRightPanel(RightPanel.snpSummary);
+    this.snpMenuService.openRightDrawer()
   }
 
   openSnpStats() {
-    this.snpMenuService.selectLeftPanel(LeftPanel.snpStats);
-    this.snpMenuService.openLeftDrawer()
+    this.snpMenuService.selectRightPanel(RightPanel.snpStats);
+    this.snpMenuService.openRightDrawer()
   }
 }
 

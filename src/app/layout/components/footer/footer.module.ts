@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NoctuaSharedModule } from '@noctua/shared.module';
+import { AnnoqSharedModule } from '@annoq/shared.module';
 
-import { NoctuaFooterComponent } from 'app/layout/components/footer/footer.component';
+import { AnnoqFooterComponent } from 'app/layout/components/footer/footer.component';
 
 @NgModule({
     declarations: [
-        NoctuaFooterComponent
+        AnnoqFooterComponent
     ],
     imports: [
         RouterModule,
-        NoctuaSharedModule
+        AnnoqSharedModule
     ],
     exports: [
-        NoctuaFooterComponent
+        AnnoqFooterComponent
     ]
 })
-export class NoctuaFooterModule {
+export class AnnoqFooterModule {
 }

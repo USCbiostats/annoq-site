@@ -4,7 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { MatDrawer } from '@angular/material/sidenav';
 
-import { NoctuaMenuService } from '@noctua.common/services/noctua-menu.service';
+import { AnnoqMenuService } from '@annoq.common/services/annoq-menu.service';
+import { RightPanel } from '@annoq.common/models/menu-panels';
 
 @Component({
   selector: 'app-search',
@@ -12,6 +13,7 @@ import { NoctuaMenuService } from '@noctua.common/services/noctua-menu.service';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
+  RightPanel = RightPanel;
 
   @ViewChild('leftDrawer', { static: true })
   leftDrawer: MatDrawer;
@@ -23,13 +25,13 @@ export class SearchComponent implements OnInit {
   searchForm: FormGroup;
   leftPanelMenu;
 
-  constructor(public noctuaMenuService: NoctuaMenuService,
+  constructor(public annoqMenuService: AnnoqMenuService,
     private route: ActivatedRoute,
     private router: Router) {
   }
 
   ngOnInit() {
-    this.noctuaMenuService.setLeftDrawer(this.leftDrawer);
-    this.noctuaMenuService.setRightDrawer(this.rightDrawer);
+    this.annoqMenuService.setLeftDrawer(this.leftDrawer);
+    this.annoqMenuService.setRightDrawer(this.rightDrawer);
   }
 }

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
-import { ColumnValueType } from '@noctua.common/models/annotation';
+import { ColumnValueType } from '@annoq.common/models/annotation';
 import { environment } from 'environments/environment';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';

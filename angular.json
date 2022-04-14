@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "noctua": {
+    "annoq": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -64,11 +64,11 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "noctua:build"
+            "browserTarget": "annoq:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "noctua:build:production"
+              "browserTarget": "annoq:build:production"
             },
             "hmr": {
               "hmr": true,
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "noctua:build"
+            "browserTarget": "annoq:build"
           }
         },
         "test": {
@@ -118,7 +118,7 @@
         }
       }
     },
-    "noctua-e2e": {
+    "annoq-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -126,7 +126,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "noctua:serve"
+            "devServerTarget": "annoq:serve"
           }
         },
         "lint": {
@@ -141,5 +141,5 @@
       }
     }
   },
-  "defaultProject": "noctua"
+  "defaultProject": "annoq"
 }

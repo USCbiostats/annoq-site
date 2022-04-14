@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { getColor } from '@noctua.common/data/annoq-colors';
+import { getColor } from '@annoq.common/data/annoq-colors';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { SnpPage } from '../../models/page';

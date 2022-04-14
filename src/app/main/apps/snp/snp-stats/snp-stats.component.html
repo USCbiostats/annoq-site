@@ -15,7 +15,7 @@
       {{statsType.label}}
     </button>
   </div>
-  <div *ngIf="snpAggs" class="annoq-drawer-body" noctuaPerfectScrollbar>
+  <div *ngIf="snpAggs" class="annoq-drawer-body" annoqPerfectScrollbar>
     <div [ngSwitch]="selectedStatsType">
       <annoq-general-stats *ngSwitchCase="StatsType.GENERAL" [snpAggs]="snpAggs"></annoq-general-stats>
 

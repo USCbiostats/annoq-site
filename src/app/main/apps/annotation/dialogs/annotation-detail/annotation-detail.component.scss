@@ -1,16 +1,12 @@
-@import "src/@noctua/scss/noctua";
-@import "src/@noctua.common/scss/noctua.common";
-
-
+@import "src/@annoq/scss/annoq";
+@import "src/@annoq.common/scss/annoq.common";
 
 :host {
-
-
-  @include media-breakpoint('xs') {
+  @include media-breakpoint("xs") {
     width: 100%;
   }
 
-  @include media-breakpoint-up('sm') {
+  @include media-breakpoint-up("sm") {
     width: 600px;
   }
 
@@ -22,7 +18,7 @@
 
   .annoq-detail-row {
     padding: 5px 10px;
-    border-bottom: #CCC solid 1px;
+    border-bottom: #ccc solid 1px;
     font-size: 14px;
 
     .annoq-title {
@@ -39,7 +35,8 @@
     padding: 0;
   }
 
-  .mat-dialog-content {}
+  .mat-dialog-content {
+  }
 
   .dialog-content-wrapper {
     width: 900px;

@@ -6,12 +6,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { FakeDbService } from '@noctua.common/fakedb/services/fake-db.service';
-import { NoctuaModule } from '@noctua/noctua.module';
-import { NoctuaProgressBarModule } from '@noctua/components';
+import { FakeDbService } from '@annoq.common/fakedb/services/fake-db.service';
+import { AnnoqModule } from '@annoq/annoq.module';
+import { AnnoqProgressBarModule } from '@annoq/components';
 
-import { NoctuaSharedModule } from '@noctua/shared.module';
-import { noctuaConfig } from './noctua-config';
+import { AnnoqSharedModule } from '@annoq/shared.module';
+import { annoqConfig } from './annoq-config';
 import { AppComponent } from './app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 
@@ -102,19 +102,19 @@ const cookieConfig: NgcCookieConsentConfig = {
         TranslateModule.forRoot(),
         NgcCookieConsentModule.forRoot(cookieConfig),
 
-        // Noctua Main and Shared modules
-        NoctuaModule.forRoot(noctuaConfig),
+        // Annoq Main and Shared modules
+        AnnoqModule.forRoot(annoqConfig),
         InMemoryWebApiModule.forRoot(FakeDbService, {
             delay: 0,
             passThruUnknownUrl: true
         }),
-        NoctuaSharedModule,
+        AnnoqSharedModule,
         LayoutModule,
         RouterModule,
         MatSidenavModule,
-        NoctuaProgressBarModule,
+        AnnoqProgressBarModule,
 
-        //Noctua App
+        //Annoq App
         PagesModule,
         AppsModule
     ],

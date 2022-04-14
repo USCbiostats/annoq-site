@@ -10,11 +10,11 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "paths": {
-      "@noctua": [
-        "@noctua/"
+      "@annoq": [
+        "@annoq/"
       ],
-      "@noctua.common": [
-        "@noctua.common"
+      "@annoq.common": [
+        "@annoq.common"
       ],
     },
     "target": "es5",

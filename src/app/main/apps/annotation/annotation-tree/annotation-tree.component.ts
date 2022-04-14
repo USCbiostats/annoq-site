@@ -5,7 +5,7 @@ import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeNode } from '@angular/m
 import { Subject, Observable, of as observableOf } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AnnotationNode, AnnotationFlatNode } from './../models/annotation'
-import { NoctuaMenuService } from '@noctua.common/services/noctua-menu.service';
+import { AnnoqMenuService } from '@annoq.common/services/annoq-menu.service';
 import { AnnotationService } from './../services/annotation.service';
 import { AnnotationDialogService } from '../services/dialog.service';
 
@@ -24,7 +24,7 @@ export class AnnotationTreeComponent implements OnInit {
 
   constructor(
     private annotationDialogService: AnnotationDialogService,
-    public noctuaMenuService: NoctuaMenuService,
+    public annoqMenuService: AnnoqMenuService,
     private annotationService: AnnotationService,
   ) {
 

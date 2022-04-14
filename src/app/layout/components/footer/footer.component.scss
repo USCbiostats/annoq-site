@@ -1,21 +1,21 @@
-@import "src/@noctua/scss/noctua";
-@import "src/@noctua.common/scss/noctua.common";
+@import "src/@annoq/scss/annoq";
+@import "src/@annoq.common/scss/annoq.common";
 
 :host {
   footer {
     padding: 30px 8px;
     background-color: $annoq-primary-color;
-    color: #F7F7F7;
+    color: #f7f7f7;
 
     .annoq-image-logo {
       width: 100%;
     }
 
     a {
-      color: #FFFFFF;
+      color: #ffffff;
 
       &:hover {
-        color: #DDDDDD;
+        color: #dddddd;
       }
     }
   }

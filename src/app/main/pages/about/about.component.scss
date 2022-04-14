@@ -1,8 +1,7 @@
-@import "src/@noctua/scss/noctua";
-@import "src/@noctua.common/scss/noctua.common";
+@import "src/@annoq/scss/annoq";
+@import "src/@annoq.common/scss/annoq.common";
 
 :host {
-
   annoq-footer {
     position: absolute;
     right: 0;
@@ -35,7 +34,7 @@
     }
 
     &.section-1 {
-      background-color: #FFF;
+      background-color: #fff;
     }
 
     &.section-2 {
@@ -43,11 +42,8 @@
     }
   }
 
-
   p {
     font-size: 18px;
     line-height: 24px;
   }
-
-
 }

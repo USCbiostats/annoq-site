@@ -8,7 +8,7 @@ import { each, find } from 'lodash';
 import { SelectionModel } from '@angular/cdk/collections';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlattener, MatTreeFlatDataSource } from '@angular/material/tree';
-import { NoctuaConfirmDialogService } from '@noctua/components/confirm-dialog/confirm-dialog.service';
+import { AnnoqConfirmDialogService } from '@annoq/components/confirm-dialog/confirm-dialog.service';
 
 @Injectable({
     providedIn: 'root',
@@ -33,7 +33,7 @@ export class AnnotationService {
 
     constructor(
         private httpClient: HttpClient,
-        private confirmDialogService: NoctuaConfirmDialogService,) {
+        private confirmDialogService: AnnoqConfirmDialogService,) {
         this.onAnnotationTreeChanged = new BehaviorSubject(null);
         this.onAnnotationDetailChanged = new BehaviorSubject({});
 

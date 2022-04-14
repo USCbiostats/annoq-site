@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { SnpPage } from '../models/page';
 import { SnpService } from '../services/snp.service';
-import { EntityType } from '@noctua.common/models/entity-type';
+import { EntityType } from '@annoq.common/models/entity-type';
 import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
