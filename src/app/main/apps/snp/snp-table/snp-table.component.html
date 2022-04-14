@@ -27,6 +27,7 @@
         <div [ngSwitch]="snpMenuService.selectedLeftPanel" class="h-100-p">
           <annoq-snp-summary [panelDrawer]="leftDrawer" *ngSwitchCase="LeftPanel.snpSummary">
           </annoq-snp-summary>
+          <annoq-snp-stats [panelDrawer]="leftDrawer" *ngSwitchCase="LeftPanel.snpStats"> </annoq-snp-stats>
         </div>
       </div>
     </mat-drawer>

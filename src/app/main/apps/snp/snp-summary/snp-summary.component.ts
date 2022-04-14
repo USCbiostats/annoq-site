@@ -1,9 +1,9 @@
 import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { AnnotationService } from './../../../annotation/services/annotation.service';
+import { AnnotationService } from './../../annotation/services/annotation.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { SnpPage } from '../../models/page';
-import { SnpService } from '../../services/snp.service';
+import { SnpPage } from '../models/page';
+import { SnpService } from '../services/snp.service';
 import { EntityType } from '@noctua.common/models/entity-type';
 import { MatDrawer } from '@angular/material/sidenav';
 
@@ -28,7 +28,8 @@ export class SnpSummaryComponent implements OnInit, OnDestroy {
   };
 
 
-  constructor(private snpService: SnpService,
+  constructor(
+    private snpService: SnpService,
     private annotationService: AnnotationService) {
 
     this._unsubscribeAll = new Subject();

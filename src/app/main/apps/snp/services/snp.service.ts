@@ -4,7 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Client } from 'elasticsearch-browser';
 import { SnpPage } from '../models/page';
-import { uniqBy } from 'lodash';
+import { cloneDeep, uniqBy } from 'lodash';
 
 @Injectable({
     providedIn: 'root',
@@ -12,6 +12,7 @@ import { uniqBy } from 'lodash';
 export class SnpService {
     snpResultsSize = environment.snpResultsSize;
     onSnpsChanged: BehaviorSubject<SnpPage>;
+    onSnpsAggsChanged: BehaviorSubject<SnpPage>;
     onSnpChanged: BehaviorSubject<any>;
     onSnpsDownloadReady: BehaviorSubject<any>;
     snpPage: SnpPage;
@@ -52,6 +53,7 @@ export class SnpService {
 
     constructor(private httpClient: HttpClient) {
         this.onSnpsChanged = new BehaviorSubject(null);
+        this.onSnpsAggsChanged = new BehaviorSubject(null);
         this.onSnpsDownloadReady = new BehaviorSubject(null);
         this.onSnpChanged = new BehaviorSubject(null);
         this.inputTypes.selected = this.inputTypes.options[0];
@@ -148,7 +150,7 @@ export class SnpService {
 
                     query.ids = ids;
                     // console.log(query);
-                    this.httpClient.post(`${environment.annotationApi}/annoq-test/ids`, query)
+                    this.httpClient.post(`${environment.annotationApi}/annoq-test-v2/ids`, query)
                         .subscribe((response: any) => {
                             const snpPage = new SnpPage();
                             const esData = response.hits.hits as [];
@@ -218,16 +220,58 @@ export class SnpService {
         });
     }
 
+    querySnpAggs(query: any): any {
+        const self = this;
+        query.size = 0;
+        //console.log(query);
+        return this.client.search({
+            body: query
+        }).then((body) => {
+            if (body.aggregations) {
+                const snpPage = new SnpPage();
+
+                snpPage.aggs = body.aggregations;
+                snpPage.source = query._source;
+                this.onSnpsAggsChanged.next(snpPage);
+            } else {
+                this.onSnpsAggsChanged.next(null);
+            }
+        }, (err) => {
+            self.loading = false;
+        });
+    }
+
     addExistFilter(field) {
-        if (this.snpPage) {
-            if (this.snpPage.query.query?.bool?.filter)
-                this.snpPage.query.query.bool.filter.push(
-                    {
-                        "exists": {
-                            "field": field
-                        }
-                    });
-            this.getSnpsPage(this.snpPage.query, 1);
+        if (this.snpPage?.query.query?.bool?.filter)
+            this.snpPage.query.query.bool.filter.push(
+                {
+                    "exists": {
+                        "field": field
+                    }
+                });
+        this.getSnpsPage(this.snpPage.query, 1);
+    }
+
+    getStats(field: string) {
+        if (this.snpPage?.query?.query) {
+
+            const query = cloneDeep(this.snpPage.query)
+
+            const aggs = {}
+            aggs[`${field}`] = {
+                "filter": {
+                    "exists": {
+                        "field": field
+                    },
+                }
+            };
+            aggs[`${field}_bar`] = {
+                "terms": { "field": field + ".keyword" },
+            };
+
+            query.aggs = aggs;
+
+            this.querySnpAggs(query);
         }
     }
 
