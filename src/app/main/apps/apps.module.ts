@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { TreeModule } from '@circlon/angular-tree-component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NoctuaSharedModule } from '@noctua/shared.module';
 import { SnpTableComponent } from './snp/snp-table/snp-table.component';
 import { AnnotationTreeComponent } from './annotation/annotation-tree/annotation-tree.component';
@@ -32,6 +33,7 @@ const routes = [];
     RouterModule.forChild(routes),
     TranslateModule,
     TreeModule,
+    NgxChartsModule,
     NoctuaSharedModule,
     NoctuaConfirmDialogModule,
   ],

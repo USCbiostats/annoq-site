@@ -5,6 +5,7 @@ import { takeUntil } from 'rxjs/operators';
 import { AnnotationService } from '../../annotation/services/annotation.service';
 import { SnpPage } from '../models/page';
 import { SnpService } from '../services/snp.service';
+import { SnpAggs } from '../models/snp-aggs';
 
 enum StatsType {
   GENERAL = 'general',
@@ -17,7 +18,7 @@ enum StatsType {
 })
 export class SnpStatsComponent implements OnInit, OnDestroy {
   StatsType = StatsType;
-  snpPage: SnpPage;
+  snpAggs: SnpAggs;
   columns: any[] = [];
 
   @Input('panelDrawer')
@@ -59,9 +60,11 @@ export class SnpStatsComponent implements OnInit, OnDestroy {
 
     this.snpService.onSnpsAggsChanged
       .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe((snpPage: SnpPage) => {
-        if (snpPage) {
-          console.log(snpPage)
+      .subscribe((snpAggs: SnpAggs) => {
+        if (snpAggs) {
+          console.log(snpAggs)
+
+          this.snpAggs = snpAggs;
         }
       });
   }
@@ -76,12 +79,12 @@ export class SnpStatsComponent implements OnInit, OnDestroy {
     this.selectedStatsType = name;
   }
 
-  setSnpPage(snpPage: SnpPage) {
-    if (snpPage.source) {
-      this.snpPage = snpPage;
-      this.columns = snpPage.source.map((header) => {
+  setSnpAggs(snpAggs: SnpAggs) {
+    if (snpAggs.aggs) {
+      this.snpAggs = snpAggs;
+      this.columns = snpAggs.source.map((header) => {
         const detail = this.annotationService.findDetailByName(header);
-        const agg = snpPage.aggs[header]
+        const agg = snpAggs.aggs[header]
         const count = agg ? agg['doc_count'] : '';
         const label = detail.label ? detail.label : header;
         return {

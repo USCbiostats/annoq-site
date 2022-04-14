@@ -4,7 +4,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Client } from 'elasticsearch-browser';
 import { SnpPage } from '../models/page';
-import { cloneDeep, uniqBy } from 'lodash';
+import { cloneDeep, orderBy, uniqBy } from 'lodash';
+import { FrequencyBucket, SnpAggs } from '../models/snp-aggs';
 
 @Injectable({
     providedIn: 'root',
@@ -12,7 +13,7 @@ import { cloneDeep, uniqBy } from 'lodash';
 export class SnpService {
     snpResultsSize = environment.snpResultsSize;
     onSnpsChanged: BehaviorSubject<SnpPage>;
-    onSnpsAggsChanged: BehaviorSubject<SnpPage>;
+    onSnpsAggsChanged: BehaviorSubject<SnpAggs>;
     onSnpChanged: BehaviorSubject<any>;
     onSnpsDownloadReady: BehaviorSubject<any>;
     snpPage: SnpPage;
@@ -220,7 +221,7 @@ export class SnpService {
         });
     }
 
-    querySnpAggs(query: any): any {
+    querySnpAggs(query: any, field: string): any {
         const self = this;
         query.size = 0;
         //console.log(query);
@@ -228,11 +229,12 @@ export class SnpService {
             body: query
         }).then((body) => {
             if (body.aggregations) {
-                const snpPage = new SnpPage();
+                const snpAggs = new SnpAggs();
 
-                snpPage.aggs = body.aggregations;
-                snpPage.source = query._source;
-                this.onSnpsAggsChanged.next(snpPage);
+                snpAggs.field = field;
+                snpAggs.aggs = body.aggregations;
+                snpAggs.source = query._source;
+                this.onSnpsAggsChanged.next(snpAggs);
             } else {
                 this.onSnpsAggsChanged.next(null);
             }
@@ -265,13 +267,13 @@ export class SnpService {
                     },
                 }
             };
-            aggs[`${field}_bar`] = {
+            aggs[`${field}_frequency`] = {
                 "terms": { "field": field + ".keyword" },
             };
 
             query.aggs = aggs;
 
-            this.querySnpAggs(query);
+            this.querySnpAggs(query, field);
         }
     }
 
@@ -319,6 +321,19 @@ export class SnpService {
         })
 
         return treeNodes;
+    }
+
+    buildAnnotationBar(buckets: FrequencyBucket[]) {
+
+        const stats = buckets.map((bucket) => {
+            return {
+                name: bucket.key,
+                value: bucket.doc_count
+            }
+        })
+
+        const sorted = orderBy(stats, ['value'], ['desc'])
+        return sorted
     }
 
     private _connect() {

@@ -37,13 +37,15 @@
       Terms Distribution (first 20)
     </div>
     <span fxFlex></span>
-  </div>
-  <div class="annoq-section-body" fxLayout="column" fxLayoutAlign="start stretch">
-    <ngx-charts-bar-horizontal [results]="stats.termsBar" [view]="termsBarOptions.view"
-      [gradient]="termsBarOptions.gradient" [xAxis]="termsBarOptions.showXAxis" [yAxis]="termsBarOptions.showYAxis"
-      [legend]="termsBarOptions.legend" [showXAxisLabel]="termsBarOptions.showXAxisLabel"
-      [maxYAxisTickLength]="termsBarOptions.maxYAxisTickLength" [showYAxisLabel]="termsBarOptions.showYAxisLabel"
-      [xAxisLabel]="termsBarOptions.xAxisLabel" [yAxisLabel]="termsBarOptions.yAxisLabel">
-    </ngx-charts-bar-horizontal>
   </div> -->
+  <div class="annoq-section-body" fxLayout="column" fxLayoutAlign="start stretch">
+    <ngx-charts-bar-horizontal [results]="stats.annotationFrequencyBar" [view]="annotationFrequencyBarOptions.view"
+      [gradient]="annotationFrequencyBarOptions.gradient" [xAxis]="annotationFrequencyBarOptions.showXAxis"
+      [yAxis]="annotationFrequencyBarOptions.showYAxis" [legend]="annotationFrequencyBarOptions.legend"
+      [showXAxisLabel]="annotationFrequencyBarOptions.showXAxisLabel"
+      [maxYAxisTickLength]="annotationFrequencyBarOptions.maxYAxisTickLength"
+      [showYAxisLabel]="annotationFrequencyBarOptions.showYAxisLabel"
+      [xAxisLabel]="annotationFrequencyBarOptions.xAxisLabel" [yAxisLabel]="annotationFrequencyBarOptions.yAxisLabel">
+    </ngx-charts-bar-horizontal>
+  </div>
 </div>

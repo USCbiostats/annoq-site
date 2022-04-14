@@ -2,6 +2,9 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { getColor } from '@noctua.common/data/annoq-colors';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { SnpPage } from '../../models/page';
+import { SnpAggs } from '../../models/snp-aggs';
+import { SnpService } from '../../services/snp.service';
 
 @Component({
   selector: 'annoq-general-stats',
@@ -10,23 +13,26 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class GeneralStatsComponent implements OnInit, OnDestroy {
 
-  aspectOptions = {
-    view: [500, 200],
-    showXAxis: true,
-    showYAxis: true,
-    gradient: false,
-    legend: false,
-    showXAxisLabel: true,
-    xAxisLabel: 'Aspect',
-    showYAxisLabel: true,
-    yAxisLabel: 'Annotations',
-    animations: true,
-    legendPosition: 'below',
-    colorScheme: {
-      domain: ['#AAAAAA']
-    },
-    customColors: []
-  }
+  @Input('snpAggs')
+  snpAggs: SnpAggs;
+
+  /*   annotationFrequencyBarOptions = {
+      view: [500, 500],
+      showXAxis: true,
+      showYAxis: true,
+      gradient: false,
+      legend: false,
+      showXAxisLabel: true,
+      xAxisLabel: 'Aspect',
+      showYAxisLabel: true,
+      yAxisLabel: 'Annotations',
+      animations: true,
+      legendPosition: 'below',
+      colorScheme: {
+        domain: ['#AAAAAA']
+      },
+      customColors: []
+    } */
 
   aspectPieOptions = {
     view: [500, 200],
@@ -41,7 +47,7 @@ export class GeneralStatsComponent implements OnInit, OnDestroy {
 
   }
 
-  termsBarOptions = {
+  annotationFrequencyBarOptions = {
     view: [500, 400],
     showXAxis: true,
     showYAxis: true,
@@ -55,14 +61,14 @@ export class GeneralStatsComponent implements OnInit, OnDestroy {
   }
 
   stats = {
-    aspect: [],
+    annotationFrequencyBar: [],
     aspectPie: [],
     termsBar: [],
   }
 
   private _unsubscribeAll: Subject<any>;
 
-  constructor() {
+  constructor(private snpService: SnpService,) {
     this._unsubscribeAll = new Subject();
   }
 
@@ -78,6 +84,12 @@ export class GeneralStatsComponent implements OnInit, OnDestroy {
       ) */
 
     //this.getCustomColors(this.stats.termsBar)
+
+    const buckets = this.snpAggs?.aggs[`${this.snpAggs.field}_frequency`];
+
+    if (buckets) {
+      this.stats.annotationFrequencyBar = this.snpService.buildAnnotationBar(buckets)
+    }
   }
 
   ngOnDestroy(): void {
