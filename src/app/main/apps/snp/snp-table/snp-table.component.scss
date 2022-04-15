@@ -11,17 +11,37 @@ $accent: map-get($theme, accent);
     @include deep-width(60px);
     // @include mat-elevation(2);
     border-right: #999 solid 1px;
+    background-color: #6a8095;
+
+    .annoq-sidemenu-header {
+      width: 100%;
+      padding: 0 5px;
+      @include deep-height(40px);
+      @include mat-elevation(2);
+      z-index: 1000;
+      color: #fff;
+    }
+
+    .annoq-label {
+      text-transform: uppercase;
+      font-size: 8px;
+      font-weight: bold;
+    }
 
     button {
-      @include deep-width(60px);
+      @include deep-width(90px);
       @include deep-height(60px);
+      line-height: 25px;
+      border-radius: 0 !important;
 
       font-size: 20px;
-      color: rgba(map-get($primary, default), 0.5);
+      // color: rgba(map-get($primary, default), 0.5);
+      color: #ddd;
 
       &.annoq-active {
         font-size: 28px;
         color: map-get($primary, default);
+        color: #fff;
       }
     }
   }
@@ -46,6 +66,7 @@ $accent: map-get($theme, accent);
   }
 
   .mat-header-cell {
+    height: 35px;
     padding: 0 10px;
     font-size: 10px !important;
     color: map-get($primary, default);
@@ -60,13 +81,19 @@ $accent: map-get($theme, accent);
   .mat-header-cell,
   .mat-header-row {
     //padding: 0;
-    @include deep-height(35px);
+    @include deep-height(35px!important);
     position: sticky;
     position: -webkit-sticky;
     top: 0;
     z-index: 1;
     background-color: #d6ddea; // font-size: 3px !important;
     white-space: nowrap;
+    .annoq-action-button {
+      padding: 0 !important;
+      @include deep-height(35px!important);
+      @include deep-width(35px!important);
+      border-radius: 0 !important;
+    }
   }
 
   .annoq-loading-container {

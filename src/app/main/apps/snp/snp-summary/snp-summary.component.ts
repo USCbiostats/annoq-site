@@ -6,6 +6,8 @@ import { SnpPage } from '../models/page';
 import { SnpService } from '../services/snp.service';
 import { EntityType } from '@annoq.common/models/entity-type';
 import { MatDrawer } from '@angular/material/sidenav';
+import { RightPanel } from '@annoq.common/models/menu-panels';
+import { AnnoqMenuService } from '@annoq.common/services/annoq-menu.service';
 
 @Component({
   selector: 'annoq-snp-summary',
@@ -29,6 +31,7 @@ export class SnpSummaryComponent implements OnInit, OnDestroy {
 
 
   constructor(
+    public annoqMenuService: AnnoqMenuService,
     private snpService: SnpService,
     private annotationService: AnnotationService) {
 
@@ -84,6 +87,12 @@ export class SnpSummaryComponent implements OnInit, OnDestroy {
 
   addExistFilter(field) {
     this.snpService.addExistFilter(field);
+  }
+
+  getStats(field) {
+    this.snpService.getStats(field);
+    this.annoqMenuService.selectRightPanel(RightPanel.snpStats);
+    this.annoqMenuService.openRightDrawer();
   }
 
   close() {

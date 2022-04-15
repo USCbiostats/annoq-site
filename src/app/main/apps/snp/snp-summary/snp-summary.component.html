@@ -9,8 +9,30 @@
     </button>
   </div>
   <div class="annoq-drawer-body" annoqPerfectScrollbar>
+
+
     <div class="annoq-tree-container">
       <div class="annoq-tree">
+        <div *ngFor="let item of treeNodes" class="w-100-p" fxLayout="column" fxLayoutAlign="start center">
+          <div class="annoq-term-row annoq-category-row w-100-p" fxFlex="" fxLayout="row" fxLayoutAlign="start center">
+            <div class="annoq-title">
+              {{item.label}}
+            </div>
+            <span fxFlex=""></span>
+            <div class="annoq-aspect-badge" (click)="openSearch(item)" fxLayout="row" fxLayoutAlign="center center">
+              {{item.count}}
+            </div>
+            <button mat-icon-button color="" class="annoq-rounded-button" (click)="addExistFilter(item.name)"
+              matTooltip="Filter" [matTooltipPosition]="'after'" [matTooltipShowDelay]="1500">
+              <fa-icon [icon]="['fas', 'filter']"></fa-icon>
+            </button>
+            <button mat-icon-button color="" class="annoq-rounded-button" (click)="getStats(item.name)"
+              matTooltip="Stats" [matTooltipPosition]="'after'" [matTooltipShowDelay]="1500">
+              <fa-icon [icon]="['fas', 'chart-bar']"></fa-icon>
+            </button>
+          </div>
+        </div>
+        <!--
         <tree-root #tree (initialized)="onTreeLoad()" [nodes]="treeNodes" [options]="treeOptions">
           <ng-template #treeNodeWrapperTemplate let-node let-index="index">
             <div class="node-wrapper annoq-tree-node" fxLayout="row" fxLayoutAlign="start center"
@@ -38,6 +60,14 @@
                     fxLayoutAlign="center center">
                     {{node.data.count}}
                   </div>
+                  <button mat-icon-button color="" class="annoq-rounded-button" (click)="addExistFilter(node.data.name)"
+                    matTooltip="Filter" [matTooltipPosition]="'after'" [matTooltipShowDelay]="1500">
+                    <fa-icon [icon]="['fas', 'filter']"></fa-icon>
+                  </button>
+                  <button mat-icon-button color="" class="annoq-rounded-button" (click)="getStats(node.data.name)"
+                    matTooltip="Filter" [matTooltipPosition]="'after'" [matTooltipShowDelay]="1500">
+                    <fa-icon [icon]="['fas', 'chart-bar']"></fa-icon>
+                  </button>
                 </div>
                 <div *ngIf="!node.data.isCategory" class="annoq-term-row" fxFlex="" fxLayout="row"
                   fxLayoutAlign="start center">
@@ -58,6 +88,7 @@
             </div>
           </ng-template>
         </tree-root>
+        -->
       </div>
     </div>
   </div>

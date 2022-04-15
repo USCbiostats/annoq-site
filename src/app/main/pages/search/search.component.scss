@@ -5,12 +5,21 @@
   width: 100%;
 
   .annoq-left-drawer {
-    width: 400px;
+    width: 500px;
     border-right: #111 solid 1px;
 
     .phtr-menu-section {
       width: 100%;
     }
+  }
+
+  annoq-snp-summary,
+  annoq-snp-detail {
+    @include deep-width(400px !important);
+  }
+
+  annoq-snp-stats {
+    @include deep-width(600px !important);
   }
 }
 

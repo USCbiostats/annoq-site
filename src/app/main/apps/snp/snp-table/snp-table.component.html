@@ -1,25 +1,40 @@
 <div *ngIf="snpPage" class="w-100-p h-100-p" fxLayout="row" fxLayoutAlign="start start">
   <div class="annoq-sidemenu" fxLayout="column" fxLayoutAlign="start center">
+    <div class="annoq-sidemenu-header" fxLayout="row" fxLayoutAlign="center center">
+      Tools
+    </div>
     <button mat-icon-button color="" class="annoq-rounded-button"
       [ngClass]="{'annoq-active': annoqMenuService.selectedRightPanel === RightPanel.snpTable}" (click)="openSnpTable()"
       matTooltip="Table Results" [matTooltipPosition]="'after'" [matTooltipShowDelay]="1500">
       <fa-icon [icon]="['fas', 'table']"></fa-icon>
+      <div class="annoq-label">
+        Table
+      </div>
     </button>
     <button mat-icon-button color="" class="annoq-rounded-button"
       [ngClass]="{'annoq-active': annoqMenuService.selectedRightPanel === RightPanel.snpSearch}"
       (click)="openSnpSearch()" matTooltip="Search and Filter" [matTooltipPosition]="'after'"
       [matTooltipShowDelay]="1500">
       <fa-icon [icon]="['fas', 'search']"></fa-icon>
+      <div class="annoq-label">
+        Filter
+      </div>
     </button>
     <button mat-icon-button color="" class="annoq-rounded-button"
       [ngClass]="{'annoq-active': annoqMenuService.selectedRightPanel === RightPanel.snpSummary}"
       (click)="openSnpSummary()" matTooltip="snps summary" [matTooltipPosition]="'after'" [matTooltipShowDelay]="1500">
       <fa-icon [icon]="['fas', 'list']"></fa-icon>
+      <div class="annoq-label">
+        Summary
+      </div>
     </button>
     <button mat-icon-button color="" class="annoq-rounded-button"
       [ngClass]="{'annoq-active': annoqMenuService.selectedRightPanel === RightPanel.snpStats}" (click)="openSnpStats()"
       matTooltip="Results Statistics" [matTooltipPosition]="'after'" [matTooltipShowDelay]="1500">
       <fa-icon [icon]="['fas', 'chart-bar']"></fa-icon>
+      <div class="annoq-label">
+        Stats
+      </div>
     </button>
   </div>
   <div class="w-100-p h-100-p annoq-drawer" fxLayout="column" fxLayoutAlign="start streych">
@@ -62,13 +77,16 @@
                 </div>
                 <a class="annoq-count" (click)="addExistFilter(column.name)">({{column.count}})</a>
               </div>
-              <div fxFlex="50px">
-                <button mat-icon-button color="" class="annoq-rounded-button" (click)="getStats(column.name)"
-                  matTooltip="Results Statistics for {{column.name}}" [matTooltipPosition]="'after'"
-                  [matTooltipShowDelay]="1500">
-                  <fa-icon [icon]="['fas', 'chart-bar']"></fa-icon>
-                </button>
-              </div>
+              <span fxFlex=""></span>
+              <button mat-button color="" class="annoq-action-button" (click)="addExistFilter(column.name)"
+                matTooltip="Filter" [matTooltipPosition]="'after'" [matTooltipShowDelay]="1500">
+                <fa-icon [icon]="['fas', 'filter']"></fa-icon>
+              </button>
+              <button mat-button color="" class="annoq-action-button" (click)="getStats(column.name)"
+                matTooltip="Results Statistics for {{column.name}}" [matTooltipPosition]="'after'"
+                [matTooltipShowDelay]="1500">
+                <fa-icon [icon]="['fas', 'chart-bar']"></fa-icon>
+              </button>
             </div>
           </th>
           <td mat-cell *matCellDef="let element">

@@ -9,7 +9,7 @@
   .annoq-header {
     @include deep-height(35px);
     background-color: #eee;
-    border-bottom: #ccc solid 1px;
+    border-bottom: #cccccc solid 1px;
 
     mat-icon-button {
       @include deep-height(35px);
@@ -61,6 +61,7 @@
       padding: 0 8px;
       @include deep-height(35px);
       background-color: $annoq-primary-color-light;
+      border-bottom: #bbb solid 1px;
 
       .annoq-section-heading {
         font-size: 12px;
