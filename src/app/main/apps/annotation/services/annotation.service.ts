@@ -28,12 +28,13 @@ export class AnnotationService {
     dataSource: MatTreeFlatDataSource<AnnotationNode, AnnotationFlatNode>;
 
     count = 0;
+    keywordSearchableFields = []
 
     labelLookup = {}
 
     constructor(
         private httpClient: HttpClient,
-        private confirmDialogService: AnnoqConfirmDialogService,) {
+        private confirmDialogService: AnnoqConfirmDialogService) {
         this.onAnnotationTreeChanged = new BehaviorSubject(null);
         this.onAnnotationDetailChanged = new BehaviorSubject({});
 
@@ -48,6 +49,7 @@ export class AnnotationService {
 
                 this.annotations = response.result;
                 this.formatLabel(this.annotations);
+                this.keywordSearchableFields = this.getSearchableFields(this.annotations);
                 this.labelLookup = this.makeLabelLookup(this.annotations);
                 this.checklistSelection = new SelectionModel<AnnotationFlatNode>(true);
                 this.treeFlattener = new MatTreeFlattener(this.transformer, this._getLevel,
@@ -212,6 +214,17 @@ export class AnnotationService {
         })
     }
 
+    getSearchableFields(annotations: Annotation[]) {
+        const result = []
+        annotations.forEach((annotation: Annotation) => {
+            if (annotation.keyword_searchable) {
+                result.push(annotation.name)
+            }
+        })
+
+        return result;
+    }
+
     clear() {
         this.checklistSelection.clear();
     }
@@ -242,8 +255,6 @@ export class AnnotationService {
         }
     }
 
-
-
     doFileSelection(ids: string[], dataNodes: AnnotationFlatNode[], checklistSelection: SelectionModel<AnnotationFlatNode>) {
         checklistSelection.clear();
         ids.forEach((id: string) => {
@@ -254,9 +265,6 @@ export class AnnotationService {
             }
         });
     }
-
-
-
 
     getActiveAnnotation() {
         return this.activeAnnotation;

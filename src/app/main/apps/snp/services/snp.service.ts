@@ -6,6 +6,7 @@ import { Client } from 'elasticsearch-browser';
 import { SnpPage } from '../models/page';
 import { cloneDeep, orderBy, uniqBy } from 'lodash';
 import { FrequencyBucket, SnpAggs } from '../models/snp-aggs';
+import { AnnotationService } from '../../annotation/services/annotation.service';
 
 @Injectable({
     providedIn: 'root',
@@ -52,7 +53,9 @@ export class SnpService {
         ]
     };
 
-    constructor(private httpClient: HttpClient) {
+    constructor(
+        private httpClient: HttpClient,
+        private annotationService: AnnotationService) {
         this.onSnpsChanged = new BehaviorSubject(null);
         this.onSnpsAggsChanged = new BehaviorSubject(null);
         this.onSnpsDownloadReady = new BehaviorSubject(null);
@@ -96,10 +99,6 @@ export class SnpService {
             }
         })
 
-        /*    aggs['pos_agg'] = {
-               "terms": { "field": "ANNOVAR_ensembl_Gene_ID", "size": 25 }
-           } */
-
         query.aggs = aggs;
 
         switch (this.inputTypes.selected) {
@@ -128,71 +127,67 @@ export class SnpService {
                     });
                 return;
             case this.inputType.rsID:
-                {//    q = rs_dbSNP151:% 22rs555419020 % 22
-                    query.query = {
-                        'bool': {
-                            'filter': [
-                                { 'term': { 'rs_dbSNP151': annotationQuery.rsID } },
-                            ]
-                        }
+                query.query = {
+                    'bool': {
+                        'filter': [
+                            { 'term': { 'rs_dbSNP151': annotationQuery.rsID } },
+                        ]
                     }
-                    break;
                 }
+                break;
             case this.inputType.chromosomeList:
-                {
-                    const ids = annotationQuery.uploadList.ids.split("\n").filter(
-                        (element, index, array) => {
-                            const regex = /^#/;
-                            return !(regex.test(element)) && element;
-                        }
-                    ).map((s) => {
-                        const line = s.trim().split('\t');
-                        return `${line[0].replace('chr', '')}:${line[1]}${line[3]}>${line[4]}`;
-                    });
-
-                    query.query = {
-                        "ids": {
-                            "values": ids
-                        }
+                const ids = annotationQuery.uploadList.ids.split("\n").filter(
+                    (element, index, array) => {
+                        const regex = /^#/;
+                        return !(regex.test(element)) && element;
                     }
-                    break;
-                    /* 
-                                        query.ids = ids;
-                                        // console.log(query);
-                                        self.getSnpsCount(query);
-                                        this.httpClient.post(`${environment.annotationApi}/annoq-test-v2/ids`, query)
-                                            .subscribe((response: any) => {
-                                                const esData = response.hits.hits as [];
-                                                const snpData = esData;
-                                                this.snpPage.shallowRefresh();
-                                                this.snpPage.query = query;
-                                                // this.snpPage.total = 50;
-                                                this.snpPage.size = self.snpResultsSize;;
-                                                this.snpPage.snps = snpData;
-                                                this.snpPage.vcfUrl = response.url;
-                                                this.snpPage.source = query._source;
-                                                this.onSnpsChanged.next(this.snpPage);
-                                                self.loading = false;
-                                                //console.log(response);
-                                            });
-                                        return; */
+                ).map((s) => {
+                    const line = s.trim().split('\t');
+                    return `${line[0].replace('chr', '')}:${line[1]}${line[3]}>${line[4]}`;
+                });
+
+                query.query = {
+                    "ids": {
+                        "values": ids
+                    }
                 }
+                break;
+            /* 
+                                query.ids = ids;
+                                // console.log(query);
+                                self.getSnpsCount(query);
+                                this.httpClient.post(`${environment.annotationApi}/annoq-test-v2/ids`, query)
+                                    .subscribe((response: any) => {
+                                        const esData = response.hits.hits as [];
+                                        const snpData = esData;
+                                        this.snpPage.shallowRefresh();
+                                        this.snpPage.query = query;
+                                        // this.snpPage.total = 50;
+                                        this.snpPage.size = self.snpResultsSize;;
+                                        this.snpPage.snps = snpData;
+                                        this.snpPage.vcfUrl = response.url;
+                                        this.snpPage.source = query._source;
+                                        this.onSnpsChanged.next(this.snpPage);
+                                        self.loading = false;
+                                        //console.log(response);
+                                    });
+                                return; */
             case this.inputType.keyword:
-                {
-                    query.query = {
-                        "multi_match": {
-                            "query": annotationQuery.keyword,
-                        }
+                query.query = {
+                    "multi_match": {
+                        "query": annotationQuery.keyword,
+                        "fields": this.annotationService.keywordSearchableFields
                     }
-                    break;
                 }
-
+                break;
 
         }
         //console.log(query);
         self.getSnpsPage(query, page);
         self.getSnpsCount(query);
     }
+
+
 
     getSnpsPage(query: any, page: number, gene?: any): any {
         const self = this;
