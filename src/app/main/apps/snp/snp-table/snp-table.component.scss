@@ -16,6 +16,7 @@ $accent: map-get($theme, accent);
     .annoq-sidemenu-header {
       width: 100%;
       padding: 0 5px;
+      margin-bottom: 20px;
       @include deep-height(40px);
       @include mat-elevation(2);
       z-index: 1000;
@@ -63,6 +64,7 @@ $accent: map-get($theme, accent);
     padding: 0 10px;
     font-size: 12px !important;
     color: #000;
+    border-right: #ddd solid 1px;
   }
 
   .mat-header-cell {
@@ -71,6 +73,7 @@ $accent: map-get($theme, accent);
     font-size: 10px !important;
     color: map-get($primary, default);
     font-weight: bold;
+    border-right: #aaa solid 1px;
 
     .annoq-count {
       font-weight: normal;

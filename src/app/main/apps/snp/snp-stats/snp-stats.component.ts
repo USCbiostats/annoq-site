@@ -6,9 +6,11 @@ import { AnnotationService } from '../../annotation/services/annotation.service'
 import { SnpPage } from '../models/page';
 import { SnpService } from '../services/snp.service';
 import { SnpAggs } from '../models/snp-aggs';
+import { Annotation } from '../../annotation/models/annotation';
 
 enum StatsType {
   GENERAL = 'general',
+  POSITION = 'position'
 }
 
 @Component({
@@ -20,6 +22,7 @@ export class SnpStatsComponent implements OnInit, OnDestroy {
   StatsType = StatsType;
   snpAggs: SnpAggs;
   columns: any[] = [];
+  annotations: Annotation[] = [];
 
   @Input('panelDrawer')
   panelDrawer: MatDrawer;
@@ -30,11 +33,16 @@ export class SnpStatsComponent implements OnInit, OnDestroy {
   };
 
   selectedStatsType = StatsType.GENERAL;
+  selectedField = 'default';
 
   statsTypes = [
     {
       name: StatsType.GENERAL,
       label: 'General'
+    },
+    {
+      name: StatsType.POSITION,
+      label: 'Other'
     }
   ]
 
@@ -46,10 +54,14 @@ export class SnpStatsComponent implements OnInit, OnDestroy {
     private snpService: SnpService,
     private annotationService: AnnotationService) {
     this._unsubscribeAll = new Subject();
+    this.annotations = this.annotationService.annotations.filter((annotation: Annotation) => {
+      return annotation.leaf;
+    });
   }
 
 
   ngOnInit(): void {
+
     this.snpService.onSnpsChanged
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((snpPage: SnpPage) => {
@@ -62,9 +74,8 @@ export class SnpStatsComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((snpAggs: SnpAggs) => {
         if (snpAggs) {
-          console.log(snpAggs)
-
           this.snpAggs = snpAggs;
+          this.selectedField = this.snpAggs.field;
         }
       });
   }
@@ -79,27 +90,17 @@ export class SnpStatsComponent implements OnInit, OnDestroy {
     this.selectedStatsType = name;
   }
 
-  setSnpAggs(snpAggs: SnpAggs) {
-    if (snpAggs.aggs) {
-      this.snpAggs = snpAggs;
-      this.columns = snpAggs.source.map((header) => {
-        const detail = this.annotationService.findDetailByName(header);
-        const agg = snpAggs.aggs[header]
-        const count = agg ? agg['doc_count'] : '';
-        const label = detail.label ? detail.label : header;
-        return {
-          name: header,
-          count: count,
-          label: label.replace(/_/g, ' '),
-          valueType: detail.value_type,
-          rootUrl: detail.root_url
-        }
-      });
-    }
-  }
 
   addExistFilter(field) {
     this.snpService.addExistFilter(field);
+  }
+
+  selectField(field) {
+    console.log(field);
+    if (field.value === 'default') {
+      this.snpService.getStats('ANNOVAR_ensembl_Effect')
+    }
+    this.snpService.getStats(field.value)
   }
 
   close() {

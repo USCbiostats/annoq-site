@@ -98,6 +98,13 @@ export class SnpService {
                     "terms": { "field": field + ".keyword" },
                 };
             }
+            aggs[`pos_min`] = {
+                "min": { "field": 'pos' },
+            };
+            aggs[`pos_max`] = {
+                "max": { "field": 'pos' },
+            };
+
         })
 
         query.aggs = aggs;
@@ -206,14 +213,24 @@ export class SnpService {
                     return snp._source;
                 });
 
-                //console.log(gene);
                 this.snpPage.shallowRefresh();
+                const posMinAgg = body.aggregations['pos_min'];
+                const posMaxAgg = body.aggregations['pos_max'];
+
+                if (posMinAgg && posMaxAgg) {
+                    this.snpPage.posMin = posMinAgg.value;
+                    this.snpPage.posMax = posMaxAgg.value;
+                }
+
+
                 this.snpPage.gene = gene;
                 this.snpPage.query = query;
                 this.snpPage.size = self.snpResultsSize;
                 this.snpPage.snps = snpData;
                 this.snpPage.aggs = body.aggregations;
                 this.snpPage.source = query._source;
+
+
                 this.onSnpsChanged.next(this.snpPage);
             } else {
                 this.onSnpsChanged.next(null);
@@ -268,6 +285,7 @@ export class SnpService {
                     }
                 });
         this.getSnpsPage(this.snpPage.query, 1);
+        this.getSnpsCount(this.snpPage.query)
     }
 
     getStats(field: string) {
@@ -280,6 +298,22 @@ export class SnpService {
 
             if (annotation.field_type === ColumnFieldType.TEXT) {
                 fieldSearchable += '.keyword';
+            }
+            let interval = 10_000;
+
+            if (this.snpPage?.posMin && this.snpPage?.posMax) {
+                interval = (this.snpPage.posMax - this.snpPage.posMin) / 100;
+            }
+
+            aggs['pos_histogram'] = {
+                "histogram": {
+                    "field": "pos",
+                    "interval": interval,
+                    "extended_bounds": {
+                        "min": this.snpPage.posMin,
+                        "max": this.snpPage.posMax
+                    }
+                }
             }
 
             aggs[`${field}_missing`] = {
@@ -365,7 +399,24 @@ export class SnpService {
         return sorted
     }
 
-    buildAnnotationPie(buckets: FrequencyBucket[]) {
+
+    buildAnnotationLine(buckets: FrequencyBucket[], name) {
+
+        const series = buckets.map((bucket) => {
+            return {
+                name: bucket.key,
+                value: bucket.doc_count
+            }
+        })
+
+
+        return [{
+            name,
+            series
+        }]
+    }
+
+    buildPosHistogramLine(buckets: FrequencyBucket[]) {
 
         const stats = buckets.map((bucket) => {
             return {

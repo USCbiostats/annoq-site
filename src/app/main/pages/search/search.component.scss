@@ -13,11 +13,10 @@
     }
   }
 
-  annoq-snp-summary,
   annoq-snp-detail {
-    @include deep-width(400px !important);
+    @include deep-width(500px !important);
   }
-
+  annoq-snp-summary,
   annoq-snp-stats {
     @include deep-width(600px !important);
   }

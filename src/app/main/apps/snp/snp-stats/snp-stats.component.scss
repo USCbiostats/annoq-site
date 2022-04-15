@@ -13,6 +13,11 @@ $accent: map-get($theme, accent);
   .annoq-drawer {
     @include deep-width(100%);
 
+    .annoq-select-bar {
+      @include deep-height(70px);
+      padding-top: 10px;
+    }
+
     .annoq-tab-bar {
       @include deep-height(40px);
       padding-top: 10px;

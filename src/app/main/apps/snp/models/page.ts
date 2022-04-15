@@ -12,6 +12,8 @@ export class SnpPage extends Page {
     aggs: any;
     gene;
     vcfUrl: string;
+    posMin;
+    posMax;
 
     shallowRefresh() {
         this.pageNumber = 0;
@@ -21,5 +23,7 @@ export class SnpPage extends Page {
         this.aggs = undefined;
         this.gene = undefined;
         this.vcfUrl = undefined;
+        this.posMin = undefined;
+        this.posMax = undefined
     }
 }

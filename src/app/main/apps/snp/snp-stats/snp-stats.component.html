@@ -8,6 +8,16 @@
       <mat-icon>close</mat-icon> CLOSE
     </button>
   </div>
+  <div class="annoq-select-bar" fxLayout="row" fxLayoutAlign="start center">
+    <mat-form-field appearance="fill" class="w-100-p">
+      <mat-label>Select Annotation</mat-label>
+      <mat-select [(value)]="selectedField" (selectionChange)="selectField($event)">
+        <mat-option *ngFor="let annotation of annotations" [value]="annotation.name">
+          {{annotation.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
   <div class="annoq-tab-bar" fxLayout="row" fxLayoutAlign="start center">
     <button mat-button *ngFor="let statsType of statsTypes" color="" class="annoq-tab-button"
       [ngClass]="{'annoq-active': selectedStatsType === statsType.name}" (click)="selectStatsType(statsType.name)"
@@ -15,9 +25,13 @@
       {{statsType.label}}
     </button>
   </div>
-  <div *ngIf="snpAggs" class="annoq-drawer-body" annoqPerfectScrollbar>
-    <div [ngSwitch]="selectedStatsType">
-      <annoq-general-stats *ngSwitchCase="StatsType.GENERAL"></annoq-general-stats>
-    </div>
+  <div class="annoq-drawer-body" annoqPerfectScrollbar>
+    <ng-container *ngIf="snpAggs">
+      <div [ngSwitch]="selectedStatsType">
+        <annoq-general-stats *ngSwitchCase="StatsType.GENERAL"></annoq-general-stats>
+        <annoq-position-stats *ngSwitchCase="StatsType.POSITION"></annoq-position-stats>
+      </div>
+    </ng-container>
+
   </div>
 </div>

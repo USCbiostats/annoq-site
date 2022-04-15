@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -13,6 +13,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { AnnotationService } from '../../annotation/services/annotation.service';
 import { ColumnValueType } from '@annoq.common/models/annotation';
 import { RightPanel } from '@annoq.common/models/menu-panels';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { cloneDeep } from 'lodash';
 @Component({
   selector: 'annoq-snp-table',
   templateUrl: './snp-table.component.html',
@@ -25,6 +27,7 @@ export class SnpTableComponent implements OnInit, OnDestroy {
   gene;
   genes: any[] = [];
   columns: any[] = [];
+  count = 0
 
   loadingIndicator: boolean;
   reorderable: boolean;
@@ -34,15 +37,19 @@ export class SnpTableComponent implements OnInit, OnDestroy {
     mode: 'indeterminate'
   };
 
+  @ViewChild(MatTable) table: MatTable<any>
+
   @ViewChild(MatPaginator, { static: true })
   paginator: MatPaginator;
 
+  dataSource = new MatTableDataSource<any>();
 
   displayedColumns = [];
 
   private _unsubscribeAll: Subject<any>;
 
   constructor(
+    private changeDetectorRefs: ChangeDetectorRef,
     public annoqMenuService: AnnoqMenuService,
     private snpDialogService: SnpDialogService,
     private annotationService: AnnotationService,
@@ -82,26 +89,33 @@ export class SnpTableComponent implements OnInit, OnDestroy {
 
   setSnpPage(snpPage: SnpPage) {
     if (snpPage.source) {
-      this.snpPage = snpPage;
-      this.columns = snpPage.source.map((header) => {
-        const detail = this.annotationService.findDetailByName(header);
-        let count = ''
-        if (snpPage.aggs) {
-          const agg = snpPage.aggs[header]
-          count = agg ? agg['doc_count'] : '';
-        }
-        return {
-          name: header,
-          count: count,
-          label: detail.label ? detail.label : header,
-          valueType: detail.value_type,
-          rootUrl: detail.root_url,
-          cell: (element: any) => `${element[header]}`
-        }
-      });
 
-      this.displayedColumns = this.columns.map(c => c.name);
+      setTimeout(() => {
+        // this.columns = [];
+        //this.displayedColumns = this.columns.map(c => c.name);
+        this.displayedColumns.pop()
+      }, 10);
 
+      setTimeout(() => {
+        this.columns = snpPage.source.map((header) => {
+          const detail = this.annotationService.findDetailByName(header);
+          let count = ''
+          if (snpPage.aggs) {
+            const agg = snpPage.aggs[header]
+            count = agg ? agg['doc_count'] : '';
+          }
+          return {
+            id: header + count,
+            name: header,
+            count: count,
+            label: detail.label ? detail.label : header,
+            valueType: detail.value_type,
+            rootUrl: detail.root_url,
+            cell: (element: any) => `${element[header]}`
+          }
+        });
+        this.displayedColumns = this.columns.map(c => c.name);
+      }, 10);
 
       if (snpPage.gene) {
         this.gene = new Gene()
@@ -112,6 +126,9 @@ export class SnpTableComponent implements OnInit, OnDestroy {
       } else {
         this.gene = null
       }
+
+      this.snpPage = snpPage;
+      this.dataSource = new MatTableDataSource<any>(this.snpPage.snps);
     }
   }
 
@@ -158,6 +175,7 @@ export class SnpTableComponent implements OnInit, OnDestroy {
   }
 
 
+
   openSnpSearch() {
     this.annoqMenuService.selectRightPanel(RightPanel.snpSearch);
     this.annoqMenuService.openRightDrawer()
@@ -175,7 +193,8 @@ export class SnpTableComponent implements OnInit, OnDestroy {
 
   openSnpStats() {
     this.annoqMenuService.selectRightPanel(RightPanel.snpStats);
-    this.annoqMenuService.openRightDrawer()
+    this.annoqMenuService.openRightDrawer();
+    this.snpService.getStats('ANNOVAR_ensembl_Effect');
   }
 }
 
