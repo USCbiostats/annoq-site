@@ -28,7 +28,7 @@ export class AnnoqConfirmDialogService {
 
     openConfirmDialog(title: string, message: string, success?, options?): void {
         let confirmDialogRef: MatDialogRef<AnnoqConfirmDialogComponent> = this._matDialog.open(AnnoqConfirmDialogComponent, {
-            panelClass: 'noc-confirm-dialog',
+            panelClass: 'annoq-confirm-dialog',
             disableClose: false,
             width: '600px',
             data: options

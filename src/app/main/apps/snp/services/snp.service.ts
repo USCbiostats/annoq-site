@@ -8,6 +8,7 @@ import { cloneDeep, orderBy, uniqBy } from 'lodash';
 import { FrequencyBucket, SnpAggs } from '../models/snp-aggs';
 import { AnnotationService } from '../../annotation/services/annotation.service';
 import { ColumnFieldType } from '@annoq.common/models/annotation';
+import { SearchCriteria } from '@annoq.search/models/search-criteria';
 
 @Injectable({
     providedIn: 'root',
@@ -17,6 +18,8 @@ export class SnpService {
     onSnpsChanged: BehaviorSubject<SnpPage>;
     onSnpsAggsChanged: BehaviorSubject<SnpAggs>;
     onSnpChanged: BehaviorSubject<any>;
+    onSearchCriteriaChanged: BehaviorSubject<any>;
+    searchCriteria: SearchCriteria;
     onSnpsDownloadReady: BehaviorSubject<any>;
     snpPage: SnpPage = new SnpPage();
     loading = false;
@@ -61,7 +64,9 @@ export class SnpService {
         this.onSnpsAggsChanged = new BehaviorSubject(null);
         this.onSnpsDownloadReady = new BehaviorSubject(null);
         this.onSnpChanged = new BehaviorSubject(null);
+        this.onSearchCriteriaChanged = new BehaviorSubject(null);
         this.inputTypes.selected = this.inputTypes.options[0];
+        this.searchCriteria = new SearchCriteria();
 
         if (!this.client) {
             this._connect();
@@ -79,6 +84,9 @@ export class SnpService {
         let headers = uniqBy([...['chr', 'pos', 'ref', 'alt', 'rs_dbSNP151'], ...annotationQuery.source], (header) => {
             return header;
         });
+
+        this.searchCriteria.clearSearch()
+        this.searchCriteria = new SearchCriteria();
 
         const query: any = {
             '_source': headers
@@ -130,6 +138,7 @@ export class SnpService {
                                     { 'range': { 'pos': { 'gte': res.gene_info.start, 'lte': res.gene_info.end } } }]
                             }
                         };
+                        self.setOriginalQuery(query)
                         self.getSnpsCount(query);
                         self.getSnpsPage(query, page, res.gene_info);
                     });
@@ -191,10 +200,18 @@ export class SnpService {
 
         }
         //console.log(query);
+
+
+        self.setOriginalQuery(query)
         self.getSnpsPage(query, page);
         self.getSnpsCount(query);
     }
 
+    setOriginalQuery(query) {
+        this.queryOriginal = cloneDeep(query)
+        this.queryOriginal.from = 0;
+        this.queryOriginal.size = this.snpResultsSize;
+    }
 
 
     getSnpsPage(query: any, page: number, gene?: any): any {
@@ -277,15 +294,33 @@ export class SnpService {
     }
 
     addExistFilter(field) {
-        if (this.snpPage?.query.query?.bool?.filter)
-            this.snpPage.query.query.bool.filter.push(
-                {
-                    "exists": {
-                        "field": field
-                    }
-                });
-        this.getSnpsPage(this.snpPage.query, 1);
-        this.getSnpsCount(this.snpPage.query)
+        if (!this.searchCriteria.fields.includes(field)) {
+            this.searchCriteria.fields.push(field)
+        }
+
+        this.updateSearch();
+
+    }
+
+    updateSearch() {
+        this.searchCriteria.updateFiltersCount();
+        this.onSearchCriteriaChanged.next(this.searchCriteria);
+        if (this.queryOriginal?.query?.bool?.filter) {
+            const query = cloneDeep(this.snpPage.query)
+
+            this.searchCriteria.fields.forEach(field => {
+                query.query.bool.filter.push(
+                    {
+                        "exists": {
+                            "field": field
+                        }
+                    });
+            });
+            this.getSnpsPage(query, 1);
+            this.getSnpsCount(query)
+        }
+
+
     }
 
     getStats(field: string) {

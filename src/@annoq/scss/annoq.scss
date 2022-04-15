@@ -20,25 +20,32 @@ $annoq-secondary-color: #995014;
   @include deep-height($number);
 }
 
+@mixin annoq-chip-color($color) {
+  border: $color solid 1px;
+  background-color: rgba($color, 0.2);
+
+  .annoq-icon {
+    background-color: $color;
+  }
+}
+
 .annoq-container {
   position: relative;
   padding: 0;
   margin: 0 auto;
   width: 1000px;
 
-  @include media-breakpoint('xs') {
+  @include media-breakpoint("xs") {
     width: 100%;
   }
 }
 
 a {
-  color: #0000EE;
+  color: #0000ee;
 
   &:link {
-    color: #0000EE;
+    color: #0000ee;
   }
-
-
 }
 
 .annoq-search-database-dialog {
@@ -75,7 +82,7 @@ textarea {
   .annoq-menu-heading {
     margin: 0;
     padding: 10px 14px;
-    background-color: #E2E2E2;
+    background-color: #e2e2e2;
   }
 
   .annoq-item {
@@ -88,14 +95,14 @@ textarea {
 .annoq-paginator {
   overflow: hidden;
   @include deep-height(40px);
-  background-color: #DDD;
+  background-color: #ddd;
 
   .mat-paginator-container {
     @include deep-height(40px !important);
   }
 }
 
-input[type=text] {
+input[type="text"] {
   &.annoq-textbox-legacy {
     padding-left: 10px;
     height: 36px;
@@ -106,11 +113,11 @@ input[type=text] {
     -moz-box-sizing: border-box;
     background: #fff;
     border: 1px solid #bbb;
-    -webkit-transition: all 0.30s ease-in-out;
-    -moz-transition: all 0.30s ease-in-out;
-    -ms-transition: all 0.30s ease-in-out;
-    -o-transition: all 0.30s ease-in-out;
-    transition: all 0.30s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
 }
 
@@ -120,7 +127,7 @@ input[type=text] {
   line-height: 36px;
   @include deep-width(36px);
   border-radius: 0;
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
 }
 
 .annoq-truncate {
@@ -136,7 +143,6 @@ input[type=text] {
   width: 100%;
   padding: 20px;
 }
-
 
 .annoq-breadcrumbs {
   .annoq-breadcrumb {
@@ -163,15 +169,14 @@ input[type=text] {
 
 .annoq-alert {
   padding: 16px;
-  background: #607D8B !important;
-  border-left: 6px solid #37474F;
+  background: #607d8b !important;
+  border-left: 6px solid #37474f;
   color: rgba(255, 255, 255, 1);
 
   &.alert-success {
     color: #285b2a !important;
     background: #dbefdc !important;
     border-left-color: #cde9ce;
-
 
     a {
       color: #18381a;
@@ -182,7 +187,6 @@ input[type=text] {
     color: #00626e !important;
     background: #ccf2f6 !important;
     border-left-color: #b8ecf3;
-
 
     a {
       color: #00353b !important;
@@ -208,6 +212,4 @@ input[type=text] {
       color: #551713 !important;
     }
   }
-
-
 }

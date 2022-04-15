@@ -1,0 +1,48 @@
+<form fxLayout="column" fxLayoutAlign="start stretch" name="filterForm" [formGroup]="filterForm"
+  class="annoq-drawer h-100-p">
+  <div class="annoq-drawer-header" fxLayout="row" fxLayoutAlign="start center">
+    <span class="annoq-drawer-header-title">
+      Filter By</span>
+    <span fxFlex></span>
+    <button mat-stroked-button (click)="close()" class="annoq-rounded-button annoq-sm" color="primary"
+      aria-label="Close dialog">
+      <mat-icon>close</mat-icon> CLOSE
+    </button>
+  </div>
+  <div class="annoq-drawer-body annoq-filter-form" annoqPerfectScrollbar>
+    <div class="annoq-table-form annoq-form-section" fxLayout="column" fxLayoutAlign="start stretch">
+      <div class="annoq-section-header" fxLayout="row" fxLayoutAlign="start center">
+        <div class="annoq-section-heading">
+          Values
+        </div>
+        <span fxFlex></span>
+      </div>
+      <div class="annoq-section-body" fxLayout="column" fxLayoutAlign="start stretch">
+        <div class="annoq-activity-group-row" fxLayout="column">
+          <mat-form-field appearance="outline" class="annoq-sm w-100-p">
+            <mat-label>Filter by Reference</mat-label>
+            <mat-chip-list #fieldChipList>
+              <mat-chip class="annoq-form-chip" *ngFor="let field of snpService.searchCriteria.fields"
+                [selectable]="true" [removable]="true" (removed)="remove(field, SearchFilterType.fields)" fxLayout="row"
+                fxLayoutAlign="start center" matTooltip="Reference: {{field}}" [matTooltipPosition]="'below'"
+                [matTooltipShowDelay]="1000">
+                <div fxFlex="" class="annoq-chip-label">
+                  {{field}}
+                </div>
+                <mat-icon matChipRemove>cancel</mat-icon>
+              </mat-chip>
+              <input #searchInput formControlName="fields" placeholder="Add PMID Filter" #fieldInput
+                [matChipInputFor]="fieldChipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="false" (matChipInputTokenEnd)="add($event, SearchFilterType.fields)">
+
+            </mat-chip-list>
+          </mat-form-field>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="start center" class="annoq-drawer-footer annoq-submit-row">
+    <button (click)="clear()" type="button" mat-raised-button>Clear</button>
+  </div>
+</form>
