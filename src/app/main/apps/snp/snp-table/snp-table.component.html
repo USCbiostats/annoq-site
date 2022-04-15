@@ -25,7 +25,10 @@
   <div class="w-100-p h-100-p annoq-drawer" fxLayout="column" fxLayoutAlign="start streych">
     <div class="annoq-drawer-header" fxLayout="row" fxLayoutAlign="start center">
       <div class="annoq-section-heading" fxLayout="row" fxLayoutAlign="start center">
-        <span>Results</span> ({{snpPage.total}})
+        <div class="mr-12">
+          <span class="mr-8">Results</span> <strong>({{snpPage.total}})</strong>
+        </div>
+
         <div *ngIf="gene">
           <span>
             <small>Gene Id:</small> {{gene.gene_id}}
@@ -47,10 +50,7 @@
         Download
       </button>
     </div>
-    <div *ngIf="snpService.loading" class="annoq-loading-container" fxLayout="column" fxLayoutAlign="center center">
-      <mat-progress-spinner class="example-margin" [color]="loadingSpinner.color" [mode]="loadingSpinner.mode">
-      </mat-progress-spinner>
-    </div>
+
     <div class="annoq-drawer-body" fxFlex="" fxLayout="column" fxLayoutAlign="start stretch">
       <table fxFlex="1 1 auto" mat-table [dataSource]="snpPage.snps" class="">
         <ng-container [matColumnDef]="column.name" *ngFor="let column of columns">
@@ -85,6 +85,10 @@
       (page)="pageEvent = $event; setPage($event)">
     </mat-paginator>
   </div>
+</div>
+<div *ngIf="snpService.loading" class="annoq-loading-container" fxLayout="column" fxLayoutAlign="center center">
+  <mat-progress-spinner class="example-margin" [color]="loadingSpinner.color" [mode]="loadingSpinner.mode">
+  </mat-progress-spinner>
 </div>
 
 <div *ngIf="!snpPage" class="w-100-p h-100-p" fxFlex="" fxLayout="column" fxLayoutAlign="start stretch">

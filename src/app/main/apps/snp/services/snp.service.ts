@@ -123,7 +123,8 @@ export class SnpService {
                                     { 'range': { 'pos': { 'gte': res.gene_info.start, 'lte': res.gene_info.end } } }]
                             }
                         };
-                        return self.getSnpsPage(query, page, res.gene_info);
+                        self.getSnpsCount(query);
+                        self.getSnpsPage(query, page, res.gene_info);
                     });
                 return;
             case this.inputType.rsID:
@@ -149,24 +150,32 @@ export class SnpService {
                         return `${line[0].replace('chr', '')}:${line[1]}${line[3]}>${line[4]}`;
                     });
 
-                    query.ids = ids;
-                    // console.log(query);
-                    this.httpClient.post(`${environment.annotationApi}/annoq-test-v2/ids`, query)
-                        .subscribe((response: any) => {
-                            const esData = response.hits.hits as [];
-                            const snpData = esData;
-                            this.snpPage.shallowRefresh();
-                            this.snpPage.query = query;
-                            this.snpPage.total = 50;
-                            this.snpPage.size = 50;
-                            this.snpPage.snps = snpData;
-                            this.snpPage.vcfUrl = response.url;
-                            this.snpPage.source = query._source;
-                            this.onSnpsChanged.next(this.snpPage);
-                            self.loading = false;
-                            //console.log(response);
-                        });
-                    return;
+                    query.query = {
+                        "ids": {
+                            "values": ids
+                        }
+                    }
+                    break;
+                    /* 
+                                        query.ids = ids;
+                                        // console.log(query);
+                                        self.getSnpsCount(query);
+                                        this.httpClient.post(`${environment.annotationApi}/annoq-test-v2/ids`, query)
+                                            .subscribe((response: any) => {
+                                                const esData = response.hits.hits as [];
+                                                const snpData = esData;
+                                                this.snpPage.shallowRefresh();
+                                                this.snpPage.query = query;
+                                                // this.snpPage.total = 50;
+                                                this.snpPage.size = self.snpResultsSize;;
+                                                this.snpPage.snps = snpData;
+                                                this.snpPage.vcfUrl = response.url;
+                                                this.snpPage.source = query._source;
+                                                this.onSnpsChanged.next(this.snpPage);
+                                                self.loading = false;
+                                                //console.log(response);
+                                            });
+                                        return; */
                 }
             case this.inputType.keyword:
                 {
@@ -251,7 +260,6 @@ export class SnpService {
                 this.onSnpsAggsChanged.next(null);
             }
         }, (err) => {
-            self.loading = false;
         });
     }
 

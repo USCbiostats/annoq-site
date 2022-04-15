@@ -61,8 +61,12 @@ export class SnpSummaryComponent implements OnInit, OnDestroy {
       this.snpPage = snpPage;
       this.columns = snpPage.source.map((header) => {
         const detail = this.annotationService.findDetailByName(header);
-        const agg = snpPage.aggs[header]
-        const count = agg ? agg['doc_count'] : '';
+        let count = ''
+        if (snpPage.aggs) {
+          const agg = snpPage.aggs[header]
+          count = agg ? agg['doc_count'] : '';
+        }
+
         const label = detail.label ? detail.label : header;
         return {
           name: header,
