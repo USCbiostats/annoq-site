@@ -7,6 +7,7 @@ import { SnpPage } from '../models/page';
 import { cloneDeep, orderBy, uniqBy } from 'lodash';
 import { FrequencyBucket, SnpAggs } from '../models/snp-aggs';
 import { AnnotationService } from '../../annotation/services/annotation.service';
+import { ColumnFieldType } from '@annoq.common/models/annotation';
 
 @Injectable({
     providedIn: 'root',
@@ -270,29 +271,32 @@ export class SnpService {
     }
 
     getStats(field: string) {
-        if (this.snpPage?.query?.query) {
+        const annotation = this.annotationService.findDetailByName(field);
+        if (this.snpPage?.query?.query && annotation) {
 
             const query = cloneDeep(this.snpPage.query)
-
             const aggs = {}
-            aggs[`${field}_exist`] = {
-                "filter": {
-                    "exists": {
-                        "field": field
-                    },
+            let fieldSearchable = field
+
+            if (annotation.field_type === ColumnFieldType.TEXT) {
+                fieldSearchable += '.keyword';
+            }
+
+            aggs[`${field}_missing`] = {
+                "missing": {
+                    "field": fieldSearchable,
                 }
             };
-            aggs[`${field}_missing`] = {
+
+            aggs[`${field}_exists`] = {
                 "filter": {
-                    "must_not": {
-                        "exists": {
-                            "field": field
-                        }
+                    "exists": {
+                        "field": fieldSearchable
                     },
                 }
             };
             aggs[`${field}_frequency`] = {
-                "terms": { "field": field + ".keyword" },
+                "terms": { "field": fieldSearchable },
             };
 
             query.aggs = aggs;
@@ -348,6 +352,19 @@ export class SnpService {
     }
 
     buildAnnotationBar(buckets: FrequencyBucket[]) {
+
+        const stats = buckets.map((bucket) => {
+            return {
+                name: bucket.key,
+                value: bucket.doc_count
+            }
+        })
+
+        const sorted = orderBy(stats, ['value'], ['desc'])
+        return sorted
+    }
+
+    buildAnnotationPie(buckets: FrequencyBucket[]) {
 
         const stats = buckets.map((bucket) => {
             return {

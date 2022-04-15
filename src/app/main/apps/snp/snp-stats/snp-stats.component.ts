@@ -90,7 +90,7 @@ export class SnpStatsComponent implements OnInit, OnDestroy {
         return {
           name: header,
           count: count,
-          label: label.replaceAll('_', ' '),
+          label: label.replace(/_/g, ' '),
           valueType: detail.value_type,
           rootUrl: detail.root_url
         }

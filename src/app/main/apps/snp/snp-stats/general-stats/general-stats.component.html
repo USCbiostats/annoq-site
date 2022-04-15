@@ -1,43 +1,44 @@
-<div class="annoq-table-form annoq-form-section" fxLayout="column" fxLayoutAlign="start stretch">
+<!-- <div class="annoq-table-form annoq-form-section" fxLayout="column" fxLayoutAlign="start stretch">
   <div class="annoq-section-header" fxLayout="row" fxLayoutAlign="start center">
     <div class="annoq-section-heading">
       Number of terms
     </div>
     <span fxFlex></span>
   </div>
-  <!--  <div class="annoq-section-body" fxLayout="column" fxLayoutAlign="start stretch">
-    <ngx-charts-bar-vertical-stacked [results]="stats.aspect" [view]="aspectOptions.view"
-      [scheme]="aspectOptions.colorScheme" [gradient]="aspectOptions.gradient" [xAxis]="aspectOptions.showXAxis"
-      [yAxis]="aspectOptions.showYAxis" [legend]="aspectOptions.legend" [showXAxisLabel]="aspectOptions.showXAxisLabel"
-      [showYAxisLabel]="aspectOptions.showYAxisLabel" [xAxisLabel]="aspectOptions.xAxisLabel"
-      [yAxisLabel]="aspectOptions.yAxisLabel" [animations]="aspectOptions.animations"
-      [customColors]="aspectOptions.customColors">
+  <div class="annoq-section-body" fxLayout="column" fxLayoutAlign="start stretch">
+    <ngx-charts-bar-vertical-stacked [results]="stats.exists" [view]="existsOptions.view"
+      [scheme]="existsOptions.colorScheme" [gradient]="existsOptions.gradient" [xAxis]="existsOptions.showXAxis"
+      [yAxis]="existsOptions.showYAxis" [legend]="existsOptions.legend" [showXAxisLabel]="existsOptions.showXAxisLabel"
+      [showYAxisLabel]="existsOptions.showYAxisLabel" [xAxisLabel]="existsOptions.xAxisLabel"
+      [yAxisLabel]="existsOptions.yAxisLabel" [animations]="existsOptions.animations"
+      [customColors]="existsOptions.customColors">
     </ngx-charts-bar-vertical-stacked>
   </div>
-</div>
+</div>-->
 <div class="annoq-table-form annoq-form-section" fxLayout="column" fxLayoutAlign="start stretch">
   <div class="annoq-section-header" fxLayout="row" fxLayoutAlign="start center">
     <div class="annoq-section-heading">
-      Number of terms by aspect
+      Exists
     </div>
     <span fxFlex></span>
   </div>
   <div class="annoq-section-body" fxLayout="column" fxLayoutAlign="start stretch">
-    <ngx-charts-pie-chart [results]="stats.aspectPie" [view]="aspectPieOptions.view"
-      [scheme]="aspectPieOptions.colorScheme" [gradient]="aspectPieOptions.gradient" [legend]="aspectPieOptions.legend"
-      [maxLabelLength]="aspectPieOptions.maxLabelLength" [labels]="aspectPieOptions.showLabels"
-      [doughnut]="aspectPieOptions.isDoughnut">
+    <ngx-charts-pie-chart [results]="stats.existsPie" [view]="existsPieOptions.view"
+      [scheme]="existsPieOptions.colorScheme" [gradient]="existsPieOptions.gradient" [legend]="existsPieOptions.legend"
+      [maxLabelLength]="existsPieOptions.maxLabelLength" [labels]="existsPieOptions.showLabels"
+      [doughnut]="existsPieOptions.isDoughnut">
     </ngx-charts-pie-chart>
   </div>
 </div>
 
+
 <div class="annoq-table-form annoq-form-section" fxLayout="column" fxLayoutAlign="start stretch">
   <div class="annoq-section-header" fxLayout="row" fxLayoutAlign="start center">
     <div class="annoq-section-heading">
-      Terms Distribution (first 20)
+      Values Distribution (first 20)
     </div>
     <span fxFlex></span>
-  </div> -->
+  </div>
   <div class="annoq-section-body" fxLayout="column" fxLayoutAlign="start stretch">
     <ngx-charts-bar-horizontal [results]="stats.annotationFrequencyBar" [view]="annotationFrequencyBarOptions.view"
       [gradient]="annotationFrequencyBarOptions.gradient" [xAxis]="annotationFrequencyBarOptions.showXAxis"

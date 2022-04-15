@@ -30,7 +30,7 @@ export class AnnotationService {
     count = 0;
     keywordSearchableFields = []
 
-    labelLookup = {}
+    labelLookup: { [key: string]: Annotation }
 
     constructor(
         private httpClient: HttpClient,
@@ -211,6 +211,12 @@ export class AnnotationService {
             if (!annotation.label) {
                 annotation.label = annotation.name
             }
+        })
+    }
+
+    findAnnotation(field) {
+        return find(this.annotations, (annotation: Annotation) => {
+            return field === annotation.name
         })
     }
 

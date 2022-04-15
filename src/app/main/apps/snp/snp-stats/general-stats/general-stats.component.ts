@@ -3,7 +3,7 @@ import { getColor } from '@annoq.common/data/annoq-colors';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { SnpPage } from '../../models/page';
-import { SnpAggs } from '../../models/snp-aggs';
+import { FrequencyBucket, SnpAggs } from '../../models/snp-aggs';
 import { SnpService } from '../../services/snp.service';
 
 @Component({
@@ -33,7 +33,7 @@ export class GeneralStatsComponent implements OnInit, OnDestroy {
       customColors: []
     } */
 
-  aspectPieOptions = {
+  existsPieOptions = {
     view: [500, 200],
     gradient: true,
     legend: false,
@@ -41,7 +41,7 @@ export class GeneralStatsComponent implements OnInit, OnDestroy {
     isDoughnut: false,
     maxLabelLength: 20,
     colorScheme: {
-      domain: [getColor('green', 500), getColor('brown', 500), getColor('purple', 500)]
+      domain: [getColor('green', 500), getColor('red', 500)]
     },
 
   }
@@ -61,7 +61,7 @@ export class GeneralStatsComponent implements OnInit, OnDestroy {
 
   stats = {
     annotationFrequencyBar: [],
-    aspectPie: [],
+    existsPie: [],
     termsBar: [],
   }
 
@@ -105,9 +105,22 @@ export class GeneralStatsComponent implements OnInit, OnDestroy {
 
   foo() {
     const agg = this.snpAggs?.aggs[`${this.snpAggs.field}_frequency`];
+    const missingAgg = this.snpAggs?.aggs[`${this.snpAggs.field}_missing`];
+    const existsAgg = this.snpAggs?.aggs[`${this.snpAggs.field}_exists`];
 
     if (agg?.buckets) {
       this.stats.annotationFrequencyBar = this.snpService.buildAnnotationBar(agg.buckets)
+    }
+
+    if (existsAgg && missingAgg) {
+      const buckets: FrequencyBucket[] = [{
+        key: 'Value Exist',
+        doc_count: existsAgg.doc_count,
+      }, {
+        key: 'Values Missing',
+        doc_count: missingAgg.doc_count,
+      }]
+      this.stats.existsPie = this.snpService.buildAnnotationBar(buckets)
     }
   }
 
