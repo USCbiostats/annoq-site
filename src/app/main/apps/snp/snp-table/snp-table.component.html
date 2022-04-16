@@ -70,10 +70,10 @@
                 <div>
                   {{column.label}}
                 </div>
-                <a class="annoq-count" (click)="addExistFilter(column.name)">({{column.count}})</a>
+                <a class="annoq-count" (click)="addExistFilter(column)">({{column.count}})</a>
               </div>
               <span fxFlex=""></span>
-              <button mat-button color="" class="annoq-action-button ml-36" (click)="addExistFilter(column.name)"
+              <button mat-button color="" class="annoq-action-button ml-36" (click)="addExistFilter(column)"
                 matTooltip="Filter" [matTooltipPosition]="'after'" [matTooltipShowDelay]="1500">
                 <fa-icon [icon]="['fas', 'filter']"></fa-icon>
               </button>

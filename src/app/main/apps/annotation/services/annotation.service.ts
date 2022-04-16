@@ -193,8 +193,6 @@ export class AnnotationService {
                 const parent = this.getParentNode(x)
                 this.setParentVisibility(parent, q, x.visible);
             }
-            //this.count++
-            // console.log(this.count)
             const children = this.treeControl.getDescendants(x);
             if (children) this.setChildVisibility(q, children);
         });

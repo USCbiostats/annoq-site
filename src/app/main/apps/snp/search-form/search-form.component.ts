@@ -7,10 +7,11 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { AnnoqMenuService } from '@annoq.common/services/annoq-menu.service';
 import { SearchFilterType } from '@annoq.search/models/search-criteria';
 import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { map, startWith, takeUntil } from 'rxjs/operators';
 import { AnnotationService } from '../../annotation/services/annotation.service';
 import { SnpPage } from '../models/page';
 import { SnpService } from '../services/snp.service';
+import { Annotation } from '../../annotation/models/annotation';
 
 @Component({
   selector: 'annoq-search-form',
@@ -28,7 +29,8 @@ export class SearchFormComponent implements OnInit, OnDestroy {
   selectedOrganism = {};
   searchFormData: any = [];
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  filteredGroups: Observable<any[]>;
+  filteredFields: Observable<any[]>;
+  annotations: Annotation[] = []
 
   private _unsubscribeAll: Subject<any>;
 
@@ -37,8 +39,13 @@ export class SearchFormComponent implements OnInit, OnDestroy {
     public snpService: SnpService,
     private annotationService: AnnotationService) {
     this.filterForm = this.createFilterForm();
+    this._onValueChanges();
 
     this._unsubscribeAll = new Subject();
+
+    this.annotations = this.annotationService.annotations.filter((annotation: Annotation) => {
+      return annotation.leaf;
+    });
 
   }
 
@@ -93,9 +100,12 @@ export class SearchFormComponent implements OnInit, OnDestroy {
     });
   }
 
+  fieldDisplayFn(field: Annotation): string | undefined {
+    return field ? field.name : undefined;
+  }
 
 
-  add(event: MatChipInputEvent, filterType, limit = 15): void {
+  /* add(event: MatChipInputEvent, filterType, limit = 15): void {
     const input = event.input;
     const value = event.value;
 
@@ -115,7 +125,7 @@ export class SearchFormComponent implements OnInit, OnDestroy {
     if (input) {
       input.value = '';
     }
-  }
+  } */
 
   remove(item: string, filterType): void {
     const index = this.snpService.searchCriteria[filterType].indexOf(item);
@@ -135,6 +145,26 @@ export class SearchFormComponent implements OnInit, OnDestroy {
     });
 
     this.filterForm.controls[filterType].setValue('');
+  }
+
+  filterFields(value: string): any[] {
+    const filterValue = value.toLowerCase();
+
+    return this.annotations.filter((field: Annotation) => field.name.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+
+  private _onValueChanges() {
+    const self = this;
+
+    this.filteredFields = this.filterForm.controls.fields.valueChanges
+      .pipe(
+        startWith(''),
+        map(
+          value => typeof value === 'string' ? value : value['name']),
+        map(field => field ? this.filterFields(field) : this.annotations.slice())
+      );
+
   }
 
   close() {

@@ -30,7 +30,7 @@
             <div class="annoq-aspect-badge" (click)="openSearch(item)" fxLayout="row" fxLayoutAlign="center center">
               {{item.count}}
             </div>
-            <button mat-icon-button color="" class="annoq-rounded-button annoq-sm" (click)="addExistFilter(item.name)"
+            <button mat-icon-button color="" class="annoq-rounded-button annoq-sm" (click)="addExistFilter(item)"
               matTooltip="Filter" [matTooltipPosition]="'after'" [matTooltipShowDelay]="1500">
               <fa-icon [icon]="['fas', 'filter']"></fa-icon>
             </button>

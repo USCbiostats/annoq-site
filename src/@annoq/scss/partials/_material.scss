@@ -4,6 +4,7 @@ $accent: map-get($theme, accent);
 .mat-autocomplete-panel {
   &.annoq-term-autocomplete {
     @include deep-width(500px !important);
+    background-color: #def2fb;
 
     .mat-option {
       padding: 8px !important;
@@ -14,14 +15,13 @@ $accent: map-get($theme, accent);
 
       .annoq-term-id {
         font-size: 10px;
-        //margin-right: 
+        //margin-right:
       }
 
       .annoq-term-label {
         font-size: 12px;
-        //margin-right: 
+        //margin-right:
       }
-
     }
   }
 }

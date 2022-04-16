@@ -105,7 +105,6 @@ export class SnpTableComponent implements OnInit, OnDestroy {
             count = agg ? agg['doc_count'] : '';
           }
           return {
-            id: header + count,
             name: header,
             count: count,
             label: detail.label ? detail.label : header,

@@ -4,11 +4,12 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Client } from 'elasticsearch-browser';
 import { SnpPage } from '../models/page';
-import { cloneDeep, orderBy, uniqBy } from 'lodash';
+import { cloneDeep, find, orderBy, uniqBy } from 'lodash';
 import { FrequencyBucket, SnpAggs } from '../models/snp-aggs';
 import { AnnotationService } from '../../annotation/services/annotation.service';
 import { ColumnFieldType } from '@annoq.common/models/annotation';
 import { SearchCriteria } from '@annoq.search/models/search-criteria';
+import { Annotation } from '../../annotation/models/annotation';
 
 @Injectable({
     providedIn: 'root',
@@ -264,7 +265,6 @@ export class SnpService {
         return this.client.count({
             body: { query: query.query }
         }).then((res) => {
-            console.log(res)
             if (res?.count) {
                 this.snpPage.total = res.count;
             }
@@ -294,7 +294,11 @@ export class SnpService {
     }
 
     addExistFilter(field) {
-        if (!this.searchCriteria.fields.includes(field)) {
+        const exist = find(this.searchCriteria.fields, ((f: Annotation) => {
+            return field.name === f.name;
+        }));
+
+        if (!exist) {
             this.searchCriteria.fields.push(field)
         }
 
@@ -306,13 +310,13 @@ export class SnpService {
         this.searchCriteria.updateFiltersCount();
         this.onSearchCriteriaChanged.next(this.searchCriteria);
         if (this.queryOriginal?.query?.bool?.filter) {
-            const query = cloneDeep(this.snpPage.query)
+            const query = cloneDeep(this.queryOriginal)
 
-            this.searchCriteria.fields.forEach(field => {
+            this.searchCriteria.fields.forEach((field: Annotation) => {
                 query.query.bool.filter.push(
                     {
                         "exists": {
-                            "field": field
+                            "field": field.name
                         }
                     });
             });
