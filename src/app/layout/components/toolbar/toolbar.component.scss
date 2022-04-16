@@ -1,4 +1,4 @@
-@import "src/@noctua/scss/noctua";
+@import "src/@annoq/scss/annoq";
 
 :host {
   position: relative;
@@ -20,7 +20,7 @@
 
   .mat-toolbar {
     padding-right: 10px;
-    background-color: #FFF;
+    background-color: #fff;
     @include deep-height(50px);
     color: inherit;
     position: relative;

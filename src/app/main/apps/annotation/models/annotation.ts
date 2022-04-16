@@ -7,6 +7,10 @@ export interface Annotation {
     pmid: string;
     parent_id: number;
     leaf: boolean;
+    value_type: string;
+    field_type: string;
+    root_url: string;
+    keyword_searchable: boolean;
 }
 
 export class AnnotationNode {

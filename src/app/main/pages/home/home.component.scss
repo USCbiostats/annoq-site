@@ -1,5 +1,5 @@
-@import "src/@noctua/scss/noctua";
-@import "src/@noctua.common/scss/noctua.common";
+@import "src/@annoq/scss/annoq";
+@import "src/@annoq.common/scss/annoq.common";
 
 :host {
   h2 {
@@ -143,9 +143,10 @@
       }
 
       .annoq-stat {
-        height: 80px;
+        height: 100px;
         font-size: 50px;
         font-weight: bold;
+        margin-bottom: 20px;
         overflow: hidden;
         color: rgba($annoq-primary-color, 0.6);
 
@@ -155,6 +156,11 @@
 
         &.annoq-sm-font {
           font-size: 40px;
+        }
+
+        .annoq-hint {
+          text-align: center;
+          font-size: 16px;
         }
       }
 

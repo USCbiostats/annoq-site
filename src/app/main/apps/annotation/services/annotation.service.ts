@@ -8,7 +8,7 @@ import { each, find } from 'lodash';
 import { SelectionModel } from '@angular/cdk/collections';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlattener, MatTreeFlatDataSource } from '@angular/material/tree';
-import { NoctuaConfirmDialogService } from '@noctua/components/confirm-dialog/confirm-dialog.service';
+import { AnnoqConfirmDialogService } from '@annoq/components/confirm-dialog/confirm-dialog.service';
 
 @Injectable({
     providedIn: 'root',
@@ -28,12 +28,13 @@ export class AnnotationService {
     dataSource: MatTreeFlatDataSource<AnnotationNode, AnnotationFlatNode>;
 
     count = 0;
+    keywordSearchableFields = []
 
-    labelLookup = {}
+    labelLookup: { [key: string]: Annotation }
 
     constructor(
         private httpClient: HttpClient,
-        private confirmDialogService: NoctuaConfirmDialogService,) {
+        private confirmDialogService: AnnoqConfirmDialogService) {
         this.onAnnotationTreeChanged = new BehaviorSubject(null);
         this.onAnnotationDetailChanged = new BehaviorSubject({});
 
@@ -48,6 +49,7 @@ export class AnnotationService {
 
                 this.annotations = response.result;
                 this.formatLabel(this.annotations);
+                this.keywordSearchableFields = this.getSearchableFields(this.annotations);
                 this.labelLookup = this.makeLabelLookup(this.annotations);
                 this.checklistSelection = new SelectionModel<AnnotationFlatNode>(true);
                 this.treeFlattener = new MatTreeFlattener(this.transformer, this._getLevel,
@@ -191,8 +193,6 @@ export class AnnotationService {
                 const parent = this.getParentNode(x)
                 this.setParentVisibility(parent, q, x.visible);
             }
-            //this.count++
-            // console.log(this.count)
             const children = this.treeControl.getDescendants(x);
             if (children) this.setChildVisibility(q, children);
         });
@@ -210,6 +210,23 @@ export class AnnotationService {
                 annotation.label = annotation.name
             }
         })
+    }
+
+    findAnnotation(field) {
+        return find(this.annotations, (annotation: Annotation) => {
+            return field === annotation.name
+        })
+    }
+
+    getSearchableFields(annotations: Annotation[]) {
+        const result = []
+        annotations.forEach((annotation: Annotation) => {
+            if (annotation.keyword_searchable) {
+                result.push(annotation.name)
+            }
+        })
+
+        return result;
     }
 
     clear() {
@@ -242,8 +259,6 @@ export class AnnotationService {
         }
     }
 
-
-
     doFileSelection(ids: string[], dataNodes: AnnotationFlatNode[], checklistSelection: SelectionModel<AnnotationFlatNode>) {
         checklistSelection.clear();
         ids.forEach((id: string) => {
@@ -254,9 +269,6 @@ export class AnnotationService {
             }
         });
     }
-
-
-
 
     getActiveAnnotation() {
         return this.activeAnnotation;

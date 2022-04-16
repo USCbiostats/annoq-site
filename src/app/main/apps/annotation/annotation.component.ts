@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { NoctuaMenuService } from '@noctua.common/services/noctua-menu.service';
+import { AnnoqMenuService } from '@annoq.common/services/annoq-menu.service';
 import { Annotation, AnnotationNode, AnnotationFlatNode } from './models/annotation'
 import { SelectionModel } from '@angular/cdk/collections';
 import { SnpService } from './../snp/services/snp.service';
@@ -8,7 +8,7 @@ import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@ang
 import { AnnotationService } from './services/annotation.service';
 import { SnpDialogService } from '../snp/services/dialog.service';
 import { environment } from 'environments/environment';
-import { SampleVCFFile } from '@noctua.common/data/sample-vcf';
+import { SampleVCFFile } from '@annoq.common/data/sample-vcf';
 
 @Component({
   selector: 'annoq-annotation',
@@ -30,7 +30,7 @@ export class AnnotationComponent implements OnInit {
 
   public esData: any[];
 
-  constructor(public noctuaMenuService: NoctuaMenuService,
+  constructor(public annoqMenuService: AnnoqMenuService,
     public annotationService: AnnotationService,
     private snpDialogService: SnpDialogService,
     private cd: ChangeDetectorRef,
@@ -80,6 +80,7 @@ export class AnnotationComponent implements OnInit {
 
     if (source.length > 0) {
       this.snpService.getSnps(query, 1);
+      this.annoqMenuService.closeRightDrawer();
     } else {
       this.snpDialogService.openMessageToast('Select at least one annotation from the tree', 'OK');
     }

@@ -1,5 +1,5 @@
 <div class="w-100-p" fxLayout="row" fxLayoutAlign="start start">
-  <mat-drawer-container class="w-100-p h-100-p" fxLayout="row" fxLayoutAlign="start start">
+  <mat-drawer-container class="w-100-p h-100-p" fxLayout="row" fxLayoutAlign="start start" autosize>
     <mat-drawer #leftDrawer opened="true" class="annoq-left-drawer" mode="side" position="start">
       <div fxLayout="column" fxLayoutAlign="start stretch" class="annoq-drawer w-100-p h-100-p">
         <div class="annoq-drawer-header" fxLayout="row" fxLayoutAlign="start center">
@@ -7,7 +7,7 @@
             Variants Annotation Query Provided by IMAGE Project
           </span>
           <span fxFlex></span>
-          <button *ngIf="false" mat-icon-button (click)="noctuaMenuService.closeLeftDrawer()" aria-label="Close dialog">
+          <button *ngIf="false" mat-icon-button (click)="annoqMenuService.closeLeftDrawer()" aria-label="Close dialog">
             <mat-icon>close</mat-icon>
           </button>
         </div>
@@ -19,9 +19,14 @@
     <mat-drawer-content class="w-100-p">
       <annoq-snp-table class="w-100-p h-100-p"></annoq-snp-table>
     </mat-drawer-content>
-    <mat-drawer #rightDrawer class="annoq-right-drawer" noctuaPerfectScrollbar mode="side" position="end">
-      <div class="h-100-p">
-        <annoq-snp-detail [panelDrawer]="rightDrawer"> </annoq-snp-detail>
+    <mat-drawer #rightDrawer class="annoq-right-drawer" annoqPerfectScrollbar mode="side" position="end">
+      <div class="h-100-p" [ngSwitch]="annoqMenuService.selectedRightPanel">
+        <annoq-snp-detail [panelDrawer]="rightDrawer" *ngSwitchCase="RightPanel.snpDetail"> </annoq-snp-detail>
+        <annoq-snp-summary [panelDrawer]="rightDrawer" *ngSwitchCase="RightPanel.snpSummary">
+        </annoq-snp-summary>
+        <annoq-snp-stats [panelDrawer]="rightDrawer" *ngSwitchCase="RightPanel.snpStats"> </annoq-snp-stats>
+        <annoq-search-form [panelDrawer]="rightDrawer" *ngSwitchCase="RightPanel.snpSearch"> </annoq-search-form>
+
       </div>
     </mat-drawer>
   </mat-drawer-container>

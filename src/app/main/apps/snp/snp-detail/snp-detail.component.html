@@ -8,7 +8,7 @@
       <mat-icon>close</mat-icon> Close
     </button>
   </div>
-  <div class="annoq-drawer-body" fxLayout="row" fxLayoutAlign="start start" noctuaPerfectScrollbar>
+  <div class="annoq-drawer-body" fxLayout="row" fxLayoutAlign="start start" annoqPerfectScrollbar>
     <div class="w-100-p" fxLayout="column" fxLayoutAlign="start stretch">
       <div class="annoq-snp-detail-row" *ngFor="let row of rows" fxLayout="column" fxLayoutAlign="start stretch">
         <div class="annoq-title">
@@ -16,25 +16,20 @@
             {{row.name}}
           </div>
         </div>
-        <div class="annoq-description" [ngSwitch]="row.valueType">
-          <div *ngSwitchCase="ColumnValueType.GO_ID" fxLayout="column" fxLayoutAlign="start stretch">
-            <ng-container *ngFor="let item of mapGOids(row.valueType, row.value)">
-              <div class="annoq-item">
-                <a (click)="$event.stopPropagation()" href="{{item.url}}" target="_blank">
-                  {{item.label}}
-                </a>
-              </div>
-            </ng-container>
-          </div>
-          <div *ngSwitchCase="ColumnValueType.GO_LABEL" fxLayout="column" fxLayoutAlign="start stretch">
-            <ng-container *ngFor="let item of mapGOids(row.valueType, row.value)">
-              <div class="annoq-item">
+        <div class="annoq-description">
+          <div fxLayout="column" fxLayoutAlign="start stretch">
+            <div *ngFor="let item of row.values" class="annoq-item">
+              <a *ngIf="item.url" (click)="$event.stopPropagation()" href="{{item.url}}" target="_blank">
                 {{item.label}}
-              </div>
-            </ng-container>
-          </div>
-          <div *ngSwitchDefault>
-            {{row.value}}
+              </a>
+              <span *ngIf="!item.url">
+                {{item.label}}
+              </span>
+            </div>
+
+            <div *ngIf="row.values?.length===0" class="annoq-no-info">
+              value not available
+            </div>
           </div>
         </div>
       </div>

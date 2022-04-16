@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { browserVersions } from '@noctua.common/data/browser-compatibility';
-import { NoctuaMenuService } from '@noctua.common/services/noctua-menu.service';
-import { noctuaAnimations } from '@noctua/animations';
+import { browserVersions } from '@annoq.common/data/browser-compatibility';
+import { AnnoqMenuService } from '@annoq.common/services/annoq-menu.service';
+import { annoqAnimations } from '@annoq/animations';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  animations: noctuaAnimations
+  animations: annoqAnimations
 })
 export class HomeComponent implements OnInit {
 
@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
     'safari'];
   dataSource = browserVersions;
 
-  constructor(public noctuaMenuService: NoctuaMenuService) {
+  constructor(public annoqMenuService: AnnoqMenuService) {
   }
 
   ngOnInit() {

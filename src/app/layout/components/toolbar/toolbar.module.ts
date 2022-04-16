@@ -5,12 +5,12 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
-import { NoctuaSharedModule } from '@noctua/shared.module';
-import { NoctuaToolbarComponent } from './toolbar.component';
+import { AnnoqSharedModule } from '@annoq/shared.module';
+import { AnnoqToolbarComponent } from './toolbar.component';
 
 @NgModule({
     declarations: [
-        NoctuaToolbarComponent
+        AnnoqToolbarComponent
     ],
     imports: [
         RouterModule,
@@ -19,12 +19,12 @@ import { NoctuaToolbarComponent } from './toolbar.component';
         MatMenuModule,
         MatProgressBarModule,
         MatToolbarModule,
-        NoctuaSharedModule,
+        AnnoqSharedModule,
     ],
     exports: [
-        NoctuaToolbarComponent
+        AnnoqToolbarComponent
     ]
 })
 
-export class NoctuaToolbarModule {
+export class AnnoqToolbarModule {
 }

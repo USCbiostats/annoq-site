@@ -3,7 +3,7 @@ import { FlatTreeControl } from '@angular/cdk/tree';
 import { Component, ElementRef, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatTreeNode, MatTreeFlatDataSource } from '@angular/material/tree';
-import { NoctuaMenuService } from '@noctua.common/services/noctua-menu.service';
+import { AnnoqMenuService } from '@annoq.common/services/annoq-menu.service';
 import { Annotation, AnnotationFlatNode, AnnotationNode } from 'app/main/apps/annotation/models/annotation';
 import { AnnotationService } from 'app/main/apps/annotation/services/annotation.service';
 import { AnnotationDialogService } from 'app/main/apps/annotation/services/dialog.service';
@@ -42,7 +42,7 @@ export class DetailComponent implements OnInit {
 
 
   constructor(
-    public noctuaMenuService: NoctuaMenuService,
+    public annoqMenuService: AnnoqMenuService,
     public annotationService: AnnotationService,
   ) {
 

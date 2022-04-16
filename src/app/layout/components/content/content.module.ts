@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { NoctuaSharedModule } from '@noctua/shared.module';
+import { AnnoqSharedModule } from '@annoq/shared.module';
 
 import { ContentComponent } from 'app/layout/components/content/content.component';
 
@@ -11,7 +11,7 @@ import { ContentComponent } from 'app/layout/components/content/content.componen
     ],
     imports: [
         RouterModule,
-        NoctuaSharedModule,
+        AnnoqSharedModule,
     ],
     exports: [
         ContentComponent

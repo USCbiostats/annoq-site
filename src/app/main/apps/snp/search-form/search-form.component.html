@@ -1,0 +1,61 @@
+<form fxLayout="column" fxLayoutAlign="start stretch" name="filterForm" [formGroup]="filterForm"
+  class="annoq-drawer h-100-p">
+  <div class="annoq-drawer-header" fxLayout="row" fxLayoutAlign="start center">
+    <span class="annoq-drawer-header-title">
+      Filter By</span>
+    <span fxFlex></span>
+    <button mat-stroked-button (click)="close()" class="annoq-rounded-button annoq-sm" color="primary"
+      aria-label="Close dialog">
+      <mat-icon>close</mat-icon> CLOSE
+    </button>
+  </div>
+  <div class="annoq-drawer-body annoq-filter-form" annoqPerfectScrollbar>
+    <div class="annoq-table-form annoq-form-section" fxLayout="column" fxLayoutAlign="start stretch">
+      <div class="annoq-section-header" fxLayout="row" fxLayoutAlign="start center">
+        <div class="annoq-section-heading">
+          Values
+        </div>
+        <span fxFlex></span>
+      </div>
+      <div class="annoq-section-body" fxLayout="column" fxLayoutAlign="start stretch">
+        <div class="annoq-section-body" fxLayout="column" fxLayoutAlign="start stretch">
+          <div class="annoq-activity-field-row" fxLayout="column">
+            <mat-form-field appearance="outline" class="annoq-sm w-100-p">
+              <mat-label>Filter by Field</mat-label>
+              <mat-chip-list #fieldChipList>
+                <mat-chip class="annoq-form-chip" *ngFor="let field of snpService.searchCriteria.fields"
+                  [selectable]="true" [removable]="true" (removed)="remove(field, SearchFilterType.fields)"
+                  fxLayout="row" fxLayoutAlign="start center" matTooltip="Field: {{field.name}} ({{field.name}})"
+                  [matTooltipPosition]="'below'" [matTooltipShowDelay]="1000">
+                  <div fxFlex="" class="annoq-chip-label">
+                    {{field.label}}
+                  </div>
+                  <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+                <input #searchInput formControlName="fields" placeholder="Add Field Filter"
+                  [matAutocomplete]="fieldAuto" #fieldInput [matChipInputFor]="fieldChipList"
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="false">
+              </mat-chip-list>
+              <mat-autocomplete #fieldAuto="matAutocomplete"
+                (optionSelected)="selected($event, SearchFilterType.fields)" [displayWith]="fieldDisplayFn"
+                class="annoq-term-autocomplete">
+                <mat-option class="annoq-term-autocomplete" *ngFor="let item of filteredFields | async" [value]="item">
+                  <div class="w-100-p" fxLayout="row" fxLayoutAlign="start center">
+                    <div class="annoq-term-label">
+                      {{ item.label }}
+                    </div>
+                    <span fxFlex></span>
+                  </div>
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="start center" class="annoq-drawer-footer annoq-submit-row">
+    <button (click)="clear()" type="button" mat-raised-button>Clear</button>
+  </div>
+</form>

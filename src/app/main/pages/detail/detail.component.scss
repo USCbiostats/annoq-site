@@ -1,27 +1,23 @@
-@import "src/@noctua/scss/noctua";
-@import "src/@noctua.common/scss/noctua.common";
+@import "src/@annoq/scss/annoq";
+@import "src/@annoq.common/scss/annoq.common";
 
 :host {
-
-
   // width: 100%; //white-space:nowrap;
-
 
   .background-highlight {
     //background-color: #DDD;
   }
 
-
-
   .annoq-sidenav {
     position: relative;
     @include deep-width(100%);
     @include deep-height(100%);
-    background-color: #FFF;
-    border-right: #DDD solid 1px;
+    background-color: #fff;
+    border-right: #ddd solid 1px;
     z-index: 10;
 
-    @include media-breakpoint('gt-md') {}
+    @include media-breakpoint("gt-md") {
+    }
   }
 
   .annoq-tree-container {
@@ -39,7 +35,7 @@
       @include deep-height(25px);
       @include deep-width(25px);
       line-height: 25px;
-      color: #AAA;
+      color: #aaa;
     }
 
     .annoq-tree-icon {
@@ -48,7 +44,7 @@
     }
 
     &:hover {
-      background-color: rgba(#000000, 0.10);
+      background-color: rgba(#000000, 0.1);
     }
   }
 
@@ -69,17 +65,21 @@
   }
 
   .header {
-    @include deep-height(150px);
+    @include deep-height(200px);
     padding-bottom: 10px;
-    background-image: linear-gradient(to right, rgba($annoq-primary-color, 0.8), rgba($annoq-primary-color, 0.9), $annoq-primary-color, );
+    background-image: linear-gradient(
+      to right,
+      rgba($annoq-primary-color, 0.8),
+      rgba($annoq-primary-color, 0.9),
+      $annoq-primary-color
+    );
     background-blend-mode: initial;
     background-size: cover;
     background-position: top;
     position: relative;
     flex: 1 0 auto;
     text-align: center;
-    overflow: hidden;
-
+    //overflow: hidden;
 
     .annoq-container {
       overflow: hidden;
@@ -89,30 +89,30 @@
       width: 100%;
       font-size: 30px;
       font-weight: normal;
-      margin-top: 0;
-      color: #FFF;
+      color: #fff;
+      margin: 30px 0 0 0;
+      padding: 0;
 
       strong {
         font-size: 54px;
         letter-spacing: 3px;
       }
 
-
-      @include media-breakpoint('lt-md') {
+      @include media-breakpoint("lt-md") {
         font-size: 24px;
       }
     }
 
     h2 {
       width: 100%;
-      font-size: 18px;
+      font-size: 14px;
       font-weight: 300;
       letter-spacing: 0.03em;
-      margin: 0 0 18px 0;
+      margin: 0 0 30px 0;
       color: #ffffff;
       line-height: 1.5;
 
-      @include media-breakpoint('lt-md') {
+      @include media-breakpoint("lt-md") {
         font-size: 14px;
       }
     }
@@ -126,14 +126,10 @@
       margin: 0;
       color: rgba(#ffffff, 0.8);
     }
-
-
-
   }
 
   .annoq-detail-footer {
     @include deep-height(60px);
-
   }
 
   .annoq-section {
@@ -155,7 +151,7 @@
     }
 
     &.section-1 {
-      background-color: #FFF;
+      background-color: #fff;
     }
 
     &.section-2 {
@@ -178,13 +174,11 @@
     line-height: 24px;
   }
 
-
   input[type="file"] {
     display: none;
   }
 
   button {
-
     &.annoq-file-button {
       pointer-events: none;
     }
@@ -199,5 +193,4 @@
     color: #888;
     font-weight: bold;
   }
-
 }

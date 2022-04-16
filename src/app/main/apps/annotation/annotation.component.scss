@@ -1,5 +1,5 @@
-@import "src/@noctua/scss/noctua";
-@import "src/@noctua.common/scss/noctua.common";
+@import "src/@annoq/scss/annoq";
+@import "src/@annoq.common/scss/annoq.common";
 
 :host {
   width: 100%; // display: block;
@@ -8,8 +8,8 @@
 
   .annoq-header {
     @include deep-height(35px);
-    background-color: #EEE;
-    border-bottom: #CCC solid 1px;
+    background-color: #eee;
+    border-bottom: #cccccc solid 1px;
 
     mat-icon-button {
       @include deep-height(35px);
@@ -29,7 +29,7 @@
 
   .annoq-form-section {
     width: 100%;
-    background-color: #FFF;
+    background-color: #fff;
 
     input[type="file"] {
       display: none;
@@ -61,9 +61,9 @@
       padding: 0 8px;
       @include deep-height(35px);
       background-color: $annoq-primary-color-light;
+      border-bottom: #bbb solid 1px;
 
       .annoq-section-heading {
-
         font-size: 12px;
         line-height: 35px;
         color: #555;
@@ -81,7 +81,6 @@
   }
 
   button {
-
     &.annoq-file-button {
       pointer-events: none;
     }
@@ -96,5 +95,4 @@
     color: #888;
     font-weight: bold;
   }
-
 }

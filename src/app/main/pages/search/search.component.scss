@@ -1,16 +1,25 @@
-@import "src/@noctua/scss/noctua";
-@import "src/@noctua.common/scss/noctua.common";
+@import "src/@annoq/scss/annoq";
+@import "src/@annoq.common/scss/annoq.common";
 
 :host {
   width: 100%;
 
   .annoq-left-drawer {
-    width: 400px;
+    width: 500px;
     border-right: #111 solid 1px;
 
     .phtr-menu-section {
       width: 100%;
     }
+  }
+
+  annoq-snp-detail,
+  annoq-search-form {
+    @include deep-width(500px !important);
+  }
+  annoq-snp-summary,
+  annoq-snp-stats {
+    @include deep-width(600px !important);
   }
 }
 

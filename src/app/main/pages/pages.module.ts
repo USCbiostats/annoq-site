@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { NoctuaSharedModule } from '@noctua/shared.module';
+import { AnnoqSharedModule } from '@annoq/shared.module';
 import { AppsModule } from './../apps/apps.module';
-
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { SearchComponent } from './search/search.component';
 import { DetailComponent } from './detail/detail.component';
-import { NoctuaFooterModule } from 'app/layout/components/footer/footer.module';
+import { AnnoqFooterModule } from 'app/layout/components/footer/footer.module';
 import { PublicationComponent } from './publication/publication.component';
 import { ContactComponent } from './contact/contact.component';
-import { NoctuaConfirmDialogModule } from '@noctua/components/confirm-dialog/confirm-dialog.module';
+import { AnnoqConfirmDialogModule } from '@annoq/components/confirm-dialog/confirm-dialog.module';
 import { CookiePolicyComponent } from './cookie-policy/cookie-policy.component';
 
 const routes = [{
@@ -41,9 +40,9 @@ const routes = [{
   imports: [
     RouterModule.forChild(routes),
     TranslateModule,
-    NoctuaSharedModule,
-    NoctuaFooterModule,
-    NoctuaConfirmDialogModule,
+    AnnoqSharedModule,
+    AnnoqFooterModule,
+    AnnoqConfirmDialogModule,
     AppsModule
   ],
   providers: [

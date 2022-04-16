@@ -6,12 +6,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { FakeDbService } from '@noctua.common/fakedb/services/fake-db.service';
-import { NoctuaModule } from '@noctua/noctua.module';
-import { NoctuaProgressBarModule } from '@noctua/components';
+import { FakeDbService } from '@annoq.common/fakedb/services/fake-db.service';
+import { AnnoqModule } from '@annoq/annoq.module';
+import { AnnoqProgressBarModule } from '@annoq/components';
 
-import { NoctuaSharedModule } from '@noctua/shared.module';
-import { noctuaConfig } from './noctua-config';
+import { AnnoqSharedModule } from '@annoq/shared.module';
+import { annoqConfig } from './annoq-config';
 import { AppComponent } from './app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 
@@ -45,12 +45,11 @@ import {
     faCaretDown,
     faCaretRight,
     faAngleDoubleDown,
-    faAngleDoubleUp, faUndo, faSave, faExclamationTriangle, faAngleDoubleLeft, faAngleDoubleRight, faAngleLeft, faAngleRight, faCode, faFileCode, faSearchPlus
+    faAngleDoubleUp, faUndo, faSave, faExclamationTriangle, faAngleDoubleLeft, faAngleDoubleRight, faAngleLeft, faAngleRight, faCode, faFileCode, faSearchPlus, faTable, faChartBar, faList, faBars, faFilter
 } from '@fortawesome/free-solid-svg-icons';
 import { faCheckCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons';
 import { faGithub, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 const appRoutes: Routes = [
     {
@@ -102,19 +101,19 @@ const cookieConfig: NgcCookieConsentConfig = {
         TranslateModule.forRoot(),
         NgcCookieConsentModule.forRoot(cookieConfig),
 
-        // Noctua Main and Shared modules
-        NoctuaModule.forRoot(noctuaConfig),
+        // Annoq Main and Shared modules
+        AnnoqModule.forRoot(annoqConfig),
         InMemoryWebApiModule.forRoot(FakeDbService, {
             delay: 0,
             passThruUnknownUrl: true
         }),
-        NoctuaSharedModule,
+        AnnoqSharedModule,
         LayoutModule,
         RouterModule,
         MatSidenavModule,
-        NoctuaProgressBarModule,
+        AnnoqProgressBarModule,
 
-        //Noctua App
+        //Annoq App
         PagesModule,
         AppsModule
     ],
@@ -136,21 +135,25 @@ export class AppModule {
             faAngleDoubleDown,
             faAngleLeft,
             faAngleRight,
+            faBars,
             faCalendarDay,
             faCalendarWeek,
             faCaretDown,
             faCaretRight,
+            faChartBar,
             faChevronDown,
             faChevronRight,
             faCheckCircle,
             faCopy,
             faExclamationTriangle,
+            faFilter,
             faFacebook,
             faGithub,
             faHistory,
             faLevelDownAlt,
             faLevelUpAlt,
             faLink,
+            faList,
             faListAlt,
             faPaw,
             faPen,
@@ -159,6 +162,7 @@ export class AppModule {
             faSearch,
             faShoppingBasket,
             faSitemap,
+            faTable,
             faTasks,
             faTimesCircle,
             faTwitter,

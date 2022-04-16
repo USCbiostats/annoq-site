@@ -1,5 +1,5 @@
-@import "src/@noctua/scss/noctua";
-@import "src/@noctua.common/scss/noctua.common";
+@import "src/@annoq/scss/annoq";
+@import "src/@annoq.common/scss/annoq.common";
 
 :host {
   width: 100%; //white-space:nowrap;
@@ -10,7 +10,7 @@
 
   button {
     &.annoq-sm {
-      font-size: 12px
+      font-size: 12px;
     }
   }
 
@@ -18,11 +18,12 @@
     position: relative;
     @include deep-width(100%);
     @include deep-height(100%);
-    background-color: #FFF;
-    border-right: #DDD solid 1px;
+    background-color: #fff;
+    border-right: #ddd solid 1px;
     z-index: 10;
 
-    @include media-breakpoint('gt-md') {}
+    @include media-breakpoint("gt-md") {
+    }
   }
 
   .annoq-tree-container {
@@ -40,7 +41,7 @@
       @include deep-height(25px);
       @include deep-width(25px);
       line-height: 25px;
-      color: #AAA;
+      color: #aaa;
     }
 
     .annoq-tree-icon {
@@ -60,8 +61,7 @@
     }
 
     &:hover {
-      background-color: rgba(#000000, 0.10);
+      background-color: rgba(#000000, 0.1);
     }
   }
-
 }

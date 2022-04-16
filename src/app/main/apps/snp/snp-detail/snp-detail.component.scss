@@ -1,5 +1,5 @@
-@import "src/@noctua/scss/noctua";
-@import "src/@noctua.common/scss/noctua.common";
+@import "src/@annoq/scss/annoq";
+@import "src/@annoq.common/scss/annoq.common";
 
 $primary: map-get($theme, primary);
 $accent: map-get($theme, accent);
@@ -13,6 +13,11 @@ $accent: map-get($theme, accent);
     padding: 5px 10px;
     border-bottom: #888 solid 1px;
     font-size: 12px;
+
+    .annoq-no-info {
+      padding: 10px 10px;
+      font-size: 10px;
+    }
 
     .annoq-title {
       color: #999;
@@ -28,6 +33,7 @@ $accent: map-get($theme, accent);
     .annoq-item {
       padding: 4px 0;
       border-bottom: #ccc solid 1px;
+
       &:last-child {
         border-bottom: none;
       }

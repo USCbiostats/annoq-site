@@ -5,6 +5,7 @@
                 <h1>
                     Supported Annotations <br>
                 </h1>
+                <h2>Currently only human variants are supported</h2>
                 <form class="annoq-search-form" fxLayout="column" fxLayoutAlign="start stretch" name="searchForm"
                     [formGroup]="searchForm">
                     <mat-form-field appearance="outline" class="annoq-sm">
@@ -28,9 +29,9 @@
         <input #configFileInput type="file" id="annoq-upload-config" (click)="configFileInput.value = null" value=""
             (change)="annotationService.onConfigFileChange($event)" class="annoq-file-upload" />
     </div>
-    <div class="annoq-section section-1" fxFlex="" noctuaPerfectScrollbar>
+    <div class="annoq-section section-1" fxFlex="" annoqPerfectScrollbar>
         <div class="annoq-container" fxLayout="column" fxLayoutAlign="start stretch">
-            <div class="annoq-tree-container" noctuaPerfectScrollbar>
+            <div class="annoq-tree-container" annoqPerfectScrollbar>
                 <mat-tree #tree *ngIf="dataSource?.data" [dataSource]="dataSource"
                     [treeControl]="annotationService.treeControl">
                     <mat-tree-node class="annoq-tree-node" *matTreeNodeDef="let node" matTreeNodeToggle

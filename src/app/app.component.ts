@@ -4,20 +4,20 @@ import { Platform } from '@angular/cdk/platform';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { NoctuaConfigService } from '@noctua/services/config.service';
+import { AnnoqConfigService } from '@annoq/services/config.service';
 import { TranslateService } from '@ngx-translate/core';
-import { NoctuaSplashScreenService } from '@noctua/services/splash-screen.service';
-import { NoctuaTranslationLoaderService } from '@noctua/services/translation-loader.service';
+import { AnnoqSplashScreenService } from '@annoq/services/splash-screen.service';
+import { AnnoqTranslationLoaderService } from '@annoq/services/translation-loader.service';
 
 
 @Component({
-    selector: 'noctua-root',
+    selector: 'annoq-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit, OnDestroy {
-    noctuaConfig: any;
+    annoqConfig: any;
     navigation: any;
 
     private _unsubscribeAll: Subject<any>;
@@ -25,17 +25,17 @@ export class AppComponent implements OnInit, OnDestroy {
 
     constructor(
         private translate: TranslateService,
-        private noctuaSplashScreen: NoctuaSplashScreenService,
-        private noctuaTranslationLoader: NoctuaTranslationLoaderService,
+        private annoqSplashScreen: AnnoqSplashScreenService,
+        private annoqTranslationLoader: AnnoqTranslationLoaderService,
         private _renderer: Renderer2,
         private _elementRef: ElementRef,
-        private noctuaConfigService: NoctuaConfigService,
+        private annoqConfigService: AnnoqConfigService,
         private platform: Platform,
         @Inject(DOCUMENT) private document: any
     ) {
         this.translate.addLangs(['en', 'tr']);
         this.translate.setDefaultLang('en');
-        this.noctuaTranslationLoader.loadTranslations();
+        this.annoqTranslationLoader.loadTranslations();
         this.translate.use('en');
 
         if (this.platform.ANDROID || this.platform.IOS) {
@@ -47,10 +47,10 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.noctuaConfigService.config
+        this.annoqConfigService.config
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((config) => {
-                this.noctuaConfig = config;
+                this.annoqConfig = config;
             });
     }
 

@@ -1,28 +1,28 @@
-@import "src/@noctua/scss/noctua";
+@import "src/@annoq/scss/annoq";
 
-#noctua-main {
+#annoq-main {
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
 
-  >.mat-sidenav-container {
+  > .mat-sidenav-container {
     display: flex;
     flex: 1;
     overflow: auto;
 
-    >.mat-sidenav-content,
-    >.mat-drawer-content {
+    > .mat-sidenav-content,
+    > .mat-drawer-content {
       display: flex;
       flex: 1;
       overflow: hidden;
       height: 100vh;
 
-      @include media-breakpoint-down('sm') {
+      @include media-breakpoint-down("sm") {
         height: auto !important;
       }
 
-      #noctua-main-content {
+      #annoq-main-content {
         display: flex;
         flex: 1;
         flex-direction: column;
@@ -40,7 +40,7 @@
             flex: 1;
             overflow: hidden;
 
-            noctua-content {
+            annoq-content {
               position: relative;
               display: flex;
               flex: 1;
@@ -48,15 +48,14 @@
               width: 100%;
               overflow: hidden;
 
-              >*:not(router-outlet):not(.ps__scrollbar-x-rail):not(.ps__scrollbar-y-rail) {
+              > *:not(router-outlet):not(.ps__scrollbar-x-rail):not(.ps__scrollbar-y-rail) {
                 display: flex;
                 flex: 1;
                 width: 100%;
                 min-width: 100%;
               }
 
-              >*.ng-animating {
-
+              > *.ng-animating {
                 .mat-tab-body {
                   height: 100vh;
                 }
@@ -68,7 +67,7 @@
     }
   }
 
-  &[noctua-layout-mode="boxed"] {
+  &[annoq-layout-mode="boxed"] {
     max-width: 1200px;
     margin: 0 auto;
     @include mat-elevation(8);

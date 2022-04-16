@@ -2,15 +2,15 @@ import { Component } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { NoctuaConfigService } from '@noctua/services/config.service';
+import { AnnoqConfigService } from '@annoq/services/config.service';
 
 @Component({
-    selector: 'noctua-toolbar',
+    selector: 'annoq-toolbar',
     templateUrl: './toolbar.component.html',
     styleUrls: ['./toolbar.component.scss']
 })
 
-export class NoctuaToolbarComponent {
+export class AnnoqToolbarComponent {
     userStatusOptions: any[];
     languages: any;
     selectedLanguage: any;
@@ -23,7 +23,7 @@ export class NoctuaToolbarComponent {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private noctuaConfig: NoctuaConfigService,
+        private annoqConfig: AnnoqConfigService,
         private translate: TranslateService
     ) {
         this.languages = [{

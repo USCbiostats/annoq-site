@@ -1,7 +1,7 @@
 <div fxLayout="column" fxLayoutAlign="start stretch" class="annoq-sidenav mat-elevation-z4">
 
 
-  <div class="annoq-tree-container" noctuaPerfectScrollbar>
+  <div class="annoq-tree-container" annoqPerfectScrollbar>
     <mat-tree #tree *ngIf="dataSource?.data" [dataSource]="dataSource" [treeControl]="annotationService.treeControl">
       <mat-tree-node class="annoq-tree-node" *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding
         matTreeNodePaddingIndent="10" [ngClass]="{ 'background-highlight': annotationService.activeAnnotation === node.short_name,
