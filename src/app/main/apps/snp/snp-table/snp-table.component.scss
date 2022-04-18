@@ -67,6 +67,12 @@ $accent: map-get($theme, accent);
     border-right: #ddd solid 1px;
   }
 
+  .mat-cell,
+  .mat-header-cell {
+    max-width: 450px;
+    word-wrap: break-word;
+  }
+
   .mat-header-cell {
     height: 35px;
     padding: 0 10px;
@@ -74,6 +80,18 @@ $accent: map-get($theme, accent);
     color: map-get($primary, default);
     font-weight: bold;
     border-right: #aaa solid 1px;
+
+    .annoq-rounded-button {
+      padding: 0px 8px;
+      font-size: 10px;
+      color: rgba(#0000ee, 0.6);
+      border: rgba(map-get($primary, default), 0.4) solid 1px;
+
+      &:hover {
+        color: map-get($primary, default);
+        border: map-get($primary, default) solid 1px;
+      }
+    }
 
     .annoq-count {
       font-weight: normal;

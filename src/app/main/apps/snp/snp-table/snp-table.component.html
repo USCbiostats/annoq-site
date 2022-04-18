@@ -66,20 +66,20 @@
         <ng-container [matColumnDef]="column.name" *ngFor="let column of columns">
           <th mat-header-cell *matHeaderCellDef>
             <div class="w-100-p h-100-p" fxLayout="row" fxLayoutAlign="start center">
-              <div class="h-100-p" fxFlex="" fxLayout="column" fxLayoutAlign="center start">
+              <div class="h-100-p" fxLayout="column" fxLayoutAlign="center start">
                 <div>
                   {{column.label}}
                 </div>
                 <a class="annoq-count" (click)="addExistFilter(column)">({{column.count}})</a>
               </div>
-              <span fxFlex=""></span>
-              <button mat-button color="" class="annoq-action-button ml-36" (click)="addExistFilter(column)"
-                matTooltip="Filter" [matTooltipPosition]="'after'" [matTooltipShowDelay]="1500">
+              <button mat-button color="" class="annoq-rounded-button annoq-xs mr-4 annoq-half-button annoq-r ml-12"
+                (click)="addExistFilter(column)" matTooltip="Filter" [matTooltipPosition]="'after'"
+                [matTooltipShowDelay]="1500">
                 <fa-icon [icon]="['fas', 'filter']"></fa-icon>
               </button>
-              <button mat-button color="" class="annoq-action-button" (click)="getStats(column.name)"
-                matTooltip="Results Statistics for {{column.name}}" [matTooltipPosition]="'after'"
-                [matTooltipShowDelay]="1500">
+              <button mat-button color="" class="annoq-rounded-button  annoq-xs mr-4 annoq-half-button annoq-l"
+                (click)="getStats(column.name)" matTooltip="Results Statistics for {{column.name}}"
+                [matTooltipPosition]="'after'" [matTooltipShowDelay]="1500">
                 <fa-icon [icon]="['fas', 'chart-bar']"></fa-icon>
               </button>
             </div>

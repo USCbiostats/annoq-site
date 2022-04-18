@@ -43,18 +43,23 @@ export class SearchFormComponent implements OnInit, OnDestroy {
 
     this._unsubscribeAll = new Subject();
 
-    this.annotations = this.annotationService.annotations.filter((annotation: Annotation) => {
-      return annotation.leaf;
-    });
-
   }
 
   ngOnInit(): void {
+
+    setTimeout(() => {
+      this.annotations = this.annotationService.annotations.filter((annotation: Annotation) => {
+        return annotation.leaf;
+      });
+
+    }, 1000)
+
     this.snpService.onSnpsChanged
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((snpPage: SnpPage) => {
         if (snpPage) {
           this.setSnpPage(snpPage);
+
         } else {
           this.snpPage = null
         }
