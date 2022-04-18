@@ -18,6 +18,7 @@ export class SnpService {
     snpResultsSize = environment.snpResultsSize;
     onSnpsChanged: BehaviorSubject<SnpPage>;
     onSnpsAggsChanged: BehaviorSubject<SnpAggs>;
+    onDistinctAggsChanged: BehaviorSubject<SnpAggs>;
     onSnpChanged: BehaviorSubject<any>;
     onSearchCriteriaChanged: BehaviorSubject<any>;
     searchCriteria: SearchCriteria;
@@ -63,6 +64,7 @@ export class SnpService {
         private annotationService: AnnotationService) {
         this.onSnpsChanged = new BehaviorSubject(null);
         this.onSnpsAggsChanged = new BehaviorSubject(null);
+        this.onDistinctAggsChanged = new BehaviorSubject(null);
         this.onSnpsDownloadReady = new BehaviorSubject(null);
         this.onSnpChanged = new BehaviorSubject(null);
         this.onSearchCriteriaChanged = new BehaviorSubject(null);
@@ -123,8 +125,13 @@ export class SnpService {
                 query.query = {
                     'bool': {
                         'filter': [
-                            { 'term': { 'chr': annotationQuery.chrom } },
-                            { 'range': { 'pos': { 'gte': annotationQuery.start, 'lte': annotationQuery.end } } }]
+                            {
+                                'term': { 'chr': annotationQuery.chrom }
+                            },
+                            {
+                                'range': { 'pos': { 'gte': annotationQuery.start, 'lte': annotationQuery.end } }
+                            }
+                        ],
                     },
                 }
                 break;
@@ -293,6 +300,31 @@ export class SnpService {
         });
     }
 
+    queryDistinctAggs(query: any, field: string): any {
+        const self = this;
+        query.size = 0;
+        //console.log(query);
+        this.onDistinctAggsChanged.next(null);
+        return this.client.search({
+            body: {
+                query: query.query,
+                size: query.size,
+                aggs: query.aggs
+            }
+        }).then((body) => {
+            if (body.aggregations) {
+                const snpAggs = new SnpAggs();
+
+                snpAggs.field = field;
+                snpAggs.aggs = body.aggregations;
+                this.onDistinctAggsChanged.next(snpAggs);
+            } else {
+                this.onDistinctAggsChanged.next(null);
+            }
+        }, (err) => {
+        });
+    }
+
     addExistFilter(field) {
         const exist = find(this.searchCriteria.fields, ((f: Annotation) => {
             return field.name === f.name;
@@ -320,6 +352,29 @@ export class SnpService {
                         }
                     });
             });
+
+            const f = this.searchCriteria.fieldValues.map((filedValueArray) => {
+                return {
+                    'bool': {
+                        "should": filedValueArray.map((field) => {
+                            const annotation = this.annotationService.findDetailByName(field.name);
+                            let fieldSearchable = field.name;
+
+                            if (annotation.field_type === ColumnFieldType.TEXT) {
+                                fieldSearchable += '.keyword';
+                            }
+                            return {
+                                'term': { [fieldSearchable]: field.value }
+                            };
+                        })
+                    }
+                };
+            });
+
+            query.query.bool['must'] = f
+
+            console.log(query)
+
             this.getSnpsPage(query, 1);
             this.getSnpsCount(query)
         }
@@ -375,6 +430,40 @@ export class SnpService {
             query.aggs = aggs;
 
             this.querySnpAggs(query, field);
+        }
+    }
+
+    getDistinctValues(field: string) {
+        const annotation = this.annotationService.findDetailByName(field);
+        if (this.snpPage?.query?.query && annotation) {
+
+            const query = cloneDeep(this.snpPage.query)
+            const aggs = {}
+            let fieldSearchable = field
+
+            if (annotation.field_type === ColumnFieldType.TEXT) {
+                fieldSearchable += '.keyword';
+            }
+
+
+            aggs[field + '_distinct'] = {
+                "composite": {
+                    size: 65535,
+                    "sources": [
+                        {
+                            field: {
+                                "terms": {
+                                    "field": fieldSearchable
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+
+            query.aggs = aggs;
+
+            this.queryDistinctAggs(query, field);
         }
     }
 

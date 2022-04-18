@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Input, ElementRef, QueryList, ViewChildren } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatDrawer } from '@angular/material/sidenav';
@@ -35,6 +35,7 @@ export class SearchFormComponent implements OnInit, OnDestroy {
   private _unsubscribeAll: Subject<any>;
 
   constructor(
+    private fb: FormBuilder,
     public annoqMenuService: AnnoqMenuService,
     public snpService: SnpService,
     private annotationService: AnnotationService) {
@@ -47,12 +48,9 @@ export class SearchFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    setTimeout(() => {
-      this.annotations = this.annotationService.annotations.filter((annotation: Annotation) => {
-        return annotation.leaf;
-      });
-
-    }, 1000)
+    this.annotations = this.annotationService.annotations.filter((annotation: Annotation) => {
+      return annotation.leaf;
+    });
 
     this.snpService.onSnpsChanged
       .pipe(takeUntil(this._unsubscribeAll))
@@ -64,11 +62,16 @@ export class SearchFormComponent implements OnInit, OnDestroy {
           this.snpPage = null
         }
       });
+
+
   }
+
+
   ngOnDestroy(): void {
     this._unsubscribeAll.next();
     this._unsubscribeAll.complete();
   }
+
   setSnpPage(snpPage: SnpPage) {
     if (snpPage.source) {
       this.snpPage = snpPage;
@@ -89,14 +92,13 @@ export class SearchFormComponent implements OnInit, OnDestroy {
           rootUrl: detail.root_url
         }
       });
-
-
     }
   }
 
   createFilterForm() {
     return new FormGroup({
       fields: new FormControl(),
+
     });
   }
   clear() {
@@ -155,7 +157,9 @@ export class SearchFormComponent implements OnInit, OnDestroy {
   filterFields(value: string): any[] {
     const filterValue = value.toLowerCase();
 
-    return this.annotations.filter((field: Annotation) => field.name.toLowerCase().indexOf(filterValue) === 0);
+    const annotations = this.annotations.filter((field: Annotation) => field.name.toLowerCase().includes(filterValue)).slice(0, 20);
+    console.log(annotations)
+    return annotations;
   }
 
 
@@ -167,7 +171,7 @@ export class SearchFormComponent implements OnInit, OnDestroy {
         startWith(''),
         map(
           value => typeof value === 'string' ? value : value['name']),
-        map(field => field ? this.filterFields(field) : this.annotations.slice())
+        map(field => field ? this.filterFields(field) : this.annotations.slice(0, 20))
       );
 
   }
