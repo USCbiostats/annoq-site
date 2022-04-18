@@ -1,0 +1,42 @@
+@import "src/@annoq/scss/annoq";
+@import "src/@annoq.common/scss/annoq.common";
+
+:host {
+  padding-top: 8px;
+  width: 100%;
+  @include deep-width(400px);
+  @include mat-elevation(4);
+
+  background-color: #fbf9de;
+
+  .annoq-form-secion {
+    max-height: 500px;
+
+    .annoq-with-group {
+      border: #74725c solid 1px;
+      margin-bottom: 16px;
+    }
+  }
+
+  .annoq-edit-field {
+    @include deep-width(300px);
+  }
+
+  .annoq-article-info {
+    padding: 12px 5px;
+
+    .annoq-article-title {
+      font-size: 12px;
+      max-height: 60px;
+      overflow: hidden;
+    }
+
+    .annoq-article-author {
+      max-height: 60px;
+      overflow: hidden;
+    }
+
+    .annoq-article-date {
+    }
+  }
+}
