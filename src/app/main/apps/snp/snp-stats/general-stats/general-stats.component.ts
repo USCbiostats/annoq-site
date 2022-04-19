@@ -77,24 +77,10 @@ export class GeneralStatsComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((snpAggs: SnpAggs) => {
         if (snpAggs) {
-          console.log(snpAggs)
-
           this.snpAggs = snpAggs;
-          this.foo()
+          this.generateStats()
         }
       });
-
-    /*   this.stats.aspect = this._camStatsService.buildTermsStats(this.termsSummary)
-      this.stats.aspectPie = this._camStatsService.buildAspectPie([this.termsSummary.mf, this.termsSummary.bp, this.termsSummary.cc])
-      this.stats.termsBar = this._camStatsService.buildTermsDistribution([
-        this.termsSummary.mf,
-        this.termsSummary.bp,
-        this.termsSummary.cc,
-        this.termsSummary.other]
-      ) */
-
-    //this.getCustomColors(this.stats.termsBar)
-
 
   }
 
@@ -103,7 +89,7 @@ export class GeneralStatsComponent implements OnInit, OnDestroy {
     this._unsubscribeAll.complete();
   }
 
-  foo() {
+  generateStats() {
     const agg = this.snpAggs?.aggs[`${this.snpAggs.field}_frequency`];
     const missingAgg = this.snpAggs?.aggs[`${this.snpAggs.field}_missing`];
     const existsAgg = this.snpAggs?.aggs[`${this.snpAggs.field}_exists`];
@@ -114,7 +100,7 @@ export class GeneralStatsComponent implements OnInit, OnDestroy {
 
     if (existsAgg && missingAgg) {
       const buckets: FrequencyBucket[] = [{
-        key: 'Value Exist',
+        key: 'Values Exist',
         doc_count: existsAgg.doc_count,
       }, {
         key: 'Values Missing',
@@ -122,24 +108,6 @@ export class GeneralStatsComponent implements OnInit, OnDestroy {
       }]
       this.stats.existsPie = this.snpService.buildAnnotationBar(buckets)
     }
-  }
-
-  getCustomColors(nodes) {
-    /*  const customColors = nodes.map((node: ActivityNode) => {
-       let color = "#AAAAAA"
-       if (node.type = ActivityNodeType.GoMolecularEntity) {
-         color = getColor('blue', 500)
-       } else if (node.type = ActivityNodeType.GoMolecularFunction) {
-         color = getColor('brown', 500)
-       } else if (node.type = ActivityNodeType.GoBiologicalProcess) {
-         color = getColor('purple', 500)
-       } else if (node.type = ActivityNodeType.GoCellularComponent) {
-         color = getColor('green', 500)
-       }
-       return { name: node.term.label, value: color }
-     }); */
-
-    // return customColors;
   }
 
 }

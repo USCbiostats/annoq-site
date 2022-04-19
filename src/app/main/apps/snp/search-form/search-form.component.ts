@@ -30,7 +30,8 @@ export class SearchFormComponent implements OnInit, OnDestroy {
   searchFormData: any = [];
   separatorKeysCodes: number[] = [ENTER, COMMA];
   filteredFields: Observable<any[]>;
-  annotations: Annotation[] = []
+  annotations: any[] = []
+  columns: any[] = []
 
   private _unsubscribeAll: Subject<any>;
 
@@ -48,9 +49,6 @@ export class SearchFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.annotations = this.annotationService.annotations.filter((annotation: Annotation) => {
-      return annotation.leaf;
-    });
 
     this.snpService.onSnpsChanged
       .pipe(takeUntil(this._unsubscribeAll))
@@ -62,10 +60,7 @@ export class SearchFormComponent implements OnInit, OnDestroy {
           this.snpPage = null
         }
       });
-
-
   }
-
 
   ngOnDestroy(): void {
     this._unsubscribeAll.next();
@@ -75,7 +70,7 @@ export class SearchFormComponent implements OnInit, OnDestroy {
   setSnpPage(snpPage: SnpPage) {
     if (snpPage.source) {
       this.snpPage = snpPage;
-      snpPage.source.map((header) => {
+      this.annotations = snpPage.source.map((header) => {
         const detail = this.annotationService.findDetailByName(header);
         let count = ''
         if (snpPage.aggs) {
@@ -92,6 +87,7 @@ export class SearchFormComponent implements OnInit, OnDestroy {
           rootUrl: detail.root_url
         }
       });
+
     }
   }
 
@@ -158,7 +154,6 @@ export class SearchFormComponent implements OnInit, OnDestroy {
     const filterValue = value.toLowerCase();
 
     const annotations = this.annotations.filter((field: Annotation) => field.name.toLowerCase().includes(filterValue)).slice(0, 20);
-    console.log(annotations)
     return annotations;
   }
 

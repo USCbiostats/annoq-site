@@ -7,6 +7,7 @@ import { Subject, Observable } from 'rxjs';
 import { startWith, map, takeUntil } from 'rxjs/operators';
 import { Annotation } from '../../annotation/models/annotation';
 import { AnnotationService } from '../../annotation/services/annotation.service';
+import { SnpPage } from '../models/page';
 import { FrequencyBucket, SnpAggs } from '../models/snp-aggs';
 import { SnpService } from '../services/snp.service';
 
@@ -19,6 +20,8 @@ import { SnpService } from '../services/snp.service';
 export class AnnotationFiltersComponent implements OnInit, OnDestroy {
   filteredFields: Observable<any[]>;
   filteredFieldValues: Observable<any[]>;
+  snpPage: SnpPage
+  columns: any[] = []
 
   weeks = [];
   connectedTo = [];
@@ -67,6 +70,17 @@ export class AnnotationFiltersComponent implements OnInit, OnDestroy {
       return annotation.leaf;
     });
 
+    this.snpService.onSnpsChanged
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((snpPage: SnpPage) => {
+        if (snpPage) {
+          this.setSnpPage(snpPage);
+
+        } else {
+          this.snpPage = null
+        }
+      });
+
     this.snpService.onDistinctAggsChanged
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((snpAggs: SnpAggs) => {
@@ -90,20 +104,26 @@ export class AnnotationFiltersComponent implements OnInit, OnDestroy {
 
     this.fieldsFilterForm.valueChanges.subscribe(value => {
       if (this.fieldsFilterForm.valid) {
-        console.log('valid Form', value)
         this.addFieldValuesCriteria(value)
-      } else {
-        console.log('not valid:', value)
       }
-
     });
-
   }
 
+  setSnpPage(snpPage: SnpPage) {
+    if (snpPage.source) {
+      this.snpPage = snpPage;
+      this.columns = snpPage.source.map((header) => {
+        const detail = this.annotationService.findDetailByName(header);
+        return detail;
+      });
+
+      this.annotations = this.columns;
+    }
+  }
 
   addFieldValuesCriteria(value) {
-
     if (value.fieldsFormArray.length > 0 && value.fieldsFormArray[0].fieldFiltersArray.length > 0) {
+      let isReady = true;
       const query = value.fieldsFormArray.map((fieldFilters) => {
         return fieldFilters.fieldFiltersArray.map((fieldValues) => {
           return {
@@ -115,11 +135,8 @@ export class AnnotationFiltersComponent implements OnInit, OnDestroy {
 
       this.snpService.searchCriteria.fieldValues = query;
 
-      console.log(this.snpService.searchCriteria)
-
       this.snpService.updateSearch();
     }
-
   }
 
   clearValues() {

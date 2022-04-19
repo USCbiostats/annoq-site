@@ -13,7 +13,7 @@
     <div class="annoq-table-form annoq-form-section" fxLayout="column" fxLayoutAlign="start stretch">
       <div class="annoq-section-header" fxLayout="row" fxLayoutAlign="start center">
         <div class="annoq-section-heading">
-          Values
+          Annotations With Values
         </div>
         <span fxFlex></span>
       </div>
@@ -45,6 +45,9 @@
                       {{ item.label }}
                     </div>
                     <span fxFlex></span>
+                    <div class="annoq-term-id">
+                      ({{ item.count }})
+                    </div>
                   </div>
                 </mat-option>
               </mat-autocomplete>
@@ -54,7 +57,7 @@
 
       </div>
     </div>
-    <div class="annoq-table-form annoq-form-section" fxLayout="column" fxLayoutAlign="start stretch">
+    <!--    <div class="annoq-table-form annoq-form-section" fxLayout="column" fxLayoutAlign="start stretch">
       <div class="annoq-section-header" fxLayout="row" fxLayoutAlign="start center">
         <div class="annoq-section-heading">
           Filter By Value
@@ -67,9 +70,9 @@
           </annoq-annotation-filters>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
-  <div fxLayout="row" fxLayoutAlign="start center" class="annoq-drawer-footer annoq-submit-row">
+  <!--   <div fxLayout="row" fxLayoutAlign="start center" class="annoq-drawer-footer annoq-submit-row">
     <button (click)="clear()" type="button" mat-raised-button>Clear</button>
-  </div>
+  </div> -->
 </form>

@@ -353,33 +353,30 @@ export class SnpService {
                     });
             });
 
-            const f = this.searchCriteria.fieldValues.map((filedValueArray) => {
-                return {
-                    'bool': {
-                        "should": filedValueArray.map((field) => {
-                            const annotation = this.annotationService.findDetailByName(field.name);
-                            let fieldSearchable = field.name;
-
-                            if (annotation.field_type === ColumnFieldType.TEXT) {
-                                fieldSearchable += '.keyword';
+            //for advanced search
+            /*         const filters = this.searchCriteria.fieldValues.map((filedValueArray) => {
+                        return {
+                            'bool': {
+                                "should": filedValueArray.map((field) => {
+                                    const annotation = this.annotationService.findDetailByName(field.name);
+                                    let fieldSearchable = field.name;
+        
+                                    if (annotation.field_type === ColumnFieldType.TEXT) {
+                                        fieldSearchable += '.keyword';
+                                    }
+                                    return {
+                                        'term': { [fieldSearchable]: field.value }
+                                    };
+                                })
                             }
-                            return {
-                                'term': { [fieldSearchable]: field.value }
-                            };
-                        })
-                    }
-                };
-            });
-
-            query.query.bool['must'] = f
-
-            console.log(query)
+                        };
+                    });
+        
+                    query.query.bool['must'] = filters */
 
             this.getSnpsPage(query, 1);
             this.getSnpsCount(query)
         }
-
-
     }
 
     getStats(field: string) {
@@ -424,7 +421,8 @@ export class SnpService {
                 }
             };
             aggs[`${field}_frequency`] = {
-                "terms": { "field": fieldSearchable },
+
+                "terms": { "field": fieldSearchable, "size": 20, },
             };
 
             query.aggs = aggs;
