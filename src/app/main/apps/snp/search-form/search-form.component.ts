@@ -159,8 +159,6 @@ export class SearchFormComponent implements OnInit, OnDestroy {
 
 
   private _onValueChanges() {
-    const self = this;
-
     this.filteredFields = this.filterForm.controls.fields.valueChanges
       .pipe(
         startWith(''),

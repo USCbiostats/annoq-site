@@ -104,14 +104,11 @@ export class SnpService {
                     },
                 }
             };
-            if (field === 'ANNOVAR_ensembl_Gene_ID') {
-                aggs[`${field}_bar`] = {
-                    "terms": { "field": field + ".keyword" },
-                };
-            }
+
             aggs[`pos_min`] = {
                 "min": { "field": 'pos' },
             };
+
             aggs[`pos_max`] = {
                 "max": { "field": 'pos' },
             };
@@ -126,10 +123,17 @@ export class SnpService {
                     'bool': {
                         'filter': [
                             {
-                                'term': { 'chr': annotationQuery.chrom }
+                                'term': {
+                                    'chr': annotationQuery.chrom,
+                                }
                             },
                             {
-                                'range': { 'pos': { 'gte': annotationQuery.start, 'lte': annotationQuery.end } }
+                                'range': {
+                                    'pos': {
+                                        'gte': annotationQuery.start,
+                                        'lte': annotationQuery.end,
+                                    }
+                                }
                             }
                         ],
                     },
@@ -142,8 +146,18 @@ export class SnpService {
                         query.query = {
                             'bool': {
                                 'filter': [
-                                    { 'term': { 'chr': res.gene_info.contig } },
-                                    { 'range': { 'pos': { 'gte': res.gene_info.start, 'lte': res.gene_info.end } } }]
+                                    {
+                                        'term': {
+                                            'chr': res.gene_info.contig
+                                        }
+                                    },
+                                    {
+                                        'range': {
+                                            'pos': {
+                                                'gte': res.gene_info.start, 'lte': res.gene_info.end
+                                            }
+                                        }
+                                    }]
                             }
                         };
                         self.setOriginalQuery(query)
@@ -207,8 +221,6 @@ export class SnpService {
                 break;
 
         }
-        //console.log(query);
-
 
         self.setOriginalQuery(query)
         self.getSnpsPage(query, page);
@@ -276,6 +288,7 @@ export class SnpService {
                 this.snpPage.total = res.count;
             }
         }, (err) => {
+            console.warn(err);
         });
     }
 
@@ -297,6 +310,7 @@ export class SnpService {
                 this.onSnpsAggsChanged.next(null);
             }
         }, (err) => {
+            console.warn(err);
         });
     }
 
@@ -322,6 +336,7 @@ export class SnpService {
                 this.onDistinctAggsChanged.next(null);
             }
         }, (err) => {
+            console.warn(err);
         });
     }
 
@@ -420,6 +435,7 @@ export class SnpService {
                     },
                 }
             };
+
             aggs[`${field}_frequency`] = {
 
                 "terms": { "field": fieldSearchable, "size": 20, },

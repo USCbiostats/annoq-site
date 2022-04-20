@@ -51,7 +51,6 @@ export class SnpDetailComponent implements OnInit, OnDestroy {
     this._unsubscribeAll.complete();
   }
 
-
   mapFieldValues(value, rootUrl) {
 
     let list = []
@@ -80,21 +79,10 @@ export class SnpDetailComponent implements OnInit, OnDestroy {
     })
 
     return result;
-
   }
 
   close() {
     this.panelDrawer.close()
   }
-
-
 }
 
-/* ANNOVAR_ensembl_Closest_gene(intergenic_only)
-ANNOVAR_ensembl_Gene_ID
-VEP_ensembl_Gene_ID
-SnpEff_ensembl_Gene_ID
-ANNOVAR_refseq_Transcript_ID
-VEP_refseq_Transcript_ID
-SnpEff_refseq_Transcript_ID
-rs_dbSNP151 */

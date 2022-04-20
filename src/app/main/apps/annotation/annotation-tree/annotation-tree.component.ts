@@ -1,8 +1,6 @@
-import { Component, OnInit, Input, ViewChild, ViewChildren, ElementRef } from '@angular/core';
-import { SelectionModel } from '@angular/cdk/collections';
-import { FlatTreeControl } from '@angular/cdk/tree';
-import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeNode } from '@angular/material/tree';
-import { Subject, Observable, of as observableOf } from 'rxjs';
+import { Component, OnInit, ViewChildren, ElementRef } from '@angular/core';
+import { MatTreeFlatDataSource, MatTreeNode } from '@angular/material/tree';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AnnotationNode, AnnotationFlatNode } from './../models/annotation'
 import { AnnoqMenuService } from '@annoq.common/services/annoq-menu.service';
@@ -15,7 +13,6 @@ import { AnnotationDialogService } from '../services/dialog.service';
   styleUrls: ['./annotation-tree.component.scss'],
 })
 export class AnnotationTreeComponent implements OnInit {
-  @ViewChild('tree', { static: true }) tree;
   @ViewChildren(MatTreeNode, { read: ElementRef }) treeNodes: ElementRef[];
 
   dataSource: MatTreeFlatDataSource<AnnotationNode, AnnotationFlatNode>;
@@ -27,10 +24,7 @@ export class AnnotationTreeComponent implements OnInit {
     public annoqMenuService: AnnoqMenuService,
     private annotationService: AnnotationService,
   ) {
-
-
     this._unsubscribeAll = new Subject();
-
   }
 
   ngOnInit() {
@@ -38,17 +32,14 @@ export class AnnotationTreeComponent implements OnInit {
     this.annotationService.onAnnotationTreeChanged
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe(annotationTree => {
+
         if (!annotationTree) return;
 
         this.dataSource = this.annotationService.dataSource
-
-        // this.treeControl.expand(this.treeControl.dataNodes[0]) 
         this.annotationService.treeControl.expand(this.annotationService.treeControl.dataNodes[0])
         this.annotationService.setAllVisible(this.annotationService.treeControl.dataNodes);
       });
-
   }
-
 
   selectAnnotation(annotation) {
     this.annotationDialogService.openAnnotationDetailDialog(annotation);
