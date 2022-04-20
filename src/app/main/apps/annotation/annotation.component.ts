@@ -1,14 +1,13 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AnnoqMenuService } from '@annoq.common/services/annoq-menu.service';
-import { Annotation, AnnotationNode, AnnotationFlatNode } from './models/annotation'
-import { SelectionModel } from '@angular/cdk/collections';
+import { AnnotationFlatNode } from './models/annotation'
 import { SnpService } from './../snp/services/snp.service';
-
-import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { AnnotationService } from './services/annotation.service';
 import { SnpDialogService } from '../snp/services/dialog.service';
 import { environment } from 'environments/environment';
 import { SampleVCFFile } from '@annoq.common/data/sample-vcf';
+import { RightPanel } from '@annoq.common/models/menu-panels';
 
 @Component({
   selector: 'annoq-annotation',
@@ -33,14 +32,11 @@ export class AnnotationComponent implements OnInit {
   constructor(public annoqMenuService: AnnoqMenuService,
     public annotationService: AnnotationService,
     private snpDialogService: SnpDialogService,
-    private cd: ChangeDetectorRef,
     public snpService: SnpService) {
     this.annotationForm = this.createAnnotationForm();
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
 
   createAnnotationForm() {
     return new FormGroup({
@@ -71,16 +67,15 @@ export class AnnotationComponent implements OnInit {
     const query = this.annotationForm.value;
     const annotations = this.annotationService.checklistSelection.selected as any[];
     const source = annotations.filter(item => item.leaf).map((item: AnnotationFlatNode) => {
-      return item.name; //item.leaf ? item.name : false;
+      return item.name;
     }, []);
 
     query.source = source;
 
-    //console.log(query);
-
     if (source.length > 0) {
       this.snpService.getSnps(query, 1);
       this.annoqMenuService.closeRightDrawer();
+      this.annoqMenuService.selectRightPanel(null);
     } else {
       this.snpDialogService.openMessageToast('Select at least one annotation from the tree', 'OK');
     }

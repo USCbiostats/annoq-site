@@ -16,6 +16,7 @@ import { AnnoqSharedModule } from '@annoq/shared.module';
 import { AnnoqConfirmDialogModule } from '@annoq/components/confirm-dialog/confirm-dialog.module';
 import { PositionStatsComponent } from './snp/snp-stats/position-stats/position-stats.component';
 import { SearchFormComponent } from './snp/search-form/search-form.component';
+import { AnnotationFiltersComponent } from './snp/annotation-filters/annotation-filters.component';
 
 const routes = [];
 
@@ -31,7 +32,8 @@ const routes = [];
     SnpStatsComponent,
     GeneralStatsComponent,
     PositionStatsComponent,
-    SearchFormComponent
+    SearchFormComponent,
+    AnnotationFiltersComponent
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -51,7 +53,8 @@ const routes = [];
     SnpStatsComponent,
     GeneralStatsComponent,
     PositionStatsComponent,
-    SearchFormComponent
+    SearchFormComponent,
+    AnnotationFiltersComponent
   ],
   entryComponents: [
     DownloadReadyComponent,

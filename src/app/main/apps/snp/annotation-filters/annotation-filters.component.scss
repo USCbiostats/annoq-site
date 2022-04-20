@@ -1,0 +1,32 @@
+@import "src/@annoq/scss/annoq";
+@import "src/@annoq.common/scss/annoq.common";
+
+:host {
+  padding-top: 8px;
+  width: 100%;
+
+  .annoq-form-secion {
+    .annoq-with-group {
+      border: #74725c solid 1px;
+      margin-bottom: 16px;
+    }
+  }
+
+  .annoq-article-info {
+    padding: 12px 5px;
+
+    .annoq-article-title {
+      font-size: 12px;
+      max-height: 60px;
+      overflow: hidden;
+    }
+
+    .annoq-article-author {
+      max-height: 60px;
+      overflow: hidden;
+    }
+
+    .annoq-article-date {
+    }
+  }
+}

@@ -71,6 +71,7 @@ export class SnpSummaryComponent implements OnInit, OnDestroy {
         }
 
         const label = detail.label ? detail.label : header;
+
         return {
           name: header,
           count: count,

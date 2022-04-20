@@ -1,9 +1,7 @@
 
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
-
-import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { environment } from 'environments/environment';
 
 @Component({

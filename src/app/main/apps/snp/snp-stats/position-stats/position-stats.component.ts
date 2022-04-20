@@ -47,8 +47,6 @@ export class PositionStatsComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((snpAggs: SnpAggs) => {
         if (snpAggs) {
-          console.log(snpAggs)
-
           this.snpAggs = snpAggs;
           this.drawStats()
         }

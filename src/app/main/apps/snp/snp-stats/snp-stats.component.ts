@@ -20,6 +20,7 @@ enum StatsType {
 })
 export class SnpStatsComponent implements OnInit, OnDestroy {
   StatsType = StatsType;
+  snpPage: SnpPage;
   snpAggs: SnpAggs;
   columns: any[] = [];
   annotations: Annotation[] = [];
@@ -54,9 +55,6 @@ export class SnpStatsComponent implements OnInit, OnDestroy {
     private snpService: SnpService,
     private annotationService: AnnotationService) {
     this._unsubscribeAll = new Subject();
-    this.annotations = this.annotationService.annotations.filter((annotation: Annotation) => {
-      return annotation.leaf;
-    });
   }
 
 
@@ -66,7 +64,7 @@ export class SnpStatsComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((snpPage: SnpPage) => {
         if (snpPage) {
-          // this.snpService.getStats('SnpEff_refseq_Transcript_ID')
+          this.setSnpPage(snpPage);
         }
       });
 
@@ -90,16 +88,22 @@ export class SnpStatsComponent implements OnInit, OnDestroy {
     this.selectedStatsType = name;
   }
 
+  setSnpPage(snpPage: SnpPage) {
+    if (snpPage.source) {
+      this.snpPage = snpPage;
+      this.annotations = snpPage.source.map((header) => {
+        const detail = this.annotationService.findDetailByName(header);
+        return detail;
+      });
+    }
+  }
+
 
   addExistFilter(field) {
     this.snpService.addExistFilter(field);
   }
 
   selectField(field) {
-    console.log(field);
-    if (field.value === 'default') {
-      this.snpService.getStats('ANNOVAR_ensembl_Effect')
-    }
     this.snpService.getStats(field.value)
   }
 

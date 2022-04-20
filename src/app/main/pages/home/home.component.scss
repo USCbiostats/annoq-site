@@ -118,6 +118,7 @@
     }
 
     .annoq-card {
+      background-color: transparent;
       @include deep-width(100%);
       @include deep-height(100%);
 

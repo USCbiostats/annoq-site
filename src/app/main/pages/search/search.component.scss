@@ -13,8 +13,11 @@
     }
   }
 
-  annoq-snp-detail,
   annoq-search-form {
+    @include deep-width(600px !important);
+  }
+
+  annoq-snp-detail {
     @include deep-width(500px !important);
   }
   annoq-snp-summary,

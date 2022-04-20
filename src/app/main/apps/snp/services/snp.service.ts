@@ -18,6 +18,7 @@ export class SnpService {
     snpResultsSize = environment.snpResultsSize;
     onSnpsChanged: BehaviorSubject<SnpPage>;
     onSnpsAggsChanged: BehaviorSubject<SnpAggs>;
+    onDistinctAggsChanged: BehaviorSubject<SnpAggs>;
     onSnpChanged: BehaviorSubject<any>;
     onSearchCriteriaChanged: BehaviorSubject<any>;
     searchCriteria: SearchCriteria;
@@ -63,6 +64,7 @@ export class SnpService {
         private annotationService: AnnotationService) {
         this.onSnpsChanged = new BehaviorSubject(null);
         this.onSnpsAggsChanged = new BehaviorSubject(null);
+        this.onDistinctAggsChanged = new BehaviorSubject(null);
         this.onSnpsDownloadReady = new BehaviorSubject(null);
         this.onSnpChanged = new BehaviorSubject(null);
         this.onSearchCriteriaChanged = new BehaviorSubject(null);
@@ -102,14 +104,11 @@ export class SnpService {
                     },
                 }
             };
-            if (field === 'ANNOVAR_ensembl_Gene_ID') {
-                aggs[`${field}_bar`] = {
-                    "terms": { "field": field + ".keyword" },
-                };
-            }
+
             aggs[`pos_min`] = {
                 "min": { "field": 'pos' },
             };
+
             aggs[`pos_max`] = {
                 "max": { "field": 'pos' },
             };
@@ -123,8 +122,20 @@ export class SnpService {
                 query.query = {
                     'bool': {
                         'filter': [
-                            { 'term': { 'chr': annotationQuery.chrom } },
-                            { 'range': { 'pos': { 'gte': annotationQuery.start, 'lte': annotationQuery.end } } }]
+                            {
+                                'term': {
+                                    'chr': annotationQuery.chrom,
+                                }
+                            },
+                            {
+                                'range': {
+                                    'pos': {
+                                        'gte': annotationQuery.start,
+                                        'lte': annotationQuery.end,
+                                    }
+                                }
+                            }
+                        ],
                     },
                 }
                 break;
@@ -135,8 +146,18 @@ export class SnpService {
                         query.query = {
                             'bool': {
                                 'filter': [
-                                    { 'term': { 'chr': res.gene_info.contig } },
-                                    { 'range': { 'pos': { 'gte': res.gene_info.start, 'lte': res.gene_info.end } } }]
+                                    {
+                                        'term': {
+                                            'chr': res.gene_info.contig
+                                        }
+                                    },
+                                    {
+                                        'range': {
+                                            'pos': {
+                                                'gte': res.gene_info.start, 'lte': res.gene_info.end
+                                            }
+                                        }
+                                    }]
                             }
                         };
                         self.setOriginalQuery(query)
@@ -174,7 +195,7 @@ export class SnpService {
                                 query.ids = ids;
                                 // console.log(query);
                                 self.getSnpsCount(query);
-                                this.httpClient.post(`${environment.annotationApi}/annoq-test-v2/ids`, query)
+                                this.httpClient.post(`${environment.annotationApi}/annoq-test/ids`, query)
                                     .subscribe((response: any) => {
                                         const esData = response.hits.hits as [];
                                         const snpData = esData;
@@ -200,8 +221,6 @@ export class SnpService {
                 break;
 
         }
-        //console.log(query);
-
 
         self.setOriginalQuery(query)
         self.getSnpsPage(query, page);
@@ -269,6 +288,7 @@ export class SnpService {
                 this.snpPage.total = res.count;
             }
         }, (err) => {
+            console.warn(err);
         });
     }
 
@@ -290,6 +310,33 @@ export class SnpService {
                 this.onSnpsAggsChanged.next(null);
             }
         }, (err) => {
+            console.warn(err);
+        });
+    }
+
+    queryDistinctAggs(query: any, field: string): any {
+        const self = this;
+        query.size = 0;
+        //console.log(query);
+        this.onDistinctAggsChanged.next(null);
+        return this.client.search({
+            body: {
+                query: query.query,
+                size: query.size,
+                aggs: query.aggs
+            }
+        }).then((body) => {
+            if (body.aggregations) {
+                const snpAggs = new SnpAggs();
+
+                snpAggs.field = field;
+                snpAggs.aggs = body.aggregations;
+                this.onDistinctAggsChanged.next(snpAggs);
+            } else {
+                this.onDistinctAggsChanged.next(null);
+            }
+        }, (err) => {
+            console.warn(err);
         });
     }
 
@@ -320,11 +367,31 @@ export class SnpService {
                         }
                     });
             });
+
+            //for advanced search
+            /*         const filters = this.searchCriteria.fieldValues.map((filedValueArray) => {
+                        return {
+                            'bool': {
+                                "should": filedValueArray.map((field) => {
+                                    const annotation = this.annotationService.findDetailByName(field.name);
+                                    let fieldSearchable = field.name;
+        
+                                    if (annotation.field_type === ColumnFieldType.TEXT) {
+                                        fieldSearchable += '.keyword';
+                                    }
+                                    return {
+                                        'term': { [fieldSearchable]: field.value }
+                                    };
+                                })
+                            }
+                        };
+                    });
+        
+                    query.query.bool['must'] = filters */
+
             this.getSnpsPage(query, 1);
             this.getSnpsCount(query)
         }
-
-
     }
 
     getStats(field: string) {
@@ -368,13 +435,49 @@ export class SnpService {
                     },
                 }
             };
+
             aggs[`${field}_frequency`] = {
-                "terms": { "field": fieldSearchable },
+
+                "terms": { "field": fieldSearchable, "size": 20, },
             };
 
             query.aggs = aggs;
 
             this.querySnpAggs(query, field);
+        }
+    }
+
+    getDistinctValues(field: string) {
+        const annotation = this.annotationService.findDetailByName(field);
+        if (this.snpPage?.query?.query && annotation) {
+
+            const query = cloneDeep(this.snpPage.query)
+            const aggs = {}
+            let fieldSearchable = field
+
+            if (annotation.field_type === ColumnFieldType.TEXT) {
+                fieldSearchable += '.keyword';
+            }
+
+
+            aggs[field + '_distinct'] = {
+                "composite": {
+                    size: 65535,
+                    "sources": [
+                        {
+                            field: {
+                                "terms": {
+                                    "field": fieldSearchable
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+
+            query.aggs = aggs;
+
+            this.queryDistinctAggs(query, field);
         }
     }
 
