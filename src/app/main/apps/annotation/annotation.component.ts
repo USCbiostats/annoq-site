@@ -75,7 +75,7 @@ export class AnnotationComponent implements OnInit {
     if (source.length > 0) {
       this.snpService.getSnps(query, 1);
       this.annoqMenuService.closeRightDrawer();
-      this.annoqMenuService.selectRightPanel(RightPanel.snpSummary);
+      this.annoqMenuService.selectRightPanel(null);
     } else {
       this.snpDialogService.openMessageToast('Select at least one annotation from the tree', 'OK');
     }

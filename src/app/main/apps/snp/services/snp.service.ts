@@ -195,7 +195,7 @@ export class SnpService {
                                 query.ids = ids;
                                 // console.log(query);
                                 self.getSnpsCount(query);
-                                this.httpClient.post(`${environment.annotationApi}/annoq-test-v2/ids`, query)
+                                this.httpClient.post(`${environment.annotationApi}/annoq-test/ids`, query)
                                     .subscribe((response: any) => {
                                         const esData = response.hits.hits as [];
                                         const snpData = esData;
