@@ -6,7 +6,6 @@ import { AnnoqSplashScreenService } from './services/splash-screen.service';
 import { AnnoqTranslationLoaderService } from './services/translation-loader.service';
 
 @NgModule({
-    entryComponents: [],
     providers: [
         AnnoqConfigService,
         AnnoqMatchMediaService,
