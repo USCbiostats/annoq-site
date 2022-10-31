@@ -27,7 +27,7 @@ import { AnnoqConfigService } from '@annoq/services/config.service';
             });
     }
     ngOnDestroy(): void {
-        this._unsubscribeAll.next();
+        this._unsubscribeAll.next(null);
         this._unsubscribeAll.complete();
     }
 }
