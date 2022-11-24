@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @import "src/@annoq/scss/annoq";
 @import "src/@annoq.common/scss/annoq.common";
 
@@ -18,7 +19,7 @@ $accent: map-get($theme, accent);
       padding: 0 5px;
       margin-bottom: 20px;
       @include deep-height(40px);
-      @include mat-elevation(2);
+      @include mat.elevation(2);
       z-index: 1000;
       color: #fff;
     }

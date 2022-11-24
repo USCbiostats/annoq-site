@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @import "src/@annoq/scss/annoq";
 @import "src/@annoq.common/scss/annoq.common";
 
@@ -96,7 +97,7 @@
     button {
       color: #fff;
       background-color: map-get($primary, default);
-      @include mat-elevation(8);
+      @include mat.elevation(8);
       font-size: 14px;
 
       &.annoq-l {
@@ -113,7 +114,7 @@
 
     .annoq-query-buttons {
       button {
-        @include mat-elevation(2);
+        @include mat.elevation(2);
       }
     }
 
@@ -124,7 +125,7 @@
 
       overflow: hidden;
 
-      @include mat-elevation(6);
+      @include mat.elevation(6);
 
       .annoq-image {
         height: 120px;
@@ -185,7 +186,7 @@
       .annoq-card-footer {
         .annoq-action-button {
           margin: 0 6px;
-          @include mat-elevation(2);
+          @include mat.elevation(2);
         }
       }
     }
@@ -194,7 +195,7 @@
       @include deep-height(150px);
 
       .annoq-card {
-        @include mat-elevation(0);
+        @include mat.elevation(0);
 
         .annoq-card-title {
           padding: 8px 12px;
@@ -217,7 +218,7 @@
       width: 100%;
 
       .annoq-card {
-        @include mat-elevation(6);
+        @include mat.elevation(6);
         padding: 8px 12px;
 
         .annoq-icon {
@@ -250,7 +251,7 @@
       @include deep-height(60px);
 
       .annoq-card {
-        @include mat-elevation(0);
+        @include mat.elevation(0);
 
         .annoq-image {
           font-size: 40px;
@@ -383,7 +384,7 @@
   .annoq-compatibility-table {
     width: 100%;
     text-align: left;
-    @include mat-elevation(6);
+    @include mat.elevation(6);
 
     .mat-header-cell {
       padding: 0 10px;

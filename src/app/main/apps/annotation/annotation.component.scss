@@ -1,10 +1,11 @@
+@use '@angular/material' as mat;
 @import "src/@annoq/scss/annoq";
 @import "src/@annoq.common/scss/annoq.common";
 
 :host {
   width: 100%; // display: block;
   background-color: white;
-  @include mat-elevation(4);
+  @include mat.elevation(4);
 
   .annoq-header {
     @include deep-height(35px);

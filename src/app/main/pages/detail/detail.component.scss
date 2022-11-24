@@ -4,10 +4,6 @@
 :host {
   // width: 100%; //white-space:nowrap;
 
-  .background-highlight {
-    //background-color: #DDD;
-  }
-
   .annoq-sidenav {
     position: relative;
     @include deep-width(100%);
@@ -134,7 +130,7 @@
 
   .annoq-section {
     padding: 40px 10px;
-    min-height: calc(100%-210px);
+    min-height: calc(100% - 210px);
 
     .annoq-heading {
       margin: 0 auto;

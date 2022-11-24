@@ -21,48 +21,42 @@ import { AnnotationFiltersComponent } from './snp/annotation-filters/annotation-
 const routes = [];
 
 @NgModule({
-  declarations: [
-    SnpTableComponent,
-    AnnotationComponent,
-    AnnotationTreeComponent,
-    DownloadReadyComponent,
-    SnpDetailComponent,
-    AnnotationDetailDialogComponent,
-    SnpSummaryComponent,
-    SnpStatsComponent,
-    GeneralStatsComponent,
-    PositionStatsComponent,
-    SearchFormComponent,
-    AnnotationFiltersComponent
-  ],
-  imports: [
-    RouterModule.forChild(routes),
-    TranslateModule,
-    TreeModule,
-    NgxChartsModule,
-    AnnoqSharedModule,
-    AnnoqConfirmDialogModule,
-  ],
-  exports: [
-    SnpTableComponent,
-    SnpDetailComponent,
-    AnnotationComponent,
-    AnnotationTreeComponent,
-    AnnotationDetailDialogComponent,
-    SnpSummaryComponent,
-    SnpStatsComponent,
-    GeneralStatsComponent,
-    PositionStatsComponent,
-    SearchFormComponent,
-    AnnotationFiltersComponent
-  ],
-  entryComponents: [
-    DownloadReadyComponent,
-    AnnotationDetailDialogComponent
-  ],
-  providers: [
-  ]
-
+    declarations: [
+        SnpTableComponent,
+        AnnotationComponent,
+        AnnotationTreeComponent,
+        DownloadReadyComponent,
+        SnpDetailComponent,
+        AnnotationDetailDialogComponent,
+        SnpSummaryComponent,
+        SnpStatsComponent,
+        GeneralStatsComponent,
+        PositionStatsComponent,
+        SearchFormComponent,
+        AnnotationFiltersComponent
+    ],
+    imports: [
+        RouterModule.forChild(routes),
+        TranslateModule,
+        TreeModule,
+        NgxChartsModule,
+        AnnoqSharedModule,
+        AnnoqConfirmDialogModule,
+    ],
+    exports: [
+        SnpTableComponent,
+        SnpDetailComponent,
+        AnnotationComponent,
+        AnnotationTreeComponent,
+        AnnotationDetailDialogComponent,
+        SnpSummaryComponent,
+        SnpStatsComponent,
+        GeneralStatsComponent,
+        PositionStatsComponent,
+        SearchFormComponent,
+        AnnotationFiltersComponent
+    ],
+    providers: []
 })
 
 export class AppsModule {

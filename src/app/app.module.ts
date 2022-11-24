@@ -4,9 +4,6 @@ import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { FakeDbService } from '@annoq.common/fakedb/services/fake-db.service';
 import { AnnoqModule } from '@annoq/annoq.module';
 import { AnnoqProgressBarModule } from '@annoq/components';
 
@@ -17,8 +14,6 @@ import { LayoutModule } from 'app/layout/layout.module';
 
 import { PagesModule } from './main/pages/pages.module';
 import { AppsModule } from './main/apps/apps.module';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
 
 import {
     faPaw,
@@ -50,6 +45,7 @@ import {
 import { faCheckCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons';
 import { faGithub, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 const appRoutes: Routes = [
     {
@@ -57,36 +53,6 @@ const appRoutes: Routes = [
         redirectTo: ''
     }
 ];
-
-const cookieConfig: NgcCookieConsentConfig = {
-    "cookie": {
-        "domain": "http://annoq.org"
-    },
-    "position": "bottom-right",
-    "theme": "classic",
-    "palette": {
-        "popup": {
-            "background": "#ffffff",
-            "border": "#000000",
-            "text": "#000000",
-            // "link": "#ffffff"
-        },
-        "button": {
-            "background": "#f1d600",
-            "text": "#000000",
-            "border": "transparent"
-        }
-    },
-    "type": "info",
-    "content": {
-        "message": "AnnoQ site uses cookies to ensure you get the best experience on our website.",
-        "dismiss": "Got it!",
-        "deny": "Refuse cookies",
-        "link": "Learn more",
-        "href": "https://cookiesandyou.com",
-        "policy": "Cookie Policy"
-    }
-};
 
 @NgModule({
     declarations: [
@@ -99,14 +65,9 @@ const cookieConfig: NgcCookieConsentConfig = {
         HttpClientJsonpModule,
         RouterModule.forRoot(appRoutes),
         TranslateModule.forRoot(),
-        NgcCookieConsentModule.forRoot(cookieConfig),
 
         // Annoq Main and Shared modules
         AnnoqModule.forRoot(annoqConfig),
-        InMemoryWebApiModule.forRoot(FakeDbService, {
-            delay: 0,
-            passThruUnknownUrl: true
-        }),
         AnnoqSharedModule,
         LayoutModule,
         RouterModule,

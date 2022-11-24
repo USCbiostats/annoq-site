@@ -18,10 +18,7 @@ import { BrowserModule } from '@angular/platform-browser';
         MatButtonModule,
         MatIconModule,
         FlexLayoutModule
-    ],
-    entryComponents: [
-        AnnoqConfirmDialogComponent
-    ],
+    ]
 })
 
 export class AnnoqConfirmDialogModule {
