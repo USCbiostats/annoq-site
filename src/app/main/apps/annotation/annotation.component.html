@@ -64,7 +64,8 @@
               <mat-icon class="s-16 mr-4">cloud_upload</mat-icon> Populate from a FIle
             </button>
           </label>
-          <input type="file" id="annoq-upload-snp-browse" formControlName="browse" (change)="onFileChange($event)"
+          <input #chromosomeFileInput type="file" id="annoq-upload-snp-browse" formControlName="browse"
+            (click)="$event.target.value = ''; chromosomeFileInput.value = null" (change)="onFileChange($event)"
             class="pthr-file-upload" />
           <button mat-stroked-button class="annoq-rounded-button annoq-xs">Clear</button>
         </div>
@@ -101,7 +102,8 @@
         Upload Config
       </button>
     </label>
-    <input #configFileInput type="file" id="annoq-upload-config" (click)="configFileInput.value = null" value=""
+    <input #configFileInput type="file" id="annoq-upload-config"
+      (click)="$event.target.value = '';configFileInput.value = null" value=""
       (change)="annotationService.onConfigFileChange($event)" class="annoq-file-upload" />
     <button (click)='annotationService.downloadConfig()' type="button" mat-raised-button color=""
       class="annoq-sm mr-8">Export
