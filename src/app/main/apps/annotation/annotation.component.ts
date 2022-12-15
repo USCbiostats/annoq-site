@@ -8,6 +8,7 @@ import { SnpDialogService } from '../snp/services/dialog.service';
 import { environment } from 'environments/environment';
 import { SampleVCFFile } from '@annoq.common/data/sample-vcf';
 import { RightPanel } from '@annoq.common/models/menu-panels';
+import { SampleRSIDFile } from '@annoq.common/data/sample-rsid-list';
 
 @Component({
   selector: 'annoq-annotation',
@@ -44,6 +45,10 @@ export class AnnotationComponent implements OnInit {
       chromList: new FormControl(),
       geneProduct: new FormControl('ZMYND11'),
       rsID: new FormControl('rs559687999'),
+      rsIDList: new FormGroup({
+        ids: new FormControl(),
+        browse: new FormControl(),
+      }),
       keyword: new FormControl('Signaling by GPCR'),
       start: new FormControl(1),
       end: new FormControl(500000),
@@ -59,8 +64,23 @@ export class AnnotationComponent implements OnInit {
     this.annotationForm.get('uploadList.ids').patchValue(SampleVCFFile.data);
   }
 
+  addSampleRSIDList() {
+    this.annotationForm.get('rsIDList.ids').patchValue(SampleRSIDFile.data);
+  }
+
+
   clear() {
     this.annotationService.checklistSelection.clear();
+  }
+
+  clearRSIDList() {
+    this.annotationForm.controls.rsIDList['controls'].ids.setValue('')
+    this.annotationForm.controls.rsIDList['controls'].browse.setValue('')
+  }
+
+  clearVCF() {
+    this.annotationForm.controls.uploadList['controls'].ids.setValue('')
+    this.annotationForm.controls.uploadList['controls'].browse.setValue('')
   }
 
   submit() {
@@ -81,6 +101,21 @@ export class AnnotationComponent implements OnInit {
     }
   }
 
+  onRSIDFileChange(event) {
+    const reader = new FileReader();
+    const ids = this.annotationForm.controls.rsIDList['controls'].ids;
+
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsText(file);
+
+      reader.onload = () => {
+        console.log((reader.result as any).length)
+        ids.setValue(reader.result);
+      };
+    }
+  }
+
   onFileChange(event) {
     const reader = new FileReader();
     const ids = this.annotationForm.controls.uploadList['controls'].ids;
@@ -90,6 +125,7 @@ export class AnnotationComponent implements OnInit {
       reader.readAsText(file);
 
       reader.onload = () => {
+        console.log((reader.result as any).length)
         ids.setValue(reader.result);
       };
     }

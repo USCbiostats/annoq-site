@@ -52,6 +52,34 @@
         <input matInput formControlName="rsID" placeholder="rsID" />
       </mat-form-field>
     </div>
+
+
+    <div class="" *ngSwitchCase="snpService.inputType.rsIDList.id">
+      <div [formGroupName]="'rsIDList'" fxLayout="column" fxLayoutAlign="start stretch" class="">
+        <div fxLayout="row" fxLayoutAlign="start center" class="pthr-file-upload-header">
+          <button mat-stroked-button class="annoq-rounded-button annoq-xs" (click)="addSampleRSIDList()">
+            Sample rsID List
+          </button>
+          <span fxFlex=""></span>
+          <label for="annoq-upload-snp-browse" fxLayout="row" fxLayoutAlign="start center" class="pthr-file-upload">
+            <button mat-stroked-button class="pthr-file-button annoq-rounded-button annoq-xs">
+              <mat-icon class="s-16 mr-4">cloud_upload</mat-icon> Populate from a FIle
+            </button>
+          </label>
+          <input #rsidFileInput type="file" id="annoq-upload-snp-browse" formControlName="browse"
+            (click)="$event.target.value = ''; rsidFileInput.value = null" (change)="onRSIDFileChange($event)"
+            class="pthr-file-upload" />
+          <button mat-stroked-button class="annoq-rounded-button annoq-xs" (click)="clearRSIDList()">Clear</button>
+        </div>
+        <mat-form-field class="mr-8 w-100-p" appearance="outline">
+          <textarea matInput formControlName="ids" placeholder="Enter IDs" rows="5"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+
+
+
+
     <div class="" *ngSwitchCase="snpService.inputType.chromosomeList.id">
       <div [formGroupName]="'uploadList'" fxLayout="column" fxLayoutAlign="start stretch" class="">
         <div fxLayout="row" fxLayoutAlign="start center" class="pthr-file-upload-header">
@@ -67,7 +95,7 @@
           <input #chromosomeFileInput type="file" id="annoq-upload-snp-browse" formControlName="browse"
             (click)="$event.target.value = ''; chromosomeFileInput.value = null" (change)="onFileChange($event)"
             class="pthr-file-upload" />
-          <button mat-stroked-button class="annoq-rounded-button annoq-xs">Clear</button>
+          <button mat-stroked-button class="annoq-rounded-button annoq-xs" (click)="clearVCF()">Clear</button>
         </div>
         <mat-form-field class="mr-8 w-100-p" appearance="outline">
           <textarea matInput formControlName="ids" placeholder="Enter IDs" rows="5"></textarea>

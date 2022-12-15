@@ -43,8 +43,11 @@ export class SnpService {
         }, rsID: {
             id: 4,
             label: 'rsID'
-        }, keyword: {
+        }, rsIDList: {
             id: 5,
+            label: 'rsID List'
+        }, keyword: {
+            id: 6,
             label: 'Keyword Search'
         }
     };
@@ -55,6 +58,7 @@ export class SnpService {
             this.inputType.chromosomeList,
             this.inputType.geneProduct,
             this.inputType.rsID,
+            this.inputType.rsIDList,
             this.inputType.keyword
         ]
     };
@@ -171,6 +175,22 @@ export class SnpService {
                         'filter': [
                             { 'term': { 'rs_dbSNP151': annotationQuery.rsID } },
                         ]
+                    }
+                }
+                break;
+            case this.inputType.rsIDList:
+                const rsIDs = annotationQuery.rsIDList.ids.split("\n").filter(
+                    (element, index, array) => {
+                        const regex = /^#/;
+                        return !(regex.test(element)) && element;
+                    }
+                ).map((line) => {
+                    return line.trim();
+                });
+
+                query.query = {
+                    "terms": {
+                        "rs_dbSNP151": rsIDs
                     }
                 }
                 break;
@@ -368,26 +388,25 @@ export class SnpService {
                     });
             });
 
-            //for advanced search
-            /*         const filters = this.searchCriteria.fieldValues.map((filedValueArray) => {
-                        return {
-                            'bool': {
-                                "should": filedValueArray.map((field) => {
-                                    const annotation = this.annotationService.findDetailByName(field.name);
-                                    let fieldSearchable = field.name;
-        
-                                    if (annotation.field_type === ColumnFieldType.TEXT) {
-                                        fieldSearchable += '.keyword';
-                                    }
-                                    return {
-                                        'term': { [fieldSearchable]: field.value }
-                                    };
-                                })
+            const filters = this.searchCriteria.fieldValues.map((filedValueArray) => {
+                return {
+                    'bool': {
+                        "should": filedValueArray.map((field) => {
+                            const annotation = this.annotationService.findDetailByName(field.name);
+                            let fieldSearchable = field.name;
+
+                            if (annotation.field_type === ColumnFieldType.TEXT) {
+                                fieldSearchable += '.keyword';
                             }
-                        };
-                    });
-        
-                    query.query.bool['must'] = filters */
+                            return {
+                                'term': { [fieldSearchable]: field.value }
+                            };
+                        })
+                    }
+                };
+            });
+
+            query.query.bool['must'] = filters
 
             this.getSnpsPage(query, 1);
             this.getSnpsCount(query)
