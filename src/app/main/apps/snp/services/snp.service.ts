@@ -189,8 +189,14 @@ export class SnpService {
                 });
 
                 query.query = {
-                    "terms": {
-                        "rs_dbSNP151": rsIDs
+                    'bool': {
+                        'filter': [
+                            {
+                                "terms": {
+                                    "rs_dbSNP151": rsIDs
+                                }
+                            }
+                        ]
                     }
                 }
                 break;
@@ -377,6 +383,7 @@ export class SnpService {
         this.searchCriteria.updateFiltersCount();
         this.onSearchCriteriaChanged.next(this.searchCriteria);
         if (this.queryOriginal?.query?.bool?.filter) {
+
             const query = cloneDeep(this.queryOriginal)
 
             this.searchCriteria.fields.forEach((field: Annotation) => {
@@ -421,6 +428,8 @@ export class SnpService {
             const aggs = {}
             let fieldSearchable = field
 
+            console.log(fieldSearchable, annotation.field_type)
+
             if (annotation.field_type === ColumnFieldType.TEXT) {
                 fieldSearchable += '.keyword';
             }
@@ -457,7 +466,11 @@ export class SnpService {
 
             aggs[`${field}_frequency`] = {
 
-                "terms": { "field": fieldSearchable, "size": 20, },
+                "terms": {
+                    "field": fieldSearchable,
+                    "min_doc_count": 0,
+                    "size": 20,
+                },
             };
 
             query.aggs = aggs;
