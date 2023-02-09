@@ -1,4 +1,4 @@
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 @import "src/@annoq/scss/annoq";
 @import "src/@annoq.common/scss/annoq.common";
 
@@ -66,6 +66,14 @@ $accent: map-get($theme, accent);
     font-size: 12px !important;
     color: #000;
     border-right: #ddd solid 1px;
+    .annoq-cell-coordinates {
+      padding: 2px 4px;
+      background-color: #523684;
+      a {
+        font-size: 8px;
+        color: #edd776;
+      }
+    }
   }
 
   .mat-cell,
