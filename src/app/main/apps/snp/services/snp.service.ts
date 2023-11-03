@@ -29,6 +29,8 @@ export class SnpService {
     queryOriginal;
     query;
 
+    initialSearchParams: any = {}
+
     private client: Client;
     inputType: any = {
         chromosome: {
@@ -100,7 +102,7 @@ export class SnpService {
             return transformedSnp
         })
 
-        console.log(JSON.stringify(snps).length - JSON.stringify(results).length)
+        //console.log(JSON.stringify(snps).length - JSON.stringify(results).length)
 
         return results
     }
