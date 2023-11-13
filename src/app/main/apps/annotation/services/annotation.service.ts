@@ -20,9 +20,7 @@ export class AnnotationService {
     activeAnnotation: any;
     onAnnotationTreeChanged: BehaviorSubject<any>;
     onAnnotationDetailChanged: BehaviorSubject<any>;
-
     checklistSelection: SelectionModel<AnnotationFlatNode>;
-
     treeControl: FlatTreeControl<AnnotationFlatNode>;
     treeFlattener: MatTreeFlattener<AnnotationNode, AnnotationFlatNode>;
     dataSource: MatTreeFlatDataSource<AnnotationNode, AnnotationFlatNode>;
@@ -204,6 +202,16 @@ export class AnnotationService {
         });
     }
 
+
+    selectItemsById(ids: number[]) {
+        console.log(ids)
+        this.treeControl.dataNodes.forEach(item => {
+            if (ids.toString().includes(item.id as unknown as string)) {
+                this.checklistSelection.select(item);
+            }
+        });
+    }
+
     formatLabel(annotations: Annotation[]) {
         annotations.forEach((annotation: Annotation) => {
             if (!annotation.label) {
@@ -248,7 +256,7 @@ export class AnnotationService {
                     //document.getElementById('elementid').value = "";
                     if (searchCriteria && searchCriteria._source) {
                         self.doFileSelection(searchCriteria._source, self.treeControl.dataNodes, self.checklistSelection);
-                        console.log(searchCriteria)
+
                     } else {
                         alert("wrong file format")
                     }

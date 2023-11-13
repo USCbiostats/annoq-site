@@ -14,7 +14,7 @@ import { AnnotationService } from '../../annotation/services/annotation.service'
 import { ColumnValueType } from '@annoq.common/models/annotation';
 import { RightPanel } from '@annoq.common/models/menu-panels';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { cloneDeep } from 'lodash';
+import { environment } from 'environments/environment';
 @Component({
   selector: 'annoq-snp-table',
   templateUrl: './snp-table.component.html',
@@ -161,6 +161,11 @@ export class SnpTableComponent implements OnInit, OnDestroy {
     });
     this.snpService.onSnpChanged.next(details);
 
+  }
+
+  getUcscLink(element) {
+    const chr = `${element.chr}:${element.pos}-${element.pos}`
+    return environment.ucscUrl + chr
   }
 
   ngOnDestroy(): void {

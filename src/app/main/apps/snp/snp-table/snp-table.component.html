@@ -85,7 +85,15 @@
             </div>
           </th>
           <td mat-cell *matCellDef="let element">
-            {{element[column.name]}}
+            <ng-container *ngIf="column.name!=='pos'">
+              {{element[column.name]}}
+            </ng-container>
+
+            <ng-container class="annoq-cell-coordinates" *ngIf="column.name==='pos'">
+              <a (click)="$event.stopPropagation()" [href]="getUcscLink(element)" target="_blank">
+                {{element[column.name]}}
+              </a>
+            </ng-container>
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

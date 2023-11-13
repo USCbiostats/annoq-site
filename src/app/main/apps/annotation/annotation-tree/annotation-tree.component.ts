@@ -6,6 +6,7 @@ import { AnnotationNode, AnnotationFlatNode } from './../models/annotation'
 import { AnnoqMenuService } from '@annoq.common/services/annoq-menu.service';
 import { AnnotationService } from './../services/annotation.service';
 import { AnnotationDialogService } from '../services/dialog.service';
+import { SnpService } from '../../snp/services/snp.service';
 
 @Component({
   selector: 'annoq-annotation-tree',
@@ -22,6 +23,7 @@ export class AnnotationTreeComponent implements OnInit {
   constructor(
     private annotationDialogService: AnnotationDialogService,
     public annoqMenuService: AnnoqMenuService,
+    private snpService: SnpService,
     private annotationService: AnnotationService,
   ) {
     this._unsubscribeAll = new Subject();
@@ -37,7 +39,9 @@ export class AnnotationTreeComponent implements OnInit {
 
         this.dataSource = this.annotationService.dataSource
         this.annotationService.treeControl.expand(this.annotationService.treeControl.dataNodes[0])
+        this.annotationService.treeControl.expand(this.annotationService.treeControl.dataNodes[1])
         this.annotationService.setAllVisible(this.annotationService.treeControl.dataNodes);
+        this.annotationService.selectItemsById(this.snpService.initialSelectedIds)
       });
   }
 

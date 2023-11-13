@@ -4,12 +4,13 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Client } from 'elasticsearch-browser';
 import { SnpPage } from '../models/page';
-import { cloneDeep, find, orderBy, uniqBy } from 'lodash';
+import { cloneDeep, find, orderBy, uniq, uniqBy } from 'lodash';
 import { FrequencyBucket, SnpAggs } from '../models/snp-aggs';
 import { AnnotationService } from '../../annotation/services/annotation.service';
 import { ColumnFieldType } from '@annoq.common/models/annotation';
 import { SearchCriteria } from '@annoq.search/models/search-criteria';
 import { Annotation } from '../../annotation/models/annotation';
+import { UrlQueryParams } from '@annoq.common/models/query-params';
 
 @Injectable({
     providedIn: 'root',
@@ -28,6 +29,10 @@ export class SnpService {
     selectedQuery;
     queryOriginal;
     query;
+
+    initialSearchParams: UrlQueryParams = new UrlQueryParams();
+
+    initialSelectedIds = [2, 3, 4, 5, 6]
 
     private client: Client;
     inputType: any = {
@@ -51,6 +56,9 @@ export class SnpService {
             label: 'Keyword Search'
         }
     };
+
+
+
 
     inputTypes: any = {
         options: [
@@ -82,6 +90,27 @@ export class SnpService {
 
     selectInputType(inputType) {
         this.inputTypes.selected = inputType;
+    }
+
+    transformSnps(snps) {
+        const results = snps.map(snp => {
+            const transformedSnp = {}
+            for (const k in snp) {
+                if (snp[k] && (typeof snp[k] === 'string')) {
+                    const value = uniq(snp[k].split('|')).join(' | ')
+                    transformedSnp[k] = value === '.' ? '' : value
+                }
+                else {
+                    transformedSnp[k] = snp[k]
+                }
+            }
+
+            return transformedSnp
+        })
+
+        //console.log(JSON.stringify(snps).length - JSON.stringify(results).length)
+
+        return results
     }
 
     getSnps(annotationQuery: any, page: number): any {
@@ -289,7 +318,10 @@ export class SnpService {
                 this.snpPage.gene = gene;
                 this.snpPage.query = query;
                 this.snpPage.size = self.snpResultsSize;
-                this.snpPage.snps = snpData;
+                this.snpPage.snps = this.transformSnps(snpData);
+
+
+
                 this.snpPage.aggs = body.aggregations;
                 this.snpPage.source = query._source;
 

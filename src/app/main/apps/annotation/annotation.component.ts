@@ -9,6 +9,7 @@ import { environment } from 'environments/environment';
 import { SampleVCFFile } from '@annoq.common/data/sample-vcf';
 import { RightPanel } from '@annoq.common/models/menu-panels';
 import { SampleRSIDFile } from '@annoq.common/data/sample-rsid-list';
+import { UrlQueryType } from '@annoq.common/models/query-params';
 
 @Component({
   selector: 'annoq-annotation',
@@ -34,24 +35,32 @@ export class AnnotationComponent implements OnInit {
     public annotationService: AnnotationService,
     private snpDialogService: SnpDialogService,
     public snpService: SnpService) {
+
+    if (this.snpService.initialSearchParams.query_type === UrlQueryType.chr) {
+      this.snpService.selectInputType(this.snpService.inputType.chromosome)
+    } else if (this.snpService.initialSearchParams.query_type === UrlQueryType.gp) {
+      this.snpService.selectInputType(this.snpService.inputType.geneProduct)
+    }
+
     this.annotationForm = this.createAnnotationForm();
+
   }
 
   ngOnInit() { }
 
   createAnnotationForm() {
     return new FormGroup({
-      chrom: new FormControl(18),
+      chrom: new FormControl(this.snpService.initialSearchParams.chr || 18),
       chromList: new FormControl(),
-      geneProduct: new FormControl('ZMYND11'),
+      geneProduct: new FormControl(this.snpService.initialSearchParams.gp || 'ZMYND11'),
       rsID: new FormControl('rs559687999'),
       rsIDList: new FormGroup({
         ids: new FormControl(),
         browse: new FormControl(),
       }),
       keyword: new FormControl('Signaling by GPCR'),
-      start: new FormControl(1),
-      end: new FormControl(500000),
+      start: new FormControl(this.snpService.initialSearchParams.start || 1),
+      end: new FormControl(this.snpService.initialSearchParams.end || 500000),
       all: new FormControl(false),
       uploadList: new FormGroup({
         ids: new FormControl(),
@@ -67,7 +76,6 @@ export class AnnotationComponent implements OnInit {
   addSampleRSIDList() {
     this.annotationForm.get('rsIDList.ids').patchValue(SampleRSIDFile.data);
   }
-
 
   clear() {
     this.annotationService.checklistSelection.clear();
