@@ -39,9 +39,11 @@ export class SearchComponent implements OnInit {
       .queryParams
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe(params => {
+        this.snpService.initialSearchParams.query_type = params['query_type'] || null;
         this.snpService.initialSearchParams.chr = params['chr'] || null;
         this.snpService.initialSearchParams.start = params['start'] || null;
         this.snpService.initialSearchParams.end = params['end'] || null;
+        this.snpService.initialSearchParams.gp = params['gp'] || null;
       });
   }
 

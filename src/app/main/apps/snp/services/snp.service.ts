@@ -10,6 +10,7 @@ import { AnnotationService } from '../../annotation/services/annotation.service'
 import { ColumnFieldType } from '@annoq.common/models/annotation';
 import { SearchCriteria } from '@annoq.search/models/search-criteria';
 import { Annotation } from '../../annotation/models/annotation';
+import { UrlQueryParams } from '@annoq.common/models/query-params';
 
 @Injectable({
     providedIn: 'root',
@@ -29,7 +30,9 @@ export class SnpService {
     queryOriginal;
     query;
 
-    initialSearchParams: any = {}
+    initialSearchParams: UrlQueryParams = new UrlQueryParams();
+
+    initialSelectedIds = [2, 3, 4, 5, 6]
 
     private client: Client;
     inputType: any = {
@@ -53,6 +56,9 @@ export class SnpService {
             label: 'Keyword Search'
         }
     };
+
+
+
 
     inputTypes: any = {
         options: [
