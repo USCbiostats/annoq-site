@@ -3,6 +3,7 @@ import { NavigationEnd, NavigationStart, Router, ActivatedRoute } from '@angular
 import { TranslateService } from '@ngx-translate/core';
 
 import { AnnoqConfigService } from '@annoq/services/config.service';
+import { LayoutAnnoqComponent } from '../../layout-annoq/layout-annoq.component';
 
 @Component({
     selector: 'annoq-toolbar',
@@ -24,7 +25,8 @@ export class AnnoqToolbarComponent {
         private router: Router,
         private route: ActivatedRoute,
         private annoqConfig: AnnoqConfigService,
-        private translate: TranslateService
+        private translate: TranslateService,
+        private layoutAnnoqComponent: LayoutAnnoqComponent
     ) {
         this.languages = [{
             'id': 'en',
@@ -58,4 +60,9 @@ export class AnnoqToolbarComponent {
         this.selectedLanguage = lang;
         this.translate.use(lang.id);
     }
+
+    toggleSidenav() {
+        this.layoutAnnoqComponent.toggleSidenav();
+      }
+
 }

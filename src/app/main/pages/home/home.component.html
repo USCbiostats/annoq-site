@@ -7,7 +7,7 @@
   </div>
 
   <div class="header accent p-8 w-100-p">
-    <div class="annoq-container" fxLayout="row" fxLayoutAlign="start center">
+    <div class="annoq-container" fxLayout="row wrap" fxLayoutAlign="start center">
       <div fxLayout="column" fxLayoutAlign="center center" fxFlex="30%">
         <h1 [@animate]="{value:'*',params:{delay:'100ms', y:'25px'}}">
           The Annotation Query<br>
@@ -21,7 +21,7 @@
         </h2>
         <div class="annoq-query-buttons w-100-p" fxLayout="row" fxLayoutAlign="start center">
           <button mat-raised-button [routerLink]="['/search']" fxFlex="50"
-            class="annoq-rounded-button mr-4 annoq-half-button annoq-r">
+            class="annoq-rounded-button annoq-half-button annoq-r w-100-p">
             LAUNCH QUERY UI
           </button>
           <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" fxFlex="50" target="_blank">
@@ -32,7 +32,7 @@
         </div>
       </div>
       <span fxFlex=""></span>
-      <div class="annoq-video" fxFlex="65%">
+      <div class="annoq-video" fxLayout="column" fxFlex="65%">
         <!--   <img class="" src="assets/images/annoq-cloud-md.png"> -->
 
         <iframe width="560" height="315" src="https://www.youtube.com/embed/plaU42-x4jE" title="YouTube video player"

@@ -1,4 +1,11 @@
 <mat-toolbar class="mat-elevation-z1" fxLayout="row" fxLayoutAlign="start center">
+
+  <div fxShow="true" fxHide.gt-sm="true">
+    <button mat-icon-button (click)="toggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  
   <mat-progress-bar *ngIf="showLoadingBar" class="loading-bar" color="accent" mode="indeterminate"></mat-progress-bar>
   <div fxLayout="row" fxLayoutAlign="start center">
     <div class="annoq-logo" fxLayout="row" fxLayoutAlign="start">
@@ -18,8 +25,12 @@
     </a>
   </div>
   <span fxFlex=""></span>
-  <a mat-button [routerLink]="['/detail']">Supported Annotations</a>
-  <a mat-button href="https://uscbiostats.github.io/annoq-site/docs/tutorials/api">Data Access</a>
-  <a mat-button [routerLink]="['/about']">About</a>
-  <a mat-button href="https://uscbiostats.github.io/annoq-site/" target="_blank">Help/Tutorial</a>
+  
+  <div fxShow="true" fxHide.lt-md="true">
+    <a mat-button [routerLink]="['/detail']">Supported Annotations</a>
+    <a mat-button href="https://uscbiostats.github.io/annoq-site/docs/tutorials/api">Data Access</a>
+    <a mat-button [routerLink]="['/about']">About</a>
+    <a mat-button href="https://uscbiostats.github.io/annoq-site/" target="_blank">Help/Tutorial</a>
+  </div>
+
 </mat-toolbar>
