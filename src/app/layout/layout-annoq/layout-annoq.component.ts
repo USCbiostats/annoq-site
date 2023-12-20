@@ -1,7 +1,8 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AnnoqConfigService } from '@annoq/services/config.service';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
     selector: 'layout-annoq',
@@ -14,6 +15,7 @@ import { AnnoqConfigService } from '@annoq/services/config.service';
     annoqConfig: any;
     navigation: any;
     private _unsubscribeAll: Subject<any>;
+    @ViewChild('sidenav') sidenav: MatSidenav;
 
     constructor(private _annoqConfigService: AnnoqConfigService) {
         this._unsubscribeAll = new Subject();
@@ -30,4 +32,8 @@ import { AnnoqConfigService } from '@annoq/services/config.service';
         this._unsubscribeAll.next(null);
         this._unsubscribeAll.complete();
     }
+
+    toggleSidenav() {
+        this.sidenav.toggle();
+      }
 }

@@ -3,6 +3,7 @@
     <div id="annoq-main-content">
       <ng-container>
         <annoq-toolbar class="above"></annoq-toolbar>
+
       </ng-container>
       <div id="wrapper">
         <div class="content-wrapper">
@@ -10,6 +11,16 @@
         </div>
       </div>
     </div>
+
+    <mat-sidenav #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
+      <div fxLayout="column">
+        <a mat-button [routerLink]="['/detail']">Supported Annotations</a>
+        <a mat-button href="https://uscbiostats.github.io/annoq-site/docs/tutorials/api">Data Access</a>
+        <a mat-button [routerLink]="['/about']">About</a>
+        <a mat-button href="https://uscbiostats.github.io/annoq-site/" target="_blank">Help/Tutorial</a>
+      </div>
+    </mat-sidenav>
+    
   </mat-sidenav-container>
   <annoq-footer *ngIf="false" id="footer"></annoq-footer>
   <quick-panel *ngIf="false"></quick-panel>
