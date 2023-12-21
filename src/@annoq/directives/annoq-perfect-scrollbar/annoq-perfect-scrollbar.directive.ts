@@ -109,10 +109,6 @@ export class AnnoqPerfectScrollbarDirective implements AfterViewInit, OnDestroy 
             this.isMobile = true;
         }
 
-        if (this.isMobile) {
-            return;
-        }
-
         this.isInitialized = true;
 
         this.ps = new PerfectScrollbar(this.elementRef.nativeElement, {
@@ -121,7 +117,7 @@ export class AnnoqPerfectScrollbarDirective implements AfterViewInit, OnDestroy 
     }
 
     _destroy(): void {
-        if (!this.isInitialized || !this.ps) {
+        if (!this.isInitialized || !this.ps || this.isMobile) {
             return;
         }
 
@@ -138,7 +134,9 @@ export class AnnoqPerfectScrollbarDirective implements AfterViewInit, OnDestroy 
      */
     @HostListener('window:resize')
     _updateOnResize(): void {
-        this._debouncedUpdate();
+        if (this.enabled && this.isInitialized) {
+            this._debouncedUpdate();
+        }
     }
 
     @HostListener('document:click', ['$event'])
