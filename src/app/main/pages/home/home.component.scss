@@ -25,9 +25,8 @@
       height: 75%;
     }
 
-    min-width: 100%;
+    width: 100%;
     text-align: center;
-    overflow: hidden;
 
     .annoq-container {
       overflow: auto;
@@ -62,7 +61,6 @@
 
     .annoq-video {
       padding-top: 5%;
-      overflow: hidden;
 
       iframe {
         max-width: 100%;
@@ -77,13 +75,13 @@
   }
 
   .annoq-query-buttons {
-    padding: 8px;
+    padding: 2%;
 
     button {
       color: #fff;
       background-color: map-get($primary, default);
       @include mat.elevation(8);
-      font-size: 14px;
+      font-size: 100%;
 
       &.annoq-l {
         background-color: #1c7ed6;
@@ -92,10 +90,8 @@
   }
 
   .card {
-    // @include deep-width(185px);
-    @include deep-height(300px);
-    padding: 0 8px;
-    margin-bottom: 16px;
+    padding: 0 1%;
+    margin-bottom: 2%;
 
     .annoq-query-buttons {
       button {
@@ -108,21 +104,20 @@
       @include deep-width(100%);
       @include deep-height(100%);
 
-      overflow: hidden;
-
       @include mat.elevation(6);
 
       .annoq-image {
-        height: 120px;
-        overflow: hidden;
+        max-height: 50%;
+        width: auto;
 
         img {
-          height: 100%;
+          max-width: 100%;
+          height: auto;
+          display: block;
         }
       }
 
       .annoq-icon {
-        overflow: hidden;
 
         color: rgba($annoq-primary-color, 0.5);
       }
@@ -132,7 +127,6 @@
         font-size: 50%;
         font-weight: bold;
         margin-bottom: 1%;
-        overflow: hidden;
         text-align: center;
         color: rgba($annoq-primary-color, 0.6);
 
@@ -150,26 +144,9 @@
         }
       }
 
-      .annoq-card-title {
-        overflow: hidden;
-      }
-
       .annoq-card-description {
-        overflow: hidden;
         height: 20%;
-        font-size: 14px;
-      }
-
-      .annoq-card-chips {
-        overflow: hidden;
-        height: 35px;
-      }
-
-      .annoq-card-footer {
-        .annoq-action-button {
-          margin: 0 6px;
-          @include mat.elevation(2);
-        }
+        font-size: 100%;
       }
     }
 
@@ -181,7 +158,6 @@
 
         .annoq-card-title {
           padding: 8px 12px;
-          overflow: hidden;
           text-align: center;
           font-size: 14px;
           height: 50px;
@@ -212,7 +188,6 @@
 
         .annoq-card-title {
           padding: 0px 12px;
-          overflow: hidden;
           height: 50px;
           font-size: 20px;
 
@@ -239,7 +214,6 @@
           font-size: 40px;
           @include deep-height(40px);
           height: 100%;
-          overflow: hidden;
 
           img {
             height: 100%;
@@ -356,16 +330,22 @@
 
   .annoq-compatibility-table {
     width: 100%;
+    overflow-x: auto;
     text-align: left;
     @include mat.elevation(6);
 
     .mat-header-cell {
-      padding: 0 10px;
-      font-size: 10px !important;
+      padding: 0 1%;
+      font-size: 100% !important;
+
+      @include media-breakpoint("lt-sm") {
+        font-size: 70% !important;
+      }
+
       font-weight: bold;
       text-transform: uppercase;
       border-right: #bbb solid 1px;
-      border-bottom: $annoq-secondary-color solid 3px;
+      border-bottom: $annoq-secondary-color solid 2px;
 
       &.annoq-os-header-cell {
         text-align: right;
@@ -374,17 +354,49 @@
 
     .mat-header-row {
       background-color: #fff;
-      @include deep-height(50px);
 
-      z-index: 10;
+      z-index: 5;
+    }
+
+    .mat-column-os{
+      width: 15%;
+    }
+
+    .mat-column-version{
+      width: 17.5%;
+    }
+
+    .mat-column-chrome{
+      width: 17.5%;
+    }
+
+    .mat-column-firefox{
+      width: 15%;
+    }
+
+    .mat-column-edge{
+      width: 20%;
+    }
+
+    .mat-column-safari{
+      width: 15%;
     }
 
     .mat-cell {
-      padding: 6px;
+      padding: 1%;
       border-right: #bbb solid 1px;
+      font-size: 100%;
+
+      @include media-breakpoint("lt-sm") {
+        font-size: 80% !important;
+      }
+
       &.annoq-os-cell {
         font-weight: bold;
         text-align: right;
+        @include media-breakpoint("lt-sm") {
+          font-size: 80% !important;
+        }
       }
     }
   }
