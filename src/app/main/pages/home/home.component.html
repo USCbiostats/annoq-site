@@ -110,7 +110,7 @@
               </div>
               <span fxFlex=""></span>
               <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" target="_blank"
-                mat-stroked-button class="annoq-rounded-button annoq-sm">
+                mat-stroked-button class="annoq-rounded-button">
                 MORE INFO
               </a>
             </div>
@@ -126,7 +126,7 @@
               </div>
               <span fxFlex=""></span>
               <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" target="_blank"
-                mat-stroked-button class="annoq-rounded-button annoq-sm">
+                mat-stroked-button class="annoq-rounded-button">
                 MORE INFO
               </a>
             </div>
@@ -142,7 +142,7 @@
               </div>
               <span fxFlex=""></span>
               <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" target="_blank"
-                mat-stroked-button class="annoq-rounded-button annoq-sm">
+                mat-stroked-button class="annoq-rounded-button">
                 MORE INFO
               </a>
             </div>
@@ -160,7 +160,7 @@
               </div>
               <span fxFlex=""></span>
               <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" target="_blank"
-                mat-stroked-button class="annoq-rounded-button annoq-sm">
+                mat-stroked-button class="annoq-rounded-button">
                 MORE INFO
               </a>
             </div>
@@ -176,7 +176,7 @@
               </div>
               <span fxFlex=""></span>
               <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" target="_blank"
-                mat-stroked-button class="annoq-rounded-button annoq-sm">
+                mat-stroked-button class="annoq-rounded-button">
                 MORE INFO
               </a>
             </div>
@@ -206,17 +206,32 @@
             Getting the annotation data with a graphic interface.
           </div>
           <div class="p-8 pt-0 annoq-card-footer" fxLayout="row" fxLayoutAlign="center center">
-            <div class="annoq-query-buttons w-100-p" fxLayout="row" fxLayoutAlign="start center">
+
+            <div class="annoq-query-buttons w-100-p" fxLayout="row" fxLayoutAlign="start center" fxShow="true" fxHide.lt-md="true">
               <button mat-raised-button [routerLink]="['/search']" fxFlex="50"
-                class="annoq-rounded-button mr-4 annoq-half-button annoq-sm annoq-r">
+                class="annoq-rounded-button mr-4 annoq-half-button annoq-r">
                 LAUNCH QUERY UI
               </button>
               <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" fxFlex="50" target="_blank">
-                <button mat-raised-button class="annoq-rounded-button annoq-half-button annoq-sm annoq-l w-100-p">
+                <button mat-raised-button class="annoq-rounded-button annoq-half-button annoq-l w-100-p">
                   UI TUTORIAL
                 </button>
               </a>
             </div>
+
+            <div class="annoq-query-buttons w-100-p" fxLayout="column" fxLayoutAlign="start center" fxShow="true" fxHide.gt-sm="true">
+              <button mat-raised-button [routerLink]="['/search']" fxFlex="50"
+                class="annoq-rounded-button mr-4 annoq-half-button annoq-r">
+                LAUNCH QUERY UI
+              </button>
+              <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" target="_blank">
+                <button mat-raised-button fxFlex="50"
+                class="annoq-rounded-button annoq-half-button annoq-l w-100-p">
+                  UI TUTORIAL
+                </button>
+              </a>
+            </div>
+
           </div>
         </div>
       </div>

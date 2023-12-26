@@ -131,8 +131,9 @@
         color: rgba($annoq-primary-color, 0.6);
 
         &.annoq-lg-font {
+          text-align: center;
+          vertical-align: middle;
           font-size: 400%;
-
           @include media-breakpoint("lt-sm") {
             font-size: 250%;
           }
@@ -147,6 +148,15 @@
       .annoq-card-description {
         height: 20%;
         font-size: 100%;
+      }
+
+      .annoq-rounded-button {
+        font-size: 100%;
+
+        @include media-breakpoint("lt-sm") {
+          font-size: 80%;
+        }
+
       }
     }
 
