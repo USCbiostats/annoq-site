@@ -118,7 +118,7 @@
       }
 
       .annoq-icon {
-
+        font-size: 500%;
         color: rgba($annoq-primary-color, 0.5);
       }
 
@@ -157,10 +157,9 @@
         @include mat.elevation(0);
 
         .annoq-card-title {
-          padding: 8px 12px;
+          padding: 1% 2%;
           text-align: center;
-          font-size: 14px;
-          height: 50px;
+          font-size: 100%;
         }
 
         .annoq-card-footer {
@@ -172,27 +171,31 @@
     }
 
     &.card-step {
-      @include deep-height(80px);
+      @include deep-height(100%);
       width: 100%;
 
       .annoq-card {
         @include mat.elevation(6);
-        padding: 8px 12px;
+        padding: 2% 4%;
 
         .annoq-icon {
-          width: 60px;
+          width: 7%;
           height: 100%;
-          font-size: 40px;
+          font-size: 250%;
           text-align: center;
         }
 
         .annoq-card-title {
-          padding: 0px 12px;
-          height: 50px;
-          font-size: 20px;
+          padding: 0% 2%;
+          font-size: 125%;
 
-          .annoq-lg {
-            font-size: 30px;
+          @include media-breakpoint("lt-sm") {
+            font-size: 100% !important;
+          }
+
+          .secondary-text {
+            text-align: left;
+            float: left;
           }
         }
 
@@ -205,14 +208,14 @@
     }
 
     &.card-logo {
-      @include deep-height(60px);
+      @include deep-height(1%);
 
       .annoq-card {
         @include mat.elevation(0);
 
         .annoq-image {
-          font-size: 40px;
-          @include deep-height(40px);
+          font-size: 300%;
+          @include deep-height(100%);
           height: 100%;
 
           img {
@@ -220,7 +223,7 @@
           }
 
           a {
-            line-height: 50px;
+            line-height: 100%;
             color: #000;
             height: 100%;
           }
@@ -324,8 +327,8 @@
   }
 
   p {
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 130%;
+    line-height: 160%;
   }
 
   .annoq-compatibility-table {
@@ -363,15 +366,15 @@
     }
 
     .mat-column-version{
-      width: 17.5%;
+      width: 18.5%;
     }
 
     .mat-column-chrome{
-      width: 17.5%;
+      width: 19.5%;
     }
 
     .mat-column-firefox{
-      width: 15%;
+      width: 13%;
     }
 
     .mat-column-edge{
@@ -379,7 +382,7 @@
     }
 
     .mat-column-safari{
-      width: 15%;
+      width: 14%;
     }
 
     .mat-cell {
