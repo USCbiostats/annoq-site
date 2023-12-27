@@ -30,8 +30,6 @@
 
     .annoq-container {
       overflow: auto;
-      display: flex;
-      flex-wrap: wrap;
     }
 
     h1 {
@@ -74,6 +72,10 @@
     padding-right: 5%;
   }
 
+  .s-launch-button {
+    margin-bottom: 3%;
+  }
+
   .annoq-query-buttons {
     padding: 2%;
 
@@ -90,6 +92,7 @@
   }
 
   .card {
+    @include deep-height(250px);
     padding: 0 1%;
     margin-bottom: 2%;
 
@@ -103,7 +106,7 @@
       background-color: transparent;
       @include deep-width(100%);
       @include deep-height(100%);
-
+    
       @include mat.elevation(6);
 
       .annoq-image {
@@ -154,7 +157,7 @@
         font-size: 100%;
 
         @include media-breakpoint("lt-sm") {
-          font-size: 80%;
+          font-size: 65%;
         }
 
       }
