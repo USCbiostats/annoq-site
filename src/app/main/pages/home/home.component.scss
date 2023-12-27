@@ -68,10 +68,6 @@
     }
   }
 
-  .left-text{
-    padding-right: 5%;
-  }
-
   .s-launch-button {
     margin-bottom: 3%;
   }
@@ -92,7 +88,9 @@
   }
 
   .card {
-    @include deep-height(250px);
+    @include media-breakpoint("gt-sm") {
+      @include deep-height(250px);
+    }
     padding: 0 1%;
     margin-bottom: 2%;
 
