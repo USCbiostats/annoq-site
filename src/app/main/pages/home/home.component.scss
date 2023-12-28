@@ -8,7 +8,6 @@
   }
 
   .header {
-    padding-bottom: 10px;
     background-image: linear-gradient(
       to right,
       rgba($annoq-primary-color, 0.8),
@@ -20,85 +19,67 @@
     background-position: top;
     position: relative;
     flex: 1 0 auto;
-    height: 450px;
-    min-width: 800px;
-    text-align: center;
-    overflow: hidden;
+    height: 50%;
 
-    @include media-breakpoint("lt-md") {
-      // height: 200px;
-      //  min-width: 600px;
+    @include media-breakpoint("lt-sm") {
+      height: 75%;
     }
 
+    width: 100%;
+    text-align: center;
+
     .annoq-container {
-      overflow: hidden;
+      overflow: auto;
     }
 
     h1 {
       width: 100%;
-      font-size: 30px;
+      font-size: 150%;
       font-weight: normal;
       margin-top: 0;
       color: #fff;
 
       strong {
-        font-size: 54px;
-        letter-spacing: 3px;
+        font-size: 250%;
+        letter-spacing: 10%;
       }
 
-      @include media-breakpoint("lt-md") {
-        font-size: 24px;
-      }
     }
 
     h2 {
       width: 100%;
-      font-size: 18px;
+      font-size: 130%;
       font-weight: 300;
-      letter-spacing: 0.03em;
-      margin: 0 0 18px 0;
+      letter-spacing: 1%;
+      margin: 0 0 5% 0;
       color: #ffffff;
       line-height: 1.5;
 
-      @include media-breakpoint("lt-md") {
-        font-size: 14px;
-      }
-    }
-
-    h4 {
-      padding-top: 10px;
-      max-width: 80%;
-      text-align: center;
-      font-weight: 300;
-      font-size: 12px;
-      margin: 0;
-      color: rgba(#ffffff, 0.8);
     }
 
     .annoq-video {
-      padding-top: 30px;
-      height: 450px;
-      overflow: hidden;
-
-      img {
-        height: 100%;
-      }
+      padding-top: 5%;
 
       iframe {
-        width: 600px;
-        height: calc(600px / 1.77);
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 1.77;
       }
     }
   }
 
+  .s-launch-button {
+    margin-bottom: 3%;
+  }
+
   .annoq-query-buttons {
-    padding: 8px;
+    padding: 2%;
 
     button {
       color: #fff;
       background-color: map-get($primary, default);
       @include mat.elevation(8);
-      font-size: 14px;
+      font-size: 100%;
 
       &.annoq-l {
         background-color: #1c7ed6;
@@ -107,10 +88,11 @@
   }
 
   .card {
-    // @include deep-width(185px);
-    @include deep-height(300px);
-    padding: 0 8px;
-    margin-bottom: 16px;
+    @include media-breakpoint("gt-sm") {
+      @include deep-height(250px);
+    }
+    padding: 0 1%;
+    margin-bottom: 2%;
 
     .annoq-query-buttons {
       button {
@@ -122,87 +104,73 @@
       background-color: transparent;
       @include deep-width(100%);
       @include deep-height(100%);
-
-      overflow: hidden;
-
+    
       @include mat.elevation(6);
 
       .annoq-image {
-        height: 120px;
-        overflow: hidden;
+        max-height: 50%;
+        width: auto;
 
         img {
-          height: 100%;
+          max-width: 100%;
+          height: auto;
+          display: block;
         }
       }
 
       .annoq-icon {
-        height: 120px;
-        overflow: hidden;
-        font-size: 70px;
-
+        font-size: 500%;
         color: rgba($annoq-primary-color, 0.5);
       }
 
       .annoq-stat {
-        height: 100px;
-        font-size: 50px;
+        height: 70%;
+        font-size: 50%;
         font-weight: bold;
-        margin-bottom: 20px;
-        overflow: hidden;
+        margin-bottom: 1%;
+        text-align: center;
         color: rgba($annoq-primary-color, 0.6);
 
         &.annoq-lg-font {
-          font-size: 60px;
-        }
-
-        &.annoq-sm-font {
-          font-size: 40px;
+          text-align: center;
+          vertical-align: middle;
+          font-size: 400%;
+          @include media-breakpoint("lt-sm") {
+            font-size: 250%;
+          }
         }
 
         .annoq-hint {
           text-align: center;
-          font-size: 16px;
+          font-size: 30%;
         }
-      }
-
-      .annoq-card-title {
-        overflow: hidden;
-        height: 50px;
-        font-size: 24px;
       }
 
       .annoq-card-description {
-        overflow: hidden;
-        height: 50px;
-        font-size: 14px;
+        height: 20%;
+        font-size: 100%;
       }
 
-      .annoq-card-chips {
-        overflow: hidden;
-        height: 35px;
-      }
+      .annoq-rounded-button {
+        font-size: 100%;
 
-      .annoq-card-footer {
-        .annoq-action-button {
-          margin: 0 6px;
-          @include mat.elevation(2);
+        @include media-breakpoint("lt-md") {
+          font-size: 65%;
         }
+
       }
     }
 
     &.card-stats {
-      @include deep-height(150px);
+      @include deep-height(100%);
 
       .annoq-card {
         @include mat.elevation(0);
 
         .annoq-card-title {
-          padding: 8px 12px;
-          overflow: hidden;
+          padding: 1% 2%;
           text-align: center;
-          font-size: 14px;
-          height: 50px;
+          font-size: 100%;
         }
 
         .annoq-card-footer {
@@ -214,28 +182,31 @@
     }
 
     &.card-step {
-      @include deep-height(80px);
+      @include deep-height(100%);
       width: 100%;
 
       .annoq-card {
         @include mat.elevation(6);
-        padding: 8px 12px;
+        padding: 2% 4%;
 
         .annoq-icon {
-          width: 60px;
+          width: 7%;
           height: 100%;
-          font-size: 40px;
+          font-size: 250%;
           text-align: center;
         }
 
         .annoq-card-title {
-          padding: 0px 12px;
-          overflow: hidden;
-          height: 50px;
-          font-size: 20px;
+          padding: 0% 2%;
+          font-size: 125%;
 
-          .annoq-lg {
-            font-size: 30px;
+          @include media-breakpoint("lt-md") {
+            font-size: 100% !important;
+          }
+
+          .secondary-text {
+            text-align: left;
+            float: left;
           }
         }
 
@@ -248,23 +219,25 @@
     }
 
     &.card-logo {
-      @include deep-height(60px);
+      @include deep-height(1%);
 
       .annoq-card {
         @include mat.elevation(0);
 
         .annoq-image {
-          font-size: 40px;
-          @include deep-height(40px);
+          font-size: 300%;
+          @include media-breakpoint("lt-md") {
+            font-size: 100%;
+          }
+          @include deep-height(100%);
           height: 100%;
-          overflow: hidden;
 
           img {
             height: 100%;
           }
 
           a {
-            line-height: 50px;
+            line-height: 100%;
             color: #000;
             height: 100%;
           }
@@ -274,8 +247,8 @@
   }
 
   .annoq-free-banner {
-    padding: 15px 10px;
-    font-size: 16px;
+    padding: 0.75% 0.75%;
+    font-size: 100%;
     color: #285b2a !important;
     background: #dbefdc !important;
     border-left-color: #cde9ce;
@@ -283,20 +256,19 @@
   }
 
   .annoq-section {
-    padding: 40px 10px;
+    padding: 2% 2%;
 
     .annoq-heading {
       margin: 0 auto;
-      width: 800px;
+      width: 100%;
 
       h3 {
-        font-size: 28px;
+        font-size: 200%;
       }
     }
 
     h2 {
-      //padding-bottom: 20px;
-      font-size: 40px;
+      font-size: 250%;
     }
 
     &.section-1 {
@@ -313,19 +285,18 @@
   }
 
   .annoq-row-description {
-    padding: 20px 10px;
 
     img {
       width: 100%;
     }
 
     h3 {
-      font-size: 30px;
+      font-size: 200%;
     }
 
     p {
-      font-size: 14px;
-      line-height: 24px;
+      font-size: 100%;
+      line-height: 150%;
     }
 
     &.annoq-easyuse {
@@ -350,26 +321,19 @@
 
         &.annoq-steps {
           .card-step {
-            margin-bottom: 30px;
+            margin-bottom: 4%;
           }
 
-          // .card-step:nth-child(1) {
-          //   //margin-bottom: 10px;
-          // }
-
           .card-step:nth-child(2) {
-            //margin-bottom: 50px;
-            padding-left: 60px;
+            padding-left: 7%;
           }
 
           .card-step:nth-child(3) {
-            // margin-bottom: 50px;
-            padding-left: 100px;
+            padding-left: 12%;
           }
 
           .card-step:nth-child(4) {
-            // margin-bottom: 10px;
-            padding-left: 60px;
+            padding-left: 7%;
           }
         }
       }
@@ -377,22 +341,28 @@
   }
 
   p {
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 130%;
+    line-height: 160%;
   }
 
   .annoq-compatibility-table {
     width: 100%;
+    overflow-x: auto;
     text-align: left;
     @include mat.elevation(6);
 
     .mat-header-cell {
-      padding: 0 10px;
-      font-size: 10px !important;
+      padding: 0 1%;
+      font-size: 100% !important;
+
+      @include media-breakpoint("lt-md") {
+        font-size: 70% !important;
+      }
+
       font-weight: bold;
       text-transform: uppercase;
       border-right: #bbb solid 1px;
-      border-bottom: $annoq-secondary-color solid 3px;
+      border-bottom: $annoq-secondary-color solid 2px;
 
       &.annoq-os-header-cell {
         text-align: right;
@@ -401,17 +371,49 @@
 
     .mat-header-row {
       background-color: #fff;
-      @include deep-height(50px);
 
-      z-index: 10;
+      z-index: 5;
+    }
+
+    .mat-column-os{
+      width: 15%;
+    }
+
+    .mat-column-version{
+      width: 18.5%;
+    }
+
+    .mat-column-chrome{
+      width: 19.5%;
+    }
+
+    .mat-column-firefox{
+      width: 13%;
+    }
+
+    .mat-column-edge{
+      width: 20%;
+    }
+
+    .mat-column-safari{
+      width: 14%;
     }
 
     .mat-cell {
-      padding: 6px;
+      padding: 1%;
       border-right: #bbb solid 1px;
+      font-size: 100%;
+
+      @include media-breakpoint("lt-md") {
+        font-size: 80% !important;
+      }
+
       &.annoq-os-cell {
         font-weight: bold;
         text-align: right;
+        @include media-breakpoint("lt-md") {
+          font-size: 80% !important;
+        }
       }
     }
   }

@@ -10,51 +10,30 @@
     color: #222;
   }
 
-  .annoq-logo-filler {
-    @include deep-width(50px);
-
-    img {
-      height: 30px;
-    }
-  }
-
   .mat-toolbar {
-    padding-right: 10px;
+    padding-right: 1%;
     background-color: #fff;
-    @include deep-height(50px);
+    @include deep-height(100%);
     color: inherit;
     position: relative;
 
     .annoq-query-buttons {
-      padding: 8px;
-      width: 290px;
+      padding: 0.5%;
+      width: 15%;
+      @include media-breakpoint("lt-sm") {
+        margin-left: 5%;
+        width: 65%;
+      }
 
       button,
       a {
         text-decoration: none;
         color: map-get($primary, default);
-        //@include mat-elevation(4);
-        font-size: 12px;
-        border: map-get($primary, default) solid 1px;
-
-        // &.annoq-l {
-        //   // background-color: transparent;
-        // }
-      }
-    }
-
-    mat-toolbar-row {
-      @include deep-height(40px);
-
-      &.annoq-subtoolbar {
-        button {
-          margin-right: 8px;
-          height: 30px;
-          line-height: 30px;
-          padding-left: 8px;
-          padding-right: 8px;
-          font-size: 12px;
+        font-size: 60%;
+        @include media-breakpoint("lt-sm") {
+          font-size: 50%;
         }
+        border: map-get($primary, default) solid 1px;
       }
     }
 
@@ -68,35 +47,13 @@
   }
 
   .annoq-logo {
-    //@include deep-width(130px);
-    .annoq-main-logo,
-    .annoq-sub-logo {
-      cursor: pointer;
-      font-size: 20px;
-      text-decoration: none !important;
-      text-align: left;
-      color: #555;
-
-      &:hover {
-        color: #000000;
-      }
-    }
-
     .annoq-main-logo {
-      margin-right: 4px;
+      margin-right: 5%;
       font-weight: bold;
     }
 
     .annoq-sub-logo {
       font-weight: normal;
     }
-  }
-
-  .annoq-search-bar {
-    max-width: 600px !important;
-  }
-
-  .annoq-sidenav-container {
-    min-height: 93vh !important;
   }
 }

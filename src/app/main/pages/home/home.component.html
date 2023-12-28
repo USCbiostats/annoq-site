@@ -7,8 +7,8 @@
   </div>
 
   <div class="header accent p-8 w-100-p">
-    <div class="annoq-container" fxLayout="row wrap" fxLayoutAlign="start center">
-      <div fxLayout="column" fxLayoutAlign="center center" fxFlex="30%">
+    <div class="annoq-container" fxLayout="start center" fxLayoutAlign="start center">
+      <div class="left-text" fxLayout="column" fxLayoutAlign="center center" fxFlex.lt.md="100%" fxFlex.gt-sm="35%">
         <h1 [@animate]="{value:'*',params:{delay:'100ms', y:'25px'}}">
           The Annotation Query<br>
           <strong>
@@ -20,11 +20,11 @@
           annotation.
         </h2>
         <div class="annoq-query-buttons w-100-p" fxLayout="row" fxLayoutAlign="start center">
-          <button mat-raised-button [routerLink]="['/search']" fxFlex="50"
+          <button mat-raised-button [routerLink]="['/search']" fxFlex="100"
             class="annoq-rounded-button annoq-half-button annoq-r w-100-p">
             LAUNCH QUERY UI
           </button>
-          <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" fxFlex="50" target="_blank">
+          <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" fxFlex="100" target="_blank">
             <button mat-raised-button class="annoq-rounded-button annoq-half-button annoq-l w-100-p">
               UI TUTORIAL
             </button>
@@ -32,7 +32,7 @@
         </div>
       </div>
       <span fxFlex=""></span>
-      <div class="annoq-video" fxLayout="column" fxFlex="65%">
+      <div class="annoq-video" fxLayout="column" fxFlex.lt.md="100" fxFlex.gt-sm="60%">
         <!--   <img class="" src="assets/images/annoq-cloud-md.png"> -->
 
         <iframe width="560" height="315" src="https://www.youtube.com/embed/plaU42-x4jE" title="YouTube video player"
@@ -110,7 +110,7 @@
               </div>
               <span fxFlex=""></span>
               <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" target="_blank"
-                mat-stroked-button class="annoq-rounded-button annoq-sm">
+                mat-stroked-button class="annoq-rounded-button">
                 MORE INFO
               </a>
             </div>
@@ -121,12 +121,12 @@
                 2
               </div>
               <div class="annoq-card-title p-8 " fxLayout="column" fxLayoutAlign="center start">
-                <div class="secondary-text">Choose Query Type </div>
-                <small>5 types of supported queries  </small>
+                <div class="secondary-text">Choose Query Type</div>
+                <small>5 types of supported queries</small>
               </div>
               <span fxFlex=""></span>
               <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" target="_blank"
-                mat-stroked-button class="annoq-rounded-button annoq-sm">
+                mat-stroked-button class="annoq-rounded-button">
                 MORE INFO
               </a>
             </div>
@@ -138,11 +138,11 @@
                 3
               </div>
               <div class="annoq-card-title p-8 " fxLayout="column" fxLayoutAlign="center start">
-                <div class="secondary-text annoq-lg">Submit query </div>
+                <div class="secondary-text">Submit query</div>
               </div>
               <span fxFlex=""></span>
               <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" target="_blank"
-                mat-stroked-button class="annoq-rounded-button annoq-sm">
+                mat-stroked-button class="annoq-rounded-button">
                 MORE INFO
               </a>
             </div>
@@ -160,7 +160,7 @@
               </div>
               <span fxFlex=""></span>
               <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" target="_blank"
-                mat-stroked-button class="annoq-rounded-button annoq-sm">
+                mat-stroked-button class="annoq-rounded-button">
                 MORE INFO
               </a>
             </div>
@@ -171,12 +171,12 @@
                 5
               </div>
               <div class="annoq-card-title p-8 " fxLayout="column" fxLayoutAlign="center start">
-                <div class="secondary-text">Download Results (optional) </div>
-                <small>A generated file is ready to download </small>
+                <div class="secondary-text">Download Results</div>
+                <small>A generated file is ready to download</small>
               </div>
               <span fxFlex=""></span>
               <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" target="_blank"
-                mat-stroked-button class="annoq-rounded-button annoq-sm">
+                mat-stroked-button class="annoq-rounded-button">
                 MORE INFO
               </a>
             </div>
@@ -206,17 +206,32 @@
             Getting the annotation data with a graphic interface.
           </div>
           <div class="p-8 pt-0 annoq-card-footer" fxLayout="row" fxLayoutAlign="center center">
-            <div class="annoq-query-buttons w-100-p" fxLayout="row" fxLayoutAlign="start center">
+
+            <div class="annoq-query-buttons w-100-p" fxLayout="row" fxLayoutAlign="start center" fxShow="true" fxHide.lt-md="true">
               <button mat-raised-button [routerLink]="['/search']" fxFlex="50"
-                class="annoq-rounded-button mr-4 annoq-half-button annoq-sm annoq-r">
+                class="annoq-rounded-button mr-4 annoq-half-button annoq-r">
                 LAUNCH QUERY UI
               </button>
               <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" fxFlex="50" target="_blank">
-                <button mat-raised-button class="annoq-rounded-button annoq-half-button annoq-sm annoq-l w-100-p">
+                <button mat-raised-button class="annoq-rounded-button annoq-half-button annoq-l w-100-p">
                   UI TUTORIAL
                 </button>
               </a>
             </div>
+
+            <div class="annoq-query-buttons w-100-p" fxLayout="column" fxLayoutAlign="start center" fxShow="true" fxHide.gt-sm="true">
+              <button mat-raised-button [routerLink]="['/search']"
+                class="annoq-rounded-button s-launch-button">
+                LAUNCH QUERY UI
+              </button>
+              <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" target="_blank">
+                <button mat-raised-button
+                class="annoq-rounded-button annoq-l">
+                  UI TUTORIAL
+                </button>
+              </a>
+            </div>
+
           </div>
         </div>
       </div>
@@ -331,7 +346,7 @@
       </a>
     </div>
     <div class="annoq-container" fxLayout="row" fxLayoutAlign="start center">
-      <table mat-table [dataSource]="dataSource" class=" annoq-compatibility-table">
+      <table mat-table [dataSource]="dataSource" class="annoq-compatibility-table">
         <ng-container matColumnDef="os">
           <th mat-header-cell *matHeaderCellDef class="annoq-os-header-cell"> OS </th>
           <td mat-cell *matCellDef="let element" class="annoq-os-cell"> {{element.os}} </td>
