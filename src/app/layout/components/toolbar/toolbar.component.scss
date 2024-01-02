@@ -20,7 +20,7 @@
     .annoq-query-buttons {
       padding: 0.5%;
       width: 15%;
-      @include media-breakpoint("lt-sm") {
+      @include media-breakpoint("lt-md") {
         margin-left: 5%;
         width: 65%;
       }
@@ -30,7 +30,7 @@
         text-decoration: none;
         color: map-get($primary, default);
         font-size: 60%;
-        @include media-breakpoint("lt-sm") {
+        @include media-breakpoint("lt-md") {
           font-size: 50%;
         }
         border: map-get($primary, default) solid 1px;

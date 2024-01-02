@@ -2,18 +2,16 @@
 @import "src/@annoq.common/scss/annoq.common";
 
 :host {
-  @include media-breakpoint("xs") {
-    width: 100%;
-  }
 
-  @include media-breakpoint-up("sm") {
-    width: 600px;
+  .dialog-title {
+    @include media-breakpoint("lt-md") {
+      font-size: 15px;
+    }
   }
 
   .annoq-dialog-body {
     margin: 0;
     padding: 15px 10px;
-    @include deep-width(100%);
   }
 
   .annoq-detail-row {
@@ -35,11 +33,11 @@
     padding: 0;
   }
 
-  .mat-dialog-content {
-  }
-
   .dialog-content-wrapper {
     width: 900px;
+    @include media-breakpoint("lt-md") {
+      width: 350px;
+    }
     min-height: 80%;
     display: flex;
     flex-direction: column;

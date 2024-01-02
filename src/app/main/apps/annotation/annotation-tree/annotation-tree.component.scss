@@ -3,10 +3,7 @@
 
 :host {
   width: 100%; //white-space:nowrap;
-
-  .background-highlight {
-    //background-color: #DDD;
-  }
+  height: 100%;
 
   button {
     &.annoq-sm {
@@ -53,9 +50,6 @@
       padding: 8px 5px;
 
       .annoq-title {
-        // font-weight: bold;
-        //font-size: 20px;
-        //margin-bottom: 5px;
         word-break: break-all;
       }
     }
