@@ -7,6 +7,8 @@ import { SnpPage } from '../models/page';
 import { SnpService } from '../services/snp.service';
 import { SnpAggs } from '../models/snp-aggs';
 import { Annotation } from '../../annotation/models/annotation';
+import { Platform } from '@angular/cdk/platform';
+import { Router } from '@angular/router';
 
 enum StatsType {
   GENERAL = 'general',
@@ -24,6 +26,7 @@ export class SnpStatsComponent implements OnInit, OnDestroy {
   snpAggs: SnpAggs;
   columns: any[] = [];
   annotations: Annotation[] = [];
+  isMobile: boolean;
 
   @Input('panelDrawer')
   panelDrawer: MatDrawer;
@@ -53,8 +56,12 @@ export class SnpStatsComponent implements OnInit, OnDestroy {
 
   constructor(
     private snpService: SnpService,
-    private annotationService: AnnotationService) {
+    private annotationService: AnnotationService,
+    private _platform: Platform,
+    private router: Router) {
+
     this._unsubscribeAll = new Subject();
+    this.isMobile = false;
   }
 
 
@@ -76,6 +83,10 @@ export class SnpStatsComponent implements OnInit, OnDestroy {
           this.selectedField = this.snpAggs.field;
         }
       });
+
+      if (this._platform.ANDROID || this._platform.IOS) {
+        this.isMobile = true;
+      }
   }
 
 
@@ -108,6 +119,9 @@ export class SnpStatsComponent implements OnInit, OnDestroy {
   }
 
   close() {
+    if (this.isMobile) {
+      this.router.navigate(['/search']);
+    }
     this.panelDrawer.close();
   }
 
