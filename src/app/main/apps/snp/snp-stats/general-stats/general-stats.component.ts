@@ -2,7 +2,6 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { getColor } from '@annoq.common/data/annoq-colors';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { SnpPage } from '../../models/page';
 import { FrequencyBucket, SnpAggs } from '../../models/snp-aggs';
 import { SnpService } from '../../services/snp.service';
 import { Platform } from '@angular/cdk/platform';
