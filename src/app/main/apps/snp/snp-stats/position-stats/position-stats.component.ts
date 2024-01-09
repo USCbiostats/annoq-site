@@ -1,10 +1,9 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { getColor } from '@annoq.common/data/annoq-colors';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { SnpPage } from '../../models/page';
-import { FrequencyBucket, SnpAggs } from '../../models/snp-aggs';
+import { SnpAggs } from '../../models/snp-aggs';
 import { SnpService } from '../../services/snp.service';
+import { Platform } from '@angular/cdk/platform';
 
 @Component({
   selector: 'annoq-position-stats',
@@ -37,7 +36,8 @@ export class PositionStatsComponent implements OnInit, OnDestroy {
 
   private _unsubscribeAll: Subject<any>;
 
-  constructor(private snpService: SnpService,) {
+  constructor(private snpService: SnpService,
+    private _platform: Platform) {
     this._unsubscribeAll = new Subject();
   }
 
@@ -51,6 +51,23 @@ export class PositionStatsComponent implements OnInit, OnDestroy {
           this.drawStats()
         }
       });
+
+      if (this._platform.ANDROID || this._platform.IOS) {
+        this.posHistogramLineOptions = {
+          view: [400, 400],
+          legend: false,
+          legendPosition: 'below',
+          showLabels: true,
+          animations: true,
+          xAxis: true,
+          yAxis: true,
+          showYAxisLabel: true,
+          showXAxisLabel: true,
+          xAxisLabel: 'Position',
+          yAxisLabel: 'Annotations',
+          timeline: true,
+        }
+      }
 
   }
 

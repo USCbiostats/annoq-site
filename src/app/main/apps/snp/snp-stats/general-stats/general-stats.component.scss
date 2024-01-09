@@ -3,3 +3,9 @@
 
 $primary: map-get($theme, primary);
 $accent: map-get($theme, accent);
+
+.annoq-section-body {
+    @include media-breakpoint("lt-md"){
+        max-width: 500px;
+      }
+}

@@ -1,0 +1,10 @@
+@import "src/@annoq/scss/annoq";
+@import "src/@annoq.common/scss/annoq.common";
+
+:host {
+  width: 100%;
+
+  annoq-snp-stats {
+    @include deep-width(100% !important);
+  }
+}

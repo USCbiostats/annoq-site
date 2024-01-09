@@ -2,9 +2,9 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { getColor } from '@annoq.common/data/annoq-colors';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { SnpPage } from '../../models/page';
 import { FrequencyBucket, SnpAggs } from '../../models/snp-aggs';
 import { SnpService } from '../../services/snp.service';
+import { Platform } from '@angular/cdk/platform';
 
 @Component({
   selector: 'annoq-general-stats',
@@ -67,7 +67,8 @@ export class GeneralStatsComponent implements OnInit, OnDestroy {
 
   private _unsubscribeAll: Subject<any>;
 
-  constructor(private snpService: SnpService,) {
+  constructor(private snpService: SnpService,
+    private _platform: Platform) {
     this._unsubscribeAll = new Subject();
   }
 
@@ -81,6 +82,35 @@ export class GeneralStatsComponent implements OnInit, OnDestroy {
           this.generateStats()
         }
       });
+
+    if (this._platform.ANDROID || this._platform.IOS) {
+
+      this.existsPieOptions = {
+        view: [400, 200],
+        gradient: true,
+        legend: false,
+        showLabels: true,
+        isDoughnut: false,
+        maxLabelLength: 20,
+        colorScheme: {
+          domain: [getColor('green', 500), getColor('red', 500)]
+        },
+    
+      }
+
+      this.annotationFrequencyBarOptions = {
+        view: [400, 400],
+        showXAxis: true,
+        showYAxis: true,
+        gradient: false,
+        legend: false,
+        showXAxisLabel: true,
+        maxYAxisTickLength: 30,
+        yAxisLabel: 'Terms',
+        showYAxisLabel: true,
+        xAxisLabel: 'Count',
+      }
+    }
 
   }
 

@@ -5,7 +5,11 @@
   width: 100%;
 
   .annoq-left-drawer {
+    overflow-x: auto;
     width: 500px;
+    @include media-breakpoint("lt-md") {
+      width: 100%;
+    }
     border-right: #111 solid 1px;
 
     .phtr-menu-section {

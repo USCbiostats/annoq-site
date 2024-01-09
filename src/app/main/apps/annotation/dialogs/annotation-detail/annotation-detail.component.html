@@ -1,76 +1,64 @@
 <div class="dialog-content-wrapper">
   <mat-toolbar class="mat-primary m-0">
     <mat-toolbar-row fxFlex fxLayout="row" fxLayoutAlign="start center">
-      <span class="title dialog-title">
+      <span class="title dialog-title text-truncate">
         Detail: {{annotationDetail.name}}</span>
       <span fxFlex></span>
       <button mat-stroked-button (click)="close()" class="annoq-rounded-button annoq-sm" color="primary"
         aria-label="Close dialog">
-        <mat-icon>close</mat-icon> Close
+        <mat-icon>close</mat-icon>Close
       </button>
     </mat-toolbar-row>
   </mat-toolbar>
-  <div mat-dialog-content class="annoq-dialog-body" annoqPerfectScrollbar>
+  <div mat-dialog-content class="annoq-dialog-body">
     <div class="w-100-p" fxLayout="column" fxLayoutAlign="start stretch">
       <div class="annoq-detail-row" fxLayout="row" fxLayoutAlign="start start">
-        <div class="annoq-title" fxFlex="30%">
-          <div class="text-truncate">
-            ID
-          </div>
+        <div class="annoq-title" fxFlex="30%" fxFlex.lt-md="22%">
+          ID
         </div>
-        <div class="annoq-description" fxFlex="70%">
+        <div class="annoq-description" fxFlex="70%" fxFlex.lt-md="78%">
           {{ annotationDetail.id }}
         </div>
       </div>
       <div class="annoq-detail-row" fxLayout="row" fxLayoutAlign="start start">
-        <div class="annoq-title" fxFlex="30%">
-          <div class="text-truncate">
-            Label
-          </div>
+        <div class="annoq-title" fxFlex="30%" fxFlex.lt-md="22%">
+          Label
         </div>
-        <div class="annoq-description" fxFlex="70%">
+        <div class="annoq-description" fxFlex="70%" fxFlex.lt-md="78%">
           {{ annotationDetail.label }}
         </div>
       </div>
       <div class="annoq-detail-row" fxLayout="row" fxLayoutAlign="start start">
-        <div class="annoq-title" fxFlex="30%">
-          <div class="text-truncate">
-            Description
-          </div>
+        <div class="annoq-title" fxFlex="30%" fxFlex.lt-md="22%">
+          Description
         </div>
-        <div class="annoq-description" fxFlex="70%">
+        <div class="annoq-description" fxFlex="70%" fxFlex.lt-md="78%">
           {{ annotationDetail.detail }}
         </div>
       </div>
       <div class="annoq-detail-row" fxLayout="row" fxLayoutAlign="start start">
-        <div class="annoq-title" fxFlex="30%">
-          <div class="text-truncate">
-            Parent
-          </div>
+        <div class="annoq-title" fxFlex="30%" fxFlex.lt-md="22%">
+          Parent
         </div>
-        <div class="annoq-description" fxFlex="70%">
+        <div class="annoq-description" fxFlex="70%" fxFlex.lt-md="78%">
           {{ annotationDetail.parent_id }}
         </div>
       </div>
       <div *ngIf="annotationDetail.link" class="annoq-detail-row" fxLayout="row" fxLayoutAlign="start start">
-        <div class="annoq-title" fxFlex="30%">
-          <div class="text-truncate">
-            External Website
-          </div>
+        <div class="annoq-title" fxFlex="30%" fxFlex.lt-md="22%">
+          External Website
         </div>
-        <div class="annoq-description" fxFlex="70%">
+        <div class="annoq-description" fxFlex="70%" fxFlex.lt-md="78%">
           <a href="{{ annotationDetail.link }}" target="_blank">
             {{ annotationDetail.link }}
           </a>
         </div>
       </div>
       <div *ngIf="annotationDetail.pmid" class="annoq-detail-row" fxLayout="row" fxLayoutAlign="start start">
-        <div class="annoq-title" fxFlex="30%">
-          <div class="text-truncate">
-            PMID
-          </div>
+        <div class="annoq-title" fxFlex="30%" fxFlex.lt-md="22%">
+          PMID
         </div>
-        <div class="annoq-description" fxFlex="70%">
+        <div class="annoq-description" fxFlex="70%" fxFlex.lt-md="78%">
           <a href="{{ getPMIDUrl(annotationDetail.pmid) }}" target="_blank">
             {{ annotationDetail.pmid }}
           </a>

@@ -10,6 +10,8 @@ import { SampleVCFFile } from '@annoq.common/data/sample-vcf';
 import { RightPanel } from '@annoq.common/models/menu-panels';
 import { SampleRSIDFile } from '@annoq.common/data/sample-rsid-list';
 import { UrlQueryType } from '@annoq.common/models/query-params';
+import { Platform } from '@angular/cdk/platform';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'annoq-annotation',
@@ -28,13 +30,16 @@ export class AnnotationComponent implements OnInit {
   searchResponse = '';
   PER_PAGE = environment.snpResultsSize;
   totalPages: any;
+  isMobile: boolean;
 
   public esData: any[];
 
   constructor(public annoqMenuService: AnnoqMenuService,
     public annotationService: AnnotationService,
     private snpDialogService: SnpDialogService,
-    public snpService: SnpService) {
+    public snpService: SnpService,
+    private _platform: Platform,
+    private router: Router) {
 
     if (this.snpService.initialSearchParams.query_type === UrlQueryType.chr) {
       this.snpService.selectInputType(this.snpService.inputType.chromosome)
@@ -43,10 +48,14 @@ export class AnnotationComponent implements OnInit {
     }
 
     this.annotationForm = this.createAnnotationForm();
-
+    this.isMobile = false;
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    if (this._platform.ANDROID || this._platform.IOS) {
+      this.isMobile = true;
+    }
+  }
 
   createAnnotationForm() {
     return new FormGroup({
@@ -104,6 +113,9 @@ export class AnnotationComponent implements OnInit {
       this.snpService.getSnps(query, 1);
       this.annoqMenuService.closeRightDrawer();
       this.annoqMenuService.selectRightPanel(null);
+      if (this.isMobile) {
+        this.router.navigate(['/summary']);
+      }
     } else {
       this.snpDialogService.openMessageToast('Select at least one annotation from the tree', 'OK');
     }
