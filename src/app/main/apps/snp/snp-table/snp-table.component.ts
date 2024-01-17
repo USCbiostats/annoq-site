@@ -110,6 +110,7 @@ export class SnpTableComponent implements OnInit, OnDestroy {
             label: detail.label ? detail.label : header,
             valueType: detail.value_type,
             rootUrl: detail.root_url,
+            value_type: detail.value_type,
             cell: (element: any) => `${element[header]}`
           }
         });

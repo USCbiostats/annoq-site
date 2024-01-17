@@ -7,10 +7,12 @@ import { SnpPage } from '../models/page';
 import { cloneDeep, find, orderBy, uniq, uniqBy } from 'lodash';
 import { FrequencyBucket, SnpAggs } from '../models/snp-aggs';
 import { AnnotationService } from '../../annotation/services/annotation.service';
-import { ColumnFieldType } from '@annoq.common/models/annotation';
+import { ColumnFieldType, ColumnValueType } from '@annoq.common/models/annotation';
 import { SearchCriteria } from '@annoq.search/models/search-criteria';
 import { Annotation } from '../../annotation/models/annotation';
 import { UrlQueryParams } from '@annoq.common/models/query-params';
+
+import pantherTerms from '@annoq.common/data/panther_terms.json';
 
 @Injectable({
     providedIn: 'root',
@@ -96,7 +98,14 @@ export class SnpService {
         const results = snps.map(snp => {
             const transformedSnp = {}
             for (const k in snp) {
-                if (snp[k] && (typeof snp[k] === 'string')) {
+                const colDetail = this.annotationService.findDetailByName(k);
+
+                if (colDetail?.value_type === ColumnValueType.GO_ID) {
+                    const value = snp[k].split('|').map((id) => {
+                        return pantherTerms[id] ? pantherTerms[id] : { id, label: id }
+                    })
+                    transformedSnp[k] = value
+                } else if (snp[k] && (typeof snp[k] === 'string')) {
                     const value = uniq(snp[k].split('|')).join(' | ')
                     transformedSnp[k] = value === '.' ? '' : value
                 }
