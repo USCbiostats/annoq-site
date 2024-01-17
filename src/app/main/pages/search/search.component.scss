@@ -6,6 +6,7 @@
 
   .annoq-left-drawer {
     overflow-x: auto;
+    overflow-y: auto;
     width: 500px;
     @include media-breakpoint("lt-md") {
       width: 100%;
