@@ -1,4 +1,4 @@
-<form class="annoq-form-section h-100-p w-100-p" fxLayout="column" fxLayoutAlign="start stretch" name="annotationForm"
+<form class="annoq-form-section w-100-p" fxLayout="column" fxLayoutAlign="start stretch" name="annotationForm"
   [formGroup]="annotationForm">
   <div class="annoq-section-header" fxLayout="row" fxLayoutAlign="start center">
     <div class="annoq-section-heading">
@@ -10,7 +10,7 @@
       CHANGE
     </button>
     <mat-menu #configurationMenu="matMenu" class="annoq-dropdown-menu">
-      <button mat-menu-item *ngFor="let inputType of snpService.inputTypes.options" class=""
+      <button mat-menu-item *ngFor="let inputType of snpService.inputTypes.options" 
         (click)="snpService.selectInputType(inputType)">
         {{inputType.label}}
       </button>
@@ -18,7 +18,7 @@
   </div>
   <div [ngSwitch]="snpService.inputTypes.selected.id" class="annoq-section-body" fxLayout="column"
     fxLayoutAlign="start stretch">
-    <div class="" *ngSwitchCase="snpService.inputType.chromosome.id">
+    <div  *ngSwitchCase="snpService.inputType.chromosome.id">
       <mat-form-field class="w-100-p">
         <mat-label>Chromosome</mat-label>
         <input matInput formControlName="chrom" placeholder="Chromosome" />
@@ -40,13 +40,13 @@
         </mat-form-field>
       </div>
     </div>
-    <div class="" *ngSwitchCase="snpService.inputType.geneProduct.id">
+    <div  *ngSwitchCase="snpService.inputType.geneProduct.id">
       <mat-form-field class="w-100-p">
         <mat-label>Gene Product</mat-label>
         <input matInput formControlName="geneProduct" placeholder="Gene Product" />
       </mat-form-field>
     </div>
-    <div class="" *ngSwitchCase="snpService.inputType.rsID.id">
+    <div  *ngSwitchCase="snpService.inputType.rsID.id">
       <mat-form-field class="w-100-p">
         <mat-label>rsID</mat-label>
         <input matInput formControlName="rsID" placeholder="rsID" />
@@ -54,8 +54,8 @@
     </div>
 
 
-    <div class="" *ngSwitchCase="snpService.inputType.rsIDList.id">
-      <div [formGroupName]="'rsIDList'" fxLayout="column" fxLayoutAlign="start stretch" class="">
+    <div  *ngSwitchCase="snpService.inputType.rsIDList.id">
+      <div [formGroupName]="'rsIDList'" fxLayout="column" fxLayoutAlign="start stretch" >
         <div fxLayout="row" fxLayoutAlign="start center" class="pthr-file-upload-header">
           <button mat-stroked-button class="annoq-rounded-button annoq-xs" (click)="addSampleRSIDList()">
             Sample rsID List
@@ -80,8 +80,8 @@
 
 
 
-    <div class="" *ngSwitchCase="snpService.inputType.chromosomeList.id">
-      <div [formGroupName]="'uploadList'" fxLayout="column" fxLayoutAlign="start stretch" class="">
+    <div  *ngSwitchCase="snpService.inputType.chromosomeList.id">
+      <div [formGroupName]="'uploadList'" fxLayout="column" fxLayoutAlign="start stretch" >
         <div fxLayout="row" fxLayoutAlign="start center" class="pthr-file-upload-header">
           <button mat-stroked-button class="annoq-rounded-button annoq-xs" (click)="addSampleVCF()">
             Sample VCF File
@@ -102,7 +102,7 @@
         </mat-form-field>
       </div>
     </div>
-    <div class="" *ngSwitchCase="snpService.inputType.keyword.id">
+    <div  *ngSwitchCase="snpService.inputType.keyword.id">
       <mat-form-field class="w-100-p">
         <mat-label>Keyword</mat-label>
         <input matInput formControlName="keyword" placeholder="General Keyword Search" />

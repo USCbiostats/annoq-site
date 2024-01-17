@@ -4,8 +4,18 @@
 $primary: map-get($theme, primary);
 $accent: map-get($theme, accent);
 
-.annoq-section-body {
-    @include media-breakpoint("lt-md"){
-        max-width: 500px;
-      }
+.annoq-section-pie {
+  max-width: 500px;
+  height: 200px;
+  @include media-breakpoint("lt-md"){
+      max-width: 100%;
+    }
+}
+
+.annoq-section-bar {
+  max-width: 500px;
+  height: 400px;
+  @include media-breakpoint("lt-md"){
+      max-width: 100%;
+    }
 }

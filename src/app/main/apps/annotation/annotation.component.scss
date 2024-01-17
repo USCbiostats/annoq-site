@@ -6,6 +6,15 @@
   width: 100%; // display: block;
   background-color: white;
   @include mat.elevation(4);
+  
+  form {
+    height: 100%;
+    @include media-breakpoint("lt-md") {
+      @media all and (orientation:landscape) {
+        height: 200%;
+      }
+    }
+  }
 
   .annoq-header {
     @include deep-height(35px);

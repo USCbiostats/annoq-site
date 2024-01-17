@@ -22,8 +22,8 @@
     </div>
     <span fxFlex></span>
   </div>
-  <div class="annoq-section-body" fxLayout="column" fxLayoutAlign="start stretch">
-    <ngx-charts-pie-chart [results]="stats.existsPie" [view]="existsPieOptions.view"
+  <div class="annoq-section-pie" fxLayout="column" fxLayoutAlign="start stretch">
+    <ngx-charts-pie-chart [results]="stats.existsPie"
       [scheme]="existsPieOptions.colorScheme" [gradient]="existsPieOptions.gradient" [legend]="existsPieOptions.legend"
       [maxLabelLength]="existsPieOptions.maxLabelLength" [labels]="existsPieOptions.showLabels"
       [doughnut]="existsPieOptions.isDoughnut">
@@ -39,8 +39,8 @@
     </div>
     <span fxFlex></span>
   </div>
-  <div class="annoq-section-body" fxLayout="column" fxLayoutAlign="start stretch">
-    <ngx-charts-bar-horizontal [results]="stats.annotationFrequencyBar" [view]="annotationFrequencyBarOptions.view"
+  <div class="annoq-section-bar" fxLayout="column" fxLayoutAlign="start stretch">
+    <ngx-charts-bar-horizontal [results]="stats.annotationFrequencyBar"
       [gradient]="annotationFrequencyBarOptions.gradient" [xAxis]="annotationFrequencyBarOptions.showXAxis"
       [yAxis]="annotationFrequencyBarOptions.showYAxis" [legend]="annotationFrequencyBarOptions.legend"
       [showXAxisLabel]="annotationFrequencyBarOptions.showXAxisLabel"
