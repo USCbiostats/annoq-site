@@ -34,6 +34,14 @@
       max-width: 100%;
     }
 
+    .left-text { 
+      @include media-breakpoint("lt-md") {
+        @media all and (orientation:landscape) {
+          margin-left: 10%;
+        }
+      }
+    }
+
     h1 {
       font-size: 150%;
       font-weight: normal;
@@ -59,6 +67,7 @@
 
     .annoq-video {
       padding-top: 5%;
+      margin: auto;
 
       iframe {
         max-width: 100%;
