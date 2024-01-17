@@ -49,7 +49,7 @@ $accent: map-get($theme, accent);
       min-height: calc(100% - 80px);
       @include media-breakpoint("lt-md"){
         max-height: 700px;
-        max-width: 500px;
+        max-width: 100%;
       }
     }
   }
