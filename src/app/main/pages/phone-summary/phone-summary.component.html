@@ -1,3 +1,26 @@
-<div class="w-100-p" fxLayout="row" fxLayoutAlign="start start">
+<div class="w-100-p" fxLayout="column" fxLayoutAlign="start start">
+    <mat-toolbar fxLayout="row" fxLayoutAlign="start center">
+        <div class="annoq-sidemenu-header" fxLayout="row" fxLayoutAlign="center center">
+          Tools
+        </div>
+        <button mat-icon-button color="" class="annoq-rounded-button">
+          <fa-icon [icon]="['fas', 'filter']"></fa-icon>
+          <div class="annoq-label">
+            Filter
+          </div>
+        </button>
+        <button mat-icon-button color="" class="annoq-rounded-button">
+          <fa-icon [icon]="['fas', 'list']"></fa-icon>
+          <div class="annoq-label">
+            Summary
+          </div>
+        </button>
+        <button mat-icon-button color="" class="annoq-rounded-button">
+          <fa-icon [icon]="['fas', 'chart-bar']"></fa-icon>
+          <div class="annoq-label">
+            Stats
+          </div>
+        </button>
+    </mat-toolbar>
     <annoq-snp-stats></annoq-snp-stats>
 </div>
