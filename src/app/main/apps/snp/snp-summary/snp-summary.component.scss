@@ -43,8 +43,6 @@ $accent: map-get($theme, accent);
       font-size: 10px;
       color: map-get($primary, default);
       border-bottom: $annoq-primary-color-light solid 1px;
-      .annoq-edit-button {
-      }
     }
 
     .annoq-tree {
@@ -54,15 +52,6 @@ $accent: map-get($theme, accent);
       .node-content-wrapper {
         padding: 0 !important;
       }
-
-      /*   &::before {
-        content: "";
-        position: absolute;
-        border-left: 1px solid $annoq-tree-line-color;
-        height: 100%;
-        top: 0;
-        left: 55px;
-      } */
     }
 
     .annoq-tree-node {

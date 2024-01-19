@@ -7,7 +7,6 @@ import { AnnotationService } from './services/annotation.service';
 import { SnpDialogService } from '../snp/services/dialog.service';
 import { environment } from 'environments/environment';
 import { SampleVCFFile } from '@annoq.common/data/sample-vcf';
-import { RightPanel } from '@annoq.common/models/menu-panels';
 import { SampleRSIDFile } from '@annoq.common/data/sample-rsid-list';
 import { UrlQueryType } from '@annoq.common/models/query-params';
 import { Platform } from '@angular/cdk/platform';

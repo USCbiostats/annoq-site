@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { SearchComponent } from './search/search.component';
 import {PhoneStatsComponent} from './phone-stats/phone-stats.component';
+import {PhoneSummaryComponent} from './phone-summary/phone-summary.component';
 import { DetailComponent } from './detail/detail.component';
 import { AnnoqFooterModule } from 'app/layout/components/footer/footer.module';
 import { PublicationComponent } from './publication/publication.component';
@@ -20,6 +21,8 @@ const routes = [{
   path: 'search', component: SearchComponent
 }, {
   path: 'stats', component: PhoneStatsComponent
+}, {
+  path: 'summary', component: PhoneSummaryComponent
 }, {
   path: 'contact', component: ContactComponent
 }, {
@@ -35,6 +38,7 @@ const routes = [{
     HomeComponent,
     SearchComponent,
     PhoneStatsComponent,
+    PhoneSummaryComponent,
     AboutComponent,
     DetailComponent,
     PublicationComponent,
