@@ -13,6 +13,29 @@ $accent: map-get($theme, accent);
   background-color: white;
   @include mat.elevation(4);
 
+  .annoq-topmenu {
+    display: flex;
+    flex-direction: column;
+    background-color: #6a8095;
+  }
+  
+  .annoq-topmenu-header {
+    padding-right: 10px;
+    border-right: #999 solid 1px;
+    color: #fff;
+  }
+
+  button {
+    color: #ddd;
+    font-size: 12px;
+
+    &.annoq-active {
+      font-size: 15px;
+      color: map-get($primary, default);
+      color: #fff;
+    }
+  }
+
   .annoq-cam-progress {
     position: absolute;
     top: 0;
