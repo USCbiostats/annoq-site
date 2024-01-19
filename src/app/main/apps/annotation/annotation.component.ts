@@ -114,7 +114,7 @@ export class AnnotationComponent implements OnInit {
       this.annoqMenuService.closeRightDrawer();
       this.annoqMenuService.selectRightPanel(null);
       if (this.isMobile) {
-        this.router.navigate(['/summary']);
+        this.router.navigate(['/stats']);
       }
     } else {
       this.snpDialogService.openMessageToast('Select at least one annotation from the tree', 'OK');
