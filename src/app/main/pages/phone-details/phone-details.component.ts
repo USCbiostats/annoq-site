@@ -14,6 +14,8 @@ import { ColumnValueType } from '@annoq.common/models/annotation';
 import { RightPanel } from '@annoq.common/models/menu-panels';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { environment } from 'environments/environment';
+import { Platform } from '@angular/cdk/platform';
+import { Router } from '@angular/router';
 @Component({
   selector: 'phone-details',
   templateUrl: './phone-details.component.html',
@@ -46,22 +48,29 @@ export class PhoneDetailsComponent implements OnInit, OnDestroy {
   displayedColumns = [];
 
   private _unsubscribeAll: Subject<any>;
+  isMobile: boolean;
 
   constructor(
     private changeDetectorRefs: ChangeDetectorRef,
     public annoqMenuService: AnnoqMenuService,
     private snpDialogService: SnpDialogService,
     private annotationService: AnnotationService,
-    public snpService: SnpService
+    public snpService: SnpService,
+    private _platform: Platform,
+    private router: Router
   ) {
     this.loadingIndicator = false;
     this.reorderable = true;
-
+    this.isMobile = false;
     this._unsubscribeAll = new Subject();
 
   }
 
   ngOnInit(): void {
+
+    if (this._platform.ANDROID || this._platform.IOS) {
+        this.isMobile = true;
+      }
 
     const self = this;
 
@@ -196,6 +205,18 @@ export class PhoneDetailsComponent implements OnInit, OnDestroy {
     this.annoqMenuService.selectRightPanel(RightPanel.snpStats);
     this.annoqMenuService.openRightDrawer();
     this.snpService.getStats('ANNOVAR_ensembl_Effect');
+  }
+
+  summary() {
+    if (this.isMobile) {
+      this.router.navigate(['/summary']);
+    }
+  }
+
+  stats() {
+    if (this.isMobile) {
+      this.router.navigate(['/stats']);
+    }
   }
 }
 

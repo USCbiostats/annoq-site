@@ -84,6 +84,10 @@ $accent: map-get($theme, accent);
       }
     }
 
+    .annoq-sm {
+        color: black!important ;
+    }
+
     .annoq-count {
       font-weight: normal;
       cursor: pointer;

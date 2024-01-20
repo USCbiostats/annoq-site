@@ -3,10 +3,10 @@
         <div class="annoq-topmenu-header" fxLayout="row" fxLayoutAlign="center center">
           Tools
         </div>
-        <button mat-icon-button color="" class="annoq-rounded-button" fxFlex="20">
+        <button mat-icon-button color="" class="annoq-rounded-button annoq-active" fxFlex="20">
           <fa-icon [icon]="['fas', 'filter']"></fa-icon>
           <span>
-            Filter
+            Details
           </span>
         </button>
         <button mat-icon-button color="" class="annoq-rounded-button" fxFlex="20" (click)="summary()">
@@ -15,14 +15,14 @@
             Summary
           </span>
         </button>
-        <button mat-icon-button color="" class="annoq-rounded-button annoq-active" fxFlex="20">
+        <button mat-icon-button color="" class="annoq-rounded-button" fxFlex="20" (click)="stats()">
           <fa-icon [icon]="['fas', 'chart-bar']"></fa-icon>
           <span>
             Stats
           </span>
         </button>
     </mat-toolbar>
-    <div class="w-100-p h-100-p annoq-drawer" fxLayout="column" fxLayoutAlign="start streych">
+    <div class="w-100-p h-100-p annoq-drawer" fxLayout="column" fxLayoutAlign="start stretch">
       <div class="annoq-drawer-header" fxLayout="row" fxLayoutAlign="start center">
         <div class="annoq-section-heading" fxLayout="row" fxLayoutAlign="start center">
           <div class="mr-12">
@@ -49,7 +49,7 @@
           </div>
         </div>
         <span fxFlex></span>
-        <button mat-flat-button color="" class="annoq-rounded-button annoq-sm" (click)="download()">
+        <button mat-flat-button color="black" class="annoq-rounded-button annoq-sm" (click)="download()" style="color: black">
           Download
         </button>
       </div>
