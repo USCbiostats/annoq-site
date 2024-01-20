@@ -25,7 +25,7 @@ const routes = [{
 }, {
   path: 'summary', component: PhoneSummaryComponent
 }, {
-  path: 'details', component: PhoneDetailsComponent
+  path: 'table', component: PhoneDetailsComponent
 }, {
   path: 'contact', component: ContactComponent
 }, {

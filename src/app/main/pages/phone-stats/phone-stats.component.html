@@ -3,10 +3,10 @@
         <div class="annoq-topmenu-header" fxLayout="row" fxLayoutAlign="center center">
           Tools
         </div>
-        <button mat-icon-button color="" class="annoq-rounded-button" fxFlex="20">
-          <fa-icon [icon]="['fas', 'filter']"></fa-icon>
+        <button mat-icon-button color="" class="annoq-rounded-button" fxFlex="20" (click)="table()">
+          <fa-icon [icon]="['fas', 'table']"></fa-icon>
           <span>
-            Filter
+            Table
           </span>
         </button>
         <button mat-icon-button color="" class="annoq-rounded-button" fxFlex="20" (click)="summary()">

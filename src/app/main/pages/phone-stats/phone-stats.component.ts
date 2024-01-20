@@ -55,4 +55,10 @@ export class PhoneStatsComponent implements OnInit {
       this.router.navigate(['/summary']);
     }
   }
+
+  table() {
+    if (this.isMobile) {
+      this.router.navigate(['/table']);
+    }
+  }
 }
