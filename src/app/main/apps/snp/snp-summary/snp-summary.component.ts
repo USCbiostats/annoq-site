@@ -97,10 +97,17 @@ export class SnpSummaryComponent implements OnInit, OnDestroy {
 
   addExistFilter(field) {
     this.snpService.addExistFilter(field);
+    if (this.isMobile) {
+      this.router.navigate(['/table']);
+      this.snpService.addExistFilter(field);
+    }
   }
 
   getStats(field) {
     this.snpService.getStats(field);
+    if (this.isMobile) {
+      this.router.navigate(['/stats']);
+    }
     this.annoqMenuService.selectRightPanel(RightPanel.snpStats);
     this.annoqMenuService.openRightDrawer();
   }

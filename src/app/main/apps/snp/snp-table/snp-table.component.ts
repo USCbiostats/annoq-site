@@ -142,7 +142,7 @@ export class SnpTableComponent implements OnInit, OnDestroy {
   }
 
   getStats(field) {
-    this.openSnpStats()
+    this.openSnpStats(field)
     this.snpService.getStats(field);
   }
 
@@ -195,10 +195,10 @@ export class SnpTableComponent implements OnInit, OnDestroy {
     this.annoqMenuService.openRightDrawer()
   }
 
-  openSnpStats() {
+  openSnpStats(field) {
     this.annoqMenuService.selectRightPanel(RightPanel.snpStats);
     this.annoqMenuService.openRightDrawer();
-    this.snpService.getStats('ANNOVAR_ensembl_Effect');
+    this.snpService.getStats(field);
   }
 }
 

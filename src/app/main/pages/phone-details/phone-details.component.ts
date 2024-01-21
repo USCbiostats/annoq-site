@@ -218,7 +218,7 @@ export class PhoneDetailsComponent implements OnInit, OnDestroy {
 
   stats() {
     if (this.isMobile) {
-      this.snpService.getStats('ANNOVAR_ensembl_Effect');
+      this.snpService.getStats(this.columns[0].label);
       this.router.navigate(['/stats']);
     }
   }
