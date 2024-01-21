@@ -148,7 +148,7 @@ export class PhoneDetailsComponent implements OnInit, OnDestroy {
   }
 
   getStats(field) {
-    this.openSnpStats()
+    this.openSnpStats(field);
     this.snpService.getStats(field);
   }
 
@@ -201,10 +201,13 @@ export class PhoneDetailsComponent implements OnInit, OnDestroy {
     this.annoqMenuService.openRightDrawer()
   }
 
-  openSnpStats() {
+  openSnpStats(field) {
     this.annoqMenuService.selectRightPanel(RightPanel.snpStats);
     this.annoqMenuService.openRightDrawer();
-    this.snpService.getStats('ANNOVAR_ensembl_Effect');
+    if (this.isMobile) {
+      this.snpService.getStats(field);
+      this.router.navigate(['/stats']);
+    }
   }
 
   summary() {
@@ -215,6 +218,7 @@ export class PhoneDetailsComponent implements OnInit, OnDestroy {
 
   stats() {
     if (this.isMobile) {
+      this.snpService.getStats('ANNOVAR_ensembl_Effect');
       this.router.navigate(['/stats']);
     }
   }
