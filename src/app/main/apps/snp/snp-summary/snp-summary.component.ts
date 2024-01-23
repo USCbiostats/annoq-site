@@ -1,5 +1,6 @@
 import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { AnnotationService } from './../../annotation/services/annotation.service';
+import { ColumnService } from '../../annotation/services/column.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { SnpPage } from '../models/page';
@@ -36,6 +37,7 @@ export class SnpSummaryComponent implements OnInit, OnDestroy {
     public annoqMenuService: AnnoqMenuService,
     private snpService: SnpService,
     private annotationService: AnnotationService,
+    private columnService: ColumnService,
     private _platform: Platform,
     private router: Router) {
 
@@ -91,6 +93,7 @@ export class SnpSummaryComponent implements OnInit, OnDestroy {
       });
 
       this.treeNodes = this.snpService.buildSummaryTree(this.columns)
+      this.columnService.column = this.columns[0].label;
 
     }
   }
