@@ -77,31 +77,9 @@ $accent: map-get($theme, accent);
 
     .annoq-cell-terms {
       .annoq-cell-title {
-        margin: 5px 0;
-        border: #aaa solid 1px;
-        border-radius: 6px;
-
-        &.D {
-          background-color: rgba(green, 0.05);
-          .annoq-evidence-type {
-            border-color: green;
-            color: darken(green, 10%);
-            .annoq-icon {
-              color: rgba(green, 0.5);
-            }
-          }
-        }
-
-        &.H {
-          background-color: rgba(red, 0.05);
-          .annoq-evidence-type {
-            border-color: green;
-            color: darken(red, 10%);
-            .annoq-icon {
-              color: rgba(red, 0.5);
-            }
-          }
-        }
+        //margin: 5px 0;
+        // border: #aaa solid 1px;
+        // border-radius: 6px;
       }
     }
   }

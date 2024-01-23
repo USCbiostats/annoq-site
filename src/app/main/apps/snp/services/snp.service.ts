@@ -100,16 +100,19 @@ export class SnpService {
             for (const k in snp) {
                 const colDetail = this.annotationService.findDetailByName(k);
 
-                if (colDetail?.value_type === ColumnValueType.GO_ID) {
-                    const value = snp[k].split('|').map((id) => {
+                if (colDetail?.value_type === ColumnValueType.TERM) {
+                    const terms = snp[k].split('|').map((id) => {
                         return pantherTerms[id] ? pantherTerms[id] : { id, label: id }
                     })
+
+                    const value = {
+                        terms,
+                        count: terms.length
+                    }
+
+                    console.log(value.count)
                     transformedSnp[k] = value
-                } else if (snp[k] && (typeof snp[k] === 'string')) {
-                    const value = uniq(snp[k].split('|')).join(' | ')
-                    transformedSnp[k] = value === '.' ? '' : value
-                }
-                else {
+                } else {
                     transformedSnp[k] = snp[k]
                 }
             }

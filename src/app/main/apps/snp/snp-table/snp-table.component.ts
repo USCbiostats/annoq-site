@@ -23,6 +23,7 @@ import { environment } from 'environments/environment';
 export class SnpTableComponent implements OnInit, OnDestroy {
   ColumnValueType = ColumnValueType;
   RightPanel = RightPanel;
+  termsDisplayedSize = environment.termsDisplayedSize;
   snpPage: SnpPage;
   gene;
   genes: any[] = [];

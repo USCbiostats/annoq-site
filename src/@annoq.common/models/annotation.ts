@@ -1,6 +1,5 @@
 export enum ColumnValueType {
-  GO_ID = 'GO_id',
-  GO_LABEL = 'GO_label'
+  TERM = 'term_id'
 }
 
 export enum ColumnFieldType {
