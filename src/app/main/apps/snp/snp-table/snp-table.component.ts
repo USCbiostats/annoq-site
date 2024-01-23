@@ -198,7 +198,12 @@ export class SnpTableComponent implements OnInit, OnDestroy {
   openSnpStats(field) {
     this.annoqMenuService.selectRightPanel(RightPanel.snpStats);
     this.annoqMenuService.openRightDrawer();
-    this.snpService.getStats(field);
+    if(field == null) {
+      this.snpService.getStats(this.columns[0].label);
+    }
+    else {
+      this.snpService.getStats(field);
+    }
   }
 }
 
