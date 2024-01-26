@@ -105,6 +105,7 @@ export class SnpService {
                         return pantherTerms[id] ? pantherTerms[id] : { id, label: id }
                     })
 
+
                     const value = {
                         terms,
                         count: terms.length
@@ -112,6 +113,18 @@ export class SnpService {
 
                     console.log(value.count)
                     transformedSnp[k] = value
+                } else if (typeof snp[k] === 'string' && snp[k]?.includes('|')) {
+                    //console.log(k, snp[k])
+                    const items = snp[k].split('|')
+                    const value = {
+                        items,
+                        count: items.length
+                    }
+
+                    console.log(value)
+
+                    transformedSnp[k] = value
+
                 } else {
                     transformedSnp[k] = snp[k]
                 }

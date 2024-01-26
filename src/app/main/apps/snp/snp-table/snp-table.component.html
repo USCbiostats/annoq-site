@@ -85,15 +85,33 @@
             </div>
           </th>
           <td mat-cell *matCellDef="let element">
-            <ng-container *ngIf="column.name!=='pos' && column.value_type!==ColumnValueType.TERM">
+            <ng-container
+              *ngIf="column.name!=='pos' && column.value_type!==ColumnValueType.TERM && !element[column.name]?.items">
               {{element[column.name]}}
             </ng-container>
 
             <span class="annoq-cell-coordinates" *ngIf="column.name==='pos'">
               <a (click)="$event.stopPropagation()" [href]="getUcscLink(element)" target="_blank">
-                chr{{element['chr']}}:{{element[column.name]}}-{{element[column.name]}}
+                {{element[column.name]}}
               </a>
             </span>
+
+            <div class="annoq-cell-terms w-100-p" *ngIf="element[column.name]?.items" fxLayout="column"
+              fxLayoutAlign="start start">
+              <ul class="w-100-p">
+                <ng-container *ngFor="let item of element[column.name]?.items, let i = index">
+                  <li *ngIf="i < itemsDisplayedSize" class="annoq-cell-title w-100-p">
+                    <span class="annoq-cell-description mr-4"> {{item}}
+
+                    </span>
+                  </li>
+                </ng-container>
+              </ul>
+              <div>
+                <a *ngIf="element[column.name]?.count > termsDisplayedSize">
+                  - View all {{element[column.name]?.count}} Terms(s)</a>
+              </div>
+            </div>
 
             <div class="annoq-cell-terms w-100-p" *ngIf="column.value_type===ColumnValueType.TERM" fxLayout="column"
               fxLayoutAlign="start start">

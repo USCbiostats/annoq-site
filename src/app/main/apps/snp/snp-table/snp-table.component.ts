@@ -24,6 +24,7 @@ export class SnpTableComponent implements OnInit, OnDestroy {
   ColumnValueType = ColumnValueType;
   RightPanel = RightPanel;
   termsDisplayedSize = environment.termsDisplayedSize;
+  itemsDisplayedSize = 8
   snpPage: SnpPage;
   gene;
   genes: any[] = [];

@@ -5,7 +5,7 @@
 export const environment = {
   dataset: 'annoq-annotations-v2',
   production: false,
-  annotationApi: 'http://localhost:3403',// 'http://annoq.org/api',
+  annotationApi: 'http://bioghost2.usc.edu:9350', // 'http://localhost:3403',// 'http://annoq.org/api',
   snpResultsSize: 50,
   termsDisplayedSize: 3,
   amigoTermUrl: "http://amigo.geneontology.org/amigo/term/",
