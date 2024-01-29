@@ -3,24 +3,25 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { AnnoqMenuService } from '@annoq.common/services/annoq-menu.service';
-
-import { SnpService } from './../services/snp.service'
-import { SnpPage } from '../models/page';
-import { Gene } from '../models/gene';
-import { SnpDialogService } from '../services/dialog.service';
+import { SnpService } from '../../apps/snp/services/snp.service'
+import { SnpPage } from '../../apps/snp/models/page';
+import { Gene } from '../../apps/snp/models/gene';
+import { SnpDialogService } from '../../apps/snp/services/dialog.service';
 
 import { MatPaginator } from '@angular/material/paginator';
-import { AnnotationService } from '../../annotation/services/annotation.service';
+import { AnnotationService } from '../../apps/annotation/services/annotation.service';
 import { ColumnValueType } from '@annoq.common/models/annotation';
 import { RightPanel } from '@annoq.common/models/menu-panels';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { environment } from 'environments/environment';
+import { Platform } from '@angular/cdk/platform';
+import { Router } from '@angular/router';
 @Component({
-  selector: 'annoq-snp-table',
-  templateUrl: './snp-table.component.html',
-  styleUrls: ['./snp-table.component.scss']
+  selector: 'phone-details',
+  templateUrl: './phone-details.component.html',
+  styleUrls: ['./phone-details.component.scss']
 })
-export class SnpTableComponent implements OnInit, OnDestroy {
+export class PhoneDetailsComponent implements OnInit, OnDestroy {
   ColumnValueType = ColumnValueType;
   RightPanel = RightPanel;
   snpPage: SnpPage;
@@ -47,22 +48,29 @@ export class SnpTableComponent implements OnInit, OnDestroy {
   displayedColumns = [];
 
   private _unsubscribeAll: Subject<any>;
+  isMobile: boolean;
 
   constructor(
     private changeDetectorRefs: ChangeDetectorRef,
     public annoqMenuService: AnnoqMenuService,
     private snpDialogService: SnpDialogService,
     private annotationService: AnnotationService,
-    public snpService: SnpService
+    public snpService: SnpService,
+    private _platform: Platform,
+    private router: Router
   ) {
     this.loadingIndicator = false;
     this.reorderable = true;
-
+    this.isMobile = false;
     this._unsubscribeAll = new Subject();
 
   }
 
   ngOnInit(): void {
+
+    if (this._platform.ANDROID || this._platform.IOS) {
+        this.isMobile = true;
+      }
 
     const self = this;
 
@@ -91,8 +99,6 @@ export class SnpTableComponent implements OnInit, OnDestroy {
     if (snpPage.source) {
 
       setTimeout(() => {
-        // this.columns = [];
-        //this.displayedColumns = this.columns.map(c => c.name);
         this.displayedColumns.pop()
       }, 10);
 
@@ -142,7 +148,7 @@ export class SnpTableComponent implements OnInit, OnDestroy {
   }
 
   getStats(field) {
-    this.openSnpStats(field)
+    this.openSnpStats(field);
     this.snpService.getStats(field);
   }
 
@@ -198,11 +204,22 @@ export class SnpTableComponent implements OnInit, OnDestroy {
   openSnpStats(field) {
     this.annoqMenuService.selectRightPanel(RightPanel.snpStats);
     this.annoqMenuService.openRightDrawer();
-    if(field == null) {
-      this.snpService.getStats(this.columns[0].label);
-    }
-    else {
+    if (this.isMobile) {
       this.snpService.getStats(field);
+      this.router.navigate(['/stats']);
+    }
+  }
+
+  summary() {
+    if (this.isMobile) {
+      this.router.navigate(['/summary']);
+    }
+  }
+
+  stats() {
+    if (this.isMobile) {
+      this.snpService.getStats(this.columns[0].label);
+      this.router.navigate(['/stats']);
     }
   }
 }

@@ -3,24 +3,22 @@ import { ActivatedRoute } from '@angular/router';
 
 
 import { AnnoqMenuService } from '@annoq.common/services/annoq-menu.service';
-import { ColumnService } from '../../apps/annotation/services/column.service';
 import { Subject, takeUntil } from 'rxjs';
 import { SnpService } from 'app/main/apps/snp/services/snp.service';
 import { Platform } from '@angular/cdk/platform';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'phone-summary',
-  templateUrl: './phone-summary.component.html',
-  styleUrls: ['./phone-summary.component.scss']
+  selector: 'phone-stats',
+  templateUrl: './phone-stats.component.html',
+  styleUrls: ['./phone-stats.component.scss']
 })
-export class PhoneSummaryComponent implements OnInit {
+export class PhoneStatsComponent implements OnInit {
 
   private _unsubscribeAll: Subject<any>;
   isMobile: boolean;
-  
+
   constructor(public annoqMenuService: AnnoqMenuService,
-    private columnService: ColumnService,
     public snpService: SnpService,
     private route: ActivatedRoute,
     private _platform: Platform,
@@ -52,11 +50,9 @@ export class PhoneSummaryComponent implements OnInit {
     this._unsubscribeAll.complete();
   }
 
-  stats() {
+  summary() {
     if (this.isMobile) {
-      // this.snpService.getStats('ANNOVAR_ensembl_Effect');
-      this.snpService.getStats(this.columnService.column);
-      this.router.navigate(['/stats']);
+      this.router.navigate(['/summary']);
     }
   }
 

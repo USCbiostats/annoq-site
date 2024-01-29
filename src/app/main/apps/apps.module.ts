@@ -17,6 +17,7 @@ import { AnnoqConfirmDialogModule } from '@annoq/components/confirm-dialog/confi
 import { PositionStatsComponent } from './snp/snp-stats/position-stats/position-stats.component';
 import { SearchFormComponent } from './snp/search-form/search-form.component';
 import { AnnotationFiltersComponent } from './snp/annotation-filters/annotation-filters.component';
+import { ColumnService } from './annotation/services/column.service';
 
 const routes = [];
 
@@ -56,7 +57,9 @@ const routes = [];
         SearchFormComponent,
         AnnotationFiltersComponent
     ],
-    providers: []
+    providers: [
+        ColumnService
+    ]
 })
 
 export class AppsModule {

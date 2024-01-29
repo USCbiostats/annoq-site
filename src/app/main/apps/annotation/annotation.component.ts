@@ -7,7 +7,6 @@ import { AnnotationService } from './services/annotation.service';
 import { SnpDialogService } from '../snp/services/dialog.service';
 import { environment } from 'environments/environment';
 import { SampleVCFFile } from '@annoq.common/data/sample-vcf';
-import { RightPanel } from '@annoq.common/models/menu-panels';
 import { SampleRSIDFile } from '@annoq.common/data/sample-rsid-list';
 import { UrlQueryType } from '@annoq.common/models/query-params';
 import { Platform } from '@angular/cdk/platform';
@@ -114,7 +113,7 @@ export class AnnotationComponent implements OnInit {
       this.annoqMenuService.closeRightDrawer();
       this.annoqMenuService.selectRightPanel(null);
       if (this.isMobile) {
-        this.router.navigate(['/summary']);
+        this.router.navigate(['/table']);
       }
     } else {
       this.snpDialogService.openMessageToast('Select at least one annotation from the tree', 'OK');

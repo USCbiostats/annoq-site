@@ -9,18 +9,18 @@
             Table
           </span>
         </button>
-        <button mat-icon-button color="" class="annoq-rounded-button annoq-active" fxFlex="20">
+        <button mat-icon-button color="" class="annoq-rounded-button" fxFlex="20" (click)="summary()">
           <fa-icon [icon]="['fas', 'list']"></fa-icon>
           <span>
             Summary
           </span>
         </button>
-        <button mat-icon-button color="" class="annoq-rounded-button" fxFlex="20" (click)="stats()">
+        <button mat-icon-button color="" class="annoq-rounded-button annoq-active" fxFlex="20">
           <fa-icon [icon]="['fas', 'chart-bar']"></fa-icon>
           <span>
             Stats
           </span>
         </button>
     </mat-toolbar>
-    <annoq-snp-summary></annoq-snp-summary>
+    <annoq-snp-stats></annoq-snp-stats>
 </div>
