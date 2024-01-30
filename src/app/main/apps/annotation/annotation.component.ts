@@ -11,6 +11,7 @@ import { SampleRSIDFile } from '@annoq.common/data/sample-rsid-list';
 import { UrlQueryType } from '@annoq.common/models/query-params';
 import { Platform } from '@angular/cdk/platform';
 import { Router } from '@angular/router';
+import { AnnoqDeviceService } from '@annoq.common/services/annoq-device.service';
 
 @Component({
   selector: 'annoq-annotation',
@@ -33,7 +34,11 @@ export class AnnotationComponent implements OnInit {
 
   public esData: any[];
 
-  constructor(public annoqMenuService: AnnoqMenuService,
+  private resizeListener: () => void;
+
+  constructor(
+    private annoqDeviceService: AnnoqDeviceService,
+    public annoqMenuService: AnnoqMenuService,
     public annotationService: AnnotationService,
     private snpDialogService: SnpDialogService,
     public snpService: SnpService,
@@ -50,10 +55,20 @@ export class AnnotationComponent implements OnInit {
     this.isMobile = false;
   }
 
-  ngOnInit() { 
-    if (this._platform.ANDROID || this._platform.IOS) {
-      this.isMobile = true;
-    }
+
+
+  ngOnInit() {
+    this.checkDevice();
+    this.resizeListener = () => this.checkDevice();
+    window.addEventListener('resize', this.resizeListener);
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.resizeListener);
+  }
+
+  private checkDevice() {
+    this.isMobile = this.annoqDeviceService.isMobile();
   }
 
   createAnnotationForm() {
@@ -113,7 +128,8 @@ export class AnnotationComponent implements OnInit {
       this.annoqMenuService.closeRightDrawer();
       this.annoqMenuService.selectRightPanel(null);
       if (this.isMobile) {
-        this.router.navigate(['/table']);
+        // this.router.navigate(['/table']);
+        this.annoqMenuService.closeLeftDrawer();
       }
     } else {
       this.snpDialogService.openMessageToast('Select at least one annotation from the tree', 'OK');

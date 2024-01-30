@@ -12,7 +12,7 @@ import { SnpDialogService } from '../services/dialog.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { AnnotationService } from '../../annotation/services/annotation.service';
 import { ColumnValueType } from '@annoq.common/models/annotation';
-import { RightPanel } from '@annoq.common/models/menu-panels';
+import { LeftPanel, RightPanel } from '@annoq.common/models/menu-panels';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { environment } from 'environments/environment';
 @Component({
@@ -178,7 +178,9 @@ export class SnpTableComponent implements OnInit, OnDestroy {
     this.snpService.downloadSnp();
   }
 
-
+  openAnnotationSelection() {
+    this.annoqMenuService.openLeftDrawer()
+  }
 
   openSnpSearch() {
     this.annoqMenuService.selectRightPanel(RightPanel.snpSearch);
@@ -198,7 +200,7 @@ export class SnpTableComponent implements OnInit, OnDestroy {
   openSnpStats(field) {
     this.annoqMenuService.selectRightPanel(RightPanel.snpStats);
     this.annoqMenuService.openRightDrawer();
-    if(field == null) {
+    if (field == null) {
       this.snpService.getStats(this.columns[0].label);
     }
     else {
