@@ -15,6 +15,10 @@ import { ColumnValueType } from '@annoq.common/models/annotation';
 import { RightPanel } from '@annoq.common/models/menu-panels';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { environment } from 'environments/environment';
+import { ColumnService } from '../../annotation/services/column.service';
+
+import { Platform } from '@angular/cdk/platform';
+import { Router } from '@angular/router';
 @Component({
   selector: 'annoq-snp-table',
   templateUrl: './snp-table.component.html',
@@ -47,22 +51,31 @@ export class SnpTableComponent implements OnInit, OnDestroy {
   displayedColumns = [];
 
   private _unsubscribeAll: Subject<any>;
+  isMobile: boolean;
 
   constructor(
     private changeDetectorRefs: ChangeDetectorRef,
     public annoqMenuService: AnnoqMenuService,
     private snpDialogService: SnpDialogService,
     private annotationService: AnnotationService,
-    public snpService: SnpService
+    public snpService: SnpService,
+    private columnService: ColumnService,
+    private _platform: Platform,
+    private router: Router,
   ) {
     this.loadingIndicator = false;
     this.reorderable = true;
 
     this._unsubscribeAll = new Subject();
+    this.isMobile = false;
 
   }
 
   ngOnInit(): void {
+
+    if (this._platform.ANDROID || this._platform.IOS) {
+      this.isMobile = true;
+    }
 
     const self = this;
 
@@ -91,8 +104,6 @@ export class SnpTableComponent implements OnInit, OnDestroy {
     if (snpPage.source) {
 
       setTimeout(() => {
-        // this.columns = [];
-        //this.displayedColumns = this.columns.map(c => c.name);
         this.displayedColumns.pop()
       }, 10);
 
@@ -128,6 +139,7 @@ export class SnpTableComponent implements OnInit, OnDestroy {
 
       this.snpPage = snpPage;
       this.dataSource = new MatTableDataSource<any>(this.snpPage.snps);
+      this.columnService.column = this.columns[0].label;
     }
   }
 
@@ -198,11 +210,17 @@ export class SnpTableComponent implements OnInit, OnDestroy {
   openSnpStats(field) {
     this.annoqMenuService.selectRightPanel(RightPanel.snpStats);
     this.annoqMenuService.openRightDrawer();
-    if(field == null) {
-      this.snpService.getStats(this.columns[0].label);
-    }
-    else {
+    if (this.isMobile) {
       this.snpService.getStats(field);
+      this.router.navigate(['/stats']);
+    }
+    else{
+      if(field == null) {
+        this.snpService.getStats(this.columns[0].label);
+      }
+      else {
+        this.snpService.getStats(field);
+      }
     }
   }
 }

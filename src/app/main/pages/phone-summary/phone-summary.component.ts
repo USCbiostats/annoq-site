@@ -54,7 +54,6 @@ export class PhoneSummaryComponent implements OnInit {
 
   stats() {
     if (this.isMobile) {
-      // this.snpService.getStats('ANNOVAR_ensembl_Effect');
       this.snpService.getStats(this.columnService.column);
       this.router.navigate(['/stats']);
     }
