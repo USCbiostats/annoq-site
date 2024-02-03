@@ -44,8 +44,8 @@
   </div>
 
   <div class="annoq-section section-2">
-    <div class="annoq-container" fxLayout="row" fxLayoutAlign="start center">
-      <div class="card card-stats" fxFlex="50%">
+    <div class="annoq-container annoq-stats-container">
+      <div class="card card-stats">
         <div class="annoq-card card-sm">
           <div class="annoq-stat annoq-lg-font" fxLayout="column" fxLayoutAlign="start center">
             <div class="h-100-p">
@@ -62,7 +62,7 @@
           </div>
         </div>
       </div>
-      <div class="card card-stats" fxFlex="50%">
+      <div class="card card-stats">
         <div class="annoq-card">
           <div class="annoq-stat annoq-lg-font" fxLayout="column" fxLayoutAlign="start center">
             600+
@@ -193,8 +193,8 @@
         Package
       </p>
     </div>
-    <div class="annoq-container" fxLayout="row" fxLayoutAlign="start start">
-      <div class="card" fxFlex="33%">
+    <div class="annoq-container annoq-features">
+      <div class="card">
         <div class="annoq-card">
           <div class="annoq-icon" fxLayout="row" fxLayoutAlign="center center">
             <fa-icon [icon]="['fas', 'search-plus']"></fa-icon>
@@ -207,7 +207,7 @@
           </div>
           <div class="p-8 pt-0 annoq-card-footer" fxLayout="row" fxLayoutAlign="center center">
 
-            <div class="annoq-query-buttons w-100-p" fxLayout="row" fxLayoutAlign="start center" fxShow="true" fxHide.lt-md="true">
+            <div class="annoq-query-buttons w-100-p" fxLayout="row" fxLayoutAlign="start center">
               <button mat-raised-button [routerLink]="['/search']" fxFlex="50"
                 class="annoq-rounded-button mr-4 annoq-half-button annoq-r">
                 LAUNCH QUERY UI
@@ -218,24 +218,10 @@
                 </button>
               </a>
             </div>
-
-            <div class="annoq-query-buttons w-100-p" fxLayout="column" fxLayoutAlign="start center" fxShow="true" fxHide.gt-sm="true">
-              <button mat-raised-button [routerLink]="['/search']"
-                class="annoq-rounded-button s-launch-button">
-                LAUNCH QUERY UI
-              </button>
-              <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" target="_blank">
-                <button mat-raised-button
-                class="annoq-rounded-button annoq-l">
-                  UI TUTORIAL
-                </button>
-              </a>
-            </div>
-
           </div>
         </div>
       </div>
-      <div class="card" fxFlex="33%">
+      <div class="card">
         <div class="annoq-card">
           <div class="annoq-icon" fxLayout="row" fxLayoutAlign="center center">
             <fa-icon [icon]="['fas', 'code']"></fa-icon>
@@ -254,7 +240,7 @@
           </div>
         </div>
       </div>
-      <div class="card" fxFlex="33%">
+      <div class="card">
         <div class="annoq-card">
           <div class="annoq-icon" fxLayout="row" fxLayoutAlign="center center">
             <fa-icon [icon]="['fas', 'file-code']"></fa-icon>

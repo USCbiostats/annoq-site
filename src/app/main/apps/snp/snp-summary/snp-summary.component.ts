@@ -1,6 +1,5 @@
 import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { AnnotationService } from './../../annotation/services/annotation.service';
-import { ColumnService } from '../../annotation/services/column.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { SnpPage } from '../models/page';
@@ -21,7 +20,6 @@ export class SnpSummaryComponent implements OnInit, OnDestroy {
   private _unsubscribeAll: Subject<any>;
   snpPage: SnpPage
   columns: any[] = [];
-  isMobile: boolean;
 
   @ViewChild('tree') tree;
   @Input('panelDrawer') panelDrawer: MatDrawer;
@@ -37,12 +35,10 @@ export class SnpSummaryComponent implements OnInit, OnDestroy {
     public annoqMenuService: AnnoqMenuService,
     private snpService: SnpService,
     private annotationService: AnnotationService,
-    private columnService: ColumnService,
     private _platform: Platform,
     private router: Router) {
 
     this._unsubscribeAll = new Subject();
-    this.isMobile = false;
   }
 
   ngOnInit(): void {
@@ -56,9 +52,6 @@ export class SnpSummaryComponent implements OnInit, OnDestroy {
         }
       });
 
-      if (this._platform.ANDROID || this._platform.IOS) {
-        this.isMobile = true;
-      }
   }
 
   ngOnDestroy(): void {
@@ -93,32 +86,21 @@ export class SnpSummaryComponent implements OnInit, OnDestroy {
       });
 
       this.treeNodes = this.snpService.buildSummaryTree(this.columns)
-      this.columnService.column = this.columns[0].label;
 
     }
   }
 
   addExistFilter(field) {
     this.snpService.addExistFilter(field);
-    if (this.isMobile) {
-      this.router.navigate(['/table']);
-      this.snpService.addExistFilter(field);
-    }
   }
 
   getStats(field) {
     this.snpService.getStats(field);
-    if (this.isMobile) {
-      this.router.navigate(['/stats']);
-    }
     this.annoqMenuService.selectRightPanel(RightPanel.snpStats);
     this.annoqMenuService.openRightDrawer();
   }
 
   close() {
-    if (this.isMobile) {
-      this.router.navigate(['/search']);
-    }
     this.panelDrawer.close();
   }
 

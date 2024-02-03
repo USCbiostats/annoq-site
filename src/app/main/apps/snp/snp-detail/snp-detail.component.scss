@@ -5,10 +5,6 @@ $primary: map-get($theme, primary);
 $accent: map-get($theme, accent);
 
 :host {
-  .annoq-drawer {
-    @include deep-width(500px !important);
-  }
-
   .annoq-snp-detail-row {
     padding: 5px 10px;
     border-bottom: #888 solid 1px;

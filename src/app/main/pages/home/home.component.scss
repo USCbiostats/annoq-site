@@ -1,9 +1,8 @@
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 @import "src/@annoq/scss/annoq";
 @import "src/@annoq.common/scss/annoq.common";
 
 :host {
-
   h2 {
     margin: 0;
   }
@@ -34,9 +33,9 @@
       max-width: 100%;
     }
 
-    .left-text { 
+    .left-text {
       @include media-breakpoint("lt-md") {
-        @media all and (orientation:landscape) {
+        @media all and (orientation: landscape) {
           margin-left: 10%;
         }
       }
@@ -52,7 +51,6 @@
         font-size: 250%;
         letter-spacing: 10%;
       }
-
     }
 
     h2 {
@@ -62,7 +60,6 @@
       margin: 0 0 5% 0;
       color: #ffffff;
       line-height: 1.5;
-
     }
 
     .annoq-video {
@@ -77,8 +74,44 @@
     }
   }
 
-  .s-launch-button {
-    margin-bottom: 3%;
+  .annoq-stats-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    .card {
+      flex: 0 0 50%;
+    }
+
+    @include media-breakpoint("lt-sm") {
+      flex-direction: column;
+
+      .card {
+        flex: 0 0 auto;
+        @include deep-width(100%);
+      }
+    }
+  }
+
+  .annoq-features {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    .card {
+      flex: 0 0 33%;
+    }
+
+    @include media-breakpoint("lt-sm") {
+      flex-direction: column;
+
+      .card {
+        flex: 0 0 auto;
+        @include deep-width(100%);
+      }
+    }
   }
 
   .annoq-query-buttons {
@@ -98,7 +131,7 @@
 
   .card-container {
     @include media-breakpoint("lt-md") {
-      @media all and (orientation:landscape) {
+      @media all and (orientation: landscape) {
         width: 75%;
       }
     }
@@ -121,7 +154,7 @@
       background-color: transparent;
       @include deep-width(100%);
       @include deep-height(100%);
-    
+
       @include mat.elevation(6);
 
       .annoq-image {
@@ -174,7 +207,6 @@
         @include media-breakpoint("lt-md") {
           font-size: 65%;
         }
-
       }
     }
 
@@ -294,12 +326,6 @@
 
     &.section-2 {
       background-color: rgba($annoq-primary-color, 0.1);
-      @include media-breakpoint("lt-md") {
-        @media all and (orientation:landscape) {
-          display: flex;
-          flex-direction: row;
-        }
-      }
     }
 
     &.section-3 {
@@ -308,7 +334,6 @@
   }
 
   .annoq-row-description {
-
     img {
       width: 100%;
     }
@@ -331,6 +356,20 @@
         @include deep-width(30%);
         text-align: left;
       }
+
+      @include media-breakpoint("lt-sm") {
+        text-align: center;
+        flex-direction: column !important;
+        align-items: center !important;
+        .annoq-img {
+          @include deep-width(100%);
+        }
+
+        .annoq-description {
+          @include deep-width(100%);
+          text-align: center;
+        }
+      }
     }
 
     &.annoq-ui {
@@ -340,7 +379,6 @@
 
       .annoq-description {
         @include deep-width(75%);
-        text-align: right;
 
         &.annoq-steps {
           .card-step {
@@ -371,7 +409,7 @@
   .annoq-compatibility-table {
     width: 100%;
     @include media-breakpoint("lt-md") {
-      @media all and (orientation:landscape) {
+      @media all and (orientation: landscape) {
         width: 75%;
       }
     }
@@ -402,27 +440,27 @@
       z-index: 5;
     }
 
-    .mat-column-os{
+    .mat-column-os {
       width: 15%;
     }
 
-    .mat-column-version{
+    .mat-column-version {
       width: 18.5%;
     }
 
-    .mat-column-chrome{
+    .mat-column-chrome {
       width: 19.5%;
     }
 
-    .mat-column-firefox{
+    .mat-column-firefox {
       width: 13%;
     }
 
-    .mat-column-edge{
+    .mat-column-edge {
       width: 20%;
     }
 
-    .mat-column-safari{
+    .mat-column-safari {
       width: 14%;
     }
 

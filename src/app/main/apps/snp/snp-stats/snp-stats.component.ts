@@ -61,7 +61,6 @@ export class SnpStatsComponent implements OnInit, OnDestroy {
     private router: Router) {
 
     this._unsubscribeAll = new Subject();
-    this.isMobile = false;
   }
 
 
@@ -84,9 +83,6 @@ export class SnpStatsComponent implements OnInit, OnDestroy {
         }
       });
 
-      if (this._platform.ANDROID || this._platform.IOS) {
-        this.isMobile = true;
-      }
   }
 
 
@@ -119,9 +115,6 @@ export class SnpStatsComponent implements OnInit, OnDestroy {
   }
 
   close() {
-    if (this.isMobile) {
-      this.router.navigate(['/search']);
-    }
     this.panelDrawer.close();
   }
 
