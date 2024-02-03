@@ -36,12 +36,9 @@ export class SnpDetailComponent implements OnInit, OnDestroy {
           return
         }
 
-        this.rows = snpRow.map(row => {
-          return {
-            name: row.name,
-            values: this.mapFieldValues(row.value, row.rootUrl)
-          }
-        })
+        this.rows = snpRow
+
+        console.log('value', this.rows)
 
       });
   }
@@ -51,34 +48,9 @@ export class SnpDetailComponent implements OnInit, OnDestroy {
     this._unsubscribeAll.complete();
   }
 
-  mapFieldValues(value, rootUrl) {
-
-    let list = []
-    if (!value) {
-      return list;
-    }
-
-    if (typeof value === 'string' || value instanceof String) {
-      list = value.split('|')
-    } else {
-      list = [value.toString()]
-    }
-
-
-    const result = list.map(item => {
-      if (rootUrl) {
-        return {
-          url: rootUrl + item,
-          label: item
-        }
-      } else {
-        return {
-          label: item
-        }
-      }
-    })
-
-    return result;
+  getUcscLink(element) {
+    const chr = `${element.chr}:${element.pos}-${element.pos}`
+    return environment.ucscUrl + chr
   }
 
   close() {

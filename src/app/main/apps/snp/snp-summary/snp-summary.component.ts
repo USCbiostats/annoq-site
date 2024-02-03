@@ -80,8 +80,8 @@ export class SnpSummaryComponent implements OnInit, OnDestroy {
           name: header,
           count: count,
           label: label.replace(/_/g, ' '),
-          valueType: detail.value_type,
-          rootUrl: detail.root_url
+          value_type: detail.value_type,
+          root_url: detail.root_url
         }
       });
 

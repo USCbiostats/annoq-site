@@ -7,10 +7,12 @@ import { SnpPage } from '../models/page';
 import { cloneDeep, find, orderBy, uniq, uniqBy } from 'lodash';
 import { FrequencyBucket, SnpAggs } from '../models/snp-aggs';
 import { AnnotationService } from '../../annotation/services/annotation.service';
-import { ColumnFieldType } from '@annoq.common/models/annotation';
+import { ColumnFieldType, ColumnValueType } from '@annoq.common/models/annotation';
 import { SearchCriteria } from '@annoq.search/models/search-criteria';
 import { Annotation } from '../../annotation/models/annotation';
 import { UrlQueryParams } from '@annoq.common/models/query-params';
+
+import pantherTerms from '@annoq.common/data/panther_terms.json';
 
 @Injectable({
     providedIn: 'root',
@@ -96,11 +98,34 @@ export class SnpService {
         const results = snps.map(snp => {
             const transformedSnp = {}
             for (const k in snp) {
-                if (snp[k] && (typeof snp[k] === 'string')) {
-                    const value = uniq(snp[k].split('|')).join(' | ')
-                    transformedSnp[k] = value === '.' ? '' : value
-                }
-                else {
+                const colDetail = this.annotationService.findDetailByName(k);
+
+                if (colDetail?.value_type === ColumnValueType.TERM) {
+                    const terms = snp[k].split('|').map((id) => {
+                        return pantherTerms[id] ? pantherTerms[id] : { id, label: id }
+                    })
+
+
+                    const value = {
+                        terms,
+                        count: terms.length
+                    }
+
+                    console.log(value.count)
+                    transformedSnp[k] = value
+                } else if (typeof snp[k] === 'string' && snp[k]?.includes('|')) {
+                    //console.log(k, snp[k])
+                    const items = snp[k].split('|')
+                    const value = {
+                        items,
+                        count: items.length
+                    }
+
+                    console.log(value)
+
+                    transformedSnp[k] = value
+
+                } else {
                     transformedSnp[k] = snp[k]
                 }
             }

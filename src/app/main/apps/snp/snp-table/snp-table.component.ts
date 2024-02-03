@@ -26,6 +26,7 @@ import { Router } from '@angular/router';
 export class SnpTableComponent implements OnInit, OnDestroy {
   ColumnValueType = ColumnValueType;
   RightPanel = RightPanel;
+  termsDisplayedSize = environment.termsDisplayedSize;
   snpPage: SnpPage;
   gene;
   genes: any[] = [];
@@ -106,8 +107,8 @@ export class SnpTableComponent implements OnInit, OnDestroy {
             name: header,
             count: count,
             label: detail.label ? detail.label : header,
-            valueType: detail.value_type,
-            rootUrl: detail.root_url,
+            value_type: detail.value_type,
+            root_rrl: detail.root_url,
             cell: (element: any) => `${element[header]}`
           }
         });
@@ -152,8 +153,8 @@ export class SnpTableComponent implements OnInit, OnDestroy {
       return {
         name: key,
         label: detail.label ? detail.label : key,
-        valueType: detail.value_type,
-        rootUrl: detail.root_url,
+        value_type: detail.value_type,
+        root_url: detail.root_url,
         value: row[key]
       }
     });
