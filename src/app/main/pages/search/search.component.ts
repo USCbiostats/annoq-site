@@ -86,8 +86,7 @@ export class SearchComponent implements OnInit {
   }
 
   openSnpTable() {
-    this.annoqMenuService.selectRightPanel(RightPanel.snpTable);
-    this.annoqMenuService.closeRightDrawer()
+    this.annoqMenuService.selectMiddlePanel(MiddlePanel.snpTable);
   }
 
   openSnpSummary() {

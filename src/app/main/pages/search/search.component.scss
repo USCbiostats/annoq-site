@@ -5,37 +5,18 @@
 :host {
   width: 100%;
 
-  .annoq-sidemenu {
-    padding: 0;
+  .annoq-tools-menu {
+    padding: 0 10px;
     @include deep-width(100%);
     @include deep-height(40px);
     // @include mat-elevation(2);
     border-bottom: #6a8095 solid 1px;
     //background-color: #6a8095;
 
-    .annoq-sidemenu-header {
-      width: 100%;
-      padding: 0 5px;
-      margin-bottom: 20px;
-      @include deep-height(40px);
-      @include mat.elevation(2);
-      z-index: 1000;
-      color: #fff;
-    }
-
     button {
-      // @include deep-width(100px);
-      //@include deep-height(30px);
-      // line-height: 25px;
-      //border-radius: 0 !important;
-
-      //font-size: 20px;
-      // color: rgba(map-get($primary, default), 0.5);
-      //color: #ddd;
-
       &.annoq-active {
         @include media-breakpoint("lt-sm") {
-          font-size: 15px;
+          //font-size: 15px;
           color: map-get($primary, default);
         }
       }
@@ -47,13 +28,23 @@
     overflow-y: auto;
     width: 500px;
     @include media-breakpoint("lt-md") {
-      width: 90%;
+      @include deep-width(90%);
     }
     border-right: #111 solid 1px;
 
     .phtr-menu-section {
       width: 100%;
     }
+  }
+
+  .annoq-right-drawer {
+    overflow-x: auto;
+    overflow-y: auto;
+    width: 500px;
+    @include media-breakpoint("lt-md") {
+      @include deep-width(90%);
+    }
+    border-right: #111 solid 1px;
   }
 
   annoq-search-form {
@@ -73,6 +64,7 @@
     annoq-snp-detail,
     annoq-snp-summary,
     annoq-snp-stats {
+      display: block;
       @include deep-width(100% !important);
     }
   }
