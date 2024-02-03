@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AnnoqMenuService } from '@annoq.common/services/annoq-menu.service';
 import { AnnotationFlatNode } from './models/annotation'
 import { SnpService } from './../snp/services/snp.service';
@@ -7,11 +7,9 @@ import { AnnotationService } from './services/annotation.service';
 import { SnpDialogService } from '../snp/services/dialog.service';
 import { environment } from 'environments/environment';
 import { SampleVCFFile } from '@annoq.common/data/sample-vcf';
-import { RightPanel } from '@annoq.common/models/menu-panels';
 import { SampleRSIDFile } from '@annoq.common/data/sample-rsid-list';
 import { UrlQueryType } from '@annoq.common/models/query-params';
-import { Platform } from '@angular/cdk/platform';
-import { Router } from '@angular/router';
+import { AnnoqDeviceService } from '@annoq.common/services/annoq-device.service';
 
 @Component({
   selector: 'annoq-annotation',
@@ -30,16 +28,19 @@ export class AnnotationComponent implements OnInit {
   searchResponse = '';
   PER_PAGE = environment.snpResultsSize;
   totalPages: any;
-  isMobile: boolean;
+  isMobile = false;
 
   public esData: any[];
 
-  constructor(public annoqMenuService: AnnoqMenuService,
+  private resizeListener: () => void;
+
+  constructor(
+    private annoqDeviceService: AnnoqDeviceService,
+    public annoqMenuService: AnnoqMenuService,
     public annotationService: AnnotationService,
     private snpDialogService: SnpDialogService,
-    public snpService: SnpService,
-    private _platform: Platform,
-    private router: Router) {
+    public snpService: SnpService
+  ) {
 
     if (this.snpService.initialSearchParams.query_type === UrlQueryType.chr) {
       this.snpService.selectInputType(this.snpService.inputType.chromosome)
@@ -48,13 +49,20 @@ export class AnnotationComponent implements OnInit {
     }
 
     this.annotationForm = this.createAnnotationForm();
-    this.isMobile = false;
   }
 
-  ngOnInit() { 
-    if (this._platform.ANDROID || this._platform.IOS) {
-      this.isMobile = true;
-    }
+  ngOnInit() {
+    this.checkDevice();
+    this.resizeListener = () => this.checkDevice();
+    window.addEventListener('resize', this.resizeListener);
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.resizeListener);
+  }
+
+  private checkDevice() {
+    this.isMobile = this.annoqDeviceService.isMobile();
   }
 
   createAnnotationForm() {
@@ -114,7 +122,7 @@ export class AnnotationComponent implements OnInit {
       this.annoqMenuService.closeRightDrawer();
       this.annoqMenuService.selectRightPanel(null);
       if (this.isMobile) {
-        this.router.navigate(['/summary']);
+        this.annoqMenuService.closeLeftDrawer();
       }
     } else {
       this.snpDialogService.openMessageToast('Select at least one annotation from the tree', 'OK');

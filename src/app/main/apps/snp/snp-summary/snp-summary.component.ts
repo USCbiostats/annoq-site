@@ -8,7 +8,8 @@ import { EntityType } from '@annoq.common/models/entity-type';
 import { MatDrawer } from '@angular/material/sidenav';
 import { RightPanel } from '@annoq.common/models/menu-panels';
 import { AnnoqMenuService } from '@annoq.common/services/annoq-menu.service';
-
+import { Platform } from '@angular/cdk/platform';
+import { Router } from '@angular/router';
 @Component({
   selector: 'annoq-snp-summary',
   templateUrl: './snp-summary.component.html',
@@ -33,7 +34,9 @@ export class SnpSummaryComponent implements OnInit, OnDestroy {
   constructor(
     public annoqMenuService: AnnoqMenuService,
     private snpService: SnpService,
-    private annotationService: AnnotationService) {
+    private annotationService: AnnotationService,
+    private _platform: Platform,
+    private router: Router) {
 
     this._unsubscribeAll = new Subject();
   }
@@ -48,6 +51,7 @@ export class SnpSummaryComponent implements OnInit, OnDestroy {
           this.snpPage = null
         }
       });
+
   }
 
   ngOnDestroy(): void {

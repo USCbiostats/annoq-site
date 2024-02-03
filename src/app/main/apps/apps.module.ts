@@ -56,7 +56,8 @@ const routes = [];
         SearchFormComponent,
         AnnotationFiltersComponent
     ],
-    providers: []
+    providers: [
+    ]
 })
 
 export class AppsModule {

@@ -1,4 +1,4 @@
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 @import "src/@annoq/scss/annoq";
 @import "src/@annoq.common/scss/annoq.common";
 
@@ -19,21 +19,29 @@
     background-position: top;
     position: relative;
     flex: 1 0 auto;
-    height: 50%;
+    display: flex;
+    flex-direction: column;
+    min-height: 50%;
 
-    @include media-breakpoint("lt-sm") {
-      height: 75%;
+    @include media-breakpoint("lt-md") {
+      min-height: 75%;
     }
 
-    width: 100%;
-    text-align: center;
+    max-width: 100%;
 
     .annoq-container {
-      overflow: auto;
+      max-width: 100%;
+    }
+
+    .left-text {
+      @include media-breakpoint("lt-md") {
+        @media all and (orientation: landscape) {
+          margin-left: 10%;
+        }
+      }
     }
 
     h1 {
-      width: 100%;
       font-size: 150%;
       font-weight: normal;
       margin-top: 0;
@@ -43,22 +51,20 @@
         font-size: 250%;
         letter-spacing: 10%;
       }
-
     }
 
     h2 {
-      width: 100%;
       font-size: 130%;
       font-weight: 300;
       letter-spacing: 1%;
       margin: 0 0 5% 0;
       color: #ffffff;
       line-height: 1.5;
-
     }
 
     .annoq-video {
       padding-top: 5%;
+      margin: auto;
 
       iframe {
         max-width: 100%;
@@ -68,8 +74,44 @@
     }
   }
 
-  .s-launch-button {
-    margin-bottom: 3%;
+  .annoq-stats-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    .card {
+      flex: 0 0 50%;
+    }
+
+    @include media-breakpoint("lt-sm") {
+      flex-direction: column;
+
+      .card {
+        flex: 0 0 auto;
+        @include deep-width(100%);
+      }
+    }
+  }
+
+  .annoq-features {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    .card {
+      flex: 0 0 33%;
+    }
+
+    @include media-breakpoint("lt-sm") {
+      flex-direction: column;
+
+      .card {
+        flex: 0 0 auto;
+        @include deep-width(100%);
+      }
+    }
   }
 
   .annoq-query-buttons {
@@ -83,6 +125,14 @@
 
       &.annoq-l {
         background-color: #1c7ed6;
+      }
+    }
+  }
+
+  .card-container {
+    @include media-breakpoint("lt-md") {
+      @media all and (orientation: landscape) {
+        width: 75%;
       }
     }
   }
@@ -104,7 +154,7 @@
       background-color: transparent;
       @include deep-width(100%);
       @include deep-height(100%);
-    
+
       @include mat.elevation(6);
 
       .annoq-image {
@@ -135,7 +185,7 @@
           text-align: center;
           vertical-align: middle;
           font-size: 400%;
-          @include media-breakpoint("lt-sm") {
+          @include media-breakpoint("lt-md") {
             font-size: 250%;
           }
         }
@@ -157,7 +207,6 @@
         @include media-breakpoint("lt-md") {
           font-size: 65%;
         }
-
       }
     }
 
@@ -285,7 +334,6 @@
   }
 
   .annoq-row-description {
-
     img {
       width: 100%;
     }
@@ -308,6 +356,20 @@
         @include deep-width(30%);
         text-align: left;
       }
+
+      @include media-breakpoint("lt-sm") {
+        text-align: center;
+        flex-direction: column !important;
+        align-items: center !important;
+        .annoq-img {
+          @include deep-width(100%);
+        }
+
+        .annoq-description {
+          @include deep-width(100%);
+          text-align: center;
+        }
+      }
     }
 
     &.annoq-ui {
@@ -317,7 +379,6 @@
 
       .annoq-description {
         @include deep-width(75%);
-        text-align: right;
 
         &.annoq-steps {
           .card-step {
@@ -347,7 +408,11 @@
 
   .annoq-compatibility-table {
     width: 100%;
-    overflow-x: auto;
+    @include media-breakpoint("lt-md") {
+      @media all and (orientation: landscape) {
+        width: 75%;
+      }
+    }
     text-align: left;
     @include mat.elevation(6);
 
@@ -375,27 +440,27 @@
       z-index: 5;
     }
 
-    .mat-column-os{
+    .mat-column-os {
       width: 15%;
     }
 
-    .mat-column-version{
+    .mat-column-version {
       width: 18.5%;
     }
 
-    .mat-column-chrome{
+    .mat-column-chrome {
       width: 19.5%;
     }
 
-    .mat-column-firefox{
+    .mat-column-firefox {
       width: 13%;
     }
 
-    .mat-column-edge{
+    .mat-column-edge {
       width: 20%;
     }
 
-    .mat-column-safari{
+    .mat-column-safari {
       width: 14%;
     }
 

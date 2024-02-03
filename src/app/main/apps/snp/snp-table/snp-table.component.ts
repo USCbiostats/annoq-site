@@ -12,9 +12,12 @@ import { SnpDialogService } from '../services/dialog.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { AnnotationService } from '../../annotation/services/annotation.service';
 import { ColumnValueType } from '@annoq.common/models/annotation';
-import { RightPanel } from '@annoq.common/models/menu-panels';
+import { LeftPanel, RightPanel } from '@annoq.common/models/menu-panels';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { environment } from 'environments/environment';
+
+import { Platform } from '@angular/cdk/platform';
+import { Router } from '@angular/router';
 @Component({
   selector: 'annoq-snp-table',
   templateUrl: './snp-table.component.html',
@@ -51,11 +54,10 @@ export class SnpTableComponent implements OnInit, OnDestroy {
   private _unsubscribeAll: Subject<any>;
 
   constructor(
-    private changeDetectorRefs: ChangeDetectorRef,
     public annoqMenuService: AnnoqMenuService,
     private snpDialogService: SnpDialogService,
     private annotationService: AnnotationService,
-    public snpService: SnpService
+    public snpService: SnpService,
   ) {
     this.loadingIndicator = false;
     this.reorderable = true;
@@ -65,8 +67,6 @@ export class SnpTableComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-
-    const self = this;
 
     this.columns = [];
 
@@ -93,8 +93,6 @@ export class SnpTableComponent implements OnInit, OnDestroy {
     if (snpPage.source) {
 
       setTimeout(() => {
-        // this.columns = [];
-        //this.displayedColumns = this.columns.map(c => c.name);
         this.displayedColumns.pop()
       }, 10);
 
@@ -145,7 +143,7 @@ export class SnpTableComponent implements OnInit, OnDestroy {
   }
 
   getStats(field) {
-    this.openSnpStats()
+    this.openSnpStats(field)
     this.snpService.getStats(field);
   }
 
@@ -181,7 +179,9 @@ export class SnpTableComponent implements OnInit, OnDestroy {
     this.snpService.downloadSnp();
   }
 
-
+  openAnnotationSelection() {
+    this.annoqMenuService.openLeftDrawer()
+  }
 
   openSnpSearch() {
     this.annoqMenuService.selectRightPanel(RightPanel.snpSearch);
@@ -198,10 +198,20 @@ export class SnpTableComponent implements OnInit, OnDestroy {
     this.annoqMenuService.openRightDrawer()
   }
 
-  openSnpStats() {
+  openSnpStats(field) {
     this.annoqMenuService.selectRightPanel(RightPanel.snpStats);
     this.annoqMenuService.openRightDrawer();
-    this.snpService.getStats('ANNOVAR_ensembl_Effect');
+    if (field == null) {
+      this.snpService.getStats(this.columns[0].label);
+    }
+    else {
+      if (field == null) {
+        this.snpService.getStats(this.columns[0].label);
+      }
+      else {
+        this.snpService.getStats(field);
+      }
+    }
   }
 }
 
