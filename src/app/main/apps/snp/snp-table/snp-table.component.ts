@@ -12,10 +12,9 @@ import { SnpDialogService } from '../services/dialog.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { AnnotationService } from '../../annotation/services/annotation.service';
 import { ColumnValueType } from '@annoq.common/models/annotation';
-import { RightPanel } from '@annoq.common/models/menu-panels';
+import { LeftPanel, RightPanel } from '@annoq.common/models/menu-panels';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { environment } from 'environments/environment';
-import { ColumnService } from '../../annotation/services/column.service';
 
 import { Platform } from '@angular/cdk/platform';
 import { Router } from '@angular/router';
@@ -51,33 +50,21 @@ export class SnpTableComponent implements OnInit, OnDestroy {
   displayedColumns = [];
 
   private _unsubscribeAll: Subject<any>;
-  isMobile: boolean;
 
   constructor(
-    private changeDetectorRefs: ChangeDetectorRef,
     public annoqMenuService: AnnoqMenuService,
     private snpDialogService: SnpDialogService,
     private annotationService: AnnotationService,
     public snpService: SnpService,
-    private columnService: ColumnService,
-    private _platform: Platform,
-    private router: Router,
   ) {
     this.loadingIndicator = false;
     this.reorderable = true;
 
     this._unsubscribeAll = new Subject();
-    this.isMobile = false;
 
   }
 
   ngOnInit(): void {
-
-    if (this._platform.ANDROID || this._platform.IOS) {
-      this.isMobile = true;
-    }
-
-    const self = this;
 
     this.columns = [];
 
@@ -139,7 +126,6 @@ export class SnpTableComponent implements OnInit, OnDestroy {
 
       this.snpPage = snpPage;
       this.dataSource = new MatTableDataSource<any>(this.snpPage.snps);
-      this.columnService.column = this.columns[0].label;
     }
   }
 
@@ -190,7 +176,9 @@ export class SnpTableComponent implements OnInit, OnDestroy {
     this.snpService.downloadSnp();
   }
 
-
+  openAnnotationSelection() {
+    this.annoqMenuService.openLeftDrawer()
+  }
 
   openSnpSearch() {
     this.annoqMenuService.selectRightPanel(RightPanel.snpSearch);
@@ -210,12 +198,11 @@ export class SnpTableComponent implements OnInit, OnDestroy {
   openSnpStats(field) {
     this.annoqMenuService.selectRightPanel(RightPanel.snpStats);
     this.annoqMenuService.openRightDrawer();
-    if (this.isMobile) {
-      this.snpService.getStats(field);
-      this.router.navigate(['/stats']);
+    if (field == null) {
+      this.snpService.getStats(this.columns[0].label);
     }
-    else{
-      if(field == null) {
+    else {
+      if (field == null) {
         this.snpService.getStats(this.columns[0].label);
       }
       else {

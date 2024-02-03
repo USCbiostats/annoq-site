@@ -1,34 +1,5 @@
-<div *ngIf="snpPage" class="w-100-p h-100-p" fxLayout="row" fxLayoutAlign="start start">
-  <div class="annoq-sidemenu" fxLayout="column" fxLayoutAlign="start center" fxShow="true" fxHide.lt-md="true">
-    <div class="annoq-sidemenu-header" fxLayout="row" fxLayoutAlign="center center">
-      Tools
-    </div>
-    <button mat-icon-button color="" class="annoq-rounded-button"
-      [ngClass]="{'annoq-active': annoqMenuService.selectedRightPanel === RightPanel.snpSearch}"
-      (click)="openSnpSearch()" matTooltip="Search and Filter" [matTooltipPosition]="'after'"
-      [matTooltipShowDelay]="1500">
-      <fa-icon [icon]="['fas', 'filter']"></fa-icon>
-      <div class="annoq-label">
-        Filter
-      </div>
-    </button>
-    <button mat-icon-button color="" class="annoq-rounded-button"
-      [ngClass]="{'annoq-active': annoqMenuService.selectedRightPanel === RightPanel.snpSummary}"
-      (click)="openSnpSummary()" matTooltip="snps summary" [matTooltipPosition]="'after'" [matTooltipShowDelay]="1500">
-      <fa-icon [icon]="['fas', 'list']"></fa-icon>
-      <div class="annoq-label">
-        Summary
-      </div>
-    </button>
-    <button mat-icon-button color="" class="annoq-rounded-button"
-      [ngClass]="{'annoq-active': annoqMenuService.selectedRightPanel === RightPanel.snpStats}" (click)="openSnpStats()"
-      matTooltip="Results Statistics" [matTooltipPosition]="'after'" [matTooltipShowDelay]="1500">
-      <fa-icon [icon]="['fas', 'chart-bar']"></fa-icon>
-      <div class="annoq-label">
-        Stats
-      </div>
-    </button>
-  </div>
+<div *ngIf="snpPage" class="w-100-p h-100-p" fxLayout.lt-sm="column" fxLayout="row" fxLayoutAlign="start start">
+
   <div class="w-100-p h-100-p annoq-drawer" fxLayout="column" fxLayoutAlign="start stretch">
     <div class="annoq-drawer-header" fxLayout="row" fxLayoutAlign="start center">
       <div class="annoq-section-heading" fxLayout="row" fxLayoutAlign="start center">

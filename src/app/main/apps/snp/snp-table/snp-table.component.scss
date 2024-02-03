@@ -46,6 +46,13 @@ $accent: map-get($theme, accent);
         color: #fff;
       }
     }
+
+    @include media-breakpoint("lt-sm") {
+      @include deep-width(100%);
+      @include deep-height(60px);
+
+      flex-direction: row;
+    }
   }
 
   .annoq-table-menu-row {
@@ -54,6 +61,10 @@ $accent: map-get($theme, accent);
 
   .annoq-drawer {
     @include deep-width(calc(100% - 61px));
+
+    @include media-breakpoint("lt-sm") {
+      @include deep-width(100%);
+    }
   }
 
   .annoq-drawer-body {
