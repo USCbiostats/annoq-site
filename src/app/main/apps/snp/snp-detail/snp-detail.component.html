@@ -1,61 +1,58 @@
-<div fxLayout="column" fxLayoutAlign="start stretch" class="annoq-drawer w-100-p h-100-p">
+<div fxLayout="column" fxLayoutAlign="start stretch" class="annoq-drawer h-100-p">
   <div class="annoq-drawer-header" fxLayout="row" fxLayoutAlign="start center">
     <span class="annoq-drawer-header-title">
       Selected Row</span>
     <span fxFlex></span>
     <button mat-stroked-button (click)="close()" class="annoq-rounded-button annoq-sm" color="primary"
       aria-label="Close dialog">
-      <mat-icon>close</mat-icon> Close
+      <mat-icon>close</mat-icon> CLOSE
     </button>
   </div>
-  <div class="annoq-drawer-body" fxLayout="row" fxLayoutAlign="start start" annoqPerfectScrollbar>
-    <div class="w-100-p" fxLayout="column" fxLayoutAlign="start stretch">
-      <div class="annoq-snp-detail-row" *ngFor="let row of rows" fxLayout="column" fxLayoutAlign="start stretch">
-        <div class="annoq-title text-truncate">
-          <div class="">
-            {{row.name}}
-          </div>
+  <div class="annoq-drawer-body" annoqPerfectScrollbar>
+    <div class="annoq-snp-detail-row" *ngFor="let row of rows" fxLayout="column" fxLayoutAlign="start stretch">
+      <div class="annoq-title text-truncate">
+        <div class="">
+          {{row.name}}
         </div>
-        <div class="annoq-description">
-          <div class="annoq-item">
-            <ng-container *ngIf="row.name!=='pos' && row.value_type!==ColumnValueType.TERM && !row.value?.items">
+      </div>
+      <div class="annoq-description">
+        <div class="annoq-item">
+          <ng-container *ngIf="row.name!=='pos' && row.value_type!==ColumnValueType.TERM && !row.value?.items">
+            {{row.value}}
+          </ng-container>
+
+          <span class="annoq-cell-coordinates" *ngIf="row.name==='pos'">
+            <a (click)="$event.stopPropagation()" [href]="getUcscLink(row)" target="_blank">
               {{row.value}}
-            </ng-container>
+            </a>
+          </span>
 
-            <span class="annoq-cell-coordinates" *ngIf="row.name==='pos'">
-              <a (click)="$event.stopPropagation()" [href]="getUcscLink(row)" target="_blank">
-                {{row.value}}
-              </a>
-            </span>
-
-            <div class="annoq-cell-terms w-100-p" *ngIf="row.value?.items" fxLayout="column"
-              fxLayoutAlign="start start">
-              <ul class="w-100-p">
-                <ng-container *ngFor="let term of row.value?.items, let i = index">
-                  <li class="annoq-cell-title w-100-p">
-                    <span class="annoq-cell-description mr-4"> {{term}}
-                    </span>
-                  </li>
-                </ng-container>
-              </ul>
-            </div>
-            <div class="annoq-cell-terms w-100-p" *ngIf="row.value_type===ColumnValueType.TERM" fxLayout="column"
-              fxLayoutAlign="start start">
-
-              <ul class="w-100-p">
-                <ng-container *ngFor="let item of row.value?.terms, let i = index">
-                  <li class="annoq-cell-title w-100-p">
-                    <span class="annoq-cell-description mr-4"> {{item.label}}
-                      <span class="annoq-cell-description-2">
-                        <a href="" target="_blank">{{item.id}}</a>
-                      </span>
-                    </span>
-                  </li>
-                </ng-container>
-              </ul>
-            </div>
-
+          <div class="annoq-cell-terms w-100-p" *ngIf="row.value?.items" fxLayout="column" fxLayoutAlign="start start">
+            <ul class="w-100-p">
+              <ng-container *ngFor="let term of row.value?.items, let i = index">
+                <li class="annoq-cell-title w-100-p">
+                  <span class="annoq-cell-description mr-4"> {{term}}
+                  </span>
+                </li>
+              </ng-container>
+            </ul>
           </div>
+          <div class="annoq-cell-terms w-100-p" *ngIf="row.value_type===ColumnValueType.TERM" fxLayout="column"
+            fxLayoutAlign="start start">
+
+            <ul class="w-100-p">
+              <ng-container *ngFor="let item of row.value?.terms, let i = index">
+                <li class="annoq-cell-title w-100-p">
+                  <span class="annoq-cell-description mr-4"> {{item.label}}
+                    <span class="annoq-cell-description-2">
+                      <a href="" target="_blank">{{item.id}}</a>
+                    </span>
+                  </span>
+                </li>
+              </ng-container>
+            </ul>
+          </div>
+
         </div>
       </div>
     </div>
