@@ -5,7 +5,7 @@
       <mat-icon>menu</mat-icon>
     </button>
   </div>
-  
+
   <mat-progress-bar *ngIf="showLoadingBar" class="loading-bar" color="accent" mode="indeterminate"></mat-progress-bar>
   <div fxLayout="row" fxLayoutAlign="start center">
     <div class="annoq-logo" fxLayout="row" fxLayoutAlign="start">
@@ -15,17 +15,17 @@
     </div>
   </div>
   <div class="annoq-query-buttons" fxLayout="row" fxLayoutAlign="start start">
-    <button mat-stroked-button [routerLink]="['/search']" fxFlex="50"
+    <button mat-stroked-button [routerLink]="['/search']"
       class="annoq-rounded-button mr-4 annoq-half-button annoq-sm annoq-r">
       LAUNCH QUERY UI
     </button>
-    <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" fxFlex="50" target="_blank"
-      mat-stroked-button class="annoq-rounded-button annoq-half-button annoq-sm annoq-l">
+    <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" target="_blank" mat-stroked-button
+      class="annoq-rounded-button annoq-half-button annoq-sm annoq-l">
       UI TUTORIAL
     </a>
   </div>
   <span fxFlex=""></span>
-  
+
   <div fxShow="true" fxHide.lt-md="true">
     <a mat-button [routerLink]="['/detail']">Supported Annotations</a>
     <a mat-button href="https://uscbiostats.github.io/annoq-site/docs/tutorials/api">Data Access</a>

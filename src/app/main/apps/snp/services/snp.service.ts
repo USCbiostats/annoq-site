@@ -271,26 +271,6 @@ export class SnpService {
                     }
                 }
                 break;
-            /* 
-                                query.ids = ids;
-                                // console.log(query);
-                                self.getSnpsCount(query);
-                                this.httpClient.post(`${environment.annotationApi}/annoq-test/ids`, query)
-                                    .subscribe((response: any) => {
-                                        const esData = response.hits.hits as [];
-                                        const snpData = esData;
-                                        this.snpPage.shallowRefresh();
-                                        this.snpPage.query = query;
-                                        // this.snpPage.total = 50;
-                                        this.snpPage.size = self.snpResultsSize;;
-                                        this.snpPage.snps = snpData;
-                                        this.snpPage.vcfUrl = response.url;
-                                        this.snpPage.source = query._source;
-                                        this.onSnpsChanged.next(this.snpPage);
-                                        self.loading = false;
-                                        //console.log(response);
-                                    });
-                                return; */
             case this.inputType.keyword:
                 query.query = {
                     "multi_match": {
