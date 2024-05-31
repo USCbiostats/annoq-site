@@ -102,6 +102,24 @@
                   - View all {{element[column.name]?.count}} Terms(s)</a>
               </div>
             </div>
+            <div class="annoq-cell-terms w-100-p" *ngIf="column.value_type===ColumnValueType.PANTHER_LONG_GENE_ID" fxLayout="column"
+              fxLayoutAlign="start start">
+              <ul class="w-100-p">
+                <ng-container *ngFor="let item of element[column.name]?.items, let i = index">
+                  <li *ngIf="i < genesDisplayedSize" class="annoq-cell-title w-100-p">
+                    <span class="annoq-cell-description mr-4"> 
+                      <span class="annoq-cell-description-2">
+                        <a [href]="getGeneLink(item)" target="_blank">{{item}}</a>
+                      </span>
+                    </span>
+                  </li>
+                </ng-container>
+              </ul>
+              <div>
+                <a *ngIf="element[column.name]?.count > genesDisplayedSize">
+                  - View all {{element[column.name]?.count}} Genes(s)</a>
+              </div>
+            </div>            
             <!--  <div class="annoq-cell-inner-section" *ngIf="element.maxTerms < element.mfs.length">
                 <a (click)="toggleExpand(element)"> — View {{element.mfs.length- element.maxTerms}} more
                   Molecular Function(s)

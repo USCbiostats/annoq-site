@@ -110,6 +110,9 @@ export class AnnotationComponent implements OnInit {
 
   submit() {
     const query = this.annotationForm.value;
+    if (query.chrom) {
+      query.chrom = query.chrom.trim().toLowerCase()
+    }
     const annotations = this.annotationService.checklistSelection.selected as any[];
     const source = annotations.filter(item => item.leaf).map((item: AnnotationFlatNode) => {
       return item.name;
