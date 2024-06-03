@@ -67,7 +67,7 @@ export class AnnotationComponent implements OnInit {
 
   createAnnotationForm() {
     return new FormGroup({
-      chrom: new FormControl(this.snpService.initialSearchParams.chr || 18),
+      chrom: new FormControl(this.snpService.initialSearchParams.chr || '18'),
       chromList: new FormControl(),
       geneProduct: new FormControl(this.snpService.initialSearchParams.gp || 'ZMYND11'),
       rsID: new FormControl('rs559687999'),
