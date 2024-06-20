@@ -90,7 +90,7 @@
                   <li *ngIf="i < termsDisplayedSize" class="annoq-cell-title w-100-p">
                     <span class="annoq-cell-description mr-4"> {{item.label}}
                       <span class="annoq-cell-description-2">
-                        <a href="" target="_blank">{{item.id}}</a>
+                        <a [href]="getTermLink(item.id, column.name)" target="_blank">{{item.id}}</a>
                       </span>
                     </span>
                   </li>

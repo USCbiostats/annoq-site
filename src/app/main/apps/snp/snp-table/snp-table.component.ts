@@ -168,6 +168,12 @@ export class SnpTableComponent implements OnInit, OnDestroy {
     return environment.ucscUrl + chr
   }
 
+  getTermLink(id: string, column: string) {
+    const details = this.annotationService.findDetailByName(column);
+    const detail = details.root_url
+    return detail + encodeURIComponent(id) 
+  }
+
   getGeneLink(item: string) {
     const details = this.annotationService.findDetailByName('enhancer_linked_genes');
     const detail = details.root_url
