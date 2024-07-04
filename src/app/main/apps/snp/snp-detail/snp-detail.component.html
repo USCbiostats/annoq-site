@@ -27,7 +27,7 @@
             </a>
           </span>
 
-          <div class="annoq-cell-terms w-100-p" *ngIf="row.value?.items" fxLayout="column" fxLayoutAlign="start start">
+          <div class="annoq-cell-terms w-100-p" *ngIf="row.value?.items && row.value_type!==ColumnValueType.PANTHER_LONG_GENE_ID" fxLayout="column" fxLayoutAlign="start start">
             <ul class="w-100-p">
               <ng-container *ngFor="let term of row.value?.items, let i = index">
                 <li class="annoq-cell-title w-100-p">
@@ -45,14 +45,28 @@
                 <li class="annoq-cell-title w-100-p">
                   <span class="annoq-cell-description mr-4"> {{item.label}}
                     <span class="annoq-cell-description-2">
-                      <a href="" target="_blank">{{item.id}}</a>
+                      <a [href]="getTermLink(item.id, row.name)" target="_blank">{{item.id}}</a>
                     </span>
                   </span>
                 </li>
               </ng-container>
             </ul>
           </div>
+          <div class="annoq-cell-terms w-100-p" *ngIf="row.value_type===ColumnValueType.PANTHER_LONG_GENE_ID" fxLayout="column"
+            fxLayoutAlign="start start">
 
+            <ul class="w-100-p">
+              <ng-container *ngFor="let item of row.value?.items, let i = index">
+                <li class="annoq-cell-title w-100-p">
+                  <span class="annoq-cell-description mr-4">
+                    <span class="annoq-cell-description-2">
+                      <a [href]="getGeneLink(item)" target="_blank">{{item}}</a>
+                    </span>
+                  </span>
+                </li>
+              </ng-container>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

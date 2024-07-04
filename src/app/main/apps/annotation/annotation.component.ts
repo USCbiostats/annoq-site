@@ -67,7 +67,7 @@ export class AnnotationComponent implements OnInit {
 
   createAnnotationForm() {
     return new FormGroup({
-      chrom: new FormControl(this.snpService.initialSearchParams.chr || 18),
+      chrom: new FormControl(this.snpService.initialSearchParams.chr || '18'),
       chromList: new FormControl(),
       geneProduct: new FormControl(this.snpService.initialSearchParams.gp || 'ZMYND11'),
       rsID: new FormControl('rs559687999'),
@@ -110,6 +110,9 @@ export class AnnotationComponent implements OnInit {
 
   submit() {
     const query = this.annotationForm.value;
+    if (query.chrom) {
+      query.chrom = query.chrom.trim().toLowerCase()
+    }
     const annotations = this.annotationService.checklistSelection.selected as any[];
     const source = annotations.filter(item => item.leaf).map((item: AnnotationFlatNode) => {
       return item.name;

@@ -16,6 +16,7 @@ import { SnpService } from '../services/snp.service';
 })
 export class SnpDetailComponent implements OnInit, OnDestroy {
   ColumnValueType = ColumnValueType
+  genesDisplayedSize = environment.termsDisplayedSize;  
 
   @Input('panelDrawer')
   panelDrawer: MatDrawer;
@@ -52,6 +53,18 @@ export class SnpDetailComponent implements OnInit, OnDestroy {
     const chr = `${element.chr}:${element.pos}-${element.pos}`
     return environment.ucscUrl + chr
   }
+
+  getTermLink(id: string, row: string) {
+    const details = this.annotationService.findDetailByName(row);
+    const detail = details.root_url
+    return detail + encodeURIComponent(id) 
+  }
+
+  getGeneLink(item: string) {
+    const details = this.annotationService.findDetailByName('enhancer_linked_genes');
+    const detail = details.root_url
+    return detail + encodeURIComponent(item)
+  } 
 
   close() {
     this.panelDrawer.close()

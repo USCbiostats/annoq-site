@@ -27,6 +27,7 @@ export class SnpTableComponent implements OnInit, OnDestroy {
   ColumnValueType = ColumnValueType;
   RightPanel = RightPanel;
   termsDisplayedSize = environment.termsDisplayedSize;
+  genesDisplayedSize = environment.termsDisplayedSize;
   snpPage: SnpPage;
   gene;
   genes: any[] = [];
@@ -165,6 +166,18 @@ export class SnpTableComponent implements OnInit, OnDestroy {
   getUcscLink(element) {
     const chr = `${element.chr}:${element.pos}-${element.pos}`
     return environment.ucscUrl + chr
+  }
+
+  getTermLink(id: string, column: string) {
+    const details = this.annotationService.findDetailByName(column);
+    const detail = details.root_url
+    return detail + encodeURIComponent(id) 
+  }
+
+  getGeneLink(item: string) {
+    const details = this.annotationService.findDetailByName('enhancer_linked_genes');
+    const detail = details.root_url
+    return detail + encodeURIComponent(item)
   }
 
   ngOnDestroy(): void {

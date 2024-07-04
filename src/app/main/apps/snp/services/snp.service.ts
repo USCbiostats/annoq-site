@@ -101,7 +101,7 @@ export class SnpService {
                 const colDetail = this.annotationService.findDetailByName(k);
 
                 if (colDetail?.value_type === ColumnValueType.TERM) {
-                    const terms = snp[k].split('|').map((id) => {
+                    const terms = snp[k].split(';').map((id) => {
                         return pantherTerms[id] ? pantherTerms[id] : { id, label: id }
                     })
 
@@ -111,6 +111,14 @@ export class SnpService {
                         count: terms.length
                     }
 
+                    console.log(value.count)
+                    transformedSnp[k] = value
+                } else if (colDetail?.value_type === ColumnValueType.PANTHER_LONG_GENE_ID) {
+                    const items = snp[k].split(';')
+                    const value = {
+                        items,
+                        count: items.length
+                    }
                     console.log(value.count)
                     transformedSnp[k] = value
                 } else if (typeof snp[k] === 'string' && snp[k]?.includes('|')) {
@@ -126,7 +134,7 @@ export class SnpService {
                     transformedSnp[k] = value
 
                 } else {
-                    transformedSnp[k] = snp[k]
+                        transformedSnp[k] = snp[k]
                 }
             }
 
