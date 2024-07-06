@@ -18,6 +18,8 @@
 - title: "Changelog"
   url: "docs/changelog/features"
   links:
+    - title: AnnoQ 1.1
+      url: "docs/changelog/annoq-1.1"
     - title: AnnoQ 1.0
       url: "docs/changelog/annoq-1"
     - title: AnnoQ 0.1

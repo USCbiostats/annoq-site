@@ -188,6 +188,15 @@
           <ul class="noc-sidebar-nav__section pr-md-3">
             
             <li class="noc-sidebar-nav__section-title">
+              <a href="/annoq-site/docs/changelog/annoq-1.1"
+                class="align-left pl-0 pr-2 noc-sidebar-link noc-sidebar-link__section">AnnoQ 1.1</a>
+            </li>
+            <ul>
+              <li class="collapse show" id="">
+              </li>
+            </ul>
+            
+            <li class="noc-sidebar-nav__section-title">
               <a href="/annoq-site/docs/changelog/annoq-1"
                 class="align-left pl-0 pr-2 noc-sidebar-link noc-sidebar-link__section">AnnoQ 1.0</a>
             </li>
@@ -270,16 +279,16 @@ Here is a simple example of a multiple choice question (which can also serve as
 True/False):</p>
 
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">title</span><span class="pi">:</span> <span class="s">This is the Quiz Title</span>
-<span class="na">randomized</span><span class="pi">:</span> <span class="no">false</span>
+<span class="na">randomized</span><span class="pi">:</span> <span class="kc">false</span>
 <span class="na">questions</span><span class="pi">:</span>
 
  <span class="pi">-</span> <span class="na">type</span><span class="pi">:</span> <span class="s2">"</span><span class="s">multiple-choice"</span>
    <span class="na">question</span><span class="pi">:</span> <span class="s2">"</span><span class="s">True</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">False,</span><span class="nv"> </span><span class="s">Pittsburgh</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">West</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">Philadelphia"</span>
    <span class="na">items</span><span class="pi">:</span>
     <span class="pi">-</span> <span class="na">choice</span><span class="pi">:</span> <span class="s">True</span>
-      <span class="na">correct</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">correct</span><span class="pi">:</span> <span class="kc">true</span>
     <span class="pi">-</span> <span class="na">choice</span><span class="pi">:</span> <span class="s">False</span>
-      <span class="na">correct</span><span class="pi">:</span> <span class="no">false</span>
+      <span class="na">correct</span><span class="pi">:</span> <span class="kc">false</span>
    <span class="na">followup</span><span class="pi">:</span> <span class="pi">|</span> 
       <span class="s">The answer is True! Pittsburgh is 304.9 miles West of </span>
       <span class="s">Philadelphia, or approximately a car ride of </span>

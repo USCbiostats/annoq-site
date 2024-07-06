@@ -20,8 +20,8 @@
   <link rel="icon" type="image/png" href="/annoq-site/assets/favicons/android-144x144.png" sizes="144x144">
   <link rel="icon" type="image/png" href="/annoq-site/assets/favicons/android-192x192.png" sizes="192x192">
 
-  <title>Api</title>
-  <meta property="og:title" content="Api" />
+  <title>AnnoQ 1.1</title>
+  <meta property="og:title" content="AnnoQ 1.1" />
   <meta property="og:description"
     content="AnnoQ Documentation and Tutorial.
 " />
@@ -29,13 +29,13 @@
   <meta property="og:url" content="http://localhost:4000" />
   <meta property="og:site_name" content="http://localhost:4000" />
 
-  <meta itemprop="name" content="Api">
+  <meta itemprop="name" content="AnnoQ 1.1">
   <meta itemprop="description"
     content="AnnoQ Documentation and Tutorial.
 ">
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Api" />
+  <meta name="twitter:title" content="AnnoQ 1.1" />
   <meta name="twitter:description"
     content="AnnoQ Documentation and Tutorial.
 " />
@@ -244,9 +244,9 @@
         </div>
         <div class="d-none d-xl-block col-xl-2 noc-toc d-print-none">
           <div class="noc-page-meta ml-2 pb-1 pt-2 mb-0">
-            <!-- <a href="https://github.com/USCbiostats/annoq-site/edit/gh-pages/docs/_docs/tutorials/api.md" target="_blank"><i class="fa fa-edit fa-fw"></i> Edit this
+            <!-- <a href="https://github.com/USCbiostats/annoq-site/edit/gh-pages/docs/_docs/changelog/annoq-1.1.md" target="_blank"><i class="fa fa-edit fa-fw"></i> Edit this
      page</a>
-<a href="https://github.com/USCbiostats/annoq-site/issues/new?labels=question&title=Question:&body=Question on: https://github.com/USCbiostats/annoq-site/tree/master/_docs/tutorials/api.md"
+<a href="https://github.com/USCbiostats/annoq-site/issues/new?labels=question&title=Question:&body=Question on: https://github.com/USCbiostats/annoq-site/tree/master/_docs/changelog/annoq-1.1.md"
      target="_blank"><i class="fab fa-github fa-fw"></i> Create documentation issue</a>
 <a href="https://github.com/USCbiostats/annoq-site/issues/new" target="_blank"><i class="fas fa-tasks fa-fw"></i> Create project issue</a> -->
 <!-- this will parse through the header fields and add a button to open
@@ -267,133 +267,39 @@
           <!--      <nav aria-label="breadcrumb" class="d-none d-md-block d-print-none">
             <ol class="breadcrumb spb-1">
               <li class="breadcrumb-item active" aria-current="page">
-                <a href="/docs/tutorials/api">Api</a>
+                <a href="/docs/changelog/annoq-1.1">AnnoQ 1.1</a>
               </li>
             </ol>
           </nav> -->
           <div class="noc-content">
-            <h1 id="annoq-api-based-on-elasticsearch">AnnoQ API based on Elasticsearch</h1>
+            <h1 id="annoq-11">AnnoQ 1.1</h1>
+<h3 id="released-july-5rd-2024">Released July 5rd, 2024</h3>
 
-<p>Currently this API is under domain <code class="language-plaintext highlighter-rouge">http://annoq.org:3403/</code> and index name (&lt;idx&gt;) is <code class="language-plaintext highlighter-rouge">annoq-test</code>.</p>
-
-<h2 id="examples">Examples</h2>
-
-<p><a href="https://github.com/USCbiostats/annoq-api/tree/main/es_scripts">Here</a> are some bash scripts examples for showing the usage of AnnoQ API.</p>
-
-<h2 id="annotation-tree-structure">Annotation tree structure</h2>
-
+<p>This release of AnnoQ includes annotations based on Gene Ontology annotations from GO database released 2024-01-17, DOI: 10.5281/zenodo.10536401 and PANTHER GO slim annotations  (version 18.0, based on GO release 2023-07-25, released 2023-08-01). A new annotation data type-PANTHER Protein Class (version 18.0, released 2023-08-01) has also been added. These have resulted in the addition of the following annotation types:</p>
 <ul>
-  <li>endpoint 
-<code class="language-plaintext highlighter-rouge">/&lt;idx&gt;/anno_tree</code></li>
+  <li>ANNOVAR ensembl PANTHER Protein Class</li>
+  <li>ANNOVAR refseq PANTHER Protein Class</li>
+  <li>VEP ensembl PANTHER Protein Class</li>
+  <li>VEP refseq PANTHER Protein Class</li>
+  <li>SnpEff ensembl PANTHER Protein Class</li>
+  <li>SnpEff refseq PANTHER Protein Class</li>
+  <li>Flanking region 0 PANTHER Protein Class</li>
+  <li>Flanking region 10000 PANTHER Protein Class</li>
+  <li>Flanking region 20000 PANTHER Protein Class</li>
+  <li>PEREGRINE enhancer linked PANTHER protein class</li>
 </ul>
 
-<h2 id="gene-mapping">Gene mapping</h2>
+<p>A new annotation column PEREGRINE enhancer linked PANTHER pathways has also been added.</p>
+
+<h3 id="bug-fixes">Bug Fixes</h3>
 <ul>
-  <li>endpoint <code class="language-plaintext highlighter-rouge">/gene</code></li>
-  <li>parameters <code class="language-plaintext highlighter-rouge">?gene=</code></li>
+  <li>Incorrect allele frequency data issue has been resolved</li>
+  <li>Chromosome X data is now accessible</li>
+  <li>Display issue where annotation data was not displayed in the SNP table for some columns has been resolved</li>
+  <li>Parsing of enhancer_linked_genes data in detailed view has been resolvved</li>
+  <li>URL links for Gene Ontology terms, PANTHER Protein class terms, PANTHER pathways, PANTHER genes and Reactome have been fixed</li>
 </ul>
 
-<h3 id="response">response</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
-  "gene_info": {
-    "contig": "10", 
-    "end": 254634, 
-    "gene_id": "HUMAN|HGNC=16966|UniProtKB=Q15326", 
-    "start": 135484
-  }
-}
-</code></pre></div></div>
-
-<h2 id="download-request">Download request</h2>
-
-<p>Send json request with query body. See documents for elasticsearch.</p>
-
-<p>endpoint <code class="language-plaintext highlighter-rouge">/total_res</code></p>
-
-<h3 id="response-1">response</h3>
-
-<p><code class="language-plaintext highlighter-rouge">{"url":url}</code></p>
-
-<h2 id="vcf-file-search">vcf file search</h2>
-
-<p>endpoint <code class="language-plaintext highlighter-rouge">/&lt;idx&gt;/ids</code></p>
-
-<p>No pages. Only return first 50 hits. Contains url for download.</p>
-
-<p>Request body:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
-  "_source":["pos", "ref"],
-  "ids":["18:10636A&gt;C", "18:10644C&gt;G", "18:10667C&gt;T", "18:10719C&gt;G"]
-}
-</code></pre></div></div>
-
-<p>IDs should in format of <code class="language-plaintext highlighter-rouge">"contig":pos"Ref"&gt;"Alt"</code></p>
-
-<h3 id="response-2">response</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
-  "hits": {
-    "hits": [
-      {
-        "pos": 10636,
-        "ref": "A"
-      },
-      {
-        "pos": 10644,
-        "ref": "C"
-      },
-      {
-        "pos": 10667,
-        "ref": "C"
-      },
-      {
-        "pos": 10719,
-        "ref": "C"
-      }
-    ]
-  },
-  "url": "/download/tmp/74ea9e11-7f47-4c61-a5e6-fe2c54425b71.txt"
-}
-</code></pre></div></div>
-
-<h2 id="other-queries">Other Queries</h2>
-<p>Data scheme <code class="language-plaintext highlighter-rouge">/&lt;idx&gt;/_mapping</code> .</p>
-
-<p>Same as elasticsearch.</p>
-
-<h2 id="configure-file">Configure File</h2>
-
-<p>A configure file can generated by AnnoQ website and it is used as <code class="language-plaintext highlighter-rouge">_source</code> field for query.</p>
-
-<p>e.g.</p>
-
-<p>in configure file:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{"_source":["1000Gp3_AC","1000Gp3_AF"]}
-</code></pre></div></div>
-
-<p>in query body:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
-"_source": ["1000Gp3_AC","1000Gp3_AF"],
-"query": {
-    "bool": {
-	"filter": [
-		{"term": {"chr":"2"}},
-		{"range" : { "pos" : { "gte" : 10, "lte" : 20000 } }}]
-    }
-  }
-}
-</code></pre></div></div>
-
-<p><strong>What’s Next</strong></p>
-
-<ul>
-  <li><a href="/annoq-site/docs/tutorials/ui-query">Interactive Query UI Tutorial</a></li>
-  <li><a href="/annoq-site/docs/tutorials/r-package">R package (AnnoQR) Tutorial</a></li>
-</ul>
 
 <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"

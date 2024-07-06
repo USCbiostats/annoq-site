@@ -1,5 +1,5 @@
 ---
-title: AnnoQ 0.1
+title: AnnoQ
 ---
 
 # Component History
@@ -12,6 +12,10 @@ title: AnnoQ 0.1
 | AnnoQ 1.0 | -  Heavy duty table can handle 1000+ columns before performance bottleneck |
 |           | -  Clickable rows to reveal the row summary                                |
 |           | -  Improved Pagination                                                     |
+| AnnoQ 1.1 | -  Addition of new columns                                                 |
+|           | -  Resolved allele frequency data issue                                    |
+|           | -  Resolved display issues in columns and detailed view                    |
+|           | -  Resolved URL links issue                                                |
 
 
 ## Result Row Summary
