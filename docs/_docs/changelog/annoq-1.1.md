@@ -3,7 +3,7 @@ title: AnnoQ 1.1
 ---
 
 # AnnoQ 1.1
-### Released July 5rd, 2024
+### Released July 5th, 2024
 
 This release of AnnoQ includes annotations based on Gene Ontology annotations from GO database released 2024-01-17, DOI: 10.5281/zenodo.10536401 and PANTHER GO slim annotations  (version 18.0, based on GO release 2023-07-25, released 2023-08-01). A new annotation data type-PANTHER Protein Class (version 18.0, released 2023-08-01) has also been added. These have resulted in the addition of the following annotation types:
 - ANNOVAR ensembl PANTHER Protein Class
