@@ -75,7 +75,8 @@ export class AnnotationService {
         flatNode.label = node.label;
         flatNode.detail = node.detail;
         flatNode.link = node.link;
-        flatNode.pmid = node.pmid
+        flatNode.pmid = node.pmid;
+        flatNode.version = node.version;
         flatNode.parent_id = node.parent_id;
         flatNode.leaf = node.leaf;
         flatNode.visible = node.visible;
