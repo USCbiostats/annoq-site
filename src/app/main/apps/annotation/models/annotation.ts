@@ -7,6 +7,7 @@ export interface Annotation {
     pmid: string;
     parent_id: number;
     leaf: boolean;
+    version: string;    
     value_type: string;
     field_type: string;
     root_url: string;

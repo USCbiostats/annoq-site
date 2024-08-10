@@ -1,0 +1,462 @@
+@use "@angular/material" as mat;
+@import "src/@annoq/scss/annoq";
+@import "src/@annoq.common/scss/annoq.common";
+
+:host {
+  h2 {
+    margin: 0;
+  }
+
+  .header {
+    background-image: linear-gradient(
+      to right,
+      rgba($annoq-primary-color, 0.8),
+      rgba($annoq-primary-color, 0.9),
+      $annoq-primary-color
+    );
+    background-blend-mode: initial;
+    background-size: cover;
+    background-position: top;
+    position: relative;
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 50%;
+
+    @include media-breakpoint("lt-md") {
+      min-height: 75%;
+    }
+
+    max-width: 100%;
+
+    .annoq-container {
+      max-width: 100%;
+    }
+
+    .left-text {
+      @include media-breakpoint("lt-md") {
+        @media all and (orientation: landscape) {
+          margin-left: 10%;
+        }
+      }
+    }
+
+    h1 {
+      font-size: 150%;
+      font-weight: normal;
+      margin-top: 0;
+      color: #fff;
+
+      strong {
+        font-size: 250%;
+        letter-spacing: 10%;
+      }
+    }
+
+    h2 {
+      font-size: 130%;
+      font-weight: 300;
+      letter-spacing: 1%;
+      margin: 0 0 5% 0;
+      color: #ffffff;
+      line-height: 1.5;
+    }
+
+    .annoq-video {
+      padding-top: 5%;
+      margin: auto;
+
+      iframe {
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 1.77;
+      }
+    }
+  }
+
+  .annoq-stats-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    .card {
+      flex: 0 0 50%;
+    }
+
+    @include media-breakpoint("lt-sm") {
+      flex-direction: column;
+
+      .card {
+        flex: 0 0 auto;
+        @include deep-width(100%);
+      }
+    }
+  }
+
+  .annoq-features {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    .card {
+      flex: 0 0 33%;
+    }
+
+    @include media-breakpoint("lt-sm") {
+      flex-direction: column;
+
+      .card {
+        flex: 0 0 auto;
+        @include deep-width(100%);
+      }
+    }
+  }
+
+  .annoq-query-buttons {
+    padding: 2%;
+
+    button {
+      color: #fff;
+      background-color: map-get($primary, default);
+      @include mat.elevation(8);
+      font-size: 100%;
+
+      &.annoq-l {
+        background-color: #1c7ed6;
+      }
+    }
+  }
+
+  .card-container {
+    @include media-breakpoint("lt-md") {
+      @media all and (orientation: landscape) {
+        width: 75%;
+      }
+    }
+  }
+
+  .card {
+    @include media-breakpoint("gt-sm") {
+      @include deep-height(250px);
+    }
+    padding: 0 1%;
+    margin-bottom: 2%;
+
+    .annoq-query-buttons {
+      button {
+        @include mat.elevation(2);
+      }
+    }
+
+    .annoq-card {
+      background-color: transparent;
+      @include deep-width(100%);
+      @include deep-height(100%);
+
+      @include mat.elevation(6);
+
+      .annoq-image {
+        max-height: 50%;
+        width: auto;
+
+        img {
+          max-width: 100%;
+          height: auto;
+          display: block;
+        }
+      }
+
+      .annoq-icon {
+        font-size: 500%;
+        color: rgba($annoq-primary-color, 0.5);
+      }
+
+      .annoq-stat {
+        height: 70%;
+        font-size: 50%;
+        font-weight: bold;
+        margin-bottom: 1%;
+        text-align: center;
+        color: rgba($annoq-primary-color, 0.6);
+
+        &.annoq-lg-font {
+          text-align: center;
+          vertical-align: middle;
+          font-size: 400%;
+          @include media-breakpoint("lt-md") {
+            font-size: 250%;
+          }
+        }
+
+        .annoq-hint {
+          text-align: center;
+          font-size: 30%;
+        }
+      }
+
+      .annoq-card-description {
+        height: 20%;
+        font-size: 100%;
+      }
+
+      .annoq-rounded-button {
+        font-size: 100%;
+
+        @include media-breakpoint("lt-md") {
+          font-size: 65%;
+        }
+      }
+    }
+
+    &.card-stats {
+      @include deep-height(100%);
+
+      .annoq-card {
+        @include mat.elevation(0);
+
+        .annoq-card-title {
+          padding: 1% 2%;
+          text-align: center;
+          font-size: 100%;
+        }
+
+        .annoq-card-footer {
+          .annoq-rounded-button {
+            border-color: rgba($annoq-primary-color, 0.6);
+          }
+        }
+      }
+    }
+
+    &.card-step {
+      @include deep-height(100%);
+      width: 100%;
+
+      .annoq-card {
+        @include mat.elevation(6);
+        padding: 2% 4%;
+
+        .annoq-icon {
+          width: 7%;
+          height: 100%;
+          font-size: 250%;
+          text-align: center;
+        }
+
+        .annoq-card-title {
+          padding: 0% 2%;
+          font-size: 125%;
+
+          @include media-breakpoint("lt-md") {
+            font-size: 100% !important;
+          }
+
+          .secondary-text {
+            text-align: left;
+            float: left;
+          }
+        }
+
+        .annoq-card-footer {
+          .annoq-rounded-button {
+            border-color: rgba($annoq-primary-color, 0.6);
+          }
+        }
+      }
+    }
+
+    &.card-logo {
+      @include deep-height(1%);
+
+      .annoq-card {
+        @include mat.elevation(0);
+
+        .annoq-image {
+          font-size: 300%;
+          @include media-breakpoint("lt-md") {
+            font-size: 100%;
+          }
+          @include deep-height(100%);
+          height: 100%;
+
+          img {
+            height: 100%;
+          }
+
+          a {
+            line-height: 100%;
+            color: #000;
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .annoq-free-banner {
+    padding: 0.75% 0.75%;
+    font-size: 100%;
+    color: #285b2a !important;
+    background: #dbefdc !important;
+    border-left-color: #cde9ce;
+    font-weight: bold;
+  }
+
+  .annoq-section {
+    padding: 2% 2%;
+
+    .annoq-heading {
+      margin: 0 auto;
+      width: 100%;
+
+      h3 {
+        font-size: 200%;
+      }
+    }
+
+    h2 {
+      font-size: 250%;
+    }
+
+    &.section-1 {
+      background-color: #fff;
+    }
+
+    &.section-2 {
+      background-color: rgba($annoq-primary-color, 0.1);
+    }
+
+    &.section-3 {
+      background-color: #d9e1f2;
+    }
+  }
+
+  .annoq-row-description {
+    img {
+      width: 100%;
+    }
+
+    h3 {
+      font-size: 200%;
+    }
+
+    p {
+      font-size: 100%;
+      line-height: 150%;
+    }
+
+    &.annoq-easyuse {
+      .annoq-img {
+        @include deep-width(60%);
+      }
+
+      .annoq-description {
+        @include deep-width(30%);
+        text-align: left;
+      }
+
+      @include media-breakpoint("lt-sm") {
+        text-align: center;
+        flex-direction: column !important;
+        align-items: center !important;
+        .annoq-img {
+          @include deep-width(100%);
+        }
+
+        .annoq-description {
+          @include deep-width(100%);
+          text-align: center;
+        }
+      }
+    }
+
+    &.annoq-ui {
+      .annoq-img {
+        @include deep-width(25%);
+      }
+
+      .annoq-description {
+        @include deep-width(75%);
+
+        &.annoq-steps {
+          .card-step {
+            margin-bottom: 4%;
+          }
+
+          .card-step:nth-child(2) {
+            padding-left: 7%;
+          }
+
+          .card-step:nth-child(3) {
+            padding-left: 12%;
+          }
+
+          .card-step:nth-child(4) {
+            padding-left: 7%;
+          }
+        }
+      }
+    }
+  }
+
+  p {
+    font-size: 130%;
+    line-height: 160%;
+  }
+
+  .annoq-version-table {
+    width: 100%;
+    @include media-breakpoint("lt-md") {
+      @media all and (orientation: landscape) {
+        width: 75%;
+      }
+    }
+    text-align: left;
+    @include mat.elevation(6);
+
+    .mat-header-cell {
+      padding: 0 1%;
+      font-size: 100% !important;
+
+      @include media-breakpoint("lt-md") {
+        font-size: 70% !important;
+      }
+
+      font-weight: bold;
+      // text-transform: uppercase;
+      border-right: #bbb solid 1px;
+      border-bottom: $annoq-secondary-color solid 2px;
+
+      &.annoq-tool-header-cell {
+        text-align: right;
+      }
+    }
+
+    .mat-header-row {
+      background-color: #fff;
+
+      z-index: 5;
+    }
+
+
+    .mat-cell {
+      padding: 1%;
+      border-right: #bbb solid 1px;
+      font-size: 100%;
+
+      @include media-breakpoint("lt-md") {
+        font-size: 80% !important;
+      }
+
+      &.annoq-tool-cell {
+        font-weight: bold;
+        // text-align: right;
+        @include media-breakpoint("lt-md") {
+          font-size: 80% !important;
+        }
+      }
+    }
+  }
+}
