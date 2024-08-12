@@ -16,7 +16,7 @@ title: AnnoQ
 |           | -  Resolved allele frequency data issue                                    |
 |           | -  Resolved display issues in columns and detailed view                    |
 |           | -  Resolved URL links issue                                                |
-| AnnoQ 1.11| -  Addition of version informatio                                          |
+| AnnoQ 1.11| -  Addition of version information                                         |
 
 ## Result Row Summary
 -------------------
