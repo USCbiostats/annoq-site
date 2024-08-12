@@ -12,6 +12,7 @@ import { PublicationComponent } from './publication/publication.component';
 import { ContactComponent } from './contact/contact.component';
 import { AnnoqConfirmDialogModule } from '@annoq/components/confirm-dialog/confirm-dialog.module';
 import { CookiePolicyComponent } from './cookie-policy/cookie-policy.component';
+import { VersionComponent } from './version/version.component';
 
 
 const routes = [{
@@ -26,6 +27,8 @@ const routes = [{
   path: 'about', component: AboutComponent
 }, {
   path: 'cookie-policy', component: CookiePolicyComponent
+}, {
+  path: 'version', component: VersionComponent
 }];
 
 @NgModule({
@@ -37,6 +40,7 @@ const routes = [{
     PublicationComponent,
     ContactComponent,
     CookiePolicyComponent,
+    VersionComponent
   ],
   imports: [
     RouterModule.forChild(routes),

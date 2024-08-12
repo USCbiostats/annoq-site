@@ -1,6 +1,6 @@
 <div class="w-100-p h-100-p" fxLayout="column" fxLayoutAlign="start stretch">
     <div class="header accent p-8 w-100-p">
-        <div class="annoq-container" fxLayout="row" fxLayoutAlign="start center">
+        <div class="annoq-container" fxLayout="row" fxLayoutAlign="center center">
             <div fxLayout="column" fxLayoutAlign="center center" fxFlex="">
                 <h1>
                     Supported Annotations <br>
@@ -17,6 +17,7 @@
         </div>
     </div>
     <div class="annoq-detail-footer" fxLayout="row" fxLayoutAlign="center center">
+        <a [routerLink]="['/version']"><button type="button" mat-raised-button color="" class="mr-8">Data Versions</button></a>
         <button (click)='annotationService.downloadConfig()' type="button" mat-raised-button color=""
             class="mr-8">Export Config</button>
         <button (click)='annotationService.clear()' type="button" mat-raised-button color="" class="mr-8">Clear
