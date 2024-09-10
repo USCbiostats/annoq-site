@@ -1,6 +1,6 @@
 import { environment } from 'environments/environment';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { Apollo, gql } from 'apollo-angular';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Client } from 'elasticsearch-browser';
 import { SnpPage } from '../models/page';
@@ -74,7 +74,7 @@ export class SnpService {
     };
 
     constructor(
-        private httpClient: HttpClient,
+        private readonly apollo: Apollo,
         private annotationService: AnnotationService) {
         this.onSnpsChanged = new BehaviorSubject(null);
         this.onSnpsAggsChanged = new BehaviorSubject(null);
@@ -134,7 +134,7 @@ export class SnpService {
                     transformedSnp[k] = value
 
                 } else {
-                        transformedSnp[k] = snp[k]
+                    transformedSnp[k] = snp[k]
                 }
             }
 

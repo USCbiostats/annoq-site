@@ -6,6 +6,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { AnnoqModule } from '@annoq/annoq.module';
 import { AnnoqProgressBarModule } from '@annoq/components';
+import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
+import { HttpLink } from 'apollo-angular/http';
+import { InMemoryCache } from '@apollo/client/core';
 
 import { AnnoqSharedModule } from '@annoq/shared.module';
 import { annoqConfig } from './annoq-config';
@@ -46,6 +49,7 @@ import { faCheckCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icon
 import { faGithub, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { environment } from 'environments/environment';
 
 const appRoutes: Routes = [
     {
@@ -65,6 +69,7 @@ const appRoutes: Routes = [
         HttpClientJsonpModule,
         RouterModule.forRoot(appRoutes),
         TranslateModule.forRoot(),
+        ApolloModule,
 
         // Annoq Main and Shared modules
         AnnoqModule.forRoot(annoqConfig),
@@ -80,7 +85,23 @@ const appRoutes: Routes = [
     ],
     bootstrap: [
         AppComponent
-    ]
+    ],
+    providers: [
+        {
+            // Setup Apollo for GraphQL
+            // Used for API-V2
+            provide: APOLLO_OPTIONS,
+            useFactory(httpLink: HttpLink) {
+                return {
+                    cache: new InMemoryCache(),
+                    link: httpLink.create({
+                        uri: `${environment.annotationApiV2}/graphql`,
+                    }),
+                };
+            },
+            deps: [HttpLink],
+        },
+    ],
 })
 export class AppModule {
     constructor(library: FaIconLibrary) {

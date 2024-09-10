@@ -40,12 +40,12 @@ export class AnnotationService {
     }
 
     getAnnotationList() {
-        const api = environment.annotationApi; //environment.annotationApi;
-        this.httpClient.get<Annotation[]>(`${api}/anno_tree`)
+        const api = environment.annotationApiV2;
+        this.httpClient.get<Annotation[]>(`${api}/annotations`)
             .subscribe((response: any) => {
-                if (!response || !response.result) return;
+                if (!response || !response.results) return;
 
-                this.annotations = response.result;
+                this.annotations = response.results;
                 this.formatLabel(this.annotations);
                 this.keywordSearchableFields = this.getSearchableFields(this.annotations);
                 this.labelLookup = this.makeLabelLookup(this.annotations);
@@ -59,11 +59,6 @@ export class AnnotationService {
                 this.onAnnotationTreeChanged.next(this.annotationNodes);
             });
     }
-
-    /*
-    "api/region/chr/1/start/3/end/2"
-    "api/region?chr=1&start=3&end=2&header_idx=1 2 3"
-*/
 
     transformer = (node: AnnotationNode, level: number) => {
 
