@@ -13,8 +13,12 @@
           url: "docs/tutorials/ui-query"
     - title: Using AnnoQ API
       url: "docs/tutorials/api"
+    - title: Using AnnoQ API v2
+      url: "docs/tutorials/api-v2"
     - title: Using AnnoQR (R Package)
       url: "docs/tutorials/r-package"
+    - title: Using Annoq-py (Python Package)
+      url: "docs/tutorials/python-package"
 - title: "Changelog"
   url: "docs/changelog/features"
   links:
