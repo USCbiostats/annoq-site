@@ -4,7 +4,6 @@ import { Apollo, gql } from 'apollo-angular';
 import { BehaviorSubject } from 'rxjs';
 import { SnpPage } from '../models/page';
 import { cloneDeep, find, orderBy, uniqBy } from 'lodash';
-import { FrequencyBucket } from '../models/snp-aggs';
 import { AnnotationService } from '../../annotation/services/annotation.service';
 import { ColumnValueType } from '@annoq.common/models/annotation';
 import { SearchCriteria } from '@annoq.search/models/search-criteria';
@@ -12,7 +11,7 @@ import { Annotation } from '../../annotation/models/annotation';
 import { UrlQueryParams } from '@annoq.common/models/query-params';
 
 import pantherTerms from '@annoq.common/data/panther_terms.json';
-import { QueryTypeOption, SnpAggs, Query as GraphQLQueries } from 'generated/graphql';
+import { Bucket, QueryTypeOption, SnpAggs, Query as GraphQLQueries } from 'generated/graphql';
 import { AggsQueryArgs, CountQueryArgs, GeneInfoQuery, GraphQLQueryType, QueryFilterType, QueryFuncs, SNPQueryArgs } from '../models/graphql';
 
 @Injectable({
@@ -21,7 +20,7 @@ import { AggsQueryArgs, CountQueryArgs, GeneInfoQuery, GraphQLQueryType, QueryFi
 export class SnpService {
     snpResultsSize = environment.snpResultsSize;
     onSnpsChanged: BehaviorSubject<SnpPage>;
-    onSnpsAggsChanged: BehaviorSubject<SnpAggs>;
+    onSnpsAggsChanged: BehaviorSubject<{field: keyof SnpAggs; snpAggs: SnpAggs}>;
     onDistinctAggsChanged: BehaviorSubject<SnpAggs>;
     onSnpChanged: BehaviorSubject<any>;
     onSearchCriteriaChanged: BehaviorSubject<any>;
@@ -185,7 +184,6 @@ export class SnpService {
                     chr: annotationQuery.chrom,
                     start: annotationQuery.start,
                     end: annotationQuery.end,
-                    query_type_option: QueryTypeOption.Snps
                 };
                 graphqlQuery.queryFilterType = QueryFilterType.CHROMOSOME;
 
@@ -207,7 +205,6 @@ export class SnpService {
                     };
                     graphqlQuery.snpQuery.args = {
                         gene: annotationQuery.geneProduct,
-                        query_type_option: QueryTypeOption.Snps
                     };
                     graphqlQuery.queryFilterType = QueryFilterType.GENE_PRODUCT;
                     
@@ -225,7 +222,6 @@ export class SnpService {
                 };
                 graphqlQuery.snpQuery.args = {
                     rsID: annotationQuery.rsID,
-                    query_type_option: QueryTypeOption.Snps
                 };
                 graphqlQuery.queryFilterType = QueryFilterType.RSID;
                 break;
@@ -248,7 +244,6 @@ export class SnpService {
                 };
                 graphqlQuery.snpQuery.args = {
                     rsIDs,
-                    query_type_option: QueryTypeOption.Snps
                 };
                 graphqlQuery.queryFilterType = QueryFilterType.RSIDS;
                 break;
@@ -272,7 +267,6 @@ export class SnpService {
                 };
                 graphqlQuery.snpQuery.args = {
                     ids,
-                    query_type_option: QueryTypeOption.Snps
                 };
                 graphqlQuery.queryFilterType = QueryFilterType.IDS;
                 break;
@@ -286,7 +280,6 @@ export class SnpService {
                 };
                 graphqlQuery.snpQuery.args = {
                     keyword: annotationQuery.keyword,
-                    query_type_option: QueryTypeOption.Snps
                 };
                 graphqlQuery.queryFilterType = QueryFilterType.KEYWORD;
                 break;
@@ -391,7 +384,7 @@ export class SnpService {
                 if (result?.aggs) {
                     const aggs = result.aggs as GraphQLQueries['get_aggs_by_chromosome'];
                     // TODO: fix on SnpsAggsChanged
-                    this.onSnpsAggsChanged.next(aggs);
+                    this.onSnpsAggsChanged.next({field: field as keyof SnpAggs, snpAggs: aggs});
                 } else {
                     this.onSnpsAggsChanged.next(null);
                 }
@@ -487,7 +480,7 @@ export class SnpService {
         this.apollo.watchQuery({ query: gql(queryStr) })
             .valueChanges
             .subscribe(({data, loading}) => {
-                this.onSnpsDownloadReady.next((data as any)?.down);
+                this.onSnpsDownloadReady.next({'url': (data as any)?.down});
             });
     }
 
@@ -516,7 +509,7 @@ export class SnpService {
         return treeNodes;
     }
 
-    buildAnnotationBar(buckets: FrequencyBucket[]) {
+    buildAnnotationBar(buckets: Bucket[]) {
 
         const stats = buckets.map((bucket) => {
             return {
@@ -530,7 +523,7 @@ export class SnpService {
     }
 
 
-    buildAnnotationLine(buckets: FrequencyBucket[], name) {
+    buildAnnotationLine(buckets: Bucket[], name) {
 
         const series = buckets.map((bucket) => {
             return {
@@ -546,7 +539,7 @@ export class SnpService {
         }]
     }
 
-    buildPosHistogramLine(buckets: FrequencyBucket[]) {
+    buildPosHistogramLine(buckets: Bucket[]) {
 
         const stats = buckets.map((bucket) => {
             return {

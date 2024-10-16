@@ -1,7 +1,7 @@
 import { AggregationItem, PageArgs, QueryCount_SnPs_By_ChromosomeArgs, QueryCount_SnPs_By_Gene_ProductArgs, QueryCount_SnPs_By_IDsArgs, QueryCount_SnPs_By_RsIdArgs, QueryCount_SnPs_By_RsIDsArgs, QueryGet_Aggs_By_ChromosomeArgs, QueryGet_Aggs_By_Gene_ProductArgs, QueryGet_Aggs_By_IDsArgs, QueryGet_Aggs_By_RsIdArgs, QueryGet_Aggs_By_RsIDsArgs, QueryGet_SnPs_By_ChromosomeArgs, QueryGet_SnPs_By_Gene_ProductArgs, QueryGet_SnPs_By_IDsArgs, QueryGet_SnPs_By_RsIdArgs, QueryGet_SnPs_By_RsIDsArgs, Snp, SnpAggs, Query as GraphQLQueries, QueryGet_Aggs_By_KeywordArgs, QueryCount_SnPs_By_KeywordArgs, QueryGet_SnPs_By_KeywordArgs, QueryGene_InfoArgs } from "generated/graphql";
 export type AggsQueryArgs = QueryGet_Aggs_By_IDsArgs | QueryGet_Aggs_By_ChromosomeArgs | QueryGet_Aggs_By_RsIDsArgs | QueryGet_Aggs_By_RsIdArgs | QueryGet_Aggs_By_Gene_ProductArgs | QueryGet_Aggs_By_KeywordArgs
 export type CountQueryArgs = QueryCount_SnPs_By_IDsArgs | QueryCount_SnPs_By_ChromosomeArgs | QueryCount_SnPs_By_RsIDsArgs | QueryCount_SnPs_By_RsIdArgs | QueryCount_SnPs_By_Gene_ProductArgs | QueryCount_SnPs_By_KeywordArgs
-export type SNPQueryArgs = QueryGet_SnPs_By_IDsArgs | QueryGet_SnPs_By_ChromosomeArgs | QueryGet_SnPs_By_RsIDsArgs | QueryGet_SnPs_By_RsIdArgs | QueryGet_SnPs_By_Gene_ProductArgs | QueryGet_SnPs_By_KeywordArgs
+export type SNPQueryArgs = Omit<QueryGet_SnPs_By_IDsArgs, "query_type_option"> | Omit<QueryGet_SnPs_By_ChromosomeArgs, "query_type_option"> | Omit<QueryGet_SnPs_By_RsIDsArgs, "query_type_option"> | Omit<QueryGet_SnPs_By_RsIdArgs, "query_type_option"> | Omit<QueryGet_SnPs_By_Gene_ProductArgs, "query_type_option"> | Omit<QueryGet_SnPs_By_KeywordArgs, "query_type_option">
 export enum QueryFilterType {
     IDS = 'IDS',
     RSID = 'RSID',

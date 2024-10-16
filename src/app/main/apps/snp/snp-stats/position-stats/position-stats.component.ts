@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { SnpAggs } from '../../models/snp-aggs';
+import { AggregationItem, SnpAggs } from 'generated/graphql';
 import { SnpService } from '../../services/snp.service';
 import { Platform } from '@angular/cdk/platform';
 
@@ -45,8 +45,9 @@ export class PositionStatsComponent implements OnInit, OnDestroy {
 
     this.snpService.onSnpsAggsChanged
       .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe((snpAggs: SnpAggs) => {
-        if (snpAggs) {
+      .subscribe((aggs) => {
+        if (aggs) {
+          const { snpAggs } = aggs;
           this.snpAggs = snpAggs;
           this.drawStats()
         }
@@ -77,11 +78,11 @@ export class PositionStatsComponent implements OnInit, OnDestroy {
   }
 
   drawStats() {
-    const agg = this.snpAggs?.aggs[`${this.snpAggs.field}_frequency`];
-    const posHistogramAgg = this.snpAggs?.aggs[`pos_histogram`];
 
-    if (posHistogramAgg?.buckets) {
-      this.stats.posHistogramLine = this.snpService.buildAnnotationLine(posHistogramAgg.buckets, 'pos')
+    const posHistogramAgg = this.snpAggs?.pos?.histogram
+
+    if (posHistogramAgg) {
+      this.stats.posHistogramLine = this.snpService.buildAnnotationLine(posHistogramAgg, 'pos')
     }
   }
 
