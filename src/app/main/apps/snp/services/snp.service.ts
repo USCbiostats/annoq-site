@@ -312,7 +312,7 @@ export class SnpService {
         let queryFuncs = QueryFuncs[this.query.queryFilterType];
         let queryStr = `query pagequery {
             count: ${queryFuncs.count}(${this.formatGraphQLArgs(query.countQuery.args)})\n
-            snps: ${queryFuncs.snps}(${this.formatGraphQLArgs(query.snpQuery.args)}, query_type_option: SNPS) {${this.formatSNPsQueryFields(query.snpQuery.fields)}} \n
+            snps: ${queryFuncs.snps}(${this.formatGraphQLArgs(query.snpQuery.args)}, query_type_option: SNPS, page_args: {from_: ${query.page_args.from_}, size: ${query.page_args.size}}) {${this.formatSNPsQueryFields(query.snpQuery.fields)}} \n
             aggs: ${queryFuncs.aggs}(${this.formatGraphQLArgs(query.aggQuery.args)}) {${this.formatAggsQueryFields(query.aggQuery.fields)}} \n
         }`;
         return this.apollo.watchQuery({ query: gql(queryStr) }).valueChanges.subscribe({
