@@ -82,7 +82,6 @@ export class SnpTableComponent implements OnInit, OnDestroy {
     this.snpService.onSnpsDownloadReady
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((res) => {
-        debugger
         if (res && res.url) {
           this.snpDialogService.openDownloadToast(res);
         }
