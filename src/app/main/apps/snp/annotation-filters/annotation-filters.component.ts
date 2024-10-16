@@ -152,7 +152,7 @@ export class AnnotationFiltersComponent implements OnInit, OnDestroy {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.snpService.getDistinctValues(event.option.value.name);
+    // this.snpService.getDistinctValues(event.option.value.name);
     //  this.searchInput.forEach((item) => {
     //    item.nativeElement.value = null;
     //  });
