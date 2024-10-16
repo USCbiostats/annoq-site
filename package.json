@@ -18,7 +18,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "bundle-report": "webpack-bundle-analyzer dist/stats.json",
-    "packagr": "ng-packagr -p ng-package.json"
+    "packagr": "ng-packagr -p ng-package.json",
+    "graphql_codegen": "graphql-codegen --config graphql_codegen.ts"
   },
   "private": false,
   "dependencies": {
@@ -69,6 +70,7 @@
     "@angular/compiler-cli": "13.3.11",
     "@angular/language-service": "13.3.11",
     "@angularclass/hmr": "3.0.0",
+    "@graphql-codegen/cli": "5.0.2",
     "@types/jasmine": "~4.0.3",
     "@types/jasminewd2": "2.0.10",
     "@types/lodash": "4.14.182",
@@ -87,6 +89,7 @@
     "tslint": "~6.1.0",
     "typedoc": "^0.22.17",
     "typescript": "4.6.4",
-    "webpack-bundle-analyzer": "4.5.0"
+    "webpack-bundle-analyzer": "4.5.0",
+    "@graphql-codegen/typescript": "4.0.9"
   }
 }
