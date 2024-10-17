@@ -150,7 +150,7 @@ export class SnpService {
         const self = this;
         self.loading = true;
 
-        let headers = uniqBy([...['chr', 'pos', 'ref', 'alt', 'rs_dbSNP151'], ...annotationQuery.source], (header) => {
+        let headers = uniqBy([...['chr', 'pos', 'ref', 'alt', 'rs_dbSNP'], ...annotationQuery.source], (header) => {
             return header;
         });
 
@@ -235,7 +235,7 @@ export class SnpService {
                 query.query = {
                     'bool': {
                         'filter': [
-                            { 'term': { 'rs_dbSNP151': annotationQuery.rsID } },
+                            { 'term': { 'rs_dbSNP': annotationQuery.rsID } },
                         ]
                     }
                 }
@@ -255,7 +255,7 @@ export class SnpService {
                         'filter': [
                             {
                                 "terms": {
-                                    "rs_dbSNP151": rsIDs
+                                    "rs_dbSNP": rsIDs
                                 }
                             }
                         ]
