@@ -9,7 +9,7 @@ id,parent_id,leaf,name,label,detail,link,pmid,sort,root_url,sample_url,field_typ
 288,0,FALSE,allele frequencies,,,,,,,,,,,
 469,0,FALSE,disease related databases,,,,,,,,,,,
 495,0,FALSE,others,,,,,7,,,,,,dbNSFP v4.3c
-700,0,FALSE,HG19_Info,,Comparison from version hg19,,,8,,,,,,
+700,0,FALSE,HG19 Info,,Comparison from version hg19,,,8,,,,,,
 2,1,TRUE,chr,,"Chromosome number of the variant.""",,,,,,text,TRUE,,TOPMed: Freeze 8
 3,1,TRUE,pos,,"""position (hg38)""",,,,,,long,,,TOPMed: Freeze 8
 4,1,TRUE,ref,,"""reference allele""",,,,,,text,TRUE,,TOPMed: Freeze 8
