@@ -1,7 +1,6 @@
 export const environment = {
   production: true,
   dataset: 'annoq-annotations-v3',
-  annotationApi: 'http://annoq.org/api',
   annotationApiV2: 'http://annoq.org/api-v2',
   snpResultsSize: 50,
   termsDisplayedSize: 5,

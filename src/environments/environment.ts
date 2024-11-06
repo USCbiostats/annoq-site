@@ -5,8 +5,7 @@
 export const environment = {
   dataset: 'annoq-annotations-v3',
   production: false,
-  annotationApi: 'http://bioghost2.usc.edu:9350', // 'http://localhost:3403',// 'http://annoq.org/api',
-  annotationApiV2: 'http://localhost:8000', // 'http://bioghost2.usc.edu:9350',
+  annotationApiV2: 'http://annoq.org/api-v2', // 'http://bioghost2.usc.edu:9350',
   snpResultsSize: 50,
   termsDisplayedSize: 8,
   genesDisplayedSize: 5,

@@ -286,10 +286,8 @@ export class SnpService {
 
         }
 
-        // TODO: Check the usage of originalQuery
         self.setOriginalQuery(graphqlQuery)
         self.getSnpsPage(graphqlQuery, page);
-        // TODO: Check parity for cases where only getSnpsPage is called without calling getSnpsCount
     }
 
     setOriginalQuery(query: GraphQLQueryType) {
@@ -306,7 +304,6 @@ export class SnpService {
         query.page_args.from_ = (page - 1) * this.snpResultsSize;
         query.page_args.size = this.snpResultsSize;
 
-        // TODO: Check the usage of this.query
         this.query = query;
 
         let queryFuncs = QueryFuncs[this.query.queryFilterType];
@@ -339,20 +336,16 @@ export class SnpService {
                         this.snpPage.posMax = posMaxAgg;
                     }
 
-                    // TODO: Check the usage of this.snpPage
 
                     this.snpPage.gene = gene;
 
                     this.snpPage.query = query;
                     this.snpPage.size = self.snpResultsSize;
 
-                    // TODO: Confirm compatibility
                     this.snpPage.snps = this.transformSnps(snps.snps);
 
-                    // TODO: Check aggregations type etc compatibility
                     this.snpPage.aggs = aggs;
 
-                    // TODO: What's the source. Check with internet
                     this.snpPage.source = query.snpQuery.fields;
 
 
@@ -383,7 +376,6 @@ export class SnpService {
                 
                 if (result?.aggs) {
                     const aggs = result.aggs as GraphQLQueries['get_aggs_by_chromosome'];
-                    // TODO: fix on SnpsAggsChanged
                     this.onSnpsAggsChanged.next({field: field as keyof SnpAggs, snpAggs: aggs});
                 } else {
                     this.onSnpsAggsChanged.next(null);
@@ -405,9 +397,6 @@ export class SnpService {
         }
 
         this.updateSearch();
-
-        // TODO: Check compatibility of search criteria
-
     }
 
     updateSearch() {
@@ -475,7 +464,6 @@ export class SnpService {
             return;
         }
 
-        // TODO: CONFIRM COMPATIBILITY OF THE OUTPUT WITH INTERNET.
         const queryStr = `query downloadquery {down: ${QueryFuncs[this.query.queryFilterType].download}(${this.formatGraphQLArgs({ ...this.query.snpQuery.args, fields: this.query.snpQuery.fields })})}`
         this.apollo.watchQuery({ query: gql(queryStr) })
             .valueChanges
