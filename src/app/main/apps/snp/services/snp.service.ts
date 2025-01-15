@@ -20,7 +20,7 @@ import { AggsQueryArgs, CountQueryArgs, GeneInfoQuery, GraphQLQueryType, QueryFi
 export class SnpService {
     snpResultsSize = environment.snpResultsSize;
     onSnpsChanged: BehaviorSubject<SnpPage>;
-    onSnpsAggsChanged: BehaviorSubject<{field: keyof SnpAggs; snpAggs: SnpAggs}>;
+    onSnpsAggsChanged: BehaviorSubject<{ field: keyof SnpAggs; snpAggs: SnpAggs }>;
     onDistinctAggsChanged: BehaviorSubject<SnpAggs>;
     onSnpChanged: BehaviorSubject<any>;
     onSearchCriteriaChanged: BehaviorSubject<any>;
@@ -92,6 +92,9 @@ export class SnpService {
         const results = snps.map(snp => {
             const transformedSnp = {}
             for (const k in snp) {
+                if (snp[k] === undefined || snp[k] === null) {
+                    continue;
+                }
                 const colDetail = this.annotationService.findDetailByName(k);
 
                 if (colDetail?.value_type === ColumnValueType.TERM) {
@@ -119,8 +122,6 @@ export class SnpService {
                         items,
                         count: items.length
                     }
-
-                    console.log(value)
 
                     transformedSnp[k] = value
 
@@ -190,27 +191,27 @@ export class SnpService {
                 break;
 
             case this.inputType.geneProduct:
-       
+
                 const geneInfoQuery = gql(`query geneInfoQuery {geneInfo: ${GeneInfoQuery}(${this.formatGraphQLArgs({ gene: annotationQuery.geneProduct })}){${['contig', 'end', 'start', 'gene_id'].join(',')}}}`);
                 this.apollo.watchQuery({ query: geneInfoQuery })
-                .valueChanges
-                .subscribe(({data, loading}) => {
-                    const response = data as any;
-                    
-                    graphqlQuery.aggQuery.args = {
-                        gene: annotationQuery.geneProduct
-                    };
-                    graphqlQuery.countQuery.args = {
-                        gene: annotationQuery.geneProduct
-                    };
-                    graphqlQuery.snpQuery.args = {
-                        gene: annotationQuery.geneProduct,
-                    };
-                    graphqlQuery.queryFilterType = QueryFilterType.GENE_PRODUCT;
-                    
-                    self.setOriginalQuery(graphqlQuery)
-                    self.getSnpsPage(graphqlQuery, page, response.geneInfo);
-                });
+                    .valueChanges
+                    .subscribe(({ data, loading }) => {
+                        const response = data as any;
+
+                        graphqlQuery.aggQuery.args = {
+                            gene: annotationQuery.geneProduct
+                        };
+                        graphqlQuery.countQuery.args = {
+                            gene: annotationQuery.geneProduct
+                        };
+                        graphqlQuery.snpQuery.args = {
+                            gene: annotationQuery.geneProduct,
+                        };
+                        graphqlQuery.queryFilterType = QueryFilterType.GENE_PRODUCT;
+
+                        self.setOriginalQuery(graphqlQuery)
+                        self.getSnpsPage(graphqlQuery, page, response.geneInfo);
+                    });
                 return;
 
             case this.inputType.rsID:
@@ -313,16 +314,42 @@ export class SnpService {
             aggs: ${queryFuncs.aggs}(${this.formatGraphQLArgs(query.aggQuery.args)}) {${this.formatAggsQueryFields(query.aggQuery.fields)}} \n
         }`;
         return this.apollo.watchQuery({ query: gql(queryStr) }).valueChanges.subscribe({
-            next: ({data, loading}) => {
-                const result = data as Record<'count'| 'snps'| 'aggs', any>;
+            next: ({ data, loading }) => {
+                const result = data as Record<'count' | 'snps' | 'aggs', any>;
                 if (!(result?.count && result?.snps && result?.aggs)) {
                     self.loading = false;
                     return;
                 }
 
                 const count = result.count as GraphQLQueries['count_SNPs_by_chromosome'];
-                const snps = result.snps as GraphQLQueries['get_SNPs_by_chromosome'];
-                const aggs = result.aggs as GraphQLQueries['get_aggs_by_chromosome'];
+
+                let untransformedSnps = result.snps as GraphQLQueries['get_SNPs_by_chromosome'];
+                let snps = {
+                    ...untransformedSnps,
+                    snps: untransformedSnps.snps.map((snp) => {
+                        const snpObj = {};
+                        for (const k in snp) {
+                            if (this.annotationService.labelLookup[k]) {
+                                snpObj[this.annotationService.getAnnotationNameFromApiField(k)] = snp[k];
+                            }
+                            else {
+                                snpObj[k] = snp[k];
+                            }
+                        }
+                        return snpObj;
+                    })
+                }
+
+                const untransformedAggs = result.aggs as GraphQLQueries['get_aggs_by_chromosome'];
+                const aggs = {} as GraphQLQueries['get_aggs_by_chromosome'];
+                for (const k in untransformedAggs) {
+                    if (this.annotationService.labelLookup[k]) {
+                        aggs[this.annotationService.getAnnotationNameFromApiField(k)] = untransformedAggs[k];
+                    }
+                    else {
+                        aggs[k] = untransformedAggs[k];
+                    }
+                }
 
                 if (snps.snps.length) {
                     this.snpPage.shallowRefresh();
@@ -371,12 +398,22 @@ export class SnpService {
         }`;
 
         return this.apollo.watchQuery({ query: gql(queryStr) }).valueChanges.subscribe({
-            next: ({data, loading}) => {
+            next: ({ data, loading }) => {
                 const result = data as Record<'aggs', any>;
-                
+
                 if (result?.aggs) {
-                    const aggs = result.aggs as GraphQLQueries['get_aggs_by_chromosome'];
-                    this.onSnpsAggsChanged.next({field: field as keyof SnpAggs, snpAggs: aggs});
+                    const untransformedAggs = result.aggs as GraphQLQueries['get_aggs_by_chromosome'];
+                    const aggs = {}
+                    for (const k in untransformedAggs) {
+                        if (this.annotationService.labelLookup[k]) {
+                            aggs[this.annotationService.getAnnotationNameFromApiField(k)] = untransformedAggs[k];
+                        }
+                        else {
+                            aggs[k] = untransformedAggs[k];
+                        }
+                    }
+
+                    this.onSnpsAggsChanged.next({ field: field as keyof SnpAggs, snpAggs: aggs });
                 } else {
                     this.onSnpsAggsChanged.next(null);
                 }
@@ -405,9 +442,9 @@ export class SnpService {
         if (this.queryOriginal?.queryFilterType !== QueryFilterType.KEYWORD) {
 
             const query = cloneDeep(this.queryOriginal)
-            
+
             const filter_args = {
-                exists: this.searchCriteria.fields.map((field: Annotation) => field.name)
+                exists: this.searchCriteria.fields.map((field: Annotation) => field.api_field || field.name)
             }
 
             query.snpQuery.args = {
@@ -467,8 +504,8 @@ export class SnpService {
         const queryStr = `query downloadquery {down: ${QueryFuncs[this.query.queryFilterType].download}(${this.formatGraphQLArgs({ ...this.query.snpQuery.args, fields: this.query.snpQuery.fields })})}`
         this.apollo.watchQuery({ query: gql(queryStr) })
             .valueChanges
-            .subscribe(({data, loading}) => {
-                this.onSnpsDownloadReady.next({'url': (data as any)?.down});
+            .subscribe(({ data, loading }) => {
+                this.onSnpsDownloadReady.next({ 'url': (data as any)?.down });
             });
     }
 
@@ -541,8 +578,11 @@ export class SnpService {
     }
 
     private formatAggsQueryFields(fields: GraphQLQueryType['aggQuery']['fields']) {
-        return fields.map(([field, aggs_fields]) =>
-            `${field} {${aggs_fields.map(agg_field => {
+        return fields.map(([field, aggs_fields]) => {
+
+            const fieldApi = this.annotationService.getAnnotationApiField(field as string);
+
+            return `${fieldApi} {${aggs_fields.map(agg_field => {
                 switch (agg_field) {
                     case 'frequency':
                     case 'histogram':
@@ -553,11 +593,12 @@ export class SnpService {
                         return agg_field;
                 }
             }).join(',')}}`
-        ).join(',');
+        }).join(',');
     }
 
     private formatSNPsQueryFields(fields: GraphQLQueryType['snpQuery']['fields']) {
-        return `snps {${fields.join(',')}}`
+        const fieldApis = fields.map(field => this.annotationService.getAnnotationApiField(field as string));
+        return `snps {${fieldApis.join(',')}}`
     }
 
     /** Create a string for the arguments in a graphql query 

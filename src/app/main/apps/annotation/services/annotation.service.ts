@@ -77,6 +77,7 @@ export class AnnotationService {
         flatNode.visible = node.visible;
         flatNode.expandable = !!node.children;
         flatNode.level = level;
+        flatNode.api_field = node.api_field;
 
         return flatNode
     }
@@ -322,6 +323,17 @@ export class AnnotationService {
         return found
     }
 
+    getAnnotationApiField(name) {
+        const found = this.labelLookup[name]
+        return found.api_field || name
+    }
+
+    getAnnotationNameFromApiField(api_field) {
+        const found = find(this.annotations, (annotation: Annotation) => {
+            return api_field === annotation.api_field
+        })
+        return found.name
+    }
 
     private _buildAnnotationTree(annotation: Annotation[]): AnnotationNode[] {
         let getNestedChildren = (arr, parent_id, level) => {
