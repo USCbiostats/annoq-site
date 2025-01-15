@@ -329,12 +329,7 @@ export class SnpService {
                     snps: untransformedSnps.snps.map((snp) => {
                         const snpObj = {};
                         for (const k in snp) {
-                            if (this.annotationService.labelLookup[k]) {
-                                snpObj[this.annotationService.getAnnotationNameFromApiField(k)] = snp[k];
-                            }
-                            else {
-                                snpObj[k] = snp[k];
-                            }
+                            snpObj[this.annotationService.getAnnotationNameFromApiField(k)] = snp[k]; 
                         }
                         return snpObj;
                     })
@@ -343,12 +338,7 @@ export class SnpService {
                 const untransformedAggs = result.aggs as GraphQLQueries['get_aggs_by_chromosome'];
                 const aggs = {} as GraphQLQueries['get_aggs_by_chromosome'];
                 for (const k in untransformedAggs) {
-                    if (this.annotationService.labelLookup[k]) {
-                        aggs[this.annotationService.getAnnotationNameFromApiField(k)] = untransformedAggs[k];
-                    }
-                    else {
-                        aggs[k] = untransformedAggs[k];
-                    }
+                    aggs[this.annotationService.getAnnotationNameFromApiField(k)] = untransformedAggs[k];
                 }
 
                 if (snps.snps.length) {
@@ -405,12 +395,7 @@ export class SnpService {
                     const untransformedAggs = result.aggs as GraphQLQueries['get_aggs_by_chromosome'];
                     const aggs = {}
                     for (const k in untransformedAggs) {
-                        if (this.annotationService.labelLookup[k]) {
-                            aggs[this.annotationService.getAnnotationNameFromApiField(k)] = untransformedAggs[k];
-                        }
-                        else {
-                            aggs[k] = untransformedAggs[k];
-                        }
+                        aggs[this.annotationService.getAnnotationNameFromApiField(k)] = untransformedAggs[k];
                     }
 
                     this.onSnpsAggsChanged.next({ field: field as keyof SnpAggs, snpAggs: aggs });

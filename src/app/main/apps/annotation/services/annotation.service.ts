@@ -332,8 +332,10 @@ export class AnnotationService {
         const found = find(this.annotations, (annotation: Annotation) => {
             return api_field === annotation.api_field
         })
-        return found.name
+        return found?.name || api_field
     }
+
+    getIsVa
 
     private _buildAnnotationTree(annotation: Annotation[]): AnnotationNode[] {
         let getNestedChildren = (arr, parent_id, level) => {
