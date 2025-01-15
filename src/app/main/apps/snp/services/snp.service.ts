@@ -444,7 +444,7 @@ export class SnpService {
             const query = cloneDeep(this.queryOriginal)
 
             const filter_args = {
-                exists: this.searchCriteria.fields.map((field: Annotation) => field.api_field || field.name)
+                exists: this.searchCriteria.fields.map((field: Annotation) => field.name)
             }
 
             query.snpQuery.args = {
