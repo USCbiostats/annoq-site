@@ -3,16 +3,12 @@
 
 # AnnoQ API based on Elasticsearch
 
-Currently this API is under domain `http://annoq.org:3403/` and index name (\<idx\>) is `annoq-test`.
-
-## Examples
-
-[Here](https://github.com/USCbiostats/annoq-api/tree/main/es_scripts) are some bash scripts examples for showing the usage of AnnoQ API.
+Currently this API is under domain `https://api.annoq.org/` and index name is 'annoq-annotations-v3'(\<idx\>).
 
 ## Annotation tree structure
 
 * endpoint 
-`/<idx>/anno_tree`
+`/anno_tree`
 
 ## Gene mapping
 * endpoint `/gene`
