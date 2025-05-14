@@ -173,18 +173,18 @@ export class SnpService {
             case this.inputType.chromosome:
                 graphqlQuery.aggQuery.args = {
                     chr: annotationQuery.chrom,
-                    start: annotationQuery.start,
-                    end: annotationQuery.end
+                    start: parseInt(annotationQuery.start),
+                    end: parseInt(annotationQuery.end)
                 };
                 graphqlQuery.countQuery.args = {
                     chr: annotationQuery.chrom,
-                    start: annotationQuery.start,
-                    end: annotationQuery.end
+                    start: parseInt(annotationQuery.start),
+                    end: parseInt(annotationQuery.end)
                 };
                 graphqlQuery.snpQuery.args = {
                     chr: annotationQuery.chrom,
-                    start: annotationQuery.start,
-                    end: annotationQuery.end,
+                    start: parseInt(annotationQuery.start),
+                    end: parseInt(annotationQuery.end),
                 };
                 graphqlQuery.queryFilterType = QueryFilterType.CHROMOSOME;
 
@@ -195,22 +195,35 @@ export class SnpService {
                 const geneInfoQuery = gql(`query geneInfoQuery {geneInfo: ${GeneInfoQuery}(${this.formatGraphQLArgs({ gene: annotationQuery.geneProduct })}){${['contig', 'end', 'start', 'gene_id'].join(',')}}}`);
                 this.apollo.watchQuery({ query: geneInfoQuery })
                     .valueChanges
-                    .subscribe(({ data, loading }) => {
-                        const response = data as any;
+                    .subscribe({
+                        next: ({ data, loading }) => {
+                            const response = data as any;
+                            if (!response.geneInfo) {
+                                console.warn('Gene info not found');
+                                this.onSnpsChanged.next(null);
+                                self.loading = false;
+                                return;
+                            }
 
-                        graphqlQuery.aggQuery.args = {
-                            gene: annotationQuery.geneProduct
-                        };
-                        graphqlQuery.countQuery.args = {
-                            gene: annotationQuery.geneProduct
-                        };
-                        graphqlQuery.snpQuery.args = {
-                            gene: annotationQuery.geneProduct,
-                        };
-                        graphqlQuery.queryFilterType = QueryFilterType.GENE_PRODUCT;
+                            graphqlQuery.aggQuery.args = {
+                                gene: annotationQuery.geneProduct
+                            };
+                            graphqlQuery.countQuery.args = {
+                                gene: annotationQuery.geneProduct
+                            };
+                            graphqlQuery.snpQuery.args = {
+                                gene: annotationQuery.geneProduct,
+                            };
+                            graphqlQuery.queryFilterType = QueryFilterType.GENE_PRODUCT;
 
-                        self.setOriginalQuery(graphqlQuery)
-                        self.getSnpsPage(graphqlQuery, page, response.geneInfo);
+                            self.setOriginalQuery(graphqlQuery)
+                            self.getSnpsPage(graphqlQuery, page, response.geneInfo);
+                        },
+                        error: (err) => {
+                            console.warn('Error fetching gene info:', err);
+                            this.onSnpsChanged.next(null);
+                            self.loading = false;
+                        }
                     });
                 return;
 
@@ -317,6 +330,7 @@ export class SnpService {
             next: ({ data, loading }) => {
                 const result = data as Record<'count' | 'snps' | 'aggs', any>;
                 if (!(result?.count && result?.snps && result?.aggs)) {
+                    this.onSnpsChanged.next(null);
                     self.loading = false;
                     return;
                 }
@@ -374,6 +388,7 @@ export class SnpService {
             },
             error: (err) => {
                 self.loading = false;
+                this.onSnpsChanged.next(null);
                 console.warn(err);
             }
         });
