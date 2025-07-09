@@ -17,6 +17,7 @@ title: AnnoQ
 |           | -  Resolved display issues in columns and detailed view                    |
 |           | -  Resolved URL links issue                                                |
 | AnnoQ 1.11| -  Addition of version information                                         |
+| AnnoQ 1.2 | -  N/A                                                                     |
 
 ## Result Row Summary
 -------------------
