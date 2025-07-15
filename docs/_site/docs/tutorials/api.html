@@ -290,117 +290,54 @@
             </ol>
           </nav> -->
           <div class="noc-content">
-            <h1 id="annoq-api-based-on-elasticsearch">AnnoQ API based on Elasticsearch</h1>
+            <h1 id="programmatic-access-to-annoq">Programmatic Access to AnnoQ</h1>
 
-<p>Currently this API is under domain <code class="language-plaintext highlighter-rouge">https://api.annoq.org/</code> and index name is ‘annoq-annotations-v3’(&lt;idx&gt;).</p>
+<blockquote>
+  <p>This page documents how to query AnnoQ using the API</p>
+</blockquote>
 
-<h2 id="annotation-tree-structure">Annotation tree structure</h2>
+<p>The AnnoQ API implementation and its associated Sagger documentation are available at <a href="https://api.annoq.org/">https://api.annoq.org/</a>.</p>
 
-<ul>
-  <li>endpoint 
-<code class="language-plaintext highlighter-rouge">/anno_tree</code></li>
-</ul>
+<p>The API provides access to AnnoQ’s rich annotations for Human SNPs from the <a href="https://www.sanger.ac.uk/collaboration/haplotype-reference-consortium/">Haplotype Reference Consortium</a>.  The end-points can be utilized independently or as part of large workflows to analyze and make coorelations on large data sets. A SNP (single nucleotide polymorphism) by definition is a genomic variant at a single base position in the DNA.  Each SNP in the system can be uniquely identified by the chromosome, its position, the reference nucleotide and the alternate nucleotide or its RSID (Reference SNP cluster ID).  Note, SNP’s are not defined for all positions of the chromosome, but, a given chromosome and position, can have more than one SNP. Indels are not supported.</p>
 
-<h2 id="gene-mapping">Gene mapping</h2>
-<ul>
-  <li>endpoint <code class="language-plaintext highlighter-rouge">/gene</code></li>
-  <li>parameters <code class="language-plaintext highlighter-rouge">?gene=</code></li>
-</ul>
+<p>The procedure for retrieving SNP’s and associated attributes is as follows:</p>
+<ol>
+  <li>Identify the attributes of interest and optionally SNP’s that should not be retrieved (i.e. filtered) if a given attribute is not set</li>
+  <li>Identify the SNP’s of interest.  This can be through chromosome position or RSID or unique identifier constructed from the chromosome number, position, reference nucleotide and alternate nucleotide or gene or keyword.</li>
+  <li>Identify the number of SNP’s that fit the search criteria</li>
+  <li>Retrieve the SNP’s.  Since a large number of SNP’s can meet the search criteria, pagination is used to retrieve sets of SNP’s.</li>
+</ol>
 
-<h3 id="response">response</h3>
+<h2 id="snp-attributes">SNP Attributes</h2>
+<p>The list of SNP attributes, including the chromosome identifier, position, reference nucleotide and alternate nucleotide, RSID can be retrieved via the <strong>fastapi/snpAttributes</strong> end point.  This end-point returns the list of attributes available for each SNP as well as the following for each attribute:</p>
+<ol>
+  <li>api_label - This is the label use by the API.  Use this label is used when specifying the attribute fields to retrieve as well as the attributes to filter</li>
+  <li>display_label - This is the label used by annoq.org for the attribute.</li>
+  <li>searchable - If this attribute can be searched via the keyword</li>
+  <li>definition - Description of the attribute</li>
+  <li>data_type - Type of data for the attribute</li>
+  <li>version - The version of the data for this attribute.</li>
+</ol>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
-  "gene_info": {
-    "contig": "10", 
-    "end": 254634, 
-    "gene_id": "HUMAN|HGNC=16966|UniProtKB=Q15326", 
-    "start": 135484
-  }
-}
-</code></pre></div></div>
+<p>The list of attributes can be constructed by downloading the configuration after a search operation from the annoq.org website by clicking on the export config button or by opening the <a href="https://annoq.org/detail">detail page</a>, selecting attributes of interest and clicking on the export config button.</p>
 
-<h2 id="download-request">Download request</h2>
+<h2 id="snp-search-criteria">SNP Search criteria</h2>
+<ol>
+  <li>End-point <strong>/fastapi/snp/chr?</strong> search via chromosome number (or ‘X’ for the X-chromosome), the chromosome start and stop position.</li>
+  <li>End-point <strong>/fastapi/snp/rsidList?</strong> search via list of RSIDs.  The RSIDs can be parsed from VCF files.</li>
+  <li>End-point <strong>/fastapi/snp/idList?</strong> search via list of IDs.  There is a unique identifier for each SNP in the system.  It is a concatenation of the chromosome, followed by a colon (‘:’), followed by the position, followed by the reference nucleotide, followed by a greater than symbol (‘&gt;’) followed by alternate nucleotide.  The IDS can be constructed from VCF files.</li>
+  <li>End-point <strong>/fastapi/snp/keyword?</strong> search for SNP’s associated with a term</li>
+  <li>End-point <strong>/fastapi/snp/gene?</strong> search for SNPs associated with a gene product</li>
+</ol>
 
-<p>Send json request with query body. See documents for elasticsearch.</p>
-
-<p>endpoint <code class="language-plaintext highlighter-rouge">/total_res</code></p>
-
-<h3 id="response-1">response</h3>
-
-<p><code class="language-plaintext highlighter-rouge">{"url":url}</code></p>
-
-<h2 id="vcf-file-search">vcf file search</h2>
-
-<p>endpoint <code class="language-plaintext highlighter-rouge">/&lt;idx&gt;/ids</code></p>
-
-<p>No pages. Only return first 50 hits. Contains url for download.</p>
-
-<p>Request body:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
-  "_source":["pos", "ref"],
-  "ids":["18:10636A&gt;C", "18:10644C&gt;G", "18:10667C&gt;T", "18:10719C&gt;G"]
-}
-</code></pre></div></div>
-
-<p>IDs should in format of <code class="language-plaintext highlighter-rouge">"contig":pos"Ref"&gt;"Alt"</code></p>
-
-<h3 id="response-2">response</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
-  "hits": {
-    "hits": [
-      {
-        "pos": 10636,
-        "ref": "A"
-      },
-      {
-        "pos": 10644,
-        "ref": "C"
-      },
-      {
-        "pos": 10667,
-        "ref": "C"
-      },
-      {
-        "pos": 10719,
-        "ref": "C"
-      }
-    ]
-  },
-  "url": "/download/tmp/74ea9e11-7f47-4c61-a5e6-fe2c54425b71.txt"
-}
-</code></pre></div></div>
-
-<h2 id="other-queries">Other Queries</h2>
-<p>Data scheme <code class="language-plaintext highlighter-rouge">/&lt;idx&gt;/_mapping</code> .</p>
-
-<p>Same as elasticsearch.</p>
-
-<h2 id="configure-file">Configure File</h2>
-
-<p>A configure file can generated by AnnoQ website and it is used as <code class="language-plaintext highlighter-rouge">_source</code> field for query.</p>
-
-<p>e.g.</p>
-
-<p>in configure file:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{"_source":["1000Gp3_AC","1000Gp3_AF"]}
-</code></pre></div></div>
-
-<p>in query body:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
-"_source": ["1000Gp3_AC","1000Gp3_AF"],
-"query": {
-    "bool": {
-	"filter": [
-		{"term": {"chr":"2"}},
-		{"range" : { "pos" : { "gte" : 10, "lte" : 20000 } }}]
-    }
-  }
-}
-</code></pre></div></div>
+<h2 id="snp-count-criteria">SNP count criteria</h2>
+<ol>
+  <li>End-point <strong>/fastapi/snp/chr?</strong>Count of SNPs matching search criteria of chromosome number (or ‘X’ for the X-chromosome), the chromosome start and stop position.</li>
+  <li>End-point <strong>/fastapi/snp/rsidList?</strong> Count of SNPs matching search criteria of RSIDs.</li>
+  <li>End-point <strong>/fastapi/snp/idList?</strong> Count of SNPs matching list of IDs.  There is a unique identifier for each SNP in the system.  It is a concatenation of the chromosome, followed by a colon (‘:’), followed by the position, followed by the reference nucleotide, followed by a greater than symbol (‘&gt;’) followed by alternate nucleotide.</li>
+  <li>End-point <strong>/fastapi/snp/keyword?</strong>Count of SNPs associated with term</li>
+  <li>End-point <strong>/fastapi/snp/gene?</strong> Count of SNPs associated with gene product</li>
+</ol>
 
 <p><strong>What’s Next</strong></p>
 
