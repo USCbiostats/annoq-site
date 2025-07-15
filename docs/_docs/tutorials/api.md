@@ -5,7 +5,7 @@
 
 > This page documents how to query AnnoQ using the API
 
-The AnnoQ API implementation and its associated Sagger documentation are available at [https://api.annoq.org/](https://api.annoq.org/).
+The AnnoQ API implementation and its associated Sagger documentation are available at [https://api.annoq.org/docs](https://api.annoq.org/).
 
 The API provides access to AnnoQ's rich annotations for Human SNPs from the [Haplotype Reference Consortium](https://www.sanger.ac.uk/collaboration/haplotype-reference-consortium/).  The end-points can be utilized independently or as part of large workflows to analyze and make coorelations on large data sets. A SNP (single nucleotide polymorphism) by definition is a genomic variant at a single base position in the DNA.  Each SNP in the system can be uniquely identified by the chromosome, its position, the reference nucleotide and the alternate nucleotide or its RSID (Reference SNP cluster ID).  Note, SNP's are not defined for all positions of the chromosome, but, a given chromosome and position, can have more than one SNP. Indels are not supported.
 
