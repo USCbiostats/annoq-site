@@ -309,17 +309,17 @@
 </ol>
 
 <h2 id="snp-attributes">SNP Attributes</h2>
-<p>The list of SNP attributes, including the chromosome identifier, position, reference nucleotide and alternate nucleotide, RSID can be retrieved via the <strong>fastapi/snpAttributes</strong> end point.  This end-point returns the list of attributes available for each SNP as well as the following for each attribute:</p>
+<p>The list of SNP attributes, including the chromosome identifier, position, reference nucleotide, alternate nucleotide and RSID can be retrieved via the <strong>fastapi/snpAttributes</strong> end point.  This end-point returns the list of attributes available for each SNP as well as the following for each attribute:</p>
 <ol>
-  <li>api_label - This is the label use by the API.  Use this label is used when specifying the attribute fields to retrieve as well as the attributes to filter</li>
-  <li>display_label - This is the label used by annoq.org for the attribute.</li>
-  <li>searchable - If this attribute can be searched via the keyword</li>
+  <li>api_label - This is the label used by the API for the attribute.  Use this label when specifying the attribute field to retrieve as well as the attribute field to filter</li>
+  <li>display_label - This is the label used by annoq.org website for the attribute.</li>
+  <li>searchable - If this attribute can be searched via keyword</li>
   <li>definition - Description of the attribute</li>
   <li>data_type - Type of data for the attribute</li>
   <li>version - The version of the data for this attribute.</li>
 </ol>
 
-<p>The list of attributes can be constructed by downloading the configuration after a search operation from the annoq.org website by clicking on the export config button or by opening the <a href="https://annoq.org/detail">detail page</a>, selecting attributes of interest and clicking on the export config button.</p>
+<p>The list of attributes can be constructed by downloading the configuration after a search operation from the annoq.org website by clicking on the export config button or by opening the <a href="https://annoq.org/detail">detail page</a>, selecting attributes of interest and clicking on the export config button. The contents of the downloaded file can be used for the <strong>fields</strong> parameter for the search and count end points.</p>
 
 <h2 id="snp-search-criteria">SNP Search criteria</h2>
 <ol>

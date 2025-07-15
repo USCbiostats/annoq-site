@@ -18,15 +18,15 @@ The procedure for retrieving SNP's and associated attributes is as follows:
 
 
 ## SNP Attributes
-The list of SNP attributes, including the chromosome identifier, position, reference nucleotide and alternate nucleotide, RSID can be retrieved via the <strong>fastapi/snpAttributes</strong> end point.  This end-point returns the list of attributes available for each SNP as well as the following for each attribute:
-1. api_label - This is the label use by the API.  Use this label is used when specifying the attribute fields to retrieve as well as the attributes to filter
-2. display_label - This is the label used by annoq.org for the attribute.
-3. searchable - If this attribute can be searched via the keyword
+The list of SNP attributes, including the chromosome identifier, position, reference nucleotide, alternate nucleotide and RSID can be retrieved via the <strong>fastapi/snpAttributes</strong> end point.  This end-point returns the list of attributes available for each SNP as well as the following for each attribute:
+1. api_label - This is the label used by the API for the attribute.  Use this label when specifying the attribute field to retrieve as well as the attribute field to filter
+2. display_label - This is the label used by annoq.org website for the attribute.
+3. searchable - If this attribute can be searched via keyword
 4. definition - Description of the attribute
 5. data_type - Type of data for the attribute 
 6. version - The version of the data for this attribute. 
 
-The list of attributes can be constructed by downloading the configuration after a search operation from the annoq.org website by clicking on the export config button or by opening the [detail page](https://annoq.org/detail), selecting attributes of interest and clicking on the export config button.
+The list of attributes can be constructed by downloading the configuration after a search operation from the annoq.org website by clicking on the export config button or by opening the [detail page](https://annoq.org/detail), selecting attributes of interest and clicking on the export config button. The contents of the downloaded file can be used for the <strong>fields</strong> parameter for the search and count end points.
 
 
 ## SNP Search criteria
