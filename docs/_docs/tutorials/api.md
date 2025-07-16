@@ -12,7 +12,7 @@ The API provides access to AnnoQ's rich annotations for Human SNPs from the [Hap
 
 The procedure for retrieving SNP's and associated attributes is as follows:
 1.  Identify the attributes of interest and optionally SNP's that should not be retrieved (i.e. filtered) if a given attribute is not set
-2.  Identify the SNP's of interest.  This can be through chromosome position or RSID or unique identifier constructed from the chromosome number, position, reference nucleotide and alternate nucleotide or gene or keyword.
+2.  Identify the SNP's of interest.  This can be through chromosome position or RSID or gene or predefined pathway steps.
 3.  Identify the number of SNP's that fit the search criteria
 4.  Retrieve the SNP's.  Since a large number of SNP's can meet the search criteria, pagination is used to retrieve sets of SNP's.
 
@@ -21,28 +21,26 @@ The procedure for retrieving SNP's and associated attributes is as follows:
 The list of SNP attributes, including the chromosome identifier, position, reference nucleotide, alternate nucleotide and RSID can be retrieved via the <strong>fastapi/snpAttributes</strong> end point.  This end-point returns the list of attributes available for each SNP as well as the following for each attribute:
 1. api_label - This is the label used by the API for the attribute.  Use this label when specifying the attribute field to retrieve as well as the attribute field to filter
 2. display_label - This is the label used by annoq.org website for the attribute.
-3. searchable - If this attribute can be searched via keyword
-4. definition - Description of the attribute
-5. data_type - Type of data for the attribute 
-6. version - The version of the data for this attribute. 
+3. definition - Description of the attribute
+4. data_type - Type of data for the attribute 
+5. version - The version of the data for this attribute. 
 
-The list of attributes can be constructed by downloading the configuration after a search operation from the annoq.org website by clicking on the export config button or by opening the [detail page](https://annoq.org/detail), selecting attributes of interest and clicking on the export config button. The contents of the downloaded file can be used for the <strong>fields</strong> parameter for the search and count end points.
+The list of attributes can be constructed by downloading the configuration from the [seaarch page](https://annoq.org/search) by selecting the attributes of interest and clicking on the export config button or by opening the [detail page](https://annoq.org/detail), selecting attributes of interest and clicking on the export config button. The contents of the downloaded file can be used for the <strong>fields</strong> parameter for the search and count end points.  Note, the maximum number of attributes that can be retrieved for a request is 20.
 
 
 ## SNP Search criteria
+These end-points will return zero or more records with the requested attributes as well as the version number of the attributes
 1.  End-point <strong>/fastapi/snp/chr?</strong> search via chromosome number (or 'X' for the X-chromosome), the chromosome start and stop position.
 2.  End-point <strong>/fastapi/snp/rsidList?</strong> search via list of RSIDs.  The RSIDs can be parsed from VCF files.
-3.  End-point <strong>/fastapi/snp/idList?</strong> search via list of IDs.  There is a unique identifier for each SNP in the system.  It is a concatenation of the chromosome, followed by a colon (':'), followed by the position, followed by the reference nucleotide, followed by a greater than symbol ('>') followed by alternate nucleotide.  The IDS can be constructed from VCF files.
-4.  End-point <strong>/fastapi/snp/keyword?</strong> search for SNP's associated with a term
-5.  End-point <strong>/fastapi/snp/gene?</strong> search for SNPs associated with a gene product
+3.  End-point <strong>/fastapi/snp/keyword?</strong> search for SNP's associated with a pathway step
+4.  End-point <strong>/fastapi/snp/gene?</strong> search for SNPs associated with a gene
 
 
-## SNP count criteria
+## SNP Count criteria
 1.  End-point <strong>/fastapi/snp/chr?</strong>Count of SNPs matching search criteria of chromosome number (or 'X' for the X-chromosome), the chromosome start and stop position.
 2.  End-point <strong>/fastapi/snp/rsidList?</strong> Count of SNPs matching search criteria of RSIDs.
-3.  End-point <strong>/fastapi/snp/idList?</strong> Count of SNPs matching list of IDs.  There is a unique identifier for each SNP in the system.  It is a concatenation of the chromosome, followed by a colon (':'), followed by the position, followed by the reference nucleotide, followed by a greater than symbol ('>') followed by alternate nucleotide.
-4.  End-point <strong>/fastapi/snp/keyword?</strong>Count of SNPs associated with term
-5.  End-point <strong>/fastapi/snp/gene?</strong> Count of SNPs associated with gene product
+3.  End-point <strong>/fastapi/snp/keyword?</strong>Count of SNPs associated with a pathway step
+4.  End-point <strong>/fastapi/snp/gene?</strong> Count of SNPs associated with gene product
 
 
 
