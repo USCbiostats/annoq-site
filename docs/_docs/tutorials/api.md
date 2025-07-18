@@ -32,15 +32,13 @@ The list of attributes can be constructed by downloading the configuration from 
 These end-points will return zero or more records with the requested attributes as well as the version number of the attributes
 1.  End-point <strong>/fastapi/snp/chr?</strong> search via chromosome number (or 'X' for the X-chromosome), the chromosome start and stop position.
 2.  End-point <strong>/fastapi/snp/rsidList?</strong> search via list of RSIDs.  The RSIDs can be parsed from VCF files.
-3.  End-point <strong>/fastapi/snp/keyword?</strong> search for SNP's associated with a pathway step
-4.  End-point <strong>/fastapi/snp/gene?</strong> search for SNPs associated with a gene
+3.  End-point <strong>/fastapi/snp/gene?</strong> search for SNPs associated with a gene
 
 
 ## SNP Count criteria
 1.  End-point <strong>/fastapi/snp/chr?</strong>Count of SNPs matching search criteria of chromosome number (or 'X' for the X-chromosome), the chromosome start and stop position.
 2.  End-point <strong>/fastapi/snp/rsidList?</strong> Count of SNPs matching search criteria of RSIDs.
-3.  End-point <strong>/fastapi/snp/keyword?</strong>Count of SNPs associated with a pathway step
-4.  End-point <strong>/fastapi/snp/gene?</strong> Count of SNPs associated with gene product
+3.  End-point <strong>/fastapi/snp/gene?</strong> Count of SNPs associated with gene product
 
 
 
