@@ -303,7 +303,7 @@
 <p>The procedure for retrieving SNP’s and associated attributes is as follows:</p>
 <ol>
   <li>Identify the attributes of interest and optionally SNP’s that should not be retrieved (i.e. filtered) if a given attribute is not set</li>
-  <li>Identify the SNP’s of interest.  This can be through chromosome position or RSID or gene or predefined pathway steps.</li>
+  <li>Identify the SNP’s of interest.  This can be through chromosome position or RSID or gene.</li>
   <li>Identify the number of SNP’s that fit the search criteria</li>
   <li>Retrieve the SNP’s.  Since a large number of SNP’s can meet the search criteria, pagination is used to retrieve sets of SNP’s.</li>
 </ol>
@@ -318,7 +318,7 @@
   <li>version - The version of the data for this attribute.</li>
 </ol>
 
-<p>The list of attributes can be constructed by downloading the configuration from the <a href="https://annoq.org/search">seaarch page</a> by selecting the attributes of interest and clicking on the export config button or by opening the <a href="https://annoq.org/detail">detail page</a>, selecting attributes of interest and clicking on the export config button. The contents of the downloaded file can be used for the <strong>fields</strong> parameter for the search and count end points.  Note, the maximum number of attributes that can be retrieved for a request is 20.</p>
+<p>The list of attributes can be constructed by downloading the configuration from the <a href="https://annoq.org/search">seaarch page</a> by selecting the attributes of interest and clicking on the export config button or by opening the <a href="https://annoq.org/detail">detail page</a>, selecting attributes of interest and clicking on the export config button. The contents of the downloaded file can be used for the <strong>fields</strong> parameter for the search and count end points.  Note, the maximum number of attributes that can be retrieved for a request is 20. Therefore, multiple configurations may be required, if more than 20 attributes have to be retrieved.</p>
 
 <h2 id="snp-search-criteria">SNP Search criteria</h2>
 <p>These end-points will return zero or more records with the requested attributes as well as the version number of the attributes</p>
@@ -332,7 +332,7 @@
 <ol>
   <li>End-point <strong>/fastapi/snp/chr?</strong>Count of SNPs matching search criteria of chromosome number (or ‘X’ for the X-chromosome), the chromosome start and stop position.</li>
   <li>End-point <strong>/fastapi/snp/rsidList?</strong> Count of SNPs matching search criteria of RSIDs.</li>
-  <li>End-point <strong>/fastapi/snp/gene?</strong> Count of SNPs associated with gene product</li>
+  <li>End-point <strong>/fastapi/snp/gene?</strong> Count of SNPs associated with gene</li>
 </ol>
 
 <p><strong>What’s Next</strong></p>
