@@ -501,7 +501,9 @@ export class SnpService {
             return;
         }
 
-        const queryStr = `query downloadquery {down: ${QueryFuncs[this.query.queryFilterType].download}(${this.formatGraphQLArgs({ ...this.query.snpQuery.args, fields: this.query.snpQuery.fields })})}`
+        const fieldApis = this.query.snpQuery.fields.map(field => this.annotationService.getAnnotationApiField(field as string));
+
+        const queryStr = `query downloadquery {down: ${QueryFuncs[this.query.queryFilterType].download}(${this.formatGraphQLArgs({ ...this.query.snpQuery.args, fields: fieldApis })})}`
         this.apollo.watchQuery({ query: gql(queryStr) })
             .valueChanges
             .subscribe(({ data, loading }) => {
