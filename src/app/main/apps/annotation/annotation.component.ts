@@ -82,7 +82,8 @@ export class AnnotationComponent implements OnInit {
       uploadList: new FormGroup({
         ids: new FormControl(),
         browse: new FormControl(),
-      })
+      }),
+      geneId: new FormControl(this.snpService.initialSearchParams.gId || 'ENSG00000263305')
     });
   }
 

@@ -67,6 +67,7 @@ export type Query = {
   count_SNPs_by_chromosome: Scalars['Int']['output'];
   count_SNPs_by_gene_product: Scalars['Int']['output'];
   count_SNPs_by_keyword: Scalars['Int']['output'];
+  count_SNPs_by_gene_id: Scalars['Int']['output'];
   count_annotations: Scalars['Int']['output'];
   download_SNPs_by_IDs: Scalars['String']['output'];
   download_SNPs_by_RsID: Scalars['String']['output'];
@@ -74,6 +75,7 @@ export type Query = {
   download_SNPs_by_chromosome: Scalars['String']['output'];
   download_SNPs_by_gene_product: Scalars['String']['output'];
   download_SNPs_by_keyword: Scalars['String']['output'];
+  download_SNPs_by_gene_id: Scalars['String']['output'];
   download_annotations: Scalars['String']['output'];
   gene_info: Gene;
   get_SNPs_by_IDs: ScrollSnp;
@@ -82,12 +84,14 @@ export type Query = {
   get_SNPs_by_chromosome: ScrollSnp;
   get_SNPs_by_gene_product: ScrollSnp;
   get_SNPs_by_keyword: ScrollSnp;
+  get_SNPs_by_gene_id: ScrollSnp;
   get_aggs_by_IDs: SnpAggs;
   get_aggs_by_RsID: SnpAggs;
   get_aggs_by_RsIDs: SnpAggs;
   get_aggs_by_chromosome: SnpAggs;
   get_aggs_by_gene_product: SnpAggs;
   get_aggs_by_keyword: SnpAggs;
+  get_aggs_by_gene_id: SnpAggs;
   scroll_annotations: ScrollSnp;
 };
 
@@ -128,6 +132,11 @@ export type QueryCount_SnPs_By_KeywordArgs = {
   keyword: Scalars['String']['input'];
 };
 
+
+export type QueryCount_SnPs_By_Gene_IdArgs = {
+  filter_args?: InputMaybe<FilterArgs>;
+  gene: Scalars['String']['input'];
+};
 
 export type QueryDownload_SnPs_By_IDsArgs = {
   fields: Array<Scalars['String']['input']>;
@@ -236,6 +245,12 @@ export type QueryGet_SnPs_By_KeywordArgs = {
   query_type_option: QueryTypeOption;
 };
 
+export type QueryGet_SnPs_By_Gene_IdArgs = {
+  filter_args?: InputMaybe<FilterArgs>;
+  gene: Scalars['String']['input'];
+  page_args?: InputMaybe<PageArgs>;
+  query_type_option: QueryTypeOption;
+};
 
 export type QueryGet_Aggs_By_IDsArgs = {
   filter_args?: InputMaybe<FilterArgs>;
@@ -285,6 +300,12 @@ export type QueryGet_Aggs_By_KeywordArgs = {
   page_args?: InputMaybe<PageArgs>;
 };
 
+export type QueryGet_Aggs_By_Gene_IdArgs = {
+  filter_args?: InputMaybe<FilterArgs>;
+  gene: Scalars['String']['input'];
+  histogram?: InputMaybe<Histogram>;
+  page_args?: InputMaybe<PageArgs>;
+};
 
 export type QueryScroll_AnnotationsArgs = {
   scroll_id?: InputMaybe<Scalars['String']['input']>;

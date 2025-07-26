@@ -54,6 +54,9 @@ export class SnpService {
         }, keyword: {
             id: 6,
             label: 'Keyword Search'
+        }, geneId: {
+            id: 7,
+            label: 'Gene Id'
         }
     };
 
@@ -67,7 +70,8 @@ export class SnpService {
             this.inputType.geneProduct,
             this.inputType.rsID,
             this.inputType.rsIDList,
-            this.inputType.keyword
+            this.inputType.keyword,
+            this.inputType.geneId
         ]
     };
 
@@ -297,6 +301,19 @@ export class SnpService {
                 };
                 graphqlQuery.queryFilterType = QueryFilterType.KEYWORD;
                 break;
+                
+            case this.inputType.geneId:
+                graphqlQuery.aggQuery.args = {
+                    gene: annotationQuery.geneId
+                };
+                graphqlQuery.countQuery.args = {
+                    gene: annotationQuery.geneId
+                };
+                graphqlQuery.snpQuery.args = {
+                    gene: annotationQuery.geneId,
+                };
+                graphqlQuery.queryFilterType = QueryFilterType.GENE_ID;
+                break;                
 
         }
 

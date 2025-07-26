@@ -104,6 +104,12 @@
         <input matInput formControlName="keyword" placeholder="General Keyword Search" />
       </mat-form-field>
     </div>
+      <div *ngSwitchCase="snpService.inputType.geneId.id">
+      <mat-form-field class="w-100-p">
+        <mat-label>Gene Id</mat-label>
+        <input matInput formControlName="geneId" placeholder="Gene Id Search" />
+      </mat-form-field>
+    </div>  
   </div>
 
   <div class="annoq-section-header" fxLayout="row" fxLayoutAlign="start center">
