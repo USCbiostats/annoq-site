@@ -42,18 +42,18 @@ export class SnpService {
         }, chromosomeList: {
             id: 2,
             label: 'VCF File'
-        }, geneProduct: {
-            id: 3,
-            label: 'Gene Product'
+        // }, geneProduct: {
+        //     id: 3,
+        //     label: 'Gene Product'
         }, rsID: {
             id: 4,
             label: 'rsID'
         }, rsIDList: {
             id: 5,
             label: 'rsID List'
-        }, keyword: {
-            id: 6,
-            label: 'Keyword Search'
+        // }, keyword: {
+        //     id: 6,
+        //     label: 'Keyword Search'
         }, geneId: {
             id: 7,
             label: 'Gene Id'
@@ -67,10 +67,10 @@ export class SnpService {
         options: [
             this.inputType.chromosome,
             this.inputType.chromosomeList,
-            this.inputType.geneProduct,
+            // this.inputType.geneProduct,
             this.inputType.rsID,
             this.inputType.rsIDList,
-            this.inputType.keyword,
+            // this.inputType.keyword,
             this.inputType.geneId
         ]
     };
