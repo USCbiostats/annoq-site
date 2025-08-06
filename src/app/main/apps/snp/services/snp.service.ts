@@ -194,42 +194,42 @@ export class SnpService {
 
                 break;
 
-            case this.inputType.geneProduct:
+            // case this.inputType.geneProduct:
 
-                const geneInfoQuery = gql(`query geneInfoQuery {geneInfo: ${GeneInfoQuery}(${this.formatGraphQLArgs({ gene: annotationQuery.geneProduct })}){${['contig', 'end', 'start', 'gene_id'].join(',')}}}`);
-                this.apollo.watchQuery({ query: geneInfoQuery })
-                    .valueChanges
-                    .subscribe({
-                        next: ({ data, loading }) => {
-                            const response = data as any;
-                            if (!response.geneInfo) {
-                                console.warn('Gene info not found');
-                                this.onSnpsChanged.next(null);
-                                self.loading = false;
-                                return;
-                            }
+            //     const geneInfoQuery = gql(`query geneInfoQuery {geneInfo: ${GeneInfoQuery}(${this.formatGraphQLArgs({ gene: annotationQuery.geneProduct })}){${['contig', 'end', 'start', 'gene_id'].join(',')}}}`);
+            //     this.apollo.watchQuery({ query: geneInfoQuery })
+            //         .valueChanges
+            //         .subscribe({
+            //             next: ({ data, loading }) => {
+            //                 const response = data as any;
+            //                 if (!response.geneInfo) {
+            //                     console.warn('Gene info not found');
+            //                     this.onSnpsChanged.next(null);
+            //                     self.loading = false;
+            //                     return;
+            //                 }
 
-                            graphqlQuery.aggQuery.args = {
-                                gene: annotationQuery.geneProduct
-                            };
-                            graphqlQuery.countQuery.args = {
-                                gene: annotationQuery.geneProduct
-                            };
-                            graphqlQuery.snpQuery.args = {
-                                gene: annotationQuery.geneProduct,
-                            };
-                            graphqlQuery.queryFilterType = QueryFilterType.GENE_PRODUCT;
+            //                 graphqlQuery.aggQuery.args = {
+            //                     gene: annotationQuery.geneProduct
+            //                 };
+            //                 graphqlQuery.countQuery.args = {
+            //                     gene: annotationQuery.geneProduct
+            //                 };
+            //                 graphqlQuery.snpQuery.args = {
+            //                     gene: annotationQuery.geneProduct,
+            //                 };
+            //                 graphqlQuery.queryFilterType = QueryFilterType.GENE_PRODUCT;
 
-                            self.setOriginalQuery(graphqlQuery)
-                            self.getSnpsPage(graphqlQuery, page, response.geneInfo);
-                        },
-                        error: (err) => {
-                            console.warn('Error fetching gene info:', err);
-                            this.onSnpsChanged.next(null);
-                            self.loading = false;
-                        }
-                    });
-                return;
+            //                 self.setOriginalQuery(graphqlQuery)
+            //                 self.getSnpsPage(graphqlQuery, page, response.geneInfo);
+            //             },
+            //             error: (err) => {
+            //                 console.warn('Error fetching gene info:', err);
+            //                 this.onSnpsChanged.next(null);
+            //                 self.loading = false;
+            //             }
+            //         });
+            //     return;
 
             case this.inputType.rsID:
                 graphqlQuery.aggQuery.args = {

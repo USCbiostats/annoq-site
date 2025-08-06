@@ -45,7 +45,8 @@ export class AnnotationComponent implements OnInit {
     if (this.snpService.initialSearchParams.query_type === UrlQueryType.chr) {
       this.snpService.selectInputType(this.snpService.inputType.chromosome)
     } else if (this.snpService.initialSearchParams.query_type === UrlQueryType.gp) {
-      this.snpService.selectInputType(this.snpService.inputType.geneProduct)
+      this.snpService.initialSearchParams.gId = this.snpService.initialSearchParams.gp
+      this.snpService.selectInputType(this.snpService.inputType.geneId)
     }
 
     this.annotationForm = this.createAnnotationForm();
@@ -69,13 +70,13 @@ export class AnnotationComponent implements OnInit {
     return new FormGroup({
       chrom: new FormControl(this.snpService.initialSearchParams.chr || '18'),
       chromList: new FormControl(),
-      geneProduct: new FormControl(this.snpService.initialSearchParams.gp || 'ZMYND11'),
+      // geneProduct: new FormControl(this.snpService.initialSearchParams.gp || 'ZMYND11'),
       rsID: new FormControl('rs559687999'),
       rsIDList: new FormGroup({
         ids: new FormControl(),
         browse: new FormControl(),
       }),
-      keyword: new FormControl('Signaling by GPCR'),
+      // keyword: new FormControl('Signaling by GPCR'),
       start: new FormControl(this.snpService.initialSearchParams.start || 1),
       end: new FormControl(this.snpService.initialSearchParams.end || 500000),
       all: new FormControl(false),
