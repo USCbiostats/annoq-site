@@ -45,9 +45,12 @@ export class AnnotationComponent implements OnInit {
     if (this.snpService.initialSearchParams.query_type === UrlQueryType.chr) {
       this.snpService.selectInputType(this.snpService.inputType.chromosome)
     } else if (this.snpService.initialSearchParams.query_type === UrlQueryType.gp) {
-      this.snpService.initialSearchParams.gId = this.snpService.initialSearchParams.gp
-      this.snpService.selectInputType(this.snpService.inputType.geneId)
+      this.snpService.selectInputType(this.snpService.inputType.geneProduct)
     }
+    // else if (this.snpService.initialSearchParams.query_type === UrlQueryType.gp) {
+    //   this.snpService.initialSearchParams.gId = this.snpService.initialSearchParams.gp
+    //   this.snpService.selectInputType(this.snpService.inputType.geneId)
+    // }
 
     this.annotationForm = this.createAnnotationForm();
   }
@@ -70,7 +73,7 @@ export class AnnotationComponent implements OnInit {
     return new FormGroup({
       chrom: new FormControl(this.snpService.initialSearchParams.chr || '18'),
       chromList: new FormControl(),
-      // geneProduct: new FormControl(this.snpService.initialSearchParams.gp || 'ZMYND11'),
+      geneProduct: new FormControl(this.snpService.initialSearchParams.gp || 'ZMYND11'),
       rsID: new FormControl('rs559687999'),
       rsIDList: new FormGroup({
         ids: new FormControl(),
@@ -84,7 +87,7 @@ export class AnnotationComponent implements OnInit {
         ids: new FormControl(),
         browse: new FormControl(),
       }),
-      geneId: new FormControl(this.snpService.initialSearchParams.gId || 'ENSG00000263305')
+      // geneId: new FormControl(this.snpService.initialSearchParams.gId || 'ENSG00000263305')
     });
   }
 
