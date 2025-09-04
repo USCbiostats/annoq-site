@@ -8,8 +8,9 @@ export enum QueryFilterType {
     RSIDS = 'RSIDS',
     CHROMOSOME = 'CHROMOSOME',
     GENE_PRODUCT = 'GENE_PRODUCT',
-    KEYWORD = 'KEYWORD',
-    GENE_ID = 'GENE_ID'
+    KEYWORD = 'KEYWORD'
+    // ,
+    // GENE_ID = 'GENE_ID'
 }
 
 export type GraphQLQueryType = {
@@ -65,13 +66,14 @@ export const QueryFuncs: Record<QueryFilterType, Record<"count" | "aggs" | "snps
         aggs: "get_aggs_by_keyword",
         snps: "get_SNPs_by_keyword",
         download: "download_SNPs_by_keyword",
-    },
-    GENE_ID: {
-        count: "count_SNPs_by_gene_id",
-        aggs: "get_aggs_by_gene_id",
-        snps: "get_SNPs_by_gene_id",
-        download: "download_SNPs_by_gene_id",
-    }    
+    }
+    // ,
+    // GENE_ID: {
+    //     count: "count_SNPs_by_gene_id",
+    //     aggs: "get_aggs_by_gene_id",
+    //     snps: "get_SNPs_by_gene_id",
+    //     download: "download_SNPs_by_gene_id",
+    // }    
 }
 
 export const GeneInfoQuery = "gene_info"

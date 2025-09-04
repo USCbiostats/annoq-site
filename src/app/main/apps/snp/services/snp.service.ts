@@ -303,18 +303,18 @@ export class SnpService {
                 graphqlQuery.queryFilterType = QueryFilterType.KEYWORD;
                 break;
                 
-            case this.inputType.geneId:
-                graphqlQuery.aggQuery.args = {
-                    gene: annotationQuery.geneId
-                };
-                graphqlQuery.countQuery.args = {
-                    gene: annotationQuery.geneId
-                };
-                graphqlQuery.snpQuery.args = {
-                    gene: annotationQuery.geneId,
-                };
-                graphqlQuery.queryFilterType = QueryFilterType.GENE_ID;
-                break;                
+            // case this.inputType.geneId:
+            //     graphqlQuery.aggQuery.args = {
+            //         gene: annotationQuery.geneId
+            //     };
+            //     graphqlQuery.countQuery.args = {
+            //         gene: annotationQuery.geneId
+            //     };
+            //     graphqlQuery.snpQuery.args = {
+            //         gene: annotationQuery.geneId,
+            //     };
+            //     graphqlQuery.queryFilterType = QueryFilterType.GENE_ID;
+            //     break;                
 
         }
 
