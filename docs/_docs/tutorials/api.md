@@ -5,14 +5,14 @@
 
 > This page documents how to query AnnoQ using the API
 
-The AnnoQ API implementation and its associated Sagger documentation are available at [https://api.annoq.org/docs](https://api.annoq.org/).
+The AnnoQ API implementation and its associated Swagger documentation are available at [https://api.annoq.org/docs](https://api.annoq.org/docs).
 
 The API provides access to AnnoQ's rich annotations for Human SNPs from the [Haplotype Reference Consortium](https://www.sanger.ac.uk/collaboration/haplotype-reference-consortium/).  The end-points can be utilized independently or as part of large workflows to analyze and make coorelations on large data sets. A SNP (single nucleotide polymorphism) by definition is a genomic variant at a single base position in the DNA.  Each SNP in the system can be uniquely identified by the chromosome, its position, the reference nucleotide and the alternate nucleotide or its RSID (Reference SNP cluster ID).  Note, SNP's are not defined for all positions of the chromosome, but, a given chromosome and position, can have more than one SNP. Indels are not supported.
 
 
 The procedure for retrieving SNP's and associated attributes is as follows:
 1.  Identify the attributes of interest and optionally SNP's that should not be retrieved (i.e. filtered) if a given attribute is not set
-2.  Identify the SNP's of interest.  This can be through chromosome position or RSID or gene.
+2.  Identify the SNP's of interest.  This can be through chromosome position or RSID or gene product.
 3.  Identify the number of SNP's that fit the search criteria
 4.  Retrieve the SNP's.  Since a large number of SNP's can meet the search criteria, pagination is used to retrieve sets of SNP's.
 
@@ -32,13 +32,13 @@ The list of attributes can be constructed by downloading the configuration from 
 These end-points will return zero or more records with the requested attributes as well as the version number of the attributes
 1.  End-point <strong>/fastapi/snp/chr?</strong> search via chromosome number (or 'X' for the X-chromosome), the chromosome start and stop position.
 2.  End-point <strong>/fastapi/snp/rsidList?</strong> search via list of RSIDs.  The RSIDs can be parsed from VCF files.
-3.  End-point <strong>/fastapi/snp/gene?</strong> search for SNPs associated with a gene
+3.  End-point <strong>/fastapi/snp/gene?</strong> search for SNPs associated with a gene product.
 
 
 ## SNP Count criteria
 1.  End-point <strong>/fastapi/snp/chr?</strong>Count of SNPs matching search criteria of chromosome number (or 'X' for the X-chromosome), the chromosome start and stop position.
 2.  End-point <strong>/fastapi/snp/rsidList?</strong> Count of SNPs matching search criteria of RSIDs.
-3.  End-point <strong>/fastapi/snp/gene?</strong> Count of SNPs associated with gene
+3.  End-point <strong>/fastapi/snp/gene?</strong> Count of SNPs associated with gene product.
 
 
 
