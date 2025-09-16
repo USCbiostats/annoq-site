@@ -6,7 +6,9 @@ permalink: /
 
 # AnnoQ Help/Tutorial
 
-AnnoQ is a platform that integrates a datastore of pre-annotated SNPs, APIs and packages for accessing the SNPs and a website for viewing the SNP data. The backend of the system is a large collection of pre-annotated variants from the Haplotype Reference Consortium ([HRC](http://www.haplotype-reference-consortium.org/){:target="_blank"})  (~39 million) with sequence features by [WGSA](https://sites.google.com/site/jpopgen/wgsa){:target="_blank"} and functions by [PANTHER](http://pantherdb.org){:target="_blank"} and [Gene Ontology](http://geneontology.org/){:target="_blank"}. The data is built on an Elasticsearch framework and an API was built to allow users to quickly access the annotation data.
+AnnoQ is a platform that integrates a datastore of pre-annotated SNPs, APIs and packages for accessing the SNPs programatically and a website for viewing the SNP data. The backend of the system is a large collection of pre-annotated variants from the Haplotype Reference Consortium ([HRC](http://www.haplotype-reference-consortium.org/){:target="_blank"})  (~39 million) with sequence features by [WGSA](https://sites.google.com/site/jpopgen/wgsa){:target="_blank"} and functions by [PANTHER](http://pantherdb.org){:target="_blank"} and [Gene Ontology](http://geneontology.org/){:target="_blank"}. The data is built on an Elasticsearch framework and an API was built to allow users to quickly access the annotation data.
+
+[AnnoQ Tutorials]({{site.baseurl}}/docs/tutorials) gives a high-level overview of the system with details about the [Interactive Query UI]({{site.annoq_search_url}}), [API]({{site.api_url}}), and [R package]({{site.r_package_url}}).
 
  **This website is free and open to all users and there is no login requirement.**
 
@@ -16,40 +18,25 @@ For more details on AnnoQ's browser support and future work check out [further r
 
 ![]({{ site.baseurl }}/assets/img/supported-versions.png)
 
-## How the documentation is organized
-
-AnnoQ has a lot of documentation. A high-level overview of how it’s
-organized will help you know where to look for certain things:
-
-[AnnoQ Tutorials]({{site.baseurl}}/docs/tutorials) take you by the hand through a series of steps to use the  [Interactive Query UI]({{site.annoq_search_url}}), API and R package. Start here if you’re new to AnnoQ. Also look at the “First steps” below.
-
-Topic guides discuss key topics and concepts at a fairly high level and provide
-useful background information and explanation.
-
-How-to guides are recipes. They guide you through the steps involved in
-addressing key problems and use-cases. They are more advanced than tutorials and
-assume some knowledge of how AnnoQ works.
 
 ## What can you do with AnnoQ?
+Access large scale genetic variant annotations
+  - [Interactive Query UI]({{site.annoq_search_url}}): Retrieve and or view annotation data using a graphical user interface on standard web browsers.
+    - Search for SNPs using uing:
+      - Genome Coordinates
+      - VCF file upload
+      - Gene Product
+      - rsID
+    - Download search results formatted as:
+      - csv file
+      - tsv file
+    - Export configuration file with search fields of interest to use with the API, or for future searches or sharing
 
-- Access large scale genetic variant annotations
-  - [Interactive Query UI]({{site.annoq_search_url}}): Getting the annotation data with a graphic interface.
-  - API Data Access: Retrieving annotation data using scripts.
-  - R Package: Getting annotation data via R programming language.
-- Choose a query type which suits you background
-  - Genome Coordinates Query
-  - Query by Upload VCF file
-  - Gene Product Query
-  - rsID query
-  - General Keyword Searech
-- Easily download the results of annotation data
-  - csv file
-  - tsv file
-- Export configuration file and use the API
+  - [API Data Access]({{site.baseurl}}/docs/tutorials/api): Retrieve annotation data from the command line or scripts.
   
+  - [R Package]({{site.baseurl}}/docs/tutorials/r-package): Retrieve annotation data via R programming language.
 
-With AnnoQ Interactive Query UI, you can query, advanced queries, upload a VCF file of up to 10,000 variants right in
-your web browser—no special software is required.
+  
 
 ## Quick Start
 

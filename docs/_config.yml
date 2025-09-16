@@ -65,9 +65,11 @@ permalink: /:year/:title/
 exclude: [_site, CHANGELOG.md, LICENSE, README.md, vendor]
 
 # External Links
-USCbiostats_url: "http://USCbiostats.org/"
-annoq_url: "http://annoq.org/"
-annoq_search_url: "http://annoq.org/search"
+USCbiostats_url: "https://USCbiostats.org/"
+annoq_url: "https://annoq.org/"
+annoq_search_url: "https://annoq.org/search"
+api_url: "https://api-v2-dev.annoq.org/docs"
+r_package_url: "https://github.com/USCbiostats/AnnoQR"
 
 # Collections
 collections:
