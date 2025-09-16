@@ -41,6 +41,11 @@ These end-points will return zero or more records with the requested attributes 
 3.  End-point <strong>/fastapi/snp/gene?</strong> Count of SNPs associated with gene product.
 
 
+## Software packages for programmatic access
+1.  A [R package](https://github.com/USCbiostats/AnnoQR) with [tutorial]({{site.baseurl}}/docs/tutorials/r-package) can be used to access the API
+2.  A [python package](https://github.com/USCbiostats/annoq-py) also has methods to access the API
+
+
 
 **What's Next**
 

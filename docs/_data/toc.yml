@@ -8,9 +8,6 @@
   links:
     - title: Interactive Query UI
       url: "docs/tutorials/ui-query"
-      children:
-        - title: Quick UI Overview
-          url: "docs/tutorials/ui-query"
     - title: Using AnnoQ API
       url: "docs/tutorials/api"
     - title: Using AnnoQR (R Package)
