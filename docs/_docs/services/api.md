@@ -43,5 +43,5 @@ These end-points will return zero or more records with the requested attributes 
 
 ## Software packages for programmatic access
 1.  A [R package (AnnoQR)](https://github.com/USCbiostats/AnnoQR) with [tutorial]({{site.baseurl}}/docs/tutorials/r-package) can be used to access the API
-2.  A [python package (annoq-py)](https://github.com/USCbiostats/annoq-py) also has methods to access the API
+2.  A [python package (annoq-py)](https://github.com/USCbiostats/annoq-py) with [tutorial]({{site.baseurl}}/docs/tutorials/annoq-py) also has methods to access the API
 
