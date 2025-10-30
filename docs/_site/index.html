@@ -60,7 +60,7 @@
     <div class="noc-navbar-nav-scroll ml-md-auto" id="main_navbar">
       <ul class="navbar-nav mt-2 mt-lg-0">
         <li class="nav-item mr-4 mb-3 mb-lg-0">
-          <a class="nav-link" href="http://annoq.org/" target="_blank"><span>AnnoQ Site</span></a>
+          <a class="nav-link" href="https://annoq.org/" target="_blank"><span>AnnoQ Site</span></a>
         </li>
         
         <!--  <li class="nav-item mr-4 mb-2 mb-lg-0">
@@ -150,10 +150,6 @@
             </li>
             <ul>
               <li class="collapse show" id="">
-                <a class="noc-sidebar-link noc-sidebar-link__page "
-                  id="m-tutorials-interactive-query-ui-quick-ui-overview"
-                  href="/annoq-site/docs/tutorials/ui-query">Quick UI Overview</a>
-                
               </li>
             </ul>
             
@@ -249,14 +245,6 @@
       
     </ul>
     
-    <ul class="noc-sidebar-nav__section pr-md-3">
-      <li class="noc-sidebar-nav__section-title">
-        <a href="/annoq-site/docs/guides"
-          class="align-left pl-0 pr-2 active noc-sidebar-link noc-sidebar-link__section">Guides</a>
-      </li>
-      
-    </ul>
-    
   </nav>
 </div>
         </div>
@@ -292,7 +280,9 @@
           <div class="noc-content">
             <h1 id="annoq-helptutorial">AnnoQ Help/Tutorial</h1>
 
-<p>The backend of the system is a large collection of pre-annotated variants from the Haplotype Reference Consortium (<a href="http://www.haplotype-reference-consortium.org/" target="_blank">HRC</a>)  (~39 million) with sequence features by <a href="https://sites.google.com/site/jpopgen/wgsa" target="_blank">WGSA</a> and functions by <a href="http://pantherdb.org" target="_blank">PANTHER</a> and <a href="http://geneontology.org/" target="_blank">Gene Ontology</a>. The data is built in an Elasticsearch framework and an API was built to allow users to quickly access the annotation data.</p>
+<p>AnnoQ is a platform that integrates a datastore of pre-annotated SNPs, APIs and packages for accessing the SNPs programmatically and a website for viewing the SNP data. The backend of the system is a large collection of pre-annotated variants from the Haplotype Reference Consortium (<a href="http://www.haplotype-reference-consortium.org/" target="_blank">HRC</a>)  (~39 million) with sequence features by <a href="https://sites.google.com/site/jpopgen/wgsa" target="_blank">WGSA</a> and functions by <a href="http://pantherdb.org" target="_blank">PANTHER</a> and <a href="http://geneontology.org/" target="_blank">Gene Ontology</a>. The data is built on an Elasticsearch framework and an API was built to allow users to quickly access the annotation data.</p>
+
+<p><a href="/annoq-site/docs/tutorials">AnnoQ Tutorials</a> gives a high-level overview of the system with details about the <a href="https://annoq.org/search">Interactive Query UI</a>, <a href="https://api-v2-dev.annoq.org/docs">API</a>, and <a href="https://github.com/USCbiostats/AnnoQR">R package</a>.</p>
 
 <p><strong>This website is free and open to all users and there is no login requirement.</strong></p>
 
@@ -302,50 +292,33 @@
 
 <p><img src="/annoq-site/assets/img/supported-versions.png" alt="" /></p>
 
-<h2 id="how-the-documentation-is-organized">How the documentation is organized</h2>
-
-<p>AnnoQ has a lot of documentation. A high-level overview of how it’s
-organized will help you know where to look for certain things:</p>
-
-<p><a href="/annoq-site/docs/tutorials">AnnoQ Tutorials</a> take you by the hand through a series of steps to use the  <a href="http://annoq.org/search">Interactive Query UI</a>, API and R package. Start here if you’re new to AnnoQ. Also look at the “First steps” below.</p>
-
-<p>Topic guides discuss key topics and concepts at a fairly high level and provide
-useful background information and explanation.</p>
-
-<p>How-to guides are recipes. They guide you through the steps involved in
-addressing key problems and use-cases. They are more advanced than tutorials and
-assume some knowledge of how AnnoQ works.</p>
-
 <h2 id="what-can-you-do-with-annoq">What can you do with AnnoQ?</h2>
-
+<p>Access large scale genetic variant annotations</p>
 <ul>
-  <li>Access large scale genetic variant annotations
+  <li><a href="https://annoq.org/search">Interactive Query UI</a>: Retrieve and or view annotation data using a graphical user interface on standard web browsers.
     <ul>
-      <li><a href="http://annoq.org/search">Interactive Query UI</a>: Getting the annotation data with a graphic interface.</li>
-      <li>API Data Access: Retrieving annotation data using scripts.</li>
-      <li>R Package: Getting annotation data via R programming language.</li>
+      <li>Search for SNPs using uing:
+        <ul>
+          <li>Genome Coordinates</li>
+          <li>VCF file upload</li>
+          <li>Gene Product</li>
+          <li>rsID</li>
+        </ul>
+      </li>
+      <li>Download search results formatted as:
+        <ul>
+          <li>csv file</li>
+          <li>tsv file</li>
+        </ul>
+      </li>
+      <li>Export configuration file with search fields of interest to use with the API, or for future searches or sharing</li>
     </ul>
   </li>
-  <li>Choose a query type which suits you background
-    <ul>
-      <li>Genome Coordinates Query</li>
-      <li>Query by Upload VCF file</li>
-      <li>Gene Product Query</li>
-      <li>rsID query</li>
-      <li>General Keyword Searech</li>
-    </ul>
+  <li>
+    <p><a href="/annoq-site/docs/tutorials/api">API Data Access</a>: Retrieve annotation data from the command line or scripts.</p>
   </li>
-  <li>Easily download the results of annotation data
-    <ul>
-      <li>csv file</li>
-      <li>tsv file</li>
-    </ul>
-  </li>
-  <li>Export configuration file and use the API</li>
+  <li><a href="/annoq-site/docs/tutorials/r-package">R Package</a>: Retrieve annotation data via R programming language.</li>
 </ul>
-
-<p>With AnnoQ Interactive Query UI, you can query, advanced queries, upload a VCF file of up to 10,000 variants right in
-your web browser—no special software is required.</p>
 
 <h2 id="quick-start">Quick Start</h2>
 

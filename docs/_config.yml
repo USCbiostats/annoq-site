@@ -70,6 +70,7 @@ annoq_url: "https://annoq.org/"
 annoq_search_url: "https://annoq.org/search"
 api_url: "https://api-v2-dev.annoq.org/docs"
 r_package_url: "https://github.com/USCbiostats/AnnoQR"
+python_library_url: "https://github.com/USCbiostats/annoq-py"
 
 # Collections
 collections:

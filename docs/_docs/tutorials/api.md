@@ -25,7 +25,7 @@ The list of SNP attributes, including the chromosome identifier, position, refer
 4. data_type - Type of data for the attribute 
 5. version - The version of the data for this attribute. 
 
-The list of attributes can be constructed by downloading the configuration from the [seaarch page](https://annoq.org/search) by selecting the attributes of interest and clicking on the export config button or by opening the [detail page](https://annoq.org/detail), selecting attributes of interest and clicking on the export config button. The contents of the downloaded file can be used for the <strong>fields</strong> parameter for the search and count end points.  Note, the maximum number of attributes that can be retrieved for a request is 20. Therefore, multiple configurations may be required, if more than 20 attributes have to be retrieved.
+The list of attributes can be constructed by downloading the configuration from the [seaarch page](https://annoq.org/search). To download, select the attributes of interest and click on the export config button or  open the [detail page](https://annoq.org/detail), select the attributes of interest and click on the export config button. The contents of the downloaded file can be used for the <strong>fields</strong> parameter for the search and count end points.  Note, the maximum number of attributes that can be retrieved for a request is 20. Therefore, multiple configurations may be required, if more than 20 attributes have to be retrieved.
 
 
 ## SNP Search criteria
@@ -42,12 +42,6 @@ These end-points will return zero or more records with the requested attributes 
 
 
 ## Software packages for programmatic access
-1.  A [R package](https://github.com/USCbiostats/AnnoQR) with [tutorial]({{site.baseurl}}/docs/tutorials/r-package) can be used to access the API
-2.  A [python package](https://github.com/USCbiostats/annoq-py) also has methods to access the API
+1.  A [R package (AnnoQR)](https://github.com/USCbiostats/AnnoQR) with [tutorial]({{site.baseurl}}/docs/tutorials/r-package) can be used to access the API
+2.  A [python package (annoq-py)](https://github.com/USCbiostats/annoq-py) also has methods to access the API
 
-
-
-**What's Next**
-
-- [Interactive Query UI Tutorial]({{site.baseurl}}/docs/tutorials/ui-query)
-- [R package (AnnoQR) Tutorial]({{site.baseurl}}/docs/tutorials/r-package)

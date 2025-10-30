@@ -12,6 +12,8 @@
       url: "docs/tutorials/api"
     - title: Using AnnoQR (R Package)
       url: "docs/tutorials/r-package"
+    - title: Using annoq-py (Python Library)
+      url: "docs/tutorials/annoq-py"
 - title: "Changelog"
   url: "docs/changelog/features"
   links:

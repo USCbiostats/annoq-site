@@ -4,7 +4,7 @@ title: AnnoQ
 
 # Component History
 
-## Researcher Friendly Table Results
+## SNP Table Results
 
 | Version   | Details                                                                    |
 | --------- | -------------------------------------------------------------------------- |
@@ -17,7 +17,7 @@ title: AnnoQ
 |           | -  Resolved display issues in columns and detailed view                    |
 |           | -  Resolved URL links issue                                                |
 | AnnoQ 1.11| -  Addition of version information                                         |
-| AnnoQ 1.2 | -  N/A                                                                     |
+| AnnoQ 1.2 | -  Updated Gene Ontology, PANTHER and Reactome Annotation information      |
 
 ## Result Row Summary
 -------------------
