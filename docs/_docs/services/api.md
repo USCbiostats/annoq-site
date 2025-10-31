@@ -18,7 +18,7 @@ The procedure for retrieving SNP's and associated attributes is as follows:
 
 
 ## SNP Attributes
-The list of SNP attributes, including the chromosome identifier, position, reference nucleotide, alternate nucleotide and RSID can be retrieved via the <strong>fastapi/snpAttributes</strong> end point.  This end-point returns the list of attributes available for each SNP as well as the following for each attribute:
+The list of SNP attributes, including the chromosome identifier, position, reference nucleotide, alternate nucleotide and RSID can be retrieved via the <strong>/snpAttributes</strong> end point.  This end-point returns the list of attributes available for each SNP as well as the following for each attribute:
 1. api_label - This is the label used by the API for the attribute.  Use this label when specifying the attribute field to retrieve as well as the attribute field to filter
 2. display_label - This is the label used by annoq.org website for the attribute.
 3. definition - Description of the attribute
@@ -30,15 +30,21 @@ The list of attributes can be constructed by downloading the configuration from 
 
 ## SNP Search criteria
 These end-points will return zero or more records with the requested attributes as well as the version number of the attributes
-1.  End-point <strong>/fastapi/snp/chr?</strong> search via chromosome number (or 'X' for the X-chromosome), the chromosome start and stop position.
-2.  End-point <strong>/fastapi/snp/rsidList?</strong> search via list of RSIDs.  The RSIDs can be parsed from VCF files.
-3.  End-point <strong>/fastapi/snp/gene?</strong> search for SNPs associated with a gene product.
+1.  End-point <strong>/snp/chr</strong> search via chromosome number (or 'X' for the X-chromosome), the chromosome start and stop position.
+2.  End-point <strong>/snp/rsidList</strong> search via list of RSIDs.  The RSIDs can be parsed from VCF files.
+3.  End-point <strong>/snp/gene</strong> search for SNPs associated with a gene product.
 
+
+## SNP Download Search criteria
+These POST request end-points will return zero or more records with the requested attributes in CSV or NDJSON (Newline Delimited JSON) format. These have been designed for outputting up to a million records. To avoid incomplete results, it it necessary to first use the count end point to ensure that less than a million records will be returned. 
+1.  End-point <strong>/snp/chr/download</strong> search via chromosome number (or 'X' for the X-chromosome), the chromosome start and stop position.
+2.  End-point <strong>/snp/rsidList/download</strong> search via list of RSIDs.  The RSIDs can be parsed from VCF files.
+3.  End-point <strong>/snp/gene/download</strong> search for SNPs associated with a gene product.
 
 ## SNP Count criteria
-1.  End-point <strong>/fastapi/snp/chr?</strong>Count of SNPs matching search criteria of chromosome number (or 'X' for the X-chromosome), the chromosome start and stop position.
-2.  End-point <strong>/fastapi/snp/rsidList?</strong> Count of SNPs matching search criteria of RSIDs.
-3.  End-point <strong>/fastapi/snp/gene?</strong> Count of SNPs associated with gene product.
+1.  End-point <strong>/count/snp/chr?</strong>Count of SNPs matching search criteria of chromosome number (or 'X' for the X-chromosome), the chromosome start and stop position.
+2.  End-point <strong>/count/snp/rsidList?</strong> Count of SNPs matching search criteria of RSIDs.
+3.  End-point <strong>/count/snp/gene?</strong> Count of SNPs associated with gene product.
 
 
 ## Software packages for programmatic access
