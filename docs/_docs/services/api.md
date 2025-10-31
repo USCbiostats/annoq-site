@@ -14,7 +14,7 @@ The procedure for retrieving SNP's and associated attributes is as follows:
 1.  Identify the attributes of interest and optionally SNP's that should not be retrieved (i.e. filtered) if a given attribute is not set
 2.  Identify the SNP's of interest.  This can be through chromosome position or RSID or gene product.
 3.  Identify the number of SNP's that fit the search criteria
-4.  Retrieve the SNP's.  Since a large number of SNP's can meet the search criteria, pagination is used to retrieve sets of SNP's.
+4.  Retrieve the SNP's.  Since a large number of SNP's can meet the search criteria, pagination is used to retrieve sets of SNP's. Use the 'download' end-points to retrieve up to a million records.
 
 
 ## SNP Attributes
@@ -36,7 +36,7 @@ These end-points will return zero or more records with the requested attributes 
 
 
 ## SNP Download Search criteria
-These POST request end-points will return zero or more records with the requested attributes in CSV or NDJSON (Newline Delimited JSON) format. These have been designed for outputting up to a million records. To avoid incomplete results, it it necessary to first use the count end point to ensure that less than a million records will be returned. 
+These end-points have been specifically designed for outputting large result sets. These POST request end-points will return zero or up to a million records with the requested attributes in CSV or NDJSON (Newline Delimited JSON) format. <strong>Note, if more than a million results match the search criteria, the system will only return the first million records.</strong> To avoid incomplete results, use the count end point to check the number of results and narrow the search if necessary, before using the download end-point to retrieve data. 
 1.  End-point <strong>/snp/chr/download</strong> search via chromosome number (or 'X' for the X-chromosome), the chromosome start and stop position.
 2.  End-point <strong>/snp/rsidList/download</strong> search via list of RSIDs.  The RSIDs can be parsed from VCF files.
 3.  End-point <strong>/snp/gene/download</strong> search for SNPs associated with a gene product.
@@ -48,6 +48,7 @@ These POST request end-points will return zero or more records with the requeste
 
 
 ## Software packages for programmatic access
+The following software packages are built using the API.  These libraries can be included in workflows to retrieve information from AnnoQ.  
 1.  A [R package (AnnoQR)](https://github.com/USCbiostats/AnnoQR) with [tutorial]({{site.baseurl}}/docs/tutorials/r-package) can be used to access the API
 2.  A [python package (annoq-py)](https://github.com/USCbiostats/annoq-py) with [tutorial]({{site.baseurl}}/docs/tutorials/annoq-py) also has methods to access the API
 
