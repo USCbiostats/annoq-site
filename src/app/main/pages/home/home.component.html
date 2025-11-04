@@ -77,15 +77,14 @@
   <div class="annoq-section section-1">
     <div class="annoq-container text-center" fxLayout="column" fxLayoutAlign="center stretch">
       <div class="annoq-heading">
-        <h2>Interactive Query Access</h2>
+        <h2>Web Browser access</h2>
       </div>
 
       <div class="annoq-row-description annoq-easyuse" fxLayout="row" fxLayoutAlign="start center">
         <div class="annoq-description" fxLayout="column" fxLayoutAlign="start start">
-          <h3 class="p-0 m-0">Easy To Use Interactive Query</h3>
+          <h3 class="p-0 m-0">Easy To Use Interactive Query to support researchers</h3>
           <p class="p-0">
-            Its easy-to-use user interface and search capabilities suit better for scientists with less bioinformatics
-            skills, including bench scientists and statistician.
+            Web interface with categories to focus on annotations of interest for biomedical objectives
           </p>
         </div>
         <span fxFlex=""></span>
@@ -189,8 +188,7 @@
     <div class="annoq-heading">
       <h2>Additional Programmatic Access</h2>
       <p class="p-0">
-        We provide more ways to access the annotated date. Whether you want to use the API, AnnoQ User Interface or R
-        Package
+        Query for SNP annotations using the command-line API, Python library or R Package
       </p>
     </div>
     <div class="annoq-container annoq-features">
@@ -199,25 +197,17 @@
           <div class="annoq-icon" fxLayout="row" fxLayoutAlign="center center">
             <fa-icon [icon]="['fas', 'search-plus']"></fa-icon>
           </div>
-          <div class="annoq-card-title p-8" fxLayout="column" fxLayoutAlign="start center">
-            <div class="">Interactive Query</div>
+          <div class="annoq-card-title p-8 text-truncate" fxLayout="column" fxLayoutAlign="start center">
+            <div class="">API Data Access</div>
           </div>
           <div class="annoq-card-description p-8 pt-0">
-            Getting the annotation data with a graphic interface.
+            Retrieve annotation data via command line scripts.
           </div>
           <div class="p-8 pt-0 annoq-card-footer" fxLayout="row" fxLayoutAlign="center center">
-
-            <div class="annoq-query-buttons w-100-p" fxLayout="row" fxLayoutAlign="start center">
-              <button mat-raised-button [routerLink]="['/search']" fxFlex="50"
-                class="annoq-rounded-button mr-4 annoq-half-button annoq-r">
-                LAUNCH QUERY UI
-              </button>
-              <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" fxFlex="50" target="_blank">
-                <button mat-raised-button class="annoq-rounded-button annoq-half-button annoq-l w-100-p">
-                  UI TUTORIAL
-                </button>
-              </a>
-            </div>
+            <a href="https://uscbiostats.github.io/annoq-site/docs/services/" target="_blank" mat-stroked-button
+              class="annoq-rounded-button">
+              VIEW DETAILS
+            </a>
           </div>
         </div>
       </div>
@@ -227,13 +217,13 @@
             <fa-icon [icon]="['fas', 'code']"></fa-icon>
           </div>
           <div class="annoq-card-title p-8 text-truncate" fxLayout="column" fxLayoutAlign="start center">
-            <div class="">API Data Access</div>
+            <div class="">Python library</div>
           </div>
           <div class="annoq-card-description p-8 pt-0">
-            Retrieving annotation data using scripts.
+            Retrieve annotations using a Python library.
           </div>
           <div class="p-8 pt-0 annoq-card-footer" fxLayout="row" fxLayoutAlign="center center">
-            <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/api" target="_blank" mat-stroked-button
+            <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/annoq-py" target="_blank" mat-stroked-button
               class="annoq-rounded-button">
               VIEW DETAILS
             </a>
@@ -252,7 +242,7 @@
             Getting annotation data via R programming language.
           </div>
           <div class="p-8 pt-0 annoq-card-footer" fxLayout="row" fxLayoutAlign="center center">
-            <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/r-package" target="_blank"
+            <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/" target="_blank"
               mat-stroked-button class="annoq-rounded-button">
               VIEW DETAILS
             </a>
