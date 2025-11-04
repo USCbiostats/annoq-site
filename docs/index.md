@@ -6,7 +6,7 @@ permalink: /
 
 # AnnoQ Help/Tutorial
 
-AnnoQ is a platform that integrates a datastore of pre-annotated SNPs, APIs and packages for accessing the SNPs programmatically and a website for viewing the SNP data. The backend of the system is a large collection of pre-annotated variants from the Haplotype Reference Consortium ([HRC](http://www.haplotype-reference-consortium.org/){:target="_blank"})  (~39 million) with sequence features by [WGSA](https://sites.google.com/site/jpopgen/wgsa){:target="_blank"} and functions by [PANTHER](https://pantherdb.org){:target="_blank"} , [Gene Ontology](https://geneontology.org/){:target="_blank"}, [Reactome](https://reactome.org/){:target="_blank"} and [PEREGRINE](https://www.peregrineproj.org/){:target="_blank"}. The data is built on an Elasticsearch framework which can be accessed via API.
+AnnoQ is a platform that integrates a datastore of pre-annotated SNPs, APIs and packages for accessing the SNPs programmatically and a website for viewing the SNP data. The backend of the system is a large collection of pre-annotated variants from the Haplotype Reference Consortium ([HRC](http://www.haplotype-reference-consortium.org/){:target="_blank"})  (~39 million) with sequence features by [WGSA](https://sites.google.com/site/jpopgen/wgsa){:target="_blank"} and functions by [PANTHER](https://pantherdb.org){:target="_blank"} , [Gene Ontology](https://geneontology.org/){:target="_blank"}, [Reactome](https://reactome.org/){:target="_blank"} and [PEREGRINE](https://www.peregrineproj.org/){:target="_blank"} enhancer mappings. The annotations have also been [categorized](https://annoq.org/detail){:target="_blank"} to allow users easy access to specific subsets of data. The data is built on an Elasticsearch framework which can be accessed via [API]((https://api-v2.annoq.org/docs)){:target="_blank"}.
 
 [AnnoQ Tutorials]({{site.baseurl}}/docs/tutorials) gives a high-level overview of the system with details about the [Interactive Query UI]({{site.annoq_search_url}}), [API]({{site.api_url}}), and software packages for programmatic access.
 
@@ -46,4 +46,3 @@ Access large scale genetic variant annotations
         allowfullscreen></iframe>
 
 
-For release notes, check out [Changelog]({{site.baseurl}}/docs/changelog/features)

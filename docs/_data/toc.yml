@@ -17,21 +17,6 @@
       url: "docs/tutorials/r-package"
     - title: Using annoq-py (Python Library)
       url: "docs/tutorials/annoq-py"
-- title: "Changelog"
-  url: "docs/changelog/features"
-  links:
-    - title: AnnoQ 1.3
-      url: "docs/changelog/annoq-1.3"
-    - title: AnnoQ 1.2
-      url: "docs/changelog/annoq-1.2"
-    - title: AnnoQ 1.11
-      url: "docs/changelog/annoq-1.11"
-    - title: AnnoQ 1.1
-      url: "docs/changelog/annoq-1.1"
-    - title: AnnoQ 1.0
-      url: "docs/changelog/annoq-1"
-    - title: AnnoQ 0.1
-      url: "docs/changelog/annoq-0"
-    - title: Feature Changelog
-      url: "docs/changelog/features"
-
+- title: "News"
+  url: "docs/changelog/annoq-1.3"
+  
