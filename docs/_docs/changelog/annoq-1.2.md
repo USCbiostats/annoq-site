@@ -14,3 +14,8 @@ This release of AnnoQ has data updates to the following:
 
 Please refer to <a href="https://annoq.org/version">Data Source and Annotation Tool Version Summary</a> for more details.
 
+### Previous News
+- [AnnoQ 1.11]({{site.baseurl}}/docs/changelog/annoq-1.11)
+- [AnnoQ 1.1]({{site.baseurl}}/docs/changelog/annoq-1.1)
+- [AnnoQ 1.0]({{site.baseurl}}/docs/changelog/annoq-1)
+- [AnnoQ 0.1]({{site.baseurl}}/docs/changelog/annoq-0)

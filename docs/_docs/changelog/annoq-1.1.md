@@ -28,3 +28,6 @@ A new annotation column PEREGRINE enhancer linked PANTHER pathways has also been
 - URL links for Gene Ontology terms, PANTHER Protein class terms, PANTHER pathways, PANTHER genes and Reactome have been fixed 
 
 
+### Previous News
+- [AnnoQ 1.0]({{site.baseurl}}/docs/changelog/annoq-1)
+- [AnnoQ 0.1]({{site.baseurl}}/docs/changelog/annoq-0)

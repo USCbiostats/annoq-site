@@ -29,3 +29,5 @@ Highlights
 
 - Retired SQL
 
+### Previous News
+- [AnnoQ 0.1]({{site.baseurl}}/docs/changelog/annoq-0)
