@@ -19,7 +19,7 @@ export class DownloadReadyComponent implements OnInit {
     private snpService: SnpService,
     @Inject(MAT_SNACK_BAR_DATA) public data: any
   ) {
-    this.downloadUrl = environment.annotationApi + data.url
+    this.downloadUrl = environment.annotationApiV2 + '/download' + data.url
     this._unsubscribeAll = new Subject();
   }
 

@@ -1,18 +1,18 @@
 import { environment } from 'environments/environment';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { Client } from 'elasticsearch-browser';
+import { Apollo, gql } from 'apollo-angular';
+import { BehaviorSubject } from 'rxjs';
 import { SnpPage } from '../models/page';
-import { cloneDeep, find, orderBy, uniq, uniqBy } from 'lodash';
-import { FrequencyBucket, SnpAggs } from '../models/snp-aggs';
+import { cloneDeep, find, orderBy, uniqBy } from 'lodash';
 import { AnnotationService } from '../../annotation/services/annotation.service';
-import { ColumnFieldType, ColumnValueType } from '@annoq.common/models/annotation';
+import { ColumnValueType } from '@annoq.common/models/annotation';
 import { SearchCriteria } from '@annoq.search/models/search-criteria';
 import { Annotation } from '../../annotation/models/annotation';
 import { UrlQueryParams } from '@annoq.common/models/query-params';
 
 import pantherTerms from '@annoq.common/data/panther_terms.json';
+import { Bucket, QueryTypeOption, SnpAggs, Query as GraphQLQueries } from 'generated/graphql';
+import { AggsQueryArgs, CountQueryArgs, GeneInfoQuery, GraphQLQueryType, QueryFilterType, QueryFuncs, SNPQueryArgs } from '../models/graphql';
 
 @Injectable({
     providedIn: 'root',
@@ -20,7 +20,7 @@ import pantherTerms from '@annoq.common/data/panther_terms.json';
 export class SnpService {
     snpResultsSize = environment.snpResultsSize;
     onSnpsChanged: BehaviorSubject<SnpPage>;
-    onSnpsAggsChanged: BehaviorSubject<SnpAggs>;
+    onSnpsAggsChanged: BehaviorSubject<{ field: keyof SnpAggs; snpAggs: SnpAggs }>;
     onDistinctAggsChanged: BehaviorSubject<SnpAggs>;
     onSnpChanged: BehaviorSubject<any>;
     onSearchCriteriaChanged: BehaviorSubject<any>;
@@ -28,15 +28,13 @@ export class SnpService {
     onSnpsDownloadReady: BehaviorSubject<any>;
     snpPage: SnpPage = new SnpPage();
     loading = false;
-    selectedQuery;
-    queryOriginal;
-    query;
+    queryOriginal: GraphQLQueryType;
+    query: GraphQLQueryType;
 
     initialSearchParams: UrlQueryParams = new UrlQueryParams();
 
     initialSelectedIds = [2, 3, 4, 5, 6]
 
-    private client: Client;
     inputType: any = {
         chromosome: {
             id: 1,
@@ -53,10 +51,14 @@ export class SnpService {
         }, rsIDList: {
             id: 5,
             label: 'rsID List'
-        }, keyword: {
-            id: 6,
-            label: 'Keyword Search'
+        // }, keyword: {
+        //     id: 6,
+        //     label: 'Keyword Search'
         }
+        // , geneId: {
+        //     id: 7,
+        //     label: 'Gene Id'
+        // }
     };
 
 
@@ -69,12 +71,13 @@ export class SnpService {
             this.inputType.geneProduct,
             this.inputType.rsID,
             this.inputType.rsIDList,
-            this.inputType.keyword
+            // this.inputType.keyword,
+            //this.inputType.geneId
         ]
     };
 
     constructor(
-        private httpClient: HttpClient,
+        private readonly apollo: Apollo,
         private annotationService: AnnotationService) {
         this.onSnpsChanged = new BehaviorSubject(null);
         this.onSnpsAggsChanged = new BehaviorSubject(null);
@@ -84,10 +87,6 @@ export class SnpService {
         this.onSearchCriteriaChanged = new BehaviorSubject(null);
         this.inputTypes.selected = this.inputTypes.options[0];
         this.searchCriteria = new SearchCriteria();
-
-        if (!this.client) {
-            this._connect();
-        }
     }
 
     selectInputType(inputType) {
@@ -98,6 +97,9 @@ export class SnpService {
         const results = snps.map(snp => {
             const transformedSnp = {}
             for (const k in snp) {
+                if (snp[k] === undefined || snp[k] === null) {
+                    continue;
+                }
                 const colDetail = this.annotationService.findDetailByName(k);
 
                 if (colDetail?.value_type === ColumnValueType.TERM) {
@@ -111,7 +113,6 @@ export class SnpService {
                         count: terms.length
                     }
 
-                    console.log(value.count)
                     transformedSnp[k] = value
                 } else if (colDetail?.value_type === ColumnValueType.PANTHER_LONG_GENE_ID) {
                     const items = snp[k].split(';')
@@ -119,29 +120,23 @@ export class SnpService {
                         items,
                         count: items.length
                     }
-                    console.log(value.count)
                     transformedSnp[k] = value
                 } else if (typeof snp[k] === 'string' && snp[k]?.includes('|')) {
-                    //console.log(k, snp[k])
                     const items = snp[k].split('|')
                     const value = {
                         items,
                         count: items.length
                     }
 
-                    console.log(value)
-
                     transformedSnp[k] = value
 
                 } else {
-                        transformedSnp[k] = snp[k]
+                    transformedSnp[k] = snp[k]
                 }
             }
 
             return transformedSnp
         })
-
-        //console.log(JSON.stringify(snps).length - JSON.stringify(results).length)
 
         return results
     }
@@ -157,89 +152,99 @@ export class SnpService {
         this.searchCriteria.clearSearch()
         this.searchCriteria = new SearchCriteria();
 
-        const query: any = {
-            '_source': headers
-        };
+        // V2 GraphQL
+        const graphqlQuery: GraphQLQueryType = {
+            aggQuery: {
+                fields: [],
+                args: {} as AggsQueryArgs,
+            },
+            countQuery: {
+                args: {} as CountQueryArgs,
+            },
+            snpQuery: {
+                fields: [],
+                args: {} as SNPQueryArgs,
+            },
+            queryFilterType: undefined,
+            page_args: {}
+        }
 
-        const aggs = {}
-        headers.forEach((field) => {
-            aggs[`${field}`] = {
-                "filter": {
-                    "exists": {
-                        "field": field
-                    },
-                }
-            };
-
-            aggs[`pos_min`] = {
-                "min": { "field": 'pos' },
-            };
-
-            aggs[`pos_max`] = {
-                "max": { "field": 'pos' },
-            };
-
-        })
-
-        query.aggs = aggs;
+        headers.forEach((field: string) => {
+            graphqlQuery.aggQuery.fields.push([field as any, field === 'pos' ? ['doc_count', 'min', 'max'] : ['doc_count']]);
+            graphqlQuery.snpQuery.fields.push(field as any);
+        });
 
         switch (this.inputTypes.selected) {
             case this.inputType.chromosome:
-                query.query = {
-                    'bool': {
-                        'filter': [
-                            {
-                                'term': {
-                                    'chr': annotationQuery.chrom,
-                                }
-                            },
-                            {
-                                'range': {
-                                    'pos': {
-                                        'gte': annotationQuery.start,
-                                        'lte': annotationQuery.end,
-                                    }
-                                }
-                            }
-                        ],
-                    },
-                }
+                graphqlQuery.aggQuery.args = {
+                    chr: annotationQuery.chrom,
+                    start: parseInt(annotationQuery.start),
+                    end: parseInt(annotationQuery.end)
+                };
+                graphqlQuery.countQuery.args = {
+                    chr: annotationQuery.chrom,
+                    start: parseInt(annotationQuery.start),
+                    end: parseInt(annotationQuery.end)
+                };
+                graphqlQuery.snpQuery.args = {
+                    chr: annotationQuery.chrom,
+                    start: parseInt(annotationQuery.start),
+                    end: parseInt(annotationQuery.end),
+                };
+                graphqlQuery.queryFilterType = QueryFilterType.CHROMOSOME;
+
                 break;
+
             case this.inputType.geneProduct:
-                this.httpClient.get(`${environment.annotationApi}/gene`, { params: { 'gene': annotationQuery.geneProduct } })
-                    .subscribe((response) => {
-                        const res: any = response;
-                        query.query = {
-                            'bool': {
-                                'filter': [
-                                    {
-                                        'term': {
-                                            'chr': res.gene_info.contig
-                                        }
-                                    },
-                                    {
-                                        'range': {
-                                            'pos': {
-                                                'gte': res.gene_info.start, 'lte': res.gene_info.end
-                                            }
-                                        }
-                                    }]
+
+                const geneInfoQuery = gql(`query geneInfoQuery {geneInfo: ${GeneInfoQuery}(${this.formatGraphQLArgs({ gene: annotationQuery.geneProduct })}){${['contig', 'end', 'start', 'gene_id'].join(',')}}}`);
+                this.apollo.watchQuery({ query: geneInfoQuery })
+                    .valueChanges
+                    .subscribe({
+                        next: ({ data, loading }) => {
+                            const response = data as any;
+                            if (!response.geneInfo) {
+                                console.warn('Gene info not found');
+                                this.onSnpsChanged.next(null);
+                                self.loading = false;
+                                return;
                             }
-                        };
-                        self.setOriginalQuery(query)
-                        self.getSnpsCount(query);
-                        self.getSnpsPage(query, page, res.gene_info);
+
+                            graphqlQuery.aggQuery.args = {
+                                gene: annotationQuery.geneProduct
+                            };
+                            graphqlQuery.countQuery.args = {
+                                gene: annotationQuery.geneProduct
+                            };
+                            graphqlQuery.snpQuery.args = {
+                                gene: annotationQuery.geneProduct,
+                            };
+                            graphqlQuery.queryFilterType = QueryFilterType.GENE_PRODUCT;
+
+                            self.setOriginalQuery(graphqlQuery)
+                            self.getSnpsPage(graphqlQuery, page, response.geneInfo);
+                        },
+                        error: (err) => {
+                            console.warn('Error fetching gene info:', err);
+                            this.onSnpsChanged.next(null);
+                            self.loading = false;
+                        }
                     });
                 return;
+
             case this.inputType.rsID:
-                query.query = {
-                    'bool': {
-                        'filter': [
-                            { 'term': { 'rs_dbSNP151': annotationQuery.rsID } },
-                        ]
-                    }
-                }
+                graphqlQuery.aggQuery.args = {
+                    rsID: annotationQuery.rsID
+                };
+                graphqlQuery.countQuery.args = {
+                    rsID: annotationQuery.rsID
+                };
+                graphqlQuery.snpQuery.args = {
+                    rsID: annotationQuery.rsID,
+                };
+                graphqlQuery.queryFilterType = QueryFilterType.RSID;
                 break;
+
             case this.inputType.rsIDList:
                 const rsIDs = annotationQuery.rsIDList.ids.split("\n").filter(
                     (element, index, array) => {
@@ -250,18 +255,18 @@ export class SnpService {
                     return line.trim();
                 });
 
-                query.query = {
-                    'bool': {
-                        'filter': [
-                            {
-                                "terms": {
-                                    "rs_dbSNP151": rsIDs
-                                }
-                            }
-                        ]
-                    }
-                }
+                graphqlQuery.aggQuery.args = {
+                    rsIDs
+                };
+                graphqlQuery.countQuery.args = {
+                    rsIDs
+                };
+                graphqlQuery.snpQuery.args = {
+                    rsIDs,
+                };
+                graphqlQuery.queryFilterType = QueryFilterType.RSIDS;
                 break;
+
             case this.inputType.chromosomeList:
                 const ids = annotationQuery.uploadList.ids.split("\n").filter(
                     (element, index, array) => {
@@ -273,161 +278,167 @@ export class SnpService {
                     return `${line[0].replace('chr', '')}:${line[1]}${line[3]}>${line[4]}`;
                 });
 
-                query.query = {
-                    "ids": {
-                        "values": ids
-                    }
-                }
+                graphqlQuery.aggQuery.args = {
+                    ids
+                };
+                graphqlQuery.countQuery.args = {
+                    ids
+                };
+                graphqlQuery.snpQuery.args = {
+                    ids,
+                };
+                graphqlQuery.queryFilterType = QueryFilterType.IDS;
                 break;
-            /* 
-                                query.ids = ids;
-                                // console.log(query);
-                                self.getSnpsCount(query);
-                                this.httpClient.post(`${environment.annotationApi}/annoq-test/ids`, query)
-                                    .subscribe((response: any) => {
-                                        const esData = response.hits.hits as [];
-                                        const snpData = esData;
-                                        this.snpPage.shallowRefresh();
-                                        this.snpPage.query = query;
-                                        // this.snpPage.total = 50;
-                                        this.snpPage.size = self.snpResultsSize;;
-                                        this.snpPage.snps = snpData;
-                                        this.snpPage.vcfUrl = response.url;
-                                        this.snpPage.source = query._source;
-                                        this.onSnpsChanged.next(this.snpPage);
-                                        self.loading = false;
-                                        //console.log(response);
-                                    });
-                                return; */
+
             case this.inputType.keyword:
-                query.query = {
-                    "multi_match": {
-                        "query": annotationQuery.keyword,
-                        "fields": this.annotationService.keywordSearchableFields
-                    }
-                }
+                graphqlQuery.aggQuery.args = {
+                    keyword: annotationQuery.keyword
+                };
+                graphqlQuery.countQuery.args = {
+                    keyword: annotationQuery.keyword
+                };
+                graphqlQuery.snpQuery.args = {
+                    keyword: annotationQuery.keyword,
+                };
+                graphqlQuery.queryFilterType = QueryFilterType.KEYWORD;
                 break;
+                
+            // case this.inputType.geneId:
+            //     graphqlQuery.aggQuery.args = {
+            //         gene: annotationQuery.geneId
+            //     };
+            //     graphqlQuery.countQuery.args = {
+            //         gene: annotationQuery.geneId
+            //     };
+            //     graphqlQuery.snpQuery.args = {
+            //         gene: annotationQuery.geneId,
+            //     };
+            //     graphqlQuery.queryFilterType = QueryFilterType.GENE_ID;
+            //     break;                
 
         }
 
-        self.setOriginalQuery(query)
-        self.getSnpsPage(query, page);
-        self.getSnpsCount(query);
+        self.setOriginalQuery(graphqlQuery)
+        self.getSnpsPage(graphqlQuery, page);
     }
 
-    setOriginalQuery(query) {
+    setOriginalQuery(query: GraphQLQueryType) {
         this.queryOriginal = cloneDeep(query)
-        this.queryOriginal.from = 0;
-        this.queryOriginal.size = this.snpResultsSize;
+        this.queryOriginal.page_args.from_ = 0;
+        this.queryOriginal.page_args.size = this.snpResultsSize;
     }
 
 
-    getSnpsPage(query: any, page: number, gene?: any): any {
+    getSnpsPage(query: GraphQLQueryType, page: number, gene?: any): any {
         const self = this;
         self.loading = true;
-        query.from = (page - 1) * this.snpResultsSize;
-        query.size = this.snpResultsSize;
-        //console.log(query);
+
+        query.page_args.from_ = (page - 1) * this.snpResultsSize;
+        query.page_args.size = this.snpResultsSize;
+
         this.query = query;
-        return this.client.search({
-            body: query
-        }).then((body) => {
-            if (body.hits.total.value > 0) {
-                const esData = body.hits.hits as [];
-                const snpData = esData.map((snp: any) => {
-                    return snp._source;
-                });
 
-                this.snpPage.shallowRefresh();
-                const posMinAgg = body.aggregations['pos_min'];
-                const posMaxAgg = body.aggregations['pos_max'];
-
-                if (posMinAgg && posMaxAgg) {
-                    this.snpPage.posMin = posMinAgg.value;
-                    this.snpPage.posMax = posMaxAgg.value;
+        let queryFuncs = QueryFuncs[this.query.queryFilterType];
+        let queryStr = `query pagequery {
+            count: ${queryFuncs.count}(${this.formatGraphQLArgs(query.countQuery.args)})\n
+            snps: ${queryFuncs.snps}(${this.formatGraphQLArgs(query.snpQuery.args)}, query_type_option: SNPS, page_args: {from_: ${query.page_args.from_}, size: ${query.page_args.size}}) {${this.formatSNPsQueryFields(query.snpQuery.fields)}} \n
+            aggs: ${queryFuncs.aggs}(${this.formatGraphQLArgs(query.aggQuery.args)}) {${this.formatAggsQueryFields(query.aggQuery.fields)}} \n
+        }`;
+        return this.apollo.watchQuery({ query: gql(queryStr) }).valueChanges.subscribe({
+            next: ({ data, loading }) => {
+                const result = data as Record<'count' | 'snps' | 'aggs', any>;
+                if (!(result?.count && result?.snps && result?.aggs)) {
+                    this.onSnpsChanged.next(null);
+                    self.loading = false;
+                    return;
                 }
 
+                const count = result.count as GraphQLQueries['count_SNPs_by_chromosome'];
 
-                this.snpPage.gene = gene;
-                this.snpPage.query = query;
-                this.snpPage.size = self.snpResultsSize;
-                this.snpPage.snps = this.transformSnps(snpData);
+                let untransformedSnps = result.snps as GraphQLQueries['get_SNPs_by_chromosome'];
+                let snps = {
+                    ...untransformedSnps,
+                    snps: untransformedSnps.snps.map((snp) => {
+                        const snpObj = {};
+                        for (const k in snp) {
+                            snpObj[this.annotationService.getAnnotationNameFromApiField(k)] = snp[k]; 
+                        }
+                        return snpObj;
+                    })
+                }
+
+                const untransformedAggs = result.aggs as GraphQLQueries['get_aggs_by_chromosome'];
+                const aggs = {} as GraphQLQueries['get_aggs_by_chromosome'];
+                for (const k in untransformedAggs) {
+                    aggs[this.annotationService.getAnnotationNameFromApiField(k)] = untransformedAggs[k];
+                }
+
+                if (snps.snps.length) {
+                    this.snpPage.shallowRefresh();
+
+                    this.snpPage.total = count;
+
+                    const posMinAgg = aggs.pos?.min;
+                    const posMaxAgg = aggs.pos?.max;
+                    if (posMinAgg && posMaxAgg) {
+                        this.snpPage.posMin = posMinAgg;
+                        this.snpPage.posMax = posMaxAgg;
+                    }
 
 
+                    this.snpPage.gene = gene;
 
-                this.snpPage.aggs = body.aggregations;
-                this.snpPage.source = query._source;
+                    this.snpPage.query = query;
+                    this.snpPage.size = self.snpResultsSize;
+
+                    this.snpPage.snps = this.transformSnps(snps.snps);
+
+                    this.snpPage.aggs = aggs;
+
+                    this.snpPage.source = query.snpQuery.fields;
 
 
-                this.onSnpsChanged.next(this.snpPage);
-            } else {
+                    this.onSnpsChanged.next(this.snpPage);
+                } else {
+                    this.onSnpsChanged.next(null);
+                }
+                self.loading = false;
+            },
+            error: (err) => {
+                self.loading = false;
                 this.onSnpsChanged.next(null);
+                console.warn(err);
             }
-            self.loading = false;
-        }, (err) => {
-            self.loading = false;
         });
     }
 
-    getSnpsCount(query: any): any {
+    querySnpAggs(query: GraphQLQueryType, field: string): any {
         const self = this;
-        this.query = query;
-        return this.client.count({
-            body: { query: query.query }
-        }).then((res) => {
-            if (res?.count) {
-                this.snpPage.total = res.count;
-            }
-        }, (err) => {
-            console.warn(err);
-        });
-    }
 
-    querySnpAggs(query: any, field: string): any {
-        const self = this;
-        query.size = 0;
-        //console.log(query);
-        return this.client.search({
-            body: query
-        }).then((body) => {
-            if (body.aggregations) {
-                const snpAggs = new SnpAggs();
+        let queryFuncs = QueryFuncs[this.query.queryFilterType];
+        let queryStr = `query aggsquery {
+            aggs: ${queryFuncs.aggs}(${this.formatGraphQLArgs(query.aggQuery.args)}) {${this.formatAggsQueryFields(query.aggQuery.fields)}} \n
+        }`;
 
-                snpAggs.field = field;
-                snpAggs.aggs = body.aggregations;
-                snpAggs.source = query._source;
-                this.onSnpsAggsChanged.next(snpAggs);
-            } else {
-                this.onSnpsAggsChanged.next(null);
-            }
-        }, (err) => {
-            console.warn(err);
-        });
-    }
+        return this.apollo.watchQuery({ query: gql(queryStr) }).valueChanges.subscribe({
+            next: ({ data, loading }) => {
+                const result = data as Record<'aggs', any>;
 
-    queryDistinctAggs(query: any, field: string): any {
-        const self = this;
-        query.size = 0;
-        //console.log(query);
-        this.onDistinctAggsChanged.next(null);
-        return this.client.search({
-            body: {
-                query: query.query,
-                size: query.size,
-                aggs: query.aggs
-            }
-        }).then((body) => {
-            if (body.aggregations) {
-                const snpAggs = new SnpAggs();
+                if (result?.aggs) {
+                    const untransformedAggs = result.aggs as GraphQLQueries['get_aggs_by_chromosome'];
+                    const aggs = {}
+                    for (const k in untransformedAggs) {
+                        aggs[this.annotationService.getAnnotationNameFromApiField(k)] = untransformedAggs[k];
+                    }
 
-                snpAggs.field = field;
-                snpAggs.aggs = body.aggregations;
-                this.onDistinctAggsChanged.next(snpAggs);
-            } else {
-                this.onDistinctAggsChanged.next(null);
+                    this.onSnpsAggsChanged.next({ field: field as keyof SnpAggs, snpAggs: aggs });
+                } else {
+                    this.onSnpsAggsChanged.next(null);
+                }
+            },
+            error: (err) => {
+                console.warn(err);
             }
-        }, (err) => {
-            console.warn(err);
         });
     }
 
@@ -441,140 +452,62 @@ export class SnpService {
         }
 
         this.updateSearch();
-
     }
 
     updateSearch() {
         this.searchCriteria.updateFiltersCount();
         this.onSearchCriteriaChanged.next(this.searchCriteria);
-        if (this.queryOriginal?.query?.bool?.filter) {
+        if (this.queryOriginal?.queryFilterType !== QueryFilterType.KEYWORD) {
 
             const query = cloneDeep(this.queryOriginal)
 
-            this.searchCriteria.fields.forEach((field: Annotation) => {
-                query.query.bool.filter.push(
-                    {
-                        "exists": {
-                            "field": field.name
-                        }
-                    });
-            });
+            const filter_args = {
+                exists: this.searchCriteria.fields.map((field: Annotation) => field.name)
+            }
 
-            const filters = this.searchCriteria.fieldValues.map((filedValueArray) => {
-                return {
-                    'bool': {
-                        "should": filedValueArray.map((field) => {
-                            const annotation = this.annotationService.findDetailByName(field.name);
-                            let fieldSearchable = field.name;
+            query.snpQuery.args = {
+                ...query.snpQuery.args,
+                filter_args
+            }
 
-                            if (annotation.field_type === ColumnFieldType.TEXT) {
-                                fieldSearchable += '.keyword';
-                            }
-                            return {
-                                'term': { [fieldSearchable]: field.value }
-                            };
-                        })
-                    }
-                };
-            });
+            query.aggQuery.args = {
+                ...query.aggQuery.args,
+                filter_args
+            }
 
-            query.query.bool['must'] = filters
+            query.countQuery.args = {
+                ...query.countQuery.args,
+                filter_args
+            }
 
             this.getSnpsPage(query, 1);
-            this.getSnpsCount(query)
         }
     }
 
     getStats(field: string) {
         const annotation = this.annotationService.findDetailByName(field);
-        if (this.snpPage?.query?.query && annotation) {
+        if (this.snpPage?.query?.aggQuery && annotation) {
 
             const query = cloneDeep(this.snpPage.query)
-            const aggs = {}
-            let fieldSearchable = field
 
-            console.log(fieldSearchable, annotation.field_type)
-
-            if (annotation.field_type === ColumnFieldType.TEXT) {
-                fieldSearchable += '.keyword';
-            }
             let interval = 10_000;
 
             if (this.snpPage?.posMin && this.snpPage?.posMax) {
                 interval = (this.snpPage.posMax - this.snpPage.posMin) / 100;
             }
 
-            aggs['pos_histogram'] = {
-                "histogram": {
-                    "field": "pos",
-                    "interval": interval,
-                    "extended_bounds": {
-                        "min": this.snpPage.posMin,
-                        "max": this.snpPage.posMax
-                    }
-                }
-            }
-
-            aggs[`${field}_missing`] = {
-                "missing": {
-                    "field": fieldSearchable,
-                }
+            query.aggQuery.args.histogram = {
+                interval,
+                max: this.snpPage.posMax,
+                min: this.snpPage.posMin
             };
 
-            aggs[`${field}_exists`] = {
-                "filter": {
-                    "exists": {
-                        "field": fieldSearchable
-                    },
-                }
-            };
-
-            aggs[`${field}_frequency`] = {
-
-                "terms": {
-                    "field": fieldSearchable,
-                    "min_doc_count": 0,
-                    "size": 20,
-                },
-            };
-
-            query.aggs = aggs;
+            query.aggQuery.fields = [
+                ['pos', ['histogram']],
+                [field as keyof SnpAggs, ['missing', 'frequency', 'doc_count']]
+            ]
 
             this.querySnpAggs(query, field);
-        }
-    }
-
-    getDistinctValues(field: string) {
-        const annotation = this.annotationService.findDetailByName(field);
-        if (this.snpPage?.query?.query && annotation) {
-
-            const query = cloneDeep(this.snpPage.query)
-            const aggs = {}
-            let fieldSearchable = field
-
-            if (annotation.field_type === ColumnFieldType.TEXT) {
-                fieldSearchable += '.keyword';
-            }
-
-
-            aggs[field + '_distinct'] = {
-                "composite": {
-                    size: 65535,
-                    "sources": [
-                        {
-                            field: {
-                                "terms": {
-                                    "field": fieldSearchable
-                                }
-                            }
-                        }
-                    ]
-                }
-            }
-
-            query.aggs = aggs;
-
-            this.queryDistinctAggs(query, field);
         }
     }
 
@@ -586,18 +519,14 @@ export class SnpService {
             return;
         }
 
-        const url = `${environment.annotationApi}/total_res`;
-        this.httpClient.post(url, this.query)
-            .subscribe((response) => {
-                this.onSnpsDownloadReady.next(response);
-            });
-    }
+        const fieldApis = this.query.snpQuery.fields.map(field => this.annotationService.getAnnotationApiField(field as string));
 
-    isAvailable(): any {
-        return this.client.ping({
-            requestTimeout: Infinity,
-            body: 'Hello JOAC Search!'
-        });
+        const queryStr = `query downloadquery {down: ${QueryFuncs[this.query.queryFilterType].download}(${this.formatGraphQLArgs({ ...this.query.snpQuery.args, fields: fieldApis })})}`
+        this.apollo.watchQuery({ query: gql(queryStr) })
+            .valueChanges
+            .subscribe(({ data, loading }) => {
+                this.onSnpsDownloadReady.next({ 'url': (data as any)?.down });
+            });
     }
 
     buildSummaryTree(aggs) {
@@ -625,7 +554,7 @@ export class SnpService {
         return treeNodes;
     }
 
-    buildAnnotationBar(buckets: FrequencyBucket[]) {
+    buildAnnotationBar(buckets: Bucket[]) {
 
         const stats = buckets.map((bucket) => {
             return {
@@ -639,7 +568,7 @@ export class SnpService {
     }
 
 
-    buildAnnotationLine(buckets: FrequencyBucket[], name) {
+    buildAnnotationLine(buckets: Bucket[], name) {
 
         const series = buckets.map((bucket) => {
             return {
@@ -655,7 +584,7 @@ export class SnpService {
         }]
     }
 
-    buildPosHistogramLine(buckets: FrequencyBucket[]) {
+    buildPosHistogramLine(buckets: Bucket[]) {
 
         const stats = buckets.map((bucket) => {
             return {
@@ -668,8 +597,43 @@ export class SnpService {
         return sorted
     }
 
-    private _connect() {
-        this.client = new Client({ host: `${environment.annotationApi}/${environment.dataset}` });
+    private formatAggsQueryFields(fields: GraphQLQueryType['aggQuery']['fields']) {
+        return fields.map(([field, aggs_fields]) => {
+
+            const fieldApi = this.annotationService.getAnnotationApiField(field as string);
+
+            return `${fieldApi} {${aggs_fields.map(agg_field => {
+                switch (agg_field) {
+                    case 'frequency':
+                    case 'histogram':
+                        return `${agg_field} {key, doc_count}`;
+                    case 'missing':
+                        return `${agg_field} {doc_count}`;
+                    default:
+                        return agg_field;
+                }
+            }).join(',')}}`
+        }).join(',');
     }
 
+    private formatSNPsQueryFields(fields: GraphQLQueryType['snpQuery']['fields']) {
+        const fieldApis = fields.map(field => this.annotationService.getAnnotationApiField(field as string));
+        return `snps {${fieldApis.join(',')}}`
+    }
+
+    /** Create a string for the arguments in a graphql query 
+     * Performs the conversion in a recursive manner
+     * For now, handles only objects of type bool, string, numbers, and recursive objects
+     * No enum support
+    */
+    private formatGraphQLArgs(args: Object): string {
+        const formatValue = (val: any): string => {
+            return `${Array.isArray(val) ? '[' + this.formatGraphQLArgs(val) + ']' : typeof val === 'object' ? '{' + this.formatGraphQLArgs(val) + '}' : typeof val === 'string' ? '"' + val + '"' : val}`
+        };
+        return Object.entries(args)
+            .map(([key, val]) =>
+                Array.isArray(args) ? formatValue(val) : `${key}: ${formatValue(val)}`
+            )
+            .join(',');
+    }
 }

@@ -40,12 +40,12 @@ export class AnnotationService {
     }
 
     getAnnotationList() {
-        const api = environment.annotationApi; //environment.annotationApi;
-        this.httpClient.get<Annotation[]>(`${api}/anno_tree`)
+        const api = environment.annotationApiV2;
+        this.httpClient.get<Annotation[]>(`${api}/annotations`)
             .subscribe((response: any) => {
-                if (!response || !response.result) return;
+                if (!response || !response.results) return;
 
-                this.annotations = response.result;
+                this.annotations = response.results;
                 this.formatLabel(this.annotations);
                 this.keywordSearchableFields = this.getSearchableFields(this.annotations);
                 this.labelLookup = this.makeLabelLookup(this.annotations);
@@ -59,11 +59,6 @@ export class AnnotationService {
                 this.onAnnotationTreeChanged.next(this.annotationNodes);
             });
     }
-
-    /*
-    "api/region/chr/1/start/3/end/2"
-    "api/region?chr=1&start=3&end=2&header_idx=1 2 3"
-*/
 
     transformer = (node: AnnotationNode, level: number) => {
 
@@ -82,6 +77,7 @@ export class AnnotationService {
         flatNode.visible = node.visible;
         flatNode.expandable = !!node.children;
         flatNode.level = level;
+        flatNode.api_field = node.api_field;
 
         return flatNode
     }
@@ -327,6 +323,19 @@ export class AnnotationService {
         return found
     }
 
+    getAnnotationApiField(name) {
+        const found = this.labelLookup[name]
+        return found.api_field || name
+    }
+
+    getAnnotationNameFromApiField(api_field) {
+        const found = find(this.annotations, (annotation: Annotation) => {
+            return api_field === annotation.api_field
+        })
+        return found?.name || api_field
+    }
+
+    getIsVa
 
     private _buildAnnotationTree(annotation: Annotation[]): AnnotationNode[] {
         let getNestedChildren = (arr, parent_id, level) => {

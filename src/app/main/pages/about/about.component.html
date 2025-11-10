@@ -7,26 +7,36 @@
                 The Annotation Query (AnnoQ) is an integrated functional annotation platform for large-scale genetic
                 variant annotation. The backend of the system is a large collection of pre-annotated variants from the
                 Haplotype Reference Consortium (HRC) (~39 million) with sequence features (by WGSA) and functions
-                (PANTHER and Gene Ontology). Currently only human variants are supported. The data is built in an
-                Elasticsearch framework and an API was built to
-                allow users to quickly access the annotation data, with one of the following three ways (see attached
-                figures).
+                (PANTHER, Gene Ontology and Reactome). Currently only human variants are supported. The data is built in an
+                Elasticsearch framework and an API was built to allow users to quickly access the annotation data in three ways:
             </p>
-            <ol>
-                <li>Interactive web interface.</li>
-                <li>API data access using command line scripts.</li>
-                <li>Programming packages, e.g., R package.</li>
-            </ol>
-            <h2>Team members</h2>
+            <ol><p>
+                <li><a href="https://annoq.org">Interactive web interface</a>.</li>
+                <li><a href="https://api-v2.annoq.org/docs">API</a> data access using command line scripts.</li>
+                <li>Software libraries <a href="https://github.com/USCbiostats/AnnoQR">AnnoQR</a> available in R programming language and <a href="https://github.com/USCbiostats/annoq-py ">annoq-py</a> in the Python programming language.</li>
+            </p></ol>
+
+            <div class="annoq-img">
+            <img class="" src="assets/images/annoq_workflow.png" style="width: 120%; height:auto">
+            </div>
+
+            <h2>Current members</h2>
             <ul>
-                <li><strong> Ebert, Dustin</strong> (bioinformatics programmer, GO and PANTHER data)</li>
-                <li><strong> Liu, Zhu</strong> (PhD student, lead developer, overall architecture)</li>
-                <li><strong> Mi, Huaiyu</strong> (Principal Investigator)</li>
-                <li><strong> Mills, Caitlin</strong> (PhD student, PEREGRINE development)</li>
-                <li><strong> Muruganujan, Anushya</strong> (software engineer, GO and PANTHER data)</li>
-                <li><strong> Mushayahama, Tremayne</strong> (software engineer, AnnoQ Website)</li>
                 <li><strong> Queme, Bryan</strong> (PhD student, AnnoQ Development)</li>
+                <li><strong> Muruganujan, Anushya</strong> (software engineer, GO and PANTHER data)</li>               
+                <li><strong> Ebert, Dustin</strong> (bioinformatics programmer, GO and PANTHER data)</li>
+                <li><strong> Ayaan Kakkar</strong> (masters student, software developer, AnnoQ API and website)</li>                
+                <li><strong> Mi, Huaiyu</strong> (Principal Investigator)</li>
             </ul>
+            <BR>
+                <h2>Past members</h2>
+            <ul>
+                <li><strong> Liu, Zhu</strong> (PhD student, lead developer, Overall Architectect)</li>
+                <li><strong> Mills, Caitlin</strong> (PhD student, PEREGRINE development)</li>
+                <li><strong> Mushayahama, Tremayne</strong> (software engineer, AnnoQ Website)</li>
+                <li><strong> Akshala Bhatnagar</strong> (masters student, AnnoQ API)</li>                                
+            </ul>    
+            <BR>
             <h2>Publication</h2>
                 <a href="https://academic.oup.com/nar/article/50/W1/W57/6595265?searchresult=1" target="_blank" >Annotation Query (AnnoQ): an integrated and interactive platform for large-scale genetic variant annotation.</a>
                   Liu Z, Mushayahama T, Queme B, Ebert D, Muruganujan A, Mills C, Thomas PD, Mi H.  
