@@ -32,7 +32,7 @@ Access large scale genetic variant annotations
       - tsv file
     - Export configuration file with search fields of interest to use with the API, or for future searches or sharing
 
-  - [API Data Access]({{site.baseurl}}/docs/tutorials/api): Retrieve annotation data from the command line or scripts.
+  - [AnnoQ Services]({{site.baseurl}}/docs/services/): Retrieve annotation data from the command line or scripts.
   
   - [R Package]({{site.baseurl}}/docs/tutorials/r-package): Retrieve annotation data via the R programming language.
 
