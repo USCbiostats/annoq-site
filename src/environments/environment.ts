@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  dataset: 'annoq-annotations-v3',
+  dataset: 'annoq-annotations-v5',
   production: false,
   annotationApiV2: 'http://annoq.org/api-v2', // 'http://bioghost2.usc.edu:9350',
   snpResultsSize: 50,
