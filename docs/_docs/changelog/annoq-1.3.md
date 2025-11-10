@@ -8,7 +8,7 @@ title: AnnoQ 1.3
 ### Software Updates
 A new [API](https://api-v2.annoq.org/docs) has been released for the AnnoQ website. The API has end-points that are consistent with standard use cases. This makes it easier for users to incorporate the API into workflows. Refer to [AnnoQ Services]({{site.baseurl}}/docs/services/) for detailed information.
 
-Two libraries [AnnoQR](https://github.com/USCbiostats/AnnoQR) and [annoq-py)](https://github.com/USCbiostats/annoq-py) that utilize the API have also been released.  Tutorials for the [R package]({{site.baseurl}}/docs/tutorials/r-package) and [python package]({{site.baseurl}}/docs/tutorials/annoq-py) are also available.
+Two libraries [AnnoQR](https://github.com/USCbiostats/AnnoQR) and [annoq-py)](https://github.com/USCbiostats/annoq-py) that utilize the API have also been released.  They provide abstraction over the API and expose only necessary methods for accessing the system.  Tutorials for the [R package]({{site.baseurl}}/docs/tutorials/r-package) and [python package]({{site.baseurl}}/docs/tutorials/annoq-py) are also available.
 
 Although invisible to the user, the backend of the API has also been updated to optimize performance and the client UI has also been updated to use the new API.
 
