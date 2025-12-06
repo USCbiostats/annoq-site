@@ -2,7 +2,7 @@
 
 # AnnoQ Site
 
-AnnoQ site is located [here](http://annoq.org/)
+AnnoQ site is located [here](https://annoq.org/)
 
 Documentation site is located [here](https://uscbiostats.github.io/annoq-site/)
 
@@ -23,9 +23,34 @@ Change into the joint directory:
 cd annoq-site
 ```
 
+
+Update environment variables as necessary
+```
+nano src/environments/environment.prod.ts
+nano src/envirnoments/environment.ts
+```
+
+If there are any changes to the API, then run the following:
+
+```
+npm run graphql_codegen
+```
+
+
 Install all NPM dependencies:
 ```
 npm install
 ```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4205/`. The app will automatically reload if you change any of the source files.
+
+Run the installation for production
+
+```
+npm run start
+
+```
+
+Run the installation for locally
+```
+npm run start:local
+```

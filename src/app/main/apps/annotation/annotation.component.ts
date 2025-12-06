@@ -47,6 +47,10 @@ export class AnnotationComponent implements OnInit {
     } else if (this.snpService.initialSearchParams.query_type === UrlQueryType.gp) {
       this.snpService.selectInputType(this.snpService.inputType.geneProduct)
     }
+    // else if (this.snpService.initialSearchParams.query_type === UrlQueryType.gp) {
+    //   this.snpService.initialSearchParams.gId = this.snpService.initialSearchParams.gp
+    //   this.snpService.selectInputType(this.snpService.inputType.geneId)
+    // }
 
     this.annotationForm = this.createAnnotationForm();
   }
@@ -75,14 +79,15 @@ export class AnnotationComponent implements OnInit {
         ids: new FormControl(),
         browse: new FormControl(),
       }),
-      keyword: new FormControl('Signaling by GPCR'),
+      // keyword: new FormControl('Signaling by GPCR'),
       start: new FormControl(this.snpService.initialSearchParams.start || 1),
       end: new FormControl(this.snpService.initialSearchParams.end || 500000),
       all: new FormControl(false),
       uploadList: new FormGroup({
         ids: new FormControl(),
         browse: new FormControl(),
-      })
+      }),
+      // geneId: new FormControl(this.snpService.initialSearchParams.gId || 'ENSG00000263305')
     });
   }
 

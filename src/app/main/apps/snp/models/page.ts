@@ -1,3 +1,5 @@
+import { GraphQLQueryType } from "./graphql";
+
 export class Page {
     size = 0;
     total = 0;
@@ -6,7 +8,7 @@ export class Page {
 
 export class SnpPage extends Page {
 
-    query;
+    query: GraphQLQueryType;
     source: string[];
     snps: any;
     aggs: any;

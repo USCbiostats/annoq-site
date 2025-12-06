@@ -7,10 +7,11 @@ export interface Annotation {
     pmid: string;
     parent_id: number;
     leaf: boolean;
-    version: string;    
+    version: string;
     value_type: string;
     field_type: string;
     root_url: string;
+    api_field?: string;
     keyword_searchable: boolean;
 }
 
@@ -27,6 +28,7 @@ export class AnnotationNode {
     version: string;
     visible: boolean;
     expandable: boolean;
+    api_field?: string;
     children: AnnotationNode[];
 }
 
@@ -39,6 +41,7 @@ export class AnnotationFlatNode {
     leaf: boolean;
     visible: boolean;
     expandable: boolean;
+    api_field?: string;
     level: number;
     version: string;
     constructor(

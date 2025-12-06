@@ -6,7 +6,6 @@ import { AnnoqMenuService } from '@annoq.common/services/annoq-menu.service';
 
 import { SnpService } from './../services/snp.service'
 import { SnpPage } from '../models/page';
-import { Gene } from '../models/gene';
 import { SnpDialogService } from '../services/dialog.service';
 
 import { MatPaginator } from '@angular/material/paginator';
@@ -117,7 +116,7 @@ export class SnpTableComponent implements OnInit, OnDestroy {
       }, 10);
 
       if (snpPage.gene) {
-        this.gene = new Gene()
+        this.gene = {}
         this.gene.gene_id = snpPage.gene.gene_id;
         this.gene.contig = snpPage.gene.contig;
         this.gene.start = snpPage.gene.start;

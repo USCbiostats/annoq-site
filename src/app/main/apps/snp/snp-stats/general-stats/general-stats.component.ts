@@ -2,7 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { getColor } from '@annoq.common/data/annoq-colors';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { FrequencyBucket, SnpAggs } from '../../models/snp-aggs';
+import { AggregationItem, Bucket, SnpAggs } from 'generated/graphql';
 import { SnpService } from '../../services/snp.service';
 import { Platform } from '@angular/cdk/platform';
 
@@ -14,24 +14,7 @@ import { Platform } from '@angular/cdk/platform';
 export class GeneralStatsComponent implements OnInit, OnDestroy {
 
   snpAggs: SnpAggs;
-
-  /*   annotationFrequencyBarOptions = {
-      view: [500, 500],
-      showXAxis: true,
-      showYAxis: true,
-      gradient: false,
-      legend: false,
-      showXAxisLabel: true,
-      xAxisLabel: 'Aspect',
-      showYAxisLabel: true,
-      yAxisLabel: 'Annotations',
-      animations: true,
-      legendPosition: 'below',
-      colorScheme: {
-        domain: ['#AAAAAA']
-      },
-      customColors: []
-    } */
+  snpAggsField: keyof SnpAggs;
 
   existsPieOptions = {
     view: [500, 200],
@@ -76,9 +59,11 @@ export class GeneralStatsComponent implements OnInit, OnDestroy {
 
     this.snpService.onSnpsAggsChanged
       .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe((snpAggs: SnpAggs) => {
-        if (snpAggs) {
+      .subscribe((aggs) => {
+        if (aggs) {
+          const { snpAggs, field } = aggs;
           this.snpAggs = snpAggs;
+          this.snpAggsField = field;
           this.generateStats()
         }
       });
@@ -120,21 +105,23 @@ export class GeneralStatsComponent implements OnInit, OnDestroy {
   }
 
   generateStats() {
-    const agg = this.snpAggs?.aggs[`${this.snpAggs.field}_frequency`];
-    const missingAgg = this.snpAggs?.aggs[`${this.snpAggs.field}_missing`];
-    const existsAgg = this.snpAggs?.aggs[`${this.snpAggs.field}_exists`];
 
-    if (agg?.buckets) {
-      this.stats.annotationFrequencyBar = this.snpService.buildAnnotationBar(agg.buckets)
+    const fieldAggregation: AggregationItem = (this.snpAggs && this.snpAggs[this.snpAggsField]) as any as AggregationItem;
+    if (!fieldAggregation) {
+      return
     }
 
-    if (existsAgg && missingAgg) {
-      const buckets: FrequencyBucket[] = [{
+    if (fieldAggregation.frequency) {
+      this.stats.annotationFrequencyBar = this.snpService.buildAnnotationBar(fieldAggregation.frequency)
+    }
+
+    if (fieldAggregation.doc_count !== undefined && fieldAggregation.missing !== undefined) {
+      const buckets: Bucket[] = [{
         key: 'Values Exist',
-        doc_count: existsAgg.doc_count,
+        doc_count: fieldAggregation.doc_count,
       }, {
         key: 'Values Missing',
-        doc_count: missingAgg.doc_count,
+        doc_count: fieldAggregation.missing.doc_count,
       }]
       this.stats.existsPie = this.snpService.buildAnnotationBar(buckets)
     }

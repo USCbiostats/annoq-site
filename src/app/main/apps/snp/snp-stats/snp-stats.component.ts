@@ -5,7 +5,7 @@ import { takeUntil } from 'rxjs/operators';
 import { AnnotationService } from '../../annotation/services/annotation.service';
 import { SnpPage } from '../models/page';
 import { SnpService } from '../services/snp.service';
-import { SnpAggs } from '../models/snp-aggs';
+import { SnpAggs } from 'generated/graphql';
 import { Annotation } from '../../annotation/models/annotation';
 import { Platform } from '@angular/cdk/platform';
 import { Router } from '@angular/router';
@@ -76,10 +76,11 @@ export class SnpStatsComponent implements OnInit, OnDestroy {
 
     this.snpService.onSnpsAggsChanged
       .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe((snpAggs: SnpAggs) => {
-        if (snpAggs) {
+      .subscribe((aggs) => {
+        if (aggs) {
+          const { snpAggs, field } = aggs;
           this.snpAggs = snpAggs;
-          this.selectedField = this.snpAggs.field;
+          this.selectedField = field;
         }
       });
 

@@ -1,3 +1,7 @@
+/**
+ * THIS COMPONENT IS NOT USED
+ */
+
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
@@ -8,7 +12,7 @@ import { startWith, map, takeUntil } from 'rxjs/operators';
 import { Annotation } from '../../annotation/models/annotation';
 import { AnnotationService } from '../../annotation/services/annotation.service';
 import { SnpPage } from '../models/page';
-import { FrequencyBucket, SnpAggs } from '../models/snp-aggs';
+import { Bucket, SnpAggs } from 'generated/graphql';
 import { SnpService } from '../services/snp.service';
 
 @Component({
@@ -81,26 +85,26 @@ export class AnnotationFiltersComponent implements OnInit, OnDestroy {
         }
       });
 
-    this.snpService.onDistinctAggsChanged
-      .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe((snpAggs: SnpAggs) => {
-        if (snpAggs && snpAggs.aggs) {
-          this.snpAggs = snpAggs;
-          const agg = snpAggs?.aggs[`${this.snpAggs.field}_distinct`];
+    // this.snpService.onDistinctAggsChanged
+    //   .pipe(takeUntil(this._unsubscribeAll))
+    //   .subscribe(({snpAggs: SnpAggs) => {
+    //     if (snpAggs && snpAggs.aggs) {
+    //       this.snpAggs = snpAggs;
+    //       const agg = snpAggs?.aggs[`${this.snpAggs.field}_distinct`];
 
-          if (agg) {
-            this.fieldValues = agg.buckets.map((bucket) => {
-              return <FrequencyBucket>{
-                key: bucket.key?.field,
-                doc_count: bucket.doc_count
-              }
-            });
-          }
-        } else {
-          this.snpAggs = null
-          this.fieldValues = []
-        }
-      });
+    //       if (agg) {
+    //         this.fieldValues = agg.buckets.map((bucket) => {
+    //           return <FrequencyBucket>{
+    //             key: bucket.key?.field,
+    //             doc_count: bucket.doc_count
+    //           }
+    //         });
+    //       }
+    //     } else {
+    //       this.snpAggs = null
+    //       this.fieldValues = []
+    //     }
+    //   });
 
     this.fieldsFilterForm.valueChanges.subscribe(value => {
       if (this.fieldsFilterForm.valid) {
@@ -152,7 +156,7 @@ export class AnnotationFiltersComponent implements OnInit, OnDestroy {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.snpService.getDistinctValues(event.option.value.name);
+    // this.snpService.getDistinctValues(event.option.value.name);
     //  this.searchInput.forEach((item) => {
     //    item.nativeElement.value = null;
     //  });
@@ -257,7 +261,7 @@ export class AnnotationFiltersComponent implements OnInit, OnDestroy {
   filterFieldValues(value: string): any[] {
     const filterValue = value.toLowerCase();
 
-    return this.fieldValues.filter((field: FrequencyBucket) => field.key.toLowerCase().includes(filterValue)).slice(0, 50);
+    return this.fieldValues.filter((field: Bucket) => field.key.toLowerCase().includes(filterValue)).slice(0, 50);
   }
 
 

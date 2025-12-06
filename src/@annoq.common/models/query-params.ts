@@ -1,6 +1,7 @@
 export enum UrlQueryType {
   chr = 'chr',
   gp = 'gp',
+  gId = 'gId',
 }
 
 export class UrlQueryParams {
@@ -9,5 +10,6 @@ export class UrlQueryParams {
   start?: number;
   end?: number;
   gp?: string;
+  gId?: string;
 
 }
