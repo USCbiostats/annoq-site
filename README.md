@@ -30,7 +30,7 @@ nano src/environments/environment.prod.ts
 nano src/envirnoments/environment.ts
 ```
 
-If there are any changes to the API, then run the following:
+If there are any changes to the API, ensure path to API is correct and update as necessary, then run the following:
 
 ```
 npm run graphql_codegen
