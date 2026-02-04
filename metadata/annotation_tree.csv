@@ -530,7 +530,7 @@ id,parent_id,leaf,name,label,detail,link,pmid,sort,root_url,sample_url,field_typ
 753,208,TRUE,SnpEff_refseq_TF_name,,"""name of the TF""",,,,,,text,TRUE,,
 754,208,TRUE,SnpEff_refseq_TF_ID,,"""ID of the TF""",,,,,,text,TRUE,,
 755,132,TRUE,VEP_refseq_Protein_ID,,"""RefSeq protein IDs corresponding to transcripts. Multiple IDs are separated by ""|"" The order corresponds to VEP_refseq_Transcript_ID""",,,,,,text,TRUE,,
-756,1,TRUE,rs_dbSNP,,"""rs number from dbSNP""",,,,,,text,TRUE,,
+756,1,TRUE,rs_dbSNP,rs ID,"""rs number from dbSNP""",,,,,,text,TRUE,,
 757,26,TRUE,SPIDEX_dpsi_max_tissue,,"""""This is the predicted change in percent-inclusion due to the variant, reported as the maximum across tissues (in percent)""""",,,,,,text,TRUE,,
 758,26,TRUE,SPIDEX_dpsi_zscore,,"""""This is the z-score of dpsi_max_tissue relative to the distribution of dPSI that are due to common SNP.""""",,,,,,float,,,
 759,495,TRUE,GTEx_V8_gene,,"""gene name of the eQTL associated with""",,,,,,text,TRUE,,
