@@ -13,7 +13,7 @@ import { ContactComponent } from './contact/contact.component';
 import { AnnoqConfirmDialogModule } from '@annoq/components/confirm-dialog/confirm-dialog.module';
 import { CookiePolicyComponent } from './cookie-policy/cookie-policy.component';
 import { VersionComponent } from './version/version.component';
-
+import { ReleaseComponent } from './release/release.component';
 
 const routes = [{
   path: '', component: HomeComponent
@@ -29,6 +29,8 @@ const routes = [{
   path: 'cookie-policy', component: CookiePolicyComponent
 }, {
   path: 'version', component: VersionComponent
+}, {
+  path: 'release', component: ReleaseComponent  
 }];
 
 @NgModule({
@@ -40,7 +42,8 @@ const routes = [{
     PublicationComponent,
     ContactComponent,
     CookiePolicyComponent,
-    VersionComponent
+    VersionComponent,
+    ReleaseComponent
   ],
   imports: [
     RouterModule.forChild(routes),
