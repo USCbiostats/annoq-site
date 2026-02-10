@@ -1,13 +1,16 @@
 import { Component, ElementRef, Inject, OnInit, OnDestroy, Renderer2, ViewEncapsulation } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Platform } from '@angular/cdk/platform';
+import { Router, NavigationEnd } from '@angular/router';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 
 import { AnnoqConfigService } from '@annoq/services/config.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AnnoqSplashScreenService } from '@annoq/services/splash-screen.service';
 import { AnnoqTranslationLoaderService } from '@annoq/services/translation-loader.service';
+
+declare let gtag: Function;
 
 
 @Component({
@@ -31,7 +34,8 @@ export class AppComponent implements OnInit, OnDestroy {
         private _elementRef: ElementRef,
         private annoqConfigService: AnnoqConfigService,
         private platform: Platform,
-        @Inject(DOCUMENT) private document: any
+        @Inject(DOCUMENT) private document: any,
+        private router: Router
     ) {
         this.translate.addLangs(['en', 'tr']);
         this.translate.setDefaultLang('en');
@@ -52,6 +56,15 @@ export class AppComponent implements OnInit, OnDestroy {
             .subscribe((config) => {
                 this.annoqConfig = config;
             });
+
+        this.router.events.pipe(
+            filter(event => event instanceof NavigationEnd),
+            takeUntil(this._unsubscribeAll)
+        ).subscribe((event: NavigationEnd) => {
+            gtag('event', 'page_view', {
+                page_path: event.urlAfterRedirects
+            });
+        });
     }
 
     ngOnDestroy() {
