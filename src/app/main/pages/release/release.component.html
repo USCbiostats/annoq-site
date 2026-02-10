@@ -1,0 +1,41 @@
+  <div class="w-100-p" annoqPerfectScrollbar>
+    <div class="annoq-body annoq-section section-1 text-center">
+      <div class="annoq-heading mb-12">
+        <h2>Release Information</h2>
+      </div>
+      <div class="annoq-container" fxLayout="row" fxLayoutAlign="center center">
+        <table mat-table [dataSource]="releases" class="annoq-release-table">
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef> Title </th>
+            <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="version">
+            <th mat-header-cell *matHeaderCellDef> Version </th>
+            <td mat-cell *matCellDef="let element"> {{element.version}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef> Description </th>
+            <td mat-cell *matCellDef="let element" class="annoq-description-cell">
+              <div *ngFor="let section of element.description" class="annoq-release-section">
+                <div *ngIf="section.heading" class="annoq-section-heading">{{section.heading}}</div>
+                <ul>
+                  <li *ngFor="let item of section.items">{{item}}</li>
+                </ul>
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="releaseColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: releaseColumns"></tr>
+        </table>
+      </div>
+    </div>
+    <annoq-footer></annoq-footer>
+  </div>
