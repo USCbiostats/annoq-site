@@ -11,6 +11,8 @@ import { SampleRSIDFile } from '@annoq.common/data/sample-rsid-list';
 import { UrlQueryType } from '@annoq.common/models/query-params';
 import { AnnoqDeviceService } from '@annoq.common/services/annoq-device.service';
 
+declare let gtag: Function;
+
 @Component({
   selector: 'annoq-annotation',
   templateUrl: './annotation.component.html',
@@ -113,6 +115,16 @@ export class AnnotationComponent implements OnInit {
     this.annotationForm.controls.uploadList['controls'].browse.setValue('')
   }
 
+  trackExportConfig() {
+    gtag('event', 'export_config', { page_path: '/search' });
+    this.annotationService.downloadConfig();
+  }
+
+  trackUploadConfig(event: any) {
+    gtag('event', 'upload_config', { page_path: '/search' });
+    this.annotationService.onConfigFileChange(event);
+  }
+
   submit() {
     const query = this.annotationForm.value;
     if (query.chrom) {
@@ -126,6 +138,9 @@ export class AnnotationComponent implements OnInit {
     query.source = source;
 
     if (source.length > 0) {
+      gtag('event', 'search_submit', {
+        search_type: this.snpService.inputTypes.selected.label
+      });
       this.snpService.getSnps(query, 1);
       this.annoqMenuService.closeRightDrawer();
       this.annoqMenuService.selectRightPanel(null);

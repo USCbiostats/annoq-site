@@ -11,6 +11,8 @@ import { SnpDialogService } from 'app/main/apps/snp/services/dialog.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
+declare let gtag: Function;
+
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -88,6 +90,21 @@ export class DetailComponent implements OnInit {
         self.annotationService.setChildVisibility(q, self.annotationService.treeControl.dataNodes)
         self.annotationService.treeControl.expandAll();
       })
+  }
+
+  trackExportConfig() {
+    gtag('event', 'export_config', { page_path: '/detail' });
+    this.annotationService.downloadConfig();
+  }
+
+  trackClearSelection() {
+    gtag('event', 'clear_selection', { page_path: '/detail' });
+    this.annotationService.clear();
+  }
+
+  trackUploadConfig(event: any) {
+    gtag('event', 'upload_config', { page_path: '/detail' });
+    this.annotationService.onConfigFileChange(event);
   }
 
   ngOnDestroy(): void {

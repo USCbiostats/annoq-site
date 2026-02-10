@@ -18,9 +18,9 @@
     </div>
     <div class="annoq-detail-footer" fxLayout="row" fxLayoutAlign="center center">
         <a [routerLink]="['/version']"><button type="button" mat-raised-button color="" class="mr-8">Data Versions</button></a>
-        <button (click)='annotationService.downloadConfig()' type="button" mat-raised-button color=""
+        <button (click)='trackExportConfig()' type="button" mat-raised-button color=""
             class="mr-8">Export Config</button>
-        <button (click)='annotationService.clear()' type="button" mat-raised-button color="" class="mr-8">Clear
+        <button (click)='trackClearSelection()' type="button" mat-raised-button color="" class="mr-8">Clear
             Selection</button>
         <label for="annoq-upload-config" fxLayout="row" fxLayoutAlign="start center" class="annoq-file-upload">
             <button mat-raised-button class="annoq-file-button">
@@ -28,7 +28,7 @@
             </button>
         </label>
         <input #configFileInput type="file" id="annoq-upload-config" (click)="configFileInput.value = null" value=""
-            (change)="annotationService.onConfigFileChange($event)" class="annoq-file-upload" />
+            (change)="trackUploadConfig($event)" class="annoq-file-upload" />
     </div>
     <div class="annoq-section section-1" fxFlex="" annoqPerfectScrollbar>
         <div class="annoq-container" fxLayout="column" fxLayoutAlign="start stretch">
