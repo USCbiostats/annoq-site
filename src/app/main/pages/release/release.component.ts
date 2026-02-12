@@ -25,7 +25,7 @@ import { Component, OnInit } from '@angular/core';
     releases: ReleaseInfo[] = [
       {
         date: 'November 10, 2025',
-        title: 'AnnoQ 1.3',
+        title: 'New API release',
         version: '1.3',
         description: [{
           heading: 'Software Updates',
@@ -38,7 +38,7 @@ import { Component, OnInit } from '@angular/core';
       },
       {
         date: 'July 9, 2025',
-        title: 'AnnoQ 1.2',
+        title: 'Data update',
         version: '1.2',
         description: [{
           heading: 'Data Updates',
@@ -54,7 +54,7 @@ import { Component, OnInit } from '@angular/core';
       },
       {
         date: 'August 12, 2024',
-        title: 'AnnoQ 1.11',
+        title: 'Versioning information',
         version: '1.11',
         description: [{
           items: [
@@ -64,7 +64,7 @@ import { Component, OnInit } from '@angular/core';
       },
       {
         date: 'July 5, 2024',
-        title: 'AnnoQ 1.1',
+        title: 'Data and Software updates',
         version: '1.1',
         description: [
           {
@@ -103,7 +103,7 @@ import { Component, OnInit } from '@angular/core';
       },
       {
         date: '',
-        title: 'AnnoQ 1.0',
+        title: 'Software Update',
         version: '1.0',
         description: [
           {
@@ -133,7 +133,7 @@ import { Component, OnInit } from '@angular/core';
       },
       {
         date: '',
-        title: 'AnnoQ 0.1',
+        title: 'Initial Release',
         version: '0.1',
         description: [{
           heading: 'Added',
