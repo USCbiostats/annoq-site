@@ -26,7 +26,10 @@
               <div *ngFor="let section of element.description" class="annoq-release-section">
                 <div *ngIf="section.heading" class="annoq-section-heading">{{section.heading}}</div>
                 <ul>
-                  <li *ngFor="let item of section.items">{{item}}</li>
+                  <li *ngFor="let item of section.items" [innerHTML]="item"></li>
+                </ul>
+                <ul *ngIf="section.subitems" class="annoq-subitems">
+                  <li *ngFor="let subitem of section.subitems" [innerHTML]="subitem"></li>
                 </ul>
               </div>
             </td>

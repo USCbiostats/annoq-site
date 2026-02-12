@@ -85,6 +85,20 @@
 
             li {
               margin-bottom: 2px;
+
+              a {
+                color: #1a73e8;
+                text-decoration: none;
+
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
+            }
+
+            &.annoq-subitems {
+              padding-left: 40px;
+              list-style-type: circle;
             }
           }
         }

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';                                                                                               
                                                                                                                                                  
-  export interface ReleaseDescription {                                                                                                            
-    heading?: string;                                                                                                                            
-    items: string[];                                                                                                                               
+  export interface ReleaseDescription {
+    heading?: string;
+    items: string[];
+    subitems?: string[];
   }                                                                                                                                                
 
   export interface ReleaseInfo {
@@ -29,10 +30,9 @@ import { Component, OnInit } from '@angular/core';
         description: [{
           heading: 'Software Updates',
           items: [
-            'A new API has been released for the AnnoQ website. The API has end-points that are consistent with standard use cases.',
-            'Two libraries AnnoQR and annoq-py that utilize the API have also been released. They provide abstraction over the API and expose only necessary methods for accessing the system.',
-            'Backend optimized for performance',
-            'Client UI updated to use the new API'
+            'A new <a href="https://api-v2.annoq.org/docs" target="_blank">API</a> has been released for the AnnoQ website. Refer to <a href="https://uscbiostats.github.io/annoq-site/docs/services/" target="_blank">AnnoQ Services</a> for detailed information.',
+            'Two libraries <a href="https://github.com/USCbiostats/AnnoQR" target="_blank">AnnoQR</a> and <a href="https://github.com/USCbiostats/annoq-py" target="_blank">annoq-py</a> that utilize the API have also been released. Tutorials for the <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/r-package" target="_blank">R package</a> and <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/annoq-py" target="_blank">python package</a> are also available.',
+            'The backend of the API has also been updated to optimize performance and the client UI has also been updated to use the new API.'
           ]
         }]
       },
@@ -47,7 +47,8 @@ import { Component, OnInit } from '@angular/core';
             'PANTHER GO slim annotations from version 19.0, based on GO release 2024-01-17, released 2024-06-20',
             'PANTHER Protein Class and PANTHER pathways annotations from version 19.0, released 2024-06-20',
             'Reactome annotations based on Reactome database version 86, released 2023-09-07',
-            'PEREGRINE Functional Annotations have been mapped to human genes in PANTHER version 19.0, released 2024-06-20'
+            'PEREGRINE Functional Annotations have been mapped to human genes in PANTHER version 19.0, released 2024-06-20',
+            'Please refer to <a href="https://annoq.org/version">Data Source and Annotation Tool Version Summary</a> for more details.'
           ]
         }]
       },
@@ -57,7 +58,7 @@ import { Component, OnInit } from '@angular/core';
         version: '1.11',
         description: [{
           items: [
-            'This release of AnnoQ added version information about annotation packages that are used for building WGSA and also version information about other external annotations that have been integrated into the system.'
+            'This release of AnnoQ added <a href="http://annoq.org/version">version information</a> about annotation packages that are used for building <a href="https://sites.google.com/site/jpopgen/wgsa" target="_blank">WGSA</a> and also version information about other external annotations that have been integrated into the system.'
           ]
         }]
       },
@@ -68,12 +69,9 @@ import { Component, OnInit } from '@angular/core';
         description: [
           {
             items: [
-              'Gene Ontology annotations from the GO database (released 2024-01-17, DOI: 10.5281/zenodo.10536401) and PANTHER GO slim annotations (version 18.0, based on GO release 2023-07-25)', 'New PANTHER Protein Class annotation data type (version 18.0, released 2023-08-01)'
-            ]
-          },
-          {
-            heading: 'New Annotation Types Added',
-            items: [
+              'This release of AnnoQ includes annotations based on Gene Ontology annotations from GO database released 2024-01-17, DOI: 10.5281/zenodo.10536401 and PANTHER GO slim annotations (version 18.0, based on GO release 2023-07-25, released 2023-08-01). A new annotation data type-PANTHER Protein Class (version 18.0, released 2023-08-01) has also been added. These have resulted in the addition of the following annotation types:'
+            ],
+            subitems: [
               'ANNOVAR ensembl PANTHER Protein Class',
               'ANNOVAR refseq PANTHER Protein Class',
               'VEP ensembl PANTHER Protein Class',
@@ -87,9 +85,8 @@ import { Component, OnInit } from '@angular/core';
             ]
           },
           {
-            heading: 'New Annotation Column',
             items: [
-              'PEREGRINE enhancer linked PANTHER pathways'
+              'A new annotation column PEREGRINE enhancer linked PANTHER pathways has also been added.'
             ]
           },
           {
