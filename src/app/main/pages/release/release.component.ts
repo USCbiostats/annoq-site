@@ -24,6 +24,17 @@ import { Component, OnInit } from '@angular/core';
 
     releases: ReleaseInfo[] = [
       {
+        date: 'February 20, 2026',
+        title: 'TopMed Freeze 8 release',
+        version: '2.0-beta.1',
+        description: [{
+          heading: 'New Data Release',
+          items: [
+            '<a href="https://api-v2.annoq.org/docs" target="_blank">TopMed</a> is a larger and more diverse dataset and also includes more annotation attributes.'
+          ]
+        }]
+      },      
+      {
         date: 'November 10, 2025',
         title: 'New API release',
         version: '1.3',
