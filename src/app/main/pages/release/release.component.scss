@@ -1,0 +1,111 @@
+  @use "@angular/material" as mat;
+  @import "src/@annoq/scss/annoq";
+  @import "src/@annoq.common/scss/annoq.common";
+
+  :host {
+    h2 {
+      margin: 0;
+    }
+
+    .annoq-section {
+      padding: 2% 2%;
+
+      .annoq-heading {
+        margin: 0 auto;
+        width: 100%;
+
+        h3 {
+          font-size: 200%;
+        }
+      }
+
+      h2 {
+        font-size: 250%;
+      }
+
+      &.section-1 {
+        background-color: #fff;
+      }
+    }
+
+    .annoq-release-table {
+      width: 100%;
+      text-align: left;
+      @include mat.elevation(6);
+
+      .mat-header-cell {
+        padding: 0 1%;
+        font-size: 100% !important;
+
+        @include media-breakpoint("lt-md") {
+          font-size: 70% !important;
+        }
+
+        font-weight: bold;
+        border-right: #bbb solid 1px;
+        border-bottom: $annoq-secondary-color solid 2px;
+      }
+
+      .mat-header-row {
+        background-color: #fff;
+        z-index: 5;
+      }
+
+      .mat-cell {
+        padding: 1%;
+        border-right: #bbb solid 1px;
+        font-size: 100%;
+        vertical-align: top;
+
+        @include media-breakpoint("lt-md") {
+          font-size: 80% !important;
+        }
+
+        &.annoq-description-cell {
+          max-width: 500px;
+          white-space: normal;
+          line-height: 1.5;
+
+          .annoq-release-section {
+            margin-bottom: 8px;
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+
+          .annoq-section-heading {
+            font-weight: bold;
+            margin-bottom: 4px;
+          }
+
+          ul {
+            margin: 0;
+            padding-left: 20px;
+
+            li {
+              margin-bottom: 2px;
+
+              a {
+                color: #1a73e8;
+                text-decoration: none;
+
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
+            }
+
+            &.annoq-subitems {
+              padding-left: 40px;
+              list-style-type: circle;
+            }
+          }
+        }
+      }
+
+      .mat-row:hover {
+        background-color: rgba($annoq-primary-color, 0.05);
+      }
+    }
+  }

@@ -134,8 +134,8 @@
     </label>
     <input #configFileInput type="file" id="annoq-upload-config"
       (click)="$event.target.value = '';configFileInput.value = null" value=""
-      (change)="annotationService.onConfigFileChange($event)" class="annoq-file-upload" />
-    <button (click)='annotationService.downloadConfig()' type="button" mat-raised-button color=""
+      (change)="trackUploadConfig($event)" class="annoq-file-upload" />
+    <button (click)='trackExportConfig()' type="button" mat-raised-button color=""
       class="annoq-sm mr-8">Export
       Config</button>
     <span fxFlex></span>
