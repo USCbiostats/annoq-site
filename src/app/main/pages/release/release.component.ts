@@ -30,7 +30,7 @@ import { Component, OnInit } from '@angular/core';
         description: [{
           heading: 'New Data Release',
           items: [
-            '<a href="https://api-v2.annoq.org/docs" target="_blank">TopMed</a> is a larger and more diverse dataset and also includes more annotation attributes.'
+            '<a href="https://topmed.annoq.org" target="_blank">TopMed</a> is a larger and more diverse dataset and also includes more annotation attributes.'
           ]
         }]
       },      
