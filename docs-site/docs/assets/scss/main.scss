@@ -43,6 +43,48 @@ footer {
   }
 }
 
+footer.annoq-docs-footer {
+  padding: 30px 8px 44px 8px;
+  font-size: 14px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: $white;
+  background-color: #183153;
+
+
+  .annoq-docs-footer-left {
+    max-width: 25%;
+
+    @include media-breakpoint-down(md) {
+      max-width: 100%;
+    }
+  }
+
+  .annoq-docs-footer-logo {
+    width: 100%;
+  }
+
+  .annoq-docs-footer-links-wrap {
+    display: flex;
+    justify-content: flex-start;
+
+    @include media-breakpoint-up(md) {
+      justify-content: flex-start;
+    }
+  }
+
+  .annoq-docs-footer-links {
+    margin-bottom: 0;
+  }
+
+  a {
+    color: $white;
+
+    &:hover {
+      color: $gray-300;
+    }
+  }
+}
+
 // Adjust anchors vs the fixed menu.
 @include media-breakpoint-up(md) {
   .noc-offset-anchor:target {

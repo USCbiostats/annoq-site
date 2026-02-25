@@ -1,28 +1,18 @@
-<footer class="bg-dark py-5 row d-print-none">
+<footer class="annoq-docs-footer row d-print-none">
   <div class="container-fluid mx-sm-5">
-    <div class="row">
-      <div class="col-6 col-sm-4 text-xs-center order-sm-2">
-        {% if site.twitter %}<ul class="list-inline mb-0">
-          <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="" aria-label="Twitter"
-            data-original-title="Twitter">
-            <a class="text-white" target="_blank" href="https://twitter.com/{{ site.twitter }}">
-              <i class="fab fa-twitter"></i>
-            </a>
-          </li>
-        </ul>{% endif %}
+    <div class="row align-items-start">
+      <div class="col-12 col-md-4 mb-4 mb-md-0 annoq-docs-footer-left">
+        <img class="img-fluid mb-2 annoq-docs-footer-logo" src="/assets/images/logos/image-logo-yellow.gif" alt="AnnoQ logo" width="100%">
+        <p class="text-white mb-0"><strong>&copy; Copyright</strong> University of Southern California</p>
       </div>
-      <div class="col-6 col-sm-4 text-right text-xs-center order-sm-3">
-        <ul class="list-inline mb-0">
-          <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="" aria-label="GitHub"
-            data-original-title="GitHub">
-            <a class="text-white" target="_blank" href="{{ site.repo }}">
-              <i class="fab fa-github"></i>
-            </a>
-          </li>
+      <div class="col-12 col-md-4 d-none d-md-block"></div>
+      <div class="col-12 col-md-4 annoq-docs-footer-links-wrap">
+        <ul class="list mb-0 annoq-docs-footer-links">
+          <li><a class="text-white" href="/about">About</a></li>
+          <li><a class="text-white" href="/contact">Contact Us</a></li>
+          <li><a class="text-white" href="/docs/">Annotation Documentation</a></li>
+          <li><a class="text-white" href="/cookie-policy">Cookie Policy</a></li>
         </ul>
-      </div>
-      <div class="col-12 col-sm-4 text-center py-2 order-sm-2">
-        <small class="text-white"><p> <strong>&copy; Copyright</strong> University of Southern California</p></small>
       </div>
     </div>
   </div>
