@@ -1,22 +1,21 @@
 - title: "Getting Started"
-  url: "/"
+  url: ""
   links:
     - title: Browser Compatibility
-      url: "docs/getting_started/browser_compatibility"
+      url: "getting_started/browser_compatibility"
 - title: "Services"
-  url: "docs/services"
+  url: "services"
   links:
     - title: Programmatic Access to AnnoQ
-      url: "docs/services/api"
+      url: "services/api"
 - title: "Tutorials"
-  url: "docs/tutorials"
+  url: "tutorials"
   links:
     - title: Interactive Query UI
-      url: "docs/tutorials/ui-query"
+      url: "tutorials/ui-query"
     - title: Using AnnoQR (R Package)
-      url: "docs/tutorials/r-package"
+      url: "tutorials/r-package"
     - title: Using annoq-py (Python Library)
-      url: "docs/tutorials/annoq-py"
+      url: "tutorials/annoq-py"
 - title: "News"
-  url: "docs/changelog/annoq-1.3"
-  
+  url: "changelog/annoq-1.3"

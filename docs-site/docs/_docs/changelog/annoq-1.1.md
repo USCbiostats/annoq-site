@@ -29,5 +29,5 @@ A new annotation column PEREGRINE enhancer linked PANTHER pathways has also been
 
 
 ### Previous News
-- [AnnoQ 1.0]({{site.baseurl}}/docs/changelog/annoq-1)
-- [AnnoQ 0.1]({{site.baseurl}}/docs/changelog/annoq-0)
+- [AnnoQ 1.0]({{site.baseurl}}/changelog/annoq-1)
+- [AnnoQ 0.1]({{site.baseurl}}/changelog/annoq-0)

@@ -1,0 +1,10 @@
+- title: News
+  external_url: "/release"
+- title: Supported Annotations
+  external_url: "/detail"
+- title: Data Access
+  url: "services"
+- title: About
+  external_url: "/about"
+- title: Help/Tutorial
+  external_url: "/docs/"

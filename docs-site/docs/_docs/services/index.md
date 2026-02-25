@@ -9,4 +9,4 @@ To facilitate easy integration, two libraries that encapsulate the AnnoQ API hav
 1.  [R package (AnnoQR)](https://github.com/USCbiostats/AnnoQR)
 2.  [python package (annoq-py)](https://github.com/USCbiostats/annoq-py)  
 
-Utilizing the libraries allows for abstraction, realiability, performance optimization and portability. They expose essential features of the system and allow developers freedom from having to focus on the internal workings of the system.  View the tutorials for the [R package]({{site.baseurl}}/docs/tutorials/r-package) and [python package]({{site.baseurl}}/docs/tutorials/annoq-py) for more details.
+Utilizing the libraries allows for abstraction, realiability, performance optimization and portability. They expose essential features of the system and allow developers freedom from having to focus on the internal workings of the system.  View the tutorials for the [R package]({{site.baseurl}}/tutorials/r-package) and [python package]({{site.baseurl}}/tutorials/annoq-py) for more details.

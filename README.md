@@ -4,7 +4,7 @@
 
 AnnoQ site is located [here](http://annoq.org/)
 
-Documentation site is located [here](https://uscbiostats.github.io/annoq-site/)
+Documentation site is located [here](http://annoq.org/docs/)
 
 
 ## Development

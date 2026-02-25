@@ -1,0 +1,57 @@
+# Example Nginx config for integrated Angular + Jekyll docs deployment
+# Assumes deploy target is: /var/www/annoq-site
+# Angular app files are at /var/www/annoq-site/*
+# Jekyll docs are at /var/www/annoq-site/docs/*
+
+server {
+    listen 80;
+    server_name annoq.org www.annoq.org;
+
+    root /var/www/annoq-site;
+    index index.html;
+
+    # ---------------------------
+    # Docs static routes first
+    # ---------------------------
+
+    # Canonical trailing slash for docs root
+    location = /docs {
+        return 301 /docs/;
+    }
+
+    # Serve Jekyll-generated docs as static files
+    location ^~ /docs/ {
+        try_files $uri $uri/ /docs/index.html;
+    }
+
+    # ---------------------------
+    # Angular SPA fallback
+    # ---------------------------
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # ---------------------------
+    # Optional: static asset caching
+    # ---------------------------
+    location ~* \.(?:css|js|mjs|jpg|jpeg|gif|png|svg|ico|webp|woff|woff2|ttf)$ {
+        expires 7d;
+        add_header Cache-Control "public, max-age=604800, immutable";
+        try_files $uri =404;
+    }
+
+    # Optional hardening headers
+    add_header X-Content-Type-Options nosniff;
+    add_header X-Frame-Options SAMEORIGIN;
+    add_header Referrer-Policy strict-origin-when-cross-origin;
+}
+
+# -------------------------------------------
+# Optional legacy redirects (if needed)
+# -------------------------------------------
+# If old links hit this same Nginx server, you can add:
+# location = /annoq-site { return 301 /docs/; }
+# location ^~ /annoq-site/docs/ { return 301 /docs/$request_uri; }
+#
+# NOTE: If links are on GitHub Pages domain itself, those redirects
+# must be configured on GitHub Pages side and cannot be handled here.

@@ -9,8 +9,8 @@ This release of AnnoQ added <a href="http://annoq.org/version">version informati
 
 
 ### Previous News
-- [AnnoQ 1.1]({{site.baseurl}}/docs/changelog/annoq-1.1)
-- [AnnoQ 1.0]({{site.baseurl}}/docs/changelog/annoq-1)
-- [AnnoQ 0.1]({{site.baseurl}}/docs/changelog/annoq-0)
+- [AnnoQ 1.1]({{site.baseurl}}/changelog/annoq-1.1)
+- [AnnoQ 1.0]({{site.baseurl}}/changelog/annoq-1)
+- [AnnoQ 0.1]({{site.baseurl}}/changelog/annoq-0)
 
 
