@@ -1,0 +1,79 @@
+@import 'src/@noctua/scss/noctua';
+
+:host {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  z-index: 4;
+
+  .annoq-logo-filler {
+    @include deep-width(50px);
+
+    img {
+      height: 30px;
+    }
+  }
+
+  .mat-toolbar {
+    padding-right: 10px;
+    background-color: #FFF;
+    @include deep-height(50px);
+    color: inherit;
+    position: relative;
+
+    .annoq--query-button {}
+
+    mat-toolbar-row {
+      @include deep-height(40px);
+
+      &.annoq-subtoolbar {
+        button {
+          margin-right: 8px;
+          height: 30px;
+          line-height: 30px;
+          padding-left: 8px;
+          padding-right: 8px;
+          font-size: 12px;
+        }
+      }
+    }
+
+    .loading-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+    }
+  }
+
+  .annoq-logo {
+
+    //@include deep-width(130px);
+    .annoq-main-logo,
+    .annoq-sub-logo {
+      cursor: pointer;
+      font-size: 20px;
+      text-decoration: none !important;
+      text-align: left;
+      color: #555;
+
+      &:hover {
+        color: #000000;
+      }
+    }
+
+    .annoq-main-logo {
+      margin-right: 4px;
+      font-weight: bold;
+    }
+
+    .annoq-sub-logo {
+      font-weight: normal;
+    }
+  }
+
+  .annoq-search-bar {
+    max-width: 600px !important;
+  }
+}

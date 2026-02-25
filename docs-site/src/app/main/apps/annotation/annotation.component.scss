@@ -1,0 +1,83 @@
+@import "src/@noctua/scss/noctua";
+@import "src/@noctua.common/scss/noctua.common";
+
+:host {
+  width: 100%; // display: block;
+  background-color: white;
+  @include mat-elevation(4);
+
+  .annoq-header {
+    @include deep-height(35px);
+    background-color: #EEE;
+    border-bottom: #CCC solid 1px;
+
+    mat-icon-button {
+      @include deep-height(35px);
+      @include deep-width(35px);
+      line-height: 35px;
+    }
+
+    .annoq-title {
+      font-size: 10px;
+      padding: 0 14px;
+    }
+  }
+
+  .annoq-body {
+    padding: 0 14px 14px 14px;
+  }
+
+  .annoq-form-section {
+    width: 100%;
+    background-color: #FFF;
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .pthr-file-upload-header {
+      height: 35px;
+
+      button {
+        @include deep-height(35px);
+
+        &.pthr-file-button {
+          pointer-events: none;
+        }
+      }
+
+      label {
+        padding: 0;
+      }
+
+      .pthr-file-upload-title {
+        margin-left: 4px;
+        color: #888;
+        font-weight: bold;
+      }
+    }
+
+    .annoq-section-header {
+      padding: 0 8px;
+      @include deep-height(35px);
+      background-color: $annoq-primary-color-light;
+
+      .annoq-section-heading {
+
+        font-size: 12px;
+        line-height: 35px;
+        color: #555;
+      }
+
+      .annoq-action-button {
+        margin: 0px;
+        height: 40px; // line-height: 36px;
+      }
+    }
+
+    .annoq-section-body {
+      padding: 5px 5px;
+    }
+  }
+
+}

@@ -1,0 +1,21 @@
+$annoq-border-color: #BBB;
+
+.annoq-b {
+  border: 1px solid $annoq-border-color !important;
+}
+
+.annoq-bl {
+  border-left: 1px solid $annoq-border-color !important;
+}
+
+.annoq-br {
+  border-right: 1px solid $annoq-border-color !important;
+}
+
+.annoq-bt {
+  border-top: 1px solid $annoq-border-color !important;
+}
+
+.annoq-bb {
+  border-bottom: 1px solid $annoq-border-color !important;
+}

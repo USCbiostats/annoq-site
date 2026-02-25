@@ -1,0 +1,337 @@
+<div class="w-100-p" noctuaPerfectScrollbar>
+
+  <div class="header accent p-8 w-100-p">
+    <div class="annoq-container" fxLayout="row" fxLayoutAlign="start center">
+      <div fxLayout="column" fxLayoutAlign="center center" fxFlex="30%">
+        <h1 [@animate]="{value:'*',params:{delay:'100ms', y:'25px'}}">
+          The Annotation Query<br>
+          <strong>
+            (AnnoQ)
+          </strong>
+        </h1>
+        <h2>
+          An integrated and interactive platform for large-scale genetic variant
+          annotation.
+        </h2>
+        <button mat-raised-button [routerLink]="['/search']" mat-link-button class="">
+          Launch Interactive Query
+        </button>
+      </div>
+      <span fxFlex=""></span>
+      <div class="annoq-image" fxFlex="60%">
+        <img class="" src="assets/images/short.gif">
+      </div>
+    </div>
+  </div>
+
+  <div class="annoq-section section-2">
+    <div class="annoq-container" fxLayout="row" fxLayoutAlign="start center">
+      <div class="card card-stats" fxFlex="33%">
+        <div class="annoq-card card-sm">
+          <div class="annoq-stat annoq-sm-font" fxLayout="row" fxLayoutAlign="center center">
+            ~39 million
+          </div>
+          <div class="annoq-card-title">
+            pre-annotated variants from the Haplotype
+            Reference Consortium (HRC)
+          </div>
+        </div>
+      </div>
+      <div class="card card-stats" fxFlex="33%">
+        <div class="annoq-card">
+          <div class="annoq-stat annoq-lg-font" fxLayout="row" fxLayoutAlign="center center">
+            400+
+          </div>
+          <div class="annoq-card-title">
+            Supported Annotation Types
+          </div>
+        </div>
+      </div>
+      <div class="card card-stats" fxFlex="33%">
+        <div class="annoq-card">
+          <div class="annoq-stat" fxLayout="row" fxLayoutAlign="center center">
+            10 000
+          </div>
+          <div class="annoq-card-title">
+            Supports a VCF file of up to 10,000 variants.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="annoq-section section-1">
+    <div class="annoq-container text-center" fxLayout="column" fxLayoutAlign="center stretch">
+      <!--  <h2>Introduction</h2>
+      <p>The Annotation Query (AnnoQ) is an integrated functional annotation platform for large scale genetic variant
+        annotation. It serves researchers with different background and interests. Its easy-to-use user interface and
+        search capabilities suit better for scientists with less bioinformatics skills, including bench scientists and
+        statistician. The backend of the system is a large collection of pre-annotated variants from the Haplotype
+        Reference Consortium (HRC) (~39 million) with sequence features (by WGSA) and functions (PANTHER and Gene
+        Ontology) (we plan to add ~300 millions more variants from dbSNP in the future). The data is built in an
+        Elasticsearch framework and an API was built to allow users to quickly access the annotation data, with one of
+        the
+        following three ways.
+      </p> -->
+
+      <div class="annoq-row-description annoq-easyuse" fxLayout="row" fxLayoutAlign="start center">
+        <div class="annoq-description" fxLayout="column" fxLayoutAlign="center start">
+          <h2>Easy To Use</h2>
+          <p class="p-0">
+            Its easy-to-use user interface and search capabilities suit better for scientists with less bioinformatics
+            skills, including bench scientists and statistician.
+          </p>
+        </div>
+        <span fxFlex=""></span>
+        <div class="annoq-img">
+          <img class="" src="assets/images/doctor-laptop.png">
+        </div>
+      </div>
+      <div class="annoq-row-description annoq-ui" fxLayout="row" fxLayoutAlign="start center">
+        <div class="annoq-img">
+          <img class="" src="assets/images/ui-query.png">
+        </div>
+        <span fxFlex=""></span>
+        <div class="annoq-description annoq-steps" fxLayout="column" fxLayoutAlign="start start">
+          <div class="card card-step">
+            <div class="annoq-card" fxLayout="row" fxLayoutAlign="start center">
+              <div class="annoq-icon" fxLayout="row" fxLayoutAlign="center center">
+                1
+              </div>
+              <div class="annoq-card-title p-8" fxLayout="column" fxLayoutAlign="center start">
+                <div class="secondary-text">Select annotations</div>
+                <small>Organized in a tree structure</small>
+              </div>
+              <span fxFlex=""></span>
+              <button mat-stroked-button class="annoq-rounded-button annoq-sm">
+                MORE INFO
+              </button>
+            </div>
+          </div>
+          <div class="card card-step">
+            <div class="annoq-card" fxLayout="row" fxLayoutAlign="start center">
+              <div class="annoq-icon" fxLayout="row" fxLayoutAlign="center center">
+                2
+              </div>
+              <div class="annoq-card-title p-8 " fxLayout="column" fxLayoutAlign="center start">
+                <div class="secondary-text">Choose Query Type </div>
+                <small>5 types of supported queries  </small>
+              </div>
+              <span fxFlex=""></span>
+              <button mat-stroked-button class="annoq-rounded-button annoq-sm">
+                MORE INFO
+              </button>
+            </div>
+          </div>
+
+          <div class="card card-step">
+            <div class="annoq-card" fxLayout="row" fxLayoutAlign="start center">
+              <div class="annoq-icon" fxLayout="row" fxLayoutAlign="center center">
+                3
+              </div>
+              <div class="annoq-card-title p-8 " fxLayout="column" fxLayoutAlign="center start">
+                <div class="secondary-text annoq-lg">Submit query </div>
+              </div>
+              <span fxFlex=""></span>
+              <button mat-stroked-button class="annoq-rounded-button annoq-sm">
+                MORE INFO
+              </button>
+            </div>
+          </div>
+          <div class="card card-step">
+            <div class="annoq-card" fxLayout="row" fxLayoutAlign="start center">
+              <div class="annoq-icon" fxLayout="row" fxLayoutAlign="center center">
+                4
+              </div>
+              <div class="annoq-card-title p-8 " fxLayout="column" fxLayoutAlign="center start">
+                <div class="secondary-text">View Results
+                </div>
+                <small>Displayed in a table and summary page
+                </small>
+              </div>
+              <span fxFlex=""></span>
+              <button mat-stroked-button class="annoq-rounded-button annoq-sm">
+                MORE INFO
+              </button>
+            </div>
+          </div>
+          <div class="card card-step">
+            <div class="annoq-card" fxLayout="row" fxLayoutAlign="start center">
+              <div class="annoq-icon" fxLayout="row" fxLayoutAlign="center center">
+                5
+              </div>
+              <div class="annoq-card-title p-8 " fxLayout="column" fxLayoutAlign="center start">
+                <div class="secondary-text">Download Results (optional) </div>
+                <small>A generated file is ready to download </small>
+              </div>
+              <span fxFlex=""></span>
+              <button mat-stroked-button class="annoq-rounded-button annoq-sm">
+                MORE INFO
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="annoq-section section-2 text-center">
+    <div class="annoq-heading">
+      <h2>Accessing the Annotated Data</h2>
+      <p class="p-0">
+        We provide more ways to access the annotated date. Whether you want to use the API, AnnoQ User Interface or R
+        Package
+      </p>
+    </div>
+    <div class="annoq-container" fxLayout="row" fxLayoutAlign="start start">
+      <div class="card" fxFlex="33%">
+        <div class="annoq-card">
+          <div class="annoq-icon" fxLayout="row" fxLayoutAlign="center center">
+            <fa-icon [icon]="['fas', 'search-plus']"></fa-icon>
+          </div>
+          <div class="annoq-card-title p-8" fxLayout="column" fxLayoutAlign="start center">
+            <div class="">Interactive Query</div>
+          </div>
+          <div class="annoq-card-description p-8 pt-0">
+            Getting the annotation data with a graphic interface.
+          </div>
+          <div class="p-8 pt-0 annoq-card-footer" fxLayout="row" fxLayoutAlign="center center">
+            <button link-button [routerLink]="['/search']" mat-raised-button class="annoq-rounded-button"
+              color="primary">
+              Launch Interactive Query
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card" fxFlex="33%">
+        <div class="annoq-card">
+          <div class="annoq-icon" fxLayout="row" fxLayoutAlign="center center">
+            <fa-icon [icon]="['fas', 'code']"></fa-icon>
+          </div>
+          <div class="annoq-card-title p-8 text-truncate" fxLayout="column" fxLayoutAlign="start center">
+            <div class="">API Data Access</div>
+          </div>
+          <div class="annoq-card-description p-8 pt-0">
+            Retrieving annotation data using scripts.
+          </div>
+          <div class="p-8 pt-0 annoq-card-footer" fxLayout="row" fxLayoutAlign="center center">
+            <button href="https://uscbiostats.github.io/AnnoQ/api" target="_blank" mat-stroked-button
+              class="annoq-rounded-button">
+              VIEW DETAILS
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card" fxFlex="33%">
+        <div class="annoq-card">
+          <div class="annoq-icon" fxLayout="row" fxLayoutAlign="center center">
+            <fa-icon [icon]="['fas', 'file-code']"></fa-icon>
+          </div>
+          <div class="annoq-card-title p-8" fxLayout="column" fxLayoutAlign="start center">
+            <div class="">R Package</div>
+          </div>
+          <div class="annoq-card-description p-8 pt-0">
+            Getting annotation data via R programming language.
+          </div>
+          <div class="p-8 pt-0 annoq-card-footer" fxLayout="row" fxLayoutAlign="center center">
+            <button [routerLink]="['/detail']" mat-stroked-button class="annoq-rounded-button">
+              VIEW DETAILS
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="annoq-section section-1 text-center">
+    <div class="annoq-heading">
+      <h3>We recommend the services of our trusted resources</h3>
+      <p class="p-0">
+        We could not do it without our trusted resources and we are very grateful for the great and reliable data
+        they provide. To mention a few: Pre-annotated variants from the Haplotype Reference Consortium (HRC) with
+        sequence features (by WGSA) and functions (by PANTHER and Gene Ontology)
+      </p>
+    </div>
+    <div class="annoq-container mt-24" fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="card card-logo">
+        <div class="annoq-card">
+          <div class="annoq-image" fxLayout="row" fxLayoutAlign="center center">
+            <a href="http://www.haplotype-reference-consortium.org" target="_blank">
+              <strong>HRC</strong>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="card card-logo">
+        <div class="annoq-card">
+          <div class="annoq-image" fxLayout="row" fxLayoutAlign="center center">
+            <a href="https://sites.google.com/site/jpopgen/wgsa" target="_blank">
+              WGSA
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="card card-logo">
+        <div class="annoq-card">
+          <div class="annoq-image" fxLayout="row" fxLayoutAlign="center center">
+            <a href="http://pantherdb.org/" target="_blank">
+              <img class="" src="assets/images/logos/panther-logo-mono.png">
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="card card-logo">
+        <div class="annoq-card">
+          <div class="annoq-image" fxLayout="row" fxLayoutAlign="center center">
+            <a href="http://geneontology.org/" target="_blank">
+              <img class="" src="assets/images/logos/go-logo-mono.png">
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="card card-logo">
+        <div class="annoq-card">
+          <div class="annoq-image" fxLayout="row" fxLayoutAlign="center center">
+            <a href="https://p01.uscbiostatistics.org/" target="_blank">
+              <img class="" src="assets/images/logos/image-logo-mono.png">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--   <div class=" annoq-section section-2">
+                <div class="annoq-container" fxLayout="row wrap" fxLayoutAlign="start start">
+                  <div class="card" fxFlex="33%">
+                    <div class="annoq-card">
+                      <div class="annoq-image">
+                        <img class="" src="assets/images/logos/panther-logo.jpg">
+                      </div>
+                      <div class="annoq-card-title p-8 text-truncate">
+                        <div class="secondary-text">gene function analysis</div>
+                      </div>
+                      <div class="p-8 pt-0 annoq-card-footer" fxLayout="row" fxLayoutAlign="center center">
+                        <button link-button [routerLink]="['/search']" mat-link-button class="">
+                          VIEW
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card" fxFlex="33%">
+                    <div class="annoq-card">
+                      <div class="annoq-image">
+                        <img class="" src="assets/images/logos/go-logo-large.png">
+                      </div>
+                      <div class="annoq-card-title p-8 text-truncate">
+                        <div class="secondary-text">gene function analysis</div>
+                      </div>
+                      <div class="p-8 pt-0 annoq-card-footer" fxLayout="row" fxLayoutAlign="center center">
+                        <button link-button [routerLink]="['/search']" mat-link-button class="">
+                          VIEW
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div> -->
+
+  <annoq-footer></annoq-footer>
+</div>
