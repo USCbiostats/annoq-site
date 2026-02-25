@@ -77,6 +77,9 @@ $link-hover-decoration: none !default;
 $google_font_name: "Open Sans" !default;
 $google_font_family: "Open+Sans:300,300i,400,400i,700,700i" !default;
 $web-font-path: "https://fonts.googleapis.com/css?family=#{$google_font_family}";
+$google_font_name_nav: "Roboto" !default;
+$google_font_family_nav: "Roboto:300,300i,400,400i,500,500i,700,700i" !default;
+$web-font-path-nav: "https://fonts.googleapis.com/css?family=#{$google_font_family_nav}";
 
 $noc-fonts-serif: -apple-system,
 BlinkMacSystemFont,
