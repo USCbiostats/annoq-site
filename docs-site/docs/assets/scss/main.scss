@@ -35,52 +35,20 @@
   @import url($web-font-path-nav);
 }
 
-footer {
-  min-height: 150px;
-
-  @include media-breakpoint-down(md) {
-    min-height: 200px;
-  }
-}
-
 footer.annoq-docs-footer {
-  padding: 30px 8px 44px 8px;
-  font-size: 14px;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  color: $white;
+  padding: 30px 8px;
   background-color: #183153;
+  color: #f7f7f7;
 
-
-  .annoq-docs-footer-left {
-    max-width: 25%;
-
-    @include media-breakpoint-down(md) {
-      max-width: 100%;
-    }
-  }
-
-  .annoq-docs-footer-logo {
+  .annoq-image-logo {
     width: 100%;
   }
 
-  .annoq-docs-footer-links-wrap {
-    display: flex;
-    justify-content: flex-start;
-
-    @include media-breakpoint-up(md) {
-      justify-content: flex-start;
-    }
-  }
-
-  .annoq-docs-footer-links {
-    margin-bottom: 0;
-  }
-
   a {
-    color: $white;
+    color: #ffffff;
 
     &:hover {
-      color: $gray-300;
+      color: #dddddd;
     }
   }
 }
