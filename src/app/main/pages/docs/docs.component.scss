@@ -59,23 +59,118 @@
 
   .docs-markdown {
     font-size: 16px;
-    line-height: 1.65;
-    color: #1f2937;
+    line-height: 1.6;
+    color: #24292f;
     word-break: break-word;
+
+    ::ng-deep .markdown-body {
+      color: #24292f;
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 980px;
+    }
+
+    ::ng-deep .markdown-body > *:first-child {
+      margin-top: 0 !important;
+    }
+
+    ::ng-deep .markdown-body > *:last-child {
+      margin-bottom: 0 !important;
+    }
 
     ::ng-deep h1,
     ::ng-deep h2,
     ::ng-deep h3,
+    ::ng-deep h4,
+    ::ng-deep h5,
+    ::ng-deep h6 {
+      color: #24292f;
+      line-height: 1.25;
+      font-weight: 600;
+      margin-top: 24px;
+      margin-bottom: 16px;
+    }
+
+    ::ng-deep h1,
+    ::ng-deep h2 {
+      padding-bottom: 0.3em;
+      border-bottom: 1px solid #d0d7de;
+    }
+
+    ::ng-deep h1 {
+      font-size: 2em;
+    }
+
+    ::ng-deep h2 {
+      font-size: 1.5em;
+    }
+
+    ::ng-deep h3 {
+      font-size: 1.25em;
+    }
+
     ::ng-deep h4 {
-      color: #1f2937;
-      line-height: 1.35;
-      margin-top: 1.25em;
-      margin-bottom: 0.6em;
+      font-size: 1em;
+    }
+
+    ::ng-deep h5 {
+      font-size: 0.875em;
+    }
+
+    ::ng-deep h6 {
+      font-size: 0.85em;
+      color: #57606a;
     }
 
     ::ng-deep p,
-    ::ng-deep li {
+    ::ng-deep ul,
+    ::ng-deep ol,
+    ::ng-deep blockquote,
+    ::ng-deep table,
+    ::ng-deep pre {
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+
+    ::ng-deep p,
+    ::ng-deep li,
+    ::ng-deep td,
+    ::ng-deep th {
       font-size: 16px;
+    }
+
+    ::ng-deep ul,
+    ::ng-deep ol {
+      padding-left: 2em;
+    }
+
+    ::ng-deep li + li {
+      margin-top: 0.25em;
+    }
+
+    ::ng-deep blockquote {
+      padding: 0 1em;
+      color: #57606a;
+      border-left: 0.25em solid #d0d7de;
+    }
+
+    ::ng-deep table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      display: block;
+      width: max-content;
+      max-width: 100%;
+      overflow: auto;
+    }
+
+    ::ng-deep table th,
+    ::ng-deep table td {
+      border: 1px solid #d0d7de;
+      padding: 6px 13px;
+    }
+
+    ::ng-deep table tr:nth-child(2n) {
+      background-color: #f6f8fa;
     }
 
     ::ng-deep img {
@@ -83,35 +178,18 @@
       height: auto;
     }
 
-    ::ng-deep code {
-      background: #eef2f8;
-      color: #111827;
-      padding: 2px 5px;
+    ::ng-deep :not(pre) > code:not([class*="language-"]) {
+      color: #24292f;
+      background-color: rgba(175, 184, 193, 0.2);
+      padding: 0.2em 0.4em;
       border-radius: 3px;
-      font-size: 15px;
-      font-weight: 500;
+      font-size: 85%;
     }
 
-    ::ng-deep pre {
-      background: #f6f8fa;
-      color: #111827 !important;
-      border: 1px solid #d6dbe6;
+    ::ng-deep pre[class*="language-"] {
       border-radius: 6px;
-      padding: 14px;
-      line-height: 1.6;
+      line-height: 1.45;
       overflow: auto;
-      font-size: 15px;
-
-      code {
-        background: transparent;
-        color: #111827 !important;
-        padding: 0;
-        font-weight: 500;
-      }
-
-      * {
-        color: #111827 !important;
-      }
     }
 
     ::ng-deep iframe {

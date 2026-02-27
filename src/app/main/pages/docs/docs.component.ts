@@ -1,10 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { marked } from 'marked';
 
 interface DocLink {
   title: string;
@@ -53,7 +51,7 @@ export class DocsComponent implements OnInit, OnDestroy {
     }
   ];
 
-  content: SafeHtml = '';
+  content = '';
   currentPath = '/docs';
   loading = false;
 
@@ -61,8 +59,7 @@ export class DocsComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly router: Router,
-    private readonly http: HttpClient,
-    private readonly sanitizer: DomSanitizer
+    private readonly http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -106,13 +103,11 @@ export class DocsComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.http.get(docUrl, { responseType: 'text' }).subscribe({
       next: markdown => {
-        const normalizedMarkdown = this.normalizeMarkdown(markdown);
-        const html = marked.parse(normalizedMarkdown) as string;
-        this.content = this.sanitizer.bypassSecurityTrustHtml(html);
+        this.content = this.normalizeMarkdown(markdown);
         this.loading = false;
       },
       error: () => {
-        this.content = this.sanitizer.bypassSecurityTrustHtml('<h1>Documentation page not found</h1><p>The requested page is unavailable.</p>');
+        this.content = '# Documentation page not found\n\nThe requested page is unavailable.';
         this.loading = false;
       }
     });

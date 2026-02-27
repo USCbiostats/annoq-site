@@ -15,6 +15,7 @@ import { CookiePolicyComponent } from './cookie-policy/cookie-policy.component';
 import { VersionComponent } from './version/version.component';
 import { ReleaseComponent } from './release/release.component';
 import { DocsComponent } from './docs/docs.component';
+import { MarkdownModule } from 'ngx-markdown';
 
 const routes = [{
   path: '', component: HomeComponent
@@ -59,7 +60,8 @@ const routes = [{
     AnnoqSharedModule,
     AnnoqFooterModule,
     AnnoqConfirmDialogModule,
-    AppsModule
+    AppsModule,
+    MarkdownModule.forRoot()
   ],
   providers: [
   ]

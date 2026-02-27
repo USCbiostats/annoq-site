@@ -21,6 +21,8 @@
 
   <main class="docs-content" fxFlex="1 1 auto" fxFlex.lt-md="100">
     <mat-progress-bar *ngIf="loading" mode="indeterminate" color="accent"></mat-progress-bar>
-    <div class="docs-markdown" [innerHTML]="content" (click)="onContentClick($event)"></div>
+    <div class="docs-markdown" (click)="onContentClick($event)">
+      <markdown class="markdown-body" [data]="content"></markdown>
+    </div>
   </main>
 </div>
