@@ -2,7 +2,7 @@
 
 An R package for programmatically accessing SNP data from the AnnoQ API.
 
-[GitHub Repo](https://github.com/USCbiostats/AnnoQR){:target="_blank"}
+[GitHub Repo](https://github.com/USCbiostats/AnnoQR)
 
 ## Installation
 

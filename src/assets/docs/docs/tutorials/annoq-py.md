@@ -2,7 +2,7 @@
 
 A Python package for programmatically accessing SNP data from the AnnoQ API.
 
-[GitHub Repo](https://github.com/USCbiostats/annoq-py){:target="_blank"}
+[GitHub Repo](https://github.com/USCbiostats/annoq-py)
 
 ## Installation
 

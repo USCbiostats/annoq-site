@@ -58,14 +58,14 @@
   padding: 24px;
 
   .docs-markdown {
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.6;
     color: #24292f;
     word-break: break-word;
 
     ::ng-deep .markdown-body {
       color: #24292f;
-      font-size: 16px;
+      font-size: 18px;
       line-height: 1.6;
       max-width: 980px;
     }
@@ -136,7 +136,7 @@
     ::ng-deep li,
     ::ng-deep td,
     ::ng-deep th {
-      font-size: 16px;
+      font-size: 18px;
     }
 
     ::ng-deep ul,
@@ -190,6 +190,35 @@
       border-radius: 6px;
       line-height: 1.45;
       overflow: auto;
+    }
+
+    ::ng-deep pre[class*="language-"] code,
+    ::ng-deep pre code[class*="language-"] {
+      background: transparent !important;
+      // color: #393a34 !important;
+      text-shadow: none !important;
+    }
+
+    ::ng-deep pre[class*="language-"] code * {
+      background: transparent !important;
+      text-shadow: none !important;
+    }
+
+    ::ng-deep pre:not([class*="language-"]) {
+      background: #ffffff;
+      border: 1px solid #dddddd;
+      border-radius: 6px;
+      padding: 1em;
+      overflow: auto;
+    }
+
+    ::ng-deep pre:not([class*="language-"]) code {
+      background: transparent !important;
+      color: #393a34 !important;
+      font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+      font-size: 0.9em;
+      line-height: 1.35;
+      padding: 0;
     }
 
     ::ng-deep iframe {
