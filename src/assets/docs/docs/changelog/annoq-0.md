@@ -1,4 +1,3 @@
-  
 # AnnoQ 0.1
 
 Welcome to the release of AnnoQ version 0.1. This is a limited version and

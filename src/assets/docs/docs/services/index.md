@@ -1,6 +1,3 @@
----
----
-
 # AnnoQ Services
 
 In addition to viewing and downloading SNP annotations from the [AnnoQ Website](https://annoq.org), users can use AnnoQ Services to retrieve information programatically.  The [API](https://api-v2.annoq.org/docs) with Swagger documentation can be used from the command line for impromptu access or as part of scripts within large workflows. 

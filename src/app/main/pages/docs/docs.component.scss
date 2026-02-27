@@ -25,7 +25,7 @@
 
   .docs-title {
     margin: 0 0 16px;
-    font-size: 1.7rem;
+    font-size: 28px;
   }
 
   .docs-section {
@@ -37,12 +37,12 @@
     text-decoration: none;
     padding: 7px 10px;
     border-radius: 2px;
-    font-size: 1.08rem;
+    font-size: 16px;
   }
 
   .docs-child-link {
     padding-left: 18px;
-    font-size: 1.04rem;
+    font-size: 15px;
   }
 
   .active {
@@ -58,7 +58,7 @@
   padding: 24px;
 
   .docs-markdown {
-    font-size: 1.15rem;
+    font-size: 16px;
     line-height: 1.65;
     color: #1f2937;
     word-break: break-word;
@@ -75,7 +75,7 @@
 
     ::ng-deep p,
     ::ng-deep li {
-      font-size: 1.1rem;
+      font-size: 16px;
     }
 
     ::ng-deep img {
@@ -88,24 +88,29 @@
       color: #111827;
       padding: 2px 5px;
       border-radius: 3px;
-      font-size: 0.98em;
+      font-size: 15px;
       font-weight: 500;
     }
 
     ::ng-deep pre {
       background: #f6f8fa;
-      color: #111827;
+      color: #111827 !important;
       border: 1px solid #d6dbe6;
       border-radius: 6px;
       padding: 14px;
       line-height: 1.6;
       overflow: auto;
+      font-size: 15px;
 
       code {
         background: transparent;
-        color: #111827;
+        color: #111827 !important;
         padding: 0;
         font-weight: 500;
+      }
+
+      * {
+        color: #111827 !important;
       }
     }
 

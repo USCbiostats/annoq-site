@@ -1,3 +1,60 @@
+# annoq-py (Python Library)
+
+A Python package for programmatically accessing SNP data from the AnnoQ API.
+
+[GitHub Repo](https://github.com/USCbiostats/annoq-py){:target="_blank"}
+
+## Installation
+
+Install directly from GitHub using pip:
+
+```bash
+pip install git+https://github.com/USCbiostats/annoq-py.git
+```
+
+## Requirements
+
+- Python 3.7 or higher
+
+## Quick Start
+
+```python
+import annoq
+
+# Get available SNP attributes
+attributes = annoq.get_snp_attributes()
+
+# Search SNPs on chromosome 1
+snps = annoq.get_snps_by_chr(
+    chromosome_identifier="1",
+    start_position=1,
+    end_position=100000,
+    fields=["chr", "pos", "ref", "alt", "rs_dbSNP151"]
+)
+```
+
+## Core Functions
+
+The package provides 7 main functions organized into three categories:
+
+### Attribute Discovery
+
+- `get_snp_attributes()` - List all available SNP attributes
+
+### SNP Retrieval
+
+- `get_snps_by_chr()` - Query by chromosome and position range
+- `get_snps_by_rsid_list()` - Query by RSID identifiers
+- `get_snps_by_gene_product()` - Query by gene information
+
+### SNP Counting
+
+- `count_snps_by_chr()` - Count SNPs by chromosome
+- `count_snps_by_rsid_list()` - Count SNPs by RSID list
+- `count_snps_by_gene_product()` - Count SNPs by gene
+
+---
+
 ## Detailed Usage
 
 ### 1. Getting SNP Attributes
@@ -454,5 +511,3 @@ This package is licensed under the MIT License.
 ## Support
 
 For questions or issues related to AnnoQ itself, please visit the site [AnnoQ](https://annoq.org)
-
-

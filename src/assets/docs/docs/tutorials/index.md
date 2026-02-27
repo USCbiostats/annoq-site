@@ -1,6 +1,3 @@
----
----
-
 # Tutorials
 
 The following video gives a high-level view of the AnnoQ system 
@@ -14,4 +11,3 @@ The following video gives a high-level view of the AnnoQ system
 ## AnnoQ API
 
 - The [AnnoQ API tutorial](/docs/services/api) gives details about the end-points and links to packages that can be used for programmatic access to the data.  
-

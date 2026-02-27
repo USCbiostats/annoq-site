@@ -1,6 +1,3 @@
----
----
-
 # Programmatic Access to AnnoQ
 
 > This page documents how to query AnnoQ using the API
@@ -51,4 +48,3 @@ These end-points have been specifically designed for outputting large result set
 The following software packages are built using the API.  These libraries can be included in workflows to retrieve information from AnnoQ.  
 1.  A [R package (AnnoQR)](https://github.com/USCbiostats/AnnoQR) with [tutorial](/docs/tutorials/r-package) can be used to access the API
 2.  A [python package (annoq-py)](https://github.com/USCbiostats/annoq-py) with [tutorial](/docs/tutorials/annoq-py) also has methods to access the API
-

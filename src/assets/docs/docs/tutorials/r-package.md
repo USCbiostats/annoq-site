@@ -1,3 +1,62 @@
+# AnnoQR (R Package)
+
+An R package for programmatically accessing SNP data from the AnnoQ API.
+
+[GitHub Repo](https://github.com/USCbiostats/AnnoQR){:target="_blank"}
+
+## Installation
+
+Install directly from GitHub using the `devtools` package:
+
+```R
+install.packages("devtools")
+devtools::install_github("USCbiostats/AnnoQR")
+```
+
+## Requirements
+
+- R 3.5 or higher
+- Required packages: `httr`, `jsonlite` (automatically installed)
+
+## Quick Start
+
+```R
+library(AnnoQR)
+
+# Get available SNP attributes
+attributes <- snpAttributesQuery()
+
+# Search SNPs on chromosome 1
+snps <- regionQuery(
+  chromosome_identifier = "1",
+  start_position = 1,
+  end_position = 100000,
+  fields = c("chr", "pos", "ref", "alt", "rs_dbSNP151")
+)
+```
+
+## Core Functions
+
+The package provides 7 main functions organized into three categories:
+
+### Attribute Discovery
+
+- `snpAttributesQuery()` - List all available SNP attributes
+
+### SNP Retrieval
+
+- `regionQuery()` - Query by chromosome and position range
+- `rsidsQuery()` - Query by RSID identifiers
+- `geneQuery()` - Query by gene information
+
+### SNP Counting
+
+- `countRegionQuery()` - Count SNPs by chromosome
+- `countRsidsQuery()` - Count SNPs by RSID list
+- `countGeneQuery()` - Count SNPs by gene
+
+---
+
 ## Detailed Usage
 
 ### 1. Getting SNP Attributes
