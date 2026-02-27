@@ -1,0 +1,134 @@
+import { HttpClient } from '@angular/common/http';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
+import { marked } from 'marked';
+
+interface DocLink {
+  title: string;
+  path: string;
+}
+
+interface DocSection {
+  title: string;
+  path: string;
+  links?: DocLink[];
+}
+
+@Component({
+  selector: 'app-docs',
+  templateUrl: './docs.component.html',
+  styleUrls: ['./docs.component.scss']
+})
+export class DocsComponent implements OnInit, OnDestroy {
+  sections: DocSection[] = [
+    {
+      title: 'Getting Started',
+      path: '/docs',
+      links: [
+        { title: 'Browser Compatibility', path: '/docs/getting_started/browser_compatibility' }
+      ]
+    },
+    {
+      title: 'Services',
+      path: '/docs/services',
+      links: [
+        { title: 'Programmatic Access to AnnoQ', path: '/docs/services/api' }
+      ]
+    },
+    {
+      title: 'Tutorials',
+      path: '/docs/tutorials',
+      links: [
+        { title: 'Interactive Query UI', path: '/docs/tutorials/ui-query' },
+        { title: 'Using AnnoQR (R Package)', path: '/docs/tutorials/r-package' },
+        { title: 'Using annoq-py (Python Library)', path: '/docs/tutorials/annoq-py' }
+      ]
+    },
+    {
+      title: 'News',
+      path: '/docs/changelog/annoq-1.3'
+    }
+  ];
+
+  content: SafeHtml = '';
+  currentPath = '/docs';
+  loading = false;
+
+  private routeSubscription?: Subscription;
+
+  constructor(
+    private readonly router: Router,
+    private readonly http: HttpClient,
+    private readonly sanitizer: DomSanitizer
+  ) {}
+
+  ngOnInit(): void {
+    this.routeSubscription = this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => this.loadCurrentDoc());
+
+    this.loadCurrentDoc();
+  }
+
+  ngOnDestroy(): void {
+    this.routeSubscription?.unsubscribe();
+  }
+
+  onContentClick(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    const anchor = target.closest('a');
+
+    if (!anchor) {
+      return;
+    }
+
+    const href = anchor.getAttribute('href');
+
+    if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('#')) {
+      return;
+    }
+
+    event.preventDefault();
+    this.router.navigateByUrl(href);
+  }
+
+  isActive(path: string): boolean {
+    return this.currentPath === path;
+  }
+
+  private loadCurrentDoc(): void {
+    this.currentPath = this.router.url.split('?')[0].split('#')[0];
+    const docUrl = this.resolveAssetPath(this.currentPath);
+
+    this.loading = true;
+    this.http.get(docUrl, { responseType: 'text' }).subscribe({
+      next: markdown => {
+        const html = marked.parse(markdown) as string;
+        this.content = this.sanitizer.bypassSecurityTrustHtml(html);
+        this.loading = false;
+      },
+      error: () => {
+        this.content = this.sanitizer.bypassSecurityTrustHtml('<h1>Documentation page not found</h1><p>The requested page is unavailable.</p>');
+        this.loading = false;
+      }
+    });
+  }
+
+  private resolveAssetPath(path: string): string {
+    if (path === '/docs' || path === '/docs/') {
+      return 'assets/docs/index.md';
+    }
+
+    const suffix = path.replace(/^\/docs\/?/, '');
+    const parts = suffix.split('/').filter(Boolean);
+
+    if (parts.length === 1) {
+      return `assets/docs/docs/${parts[0]}/index.md`;
+    }
+
+    return `assets/docs/docs/${parts.join('/')}.md`;
+  }
+}

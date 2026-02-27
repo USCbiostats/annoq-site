@@ -14,6 +14,7 @@ import { AnnoqConfirmDialogModule } from '@annoq/components/confirm-dialog/confi
 import { CookiePolicyComponent } from './cookie-policy/cookie-policy.component';
 import { VersionComponent } from './version/version.component';
 import { ReleaseComponent } from './release/release.component';
+import { DocsComponent } from './docs/docs.component';
 
 const routes = [{
   path: '', component: HomeComponent
@@ -30,7 +31,13 @@ const routes = [{
 }, {
   path: 'version', component: VersionComponent
 }, {
-  path: 'release', component: ReleaseComponent  
+  path: 'release', component: ReleaseComponent
+}, {
+  path: 'docs', component: DocsComponent
+}, {
+  path: 'docs/:section', component: DocsComponent
+}, {
+  path: 'docs/:section/:page', component: DocsComponent
 }];
 
 @NgModule({
@@ -43,7 +50,8 @@ const routes = [{
     ContactComponent,
     CookiePolicyComponent,
     VersionComponent,
-    ReleaseComponent
+    ReleaseComponent,
+    DocsComponent
   ],
   imports: [
     RouterModule.forChild(routes),
