@@ -3,55 +3,129 @@
 :host {
   display: block;
   width: 100%;
+  height: 100%;
+  font-size: 18px;
 }
 
 .docs-page {
-  padding: 16px;
+  width: 100%;
+  min-height: 100%;
+  align-items: stretch;
 }
 
 .docs-nav {
+  background: #f5f7fb;
+  border-right: 1px solid #d6dbe6;
+  padding: 24px 20px;
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  height: calc(100vh - 64px);
+  overflow-y: auto;
+
   .docs-title {
-    margin: 0 0 12px;
+    margin: 0 0 16px;
+    font-size: 1.7rem;
   }
 
   .docs-section {
-    margin-bottom: 12px;
+    margin-bottom: 14px;
   }
 
   .docs-link {
     display: block;
     text-decoration: none;
-    padding: 6px 0;
+    padding: 7px 10px;
+    border-radius: 2px;
+    font-size: 1.08rem;
   }
 
   .docs-child-link {
-    padding-left: 12px;
-    font-size: 95%;
+    padding-left: 18px;
+    font-size: 1.04rem;
   }
 
   .active {
     font-weight: 600;
+    background: #e7edf9;
   }
 }
 
 .docs-content {
-  min-height: 50vh;
+  min-height: calc(100vh - 64px);
+  max-height: calc(100vh - 64px);
+  overflow-y: auto;
+  padding: 24px;
 
   .docs-markdown {
-    padding-top: 8px;
+    font-size: 1.15rem;
+    line-height: 1.65;
+    color: #1f2937;
     word-break: break-word;
+
+    ::ng-deep h1,
+    ::ng-deep h2,
+    ::ng-deep h3,
+    ::ng-deep h4 {
+      color: #1f2937;
+      line-height: 1.35;
+      margin-top: 1.25em;
+      margin-bottom: 0.6em;
+    }
+
+    ::ng-deep p,
+    ::ng-deep li {
+      font-size: 1.1rem;
+    }
 
     ::ng-deep img {
       max-width: 100%;
       height: auto;
     }
 
+    ::ng-deep code {
+      background: #eef2f8;
+      color: #111827;
+      padding: 2px 5px;
+      border-radius: 3px;
+      font-size: 0.98em;
+      font-weight: 500;
+    }
+
     ::ng-deep pre {
+      background: #f6f8fa;
+      color: #111827;
+      border: 1px solid #d6dbe6;
+      border-radius: 6px;
+      padding: 14px;
+      line-height: 1.6;
       overflow: auto;
+
+      code {
+        background: transparent;
+        color: #111827;
+        padding: 0;
+        font-weight: 500;
+      }
     }
 
     ::ng-deep iframe {
       max-width: 100%;
     }
+  }
+}
+
+@include media-breakpoint("lt-md") {
+  .docs-nav {
+    position: static;
+    border-right: 0;
+    border-bottom: 1px solid #d6dbe6;
+    height: auto;
+    max-height: none;
+  }
+
+  .docs-content {
+    min-height: auto;
+    max-height: none;
   }
 }

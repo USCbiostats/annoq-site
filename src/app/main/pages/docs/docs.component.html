@@ -1,5 +1,5 @@
-<div class="docs-page annoq-container" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="24px">
-  <aside class="docs-nav" fxFlex="25" fxFlex.lt-md="100">
+<div class="docs-page" fxLayout="row" fxLayout.lt-md="column">
+  <aside class="docs-nav" fxFlex="280px" fxFlex.lt-md="100">
     <h2 class="docs-title">Documentation</h2>
 
     <div class="docs-section" *ngFor="let section of sections">
@@ -19,7 +19,7 @@
     </div>
   </aside>
 
-  <main class="docs-content" fxFlex="75" fxFlex.lt-md="100">
+  <main class="docs-content" fxFlex="1 1 auto" fxFlex.lt-md="100">
     <mat-progress-bar *ngIf="loading" mode="indeterminate" color="accent"></mat-progress-bar>
     <div class="docs-markdown" [innerHTML]="content" (click)="onContentClick($event)"></div>
   </main>

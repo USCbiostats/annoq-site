@@ -106,7 +106,8 @@ export class DocsComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.http.get(docUrl, { responseType: 'text' }).subscribe({
       next: markdown => {
-        const html = marked.parse(markdown) as string;
+        const normalizedMarkdown = this.normalizeMarkdown(markdown);
+        const html = marked.parse(normalizedMarkdown) as string;
         this.content = this.sanitizer.bypassSecurityTrustHtml(html);
         this.loading = false;
       },
@@ -130,5 +131,14 @@ export class DocsComponent implements OnInit, OnDestroy {
     }
 
     return `assets/docs/docs/${parts.join('/')}.md`;
+  }
+
+  private normalizeMarkdown(markdown: string): string {
+    let normalized = markdown.trimStart();
+
+    normalized = normalized.replace(/^---\s*[\r\n]+[\s\S]*?[\r\n]+---\s*[\r\n]*/m, '');
+    normalized = normalized.replace(/^(?:-{3,}|\*{3,})\s*[\r\n]+/, '');
+
+    return normalized;
   }
 }
