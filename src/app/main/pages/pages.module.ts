@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { SecurityContext } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { AnnoqSharedModule } from '@annoq/shared.module';
@@ -61,7 +62,9 @@ const routes = [{
     AnnoqFooterModule,
     AnnoqConfirmDialogModule,
     AppsModule,
-    MarkdownModule.forRoot()
+    MarkdownModule.forRoot({
+      sanitize: SecurityContext.NONE
+    })
   ],
   providers: [
   ]
