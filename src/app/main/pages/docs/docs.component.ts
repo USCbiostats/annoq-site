@@ -44,10 +44,6 @@ export class DocsComponent implements OnInit, OnDestroy {
         { title: 'Using AnnoQR (R Package)', path: '/docs/tutorials/r-package' },
         { title: 'Using annoq-py (Python Library)', path: '/docs/tutorials/annoq-py' }
       ]
-    },
-    {
-      title: 'News',
-      path: '/docs/changelog/annoq-1.3'
     }
   ];
 
