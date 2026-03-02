@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   dataset: 'annoq-annotations-tm-20251208',
-  annotationApiV2: 'https://topmed.api-v2.annoq.org',
+  annotationApiV2: 'https://api-v2.topmed.annoq.org',
   snpResultsSize: 50,
   termsDisplayedSize: 5,
   genesDisplayedSize: 5,
