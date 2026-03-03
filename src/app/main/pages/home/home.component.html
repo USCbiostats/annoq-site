@@ -24,7 +24,7 @@
             class="annoq-rounded-button annoq-half-button annoq-r w-100-p">
             LAUNCH QUERY UI
           </button>
-          <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" fxFlex="100" target="_blank">
+          <a [routerLink]="['/docs/tutorials/ui-query']" fxFlex="100">
             <button mat-raised-button class="annoq-rounded-button annoq-half-button annoq-l w-100-p">
               UI TUTORIAL
             </button>
@@ -107,7 +107,7 @@
                 <small>Organized in tree structure</small>
               </div>
               <span fxFlex=""></span>
-              <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" target="_blank"
+              <a [routerLink]="['/docs/tutorials/ui-query']"
                 mat-stroked-button class="annoq-rounded-button">
                 MORE INFO
               </a>
@@ -123,7 +123,7 @@
                 <small>5 types of supported queries</small>
               </div>
               <span fxFlex=""></span>
-              <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" target="_blank"
+              <a [routerLink]="['/docs/tutorials/ui-query']"
                 mat-stroked-button class="annoq-rounded-button">
                 MORE INFO
               </a>
@@ -139,7 +139,7 @@
                 <div class="secondary-text">Submit query</div>
               </div>
               <span fxFlex=""></span>
-              <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" target="_blank"
+              <a [routerLink]="['/docs/tutorials/ui-query']"
                 mat-stroked-button class="annoq-rounded-button">
                 MORE INFO
               </a>
@@ -157,7 +157,7 @@
                 </small>
               </div>
               <span fxFlex=""></span>
-              <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" target="_blank"
+              <a [routerLink]="['/docs/tutorials/ui-query']"
                 mat-stroked-button class="annoq-rounded-button">
                 MORE INFO
               </a>
@@ -173,7 +173,7 @@
                 <small>A generated file is ready to download</small>
               </div>
               <span fxFlex=""></span>
-              <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/ui-query" target="_blank"
+              <a [routerLink]="['/docs/tutorials/ui-query']"
                 mat-stroked-button class="annoq-rounded-button">
                 MORE INFO
               </a>
@@ -203,7 +203,7 @@
             Retrieve annotation data via command line scripts.
           </div>
           <div class="p-8 pt-0 annoq-card-footer" fxLayout="row" fxLayoutAlign="center center">
-            <a href="https://uscbiostats.github.io/annoq-site/docs/services/" target="_blank" mat-stroked-button
+            <a [routerLink]="['/docs/services']" mat-stroked-button
               class="annoq-rounded-button">
               VIEW DETAILS
             </a>
@@ -222,7 +222,7 @@
             Retrieve annotations using a Python library.
           </div>
           <div class="p-8 pt-0 annoq-card-footer" fxLayout="row" fxLayoutAlign="center center">
-            <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/annoq-py" target="_blank" mat-stroked-button
+            <a [routerLink]="['/docs/tutorials/annoq-py']" mat-stroked-button
               class="annoq-rounded-button">
               VIEW DETAILS
             </a>
@@ -241,7 +241,7 @@
             Getting annotation data via R programming language.
           </div>
           <div class="p-8 pt-0 annoq-card-footer" fxLayout="row" fxLayoutAlign="center center">
-            <a href="https://uscbiostats.github.io/annoq-site/docs/tutorials/r-package" target="_blank"
+            <a [routerLink]="['/docs/tutorials/r-package']"
               mat-stroked-button class="annoq-rounded-button">
               VIEW DETAILS
             </a>
@@ -254,16 +254,16 @@
     <div class="annoq-heading text-center">
       <h2>Publication</h2>
     </div>
-    <BR>    
+    <BR>
     <div class="annoq-card-title">
       <a href="https://academic.oup.com/nar/article/50/W1/W57/6595265?searchresult=1" target="_blank" >Annotation Query (AnnoQ): an integrated and interactive platform for large-scale genetic variant annotation.</a>
       <BR>
-        Liu Z, Mushayahama T, Queme B, Ebert D, Muruganujan A, Mills C, Thomas PD, Mi H.  
+        Liu Z, Mushayahama T, Queme B, Ebert D, Muruganujan A, Mills C, Thomas PD, Mi H.
       <BR>
-        <div class="text-italic">Nucleic Acids Research, Volume 50, Issue W1, 5 July 2022, Pages W57–W65, <a href="https://doi.org/10.1093/nar/gkac418" target="_blank">https://doi.org/10.1093/nar/gkac418</a></div>  
+        <div class="text-italic">Nucleic Acids Research, Volume 50, Issue W1, 5 July 2022, Pages W57–W65, <a href="https://doi.org/10.1093/nar/gkac418" target="_blank">https://doi.org/10.1093/nar/gkac418</a></div>
       <BR>
-    </div>       
-  </div>    
+    </div>
+  </div>
   <div class="annoq-section section-3 text-center">
     <div class="annoq-heading mb-28">
       <h3>We recommend the services of our trusted resources</h3>
@@ -330,7 +330,7 @@
     </div>
     <div class="annoq-card-description p-8 pt-0 mb-16">
       For more details on AnnoQ's browser support and future work, please check out
-      <a href="https://uscbiostats.github.io/annoq-site/docs/getting_started/browser_compatibility" target="_blank">
+      <a [routerLink]="['/docs/getting_started/browser_compatibility']">
         more details
       </a>
     </div>

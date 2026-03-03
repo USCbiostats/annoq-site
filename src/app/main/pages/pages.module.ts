@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { SecurityContext } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { AnnoqSharedModule } from '@annoq/shared.module';
@@ -14,6 +15,8 @@ import { AnnoqConfirmDialogModule } from '@annoq/components/confirm-dialog/confi
 import { CookiePolicyComponent } from './cookie-policy/cookie-policy.component';
 import { VersionComponent } from './version/version.component';
 import { ReleaseComponent } from './release/release.component';
+import { DocsComponent } from './docs/docs.component';
+import { MarkdownModule } from 'ngx-markdown';
 
 const routes = [{
   path: '', component: HomeComponent
@@ -30,7 +33,13 @@ const routes = [{
 }, {
   path: 'version', component: VersionComponent
 }, {
-  path: 'release', component: ReleaseComponent  
+  path: 'release', component: ReleaseComponent
+}, {
+  path: 'docs', component: DocsComponent
+}, {
+  path: 'docs/:section', component: DocsComponent
+}, {
+  path: 'docs/:section/:page', component: DocsComponent
 }];
 
 @NgModule({
@@ -43,7 +52,8 @@ const routes = [{
     ContactComponent,
     CookiePolicyComponent,
     VersionComponent,
-    ReleaseComponent
+    ReleaseComponent,
+    DocsComponent
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -51,7 +61,10 @@ const routes = [{
     AnnoqSharedModule,
     AnnoqFooterModule,
     AnnoqConfirmDialogModule,
-    AppsModule
+    AppsModule,
+    MarkdownModule.forRoot({
+      sanitize: SecurityContext.NONE
+    })
   ],
   providers: [
   ]

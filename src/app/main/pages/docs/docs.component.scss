@@ -1,0 +1,243 @@
+@import "src/@annoq/scss/annoq";
+
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+}
+
+.docs-page {
+  width: 100%;
+  min-height: 100%;
+  align-items: stretch;
+}
+
+.docs-nav {
+  background: #f5f7fb;
+  border-right: 1px solid #d6dbe6;
+  padding: 24px 20px;
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  height: calc(100vh - 64px);
+  overflow-y: auto;
+
+  .docs-title {
+    margin: 0 0 16px;
+    font-size: 28px;
+  }
+
+  .docs-section {
+    margin-bottom: 14px;
+  }
+
+  .docs-link {
+    display: block;
+    text-decoration: none;
+    padding: 7px 10px;
+    border-radius: 2px;
+    font-size: 16px;
+  }
+
+  .docs-child-link {
+    padding-left: 18px;
+    font-size: 15px;
+  }
+
+  .active {
+    font-weight: 600;
+    background: #e7edf9;
+  }
+}
+
+.docs-content {
+  min-height: calc(100vh - 64px);
+  max-height: calc(100vh - 64px);
+  overflow-y: auto;
+  padding: 24px;
+
+  .docs-markdown {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #24292f;
+    word-break: break-word;
+
+    ::ng-deep .markdown-body {
+      color: #24292f;
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 980px;
+    }
+
+    ::ng-deep .markdown-body > *:first-child {
+      margin-top: 0 !important;
+    }
+
+    ::ng-deep .markdown-body > *:last-child {
+      margin-bottom: 0 !important;
+    }
+
+    ::ng-deep h1,
+    ::ng-deep h2,
+    ::ng-deep h3,
+    ::ng-deep h4,
+    ::ng-deep h5,
+    ::ng-deep h6 {
+      color: #24292f;
+      line-height: 1.25;
+      font-weight: 600;
+      margin-top: 24px;
+      margin-bottom: 16px;
+    }
+
+    ::ng-deep h1,
+    ::ng-deep h2 {
+      padding-bottom: 0.3em;
+      border-bottom: 1px solid #d0d7de;
+    }
+
+    ::ng-deep h1 {
+      font-size: 2em;
+    }
+
+    ::ng-deep h2 {
+      font-size: 1.5em;
+    }
+
+    ::ng-deep h3 {
+      font-size: 1.25em;
+    }
+
+    ::ng-deep h4 {
+      font-size: 1em;
+    }
+
+    ::ng-deep h5 {
+      font-size: 0.875em;
+    }
+
+    ::ng-deep h6 {
+      font-size: 0.85em;
+      color: #57606a;
+    }
+
+    ::ng-deep p,
+    ::ng-deep ul,
+    ::ng-deep ol,
+    ::ng-deep blockquote,
+    ::ng-deep table,
+    ::ng-deep pre {
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+
+    ::ng-deep p,
+    ::ng-deep li,
+    ::ng-deep td,
+    ::ng-deep th {
+      font-size: 16px;
+    }
+
+    ::ng-deep ul,
+    ::ng-deep ol {
+      padding-left: 2em;
+    }
+
+    ::ng-deep li + li {
+      margin-top: 0.25em;
+    }
+
+    ::ng-deep blockquote {
+      padding: 0 1em;
+      color: #57606a;
+      border-left: 0.25em solid #d0d7de;
+    }
+
+    ::ng-deep table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      display: block;
+      width: max-content;
+      max-width: 100%;
+      overflow: auto;
+    }
+
+    ::ng-deep table th,
+    ::ng-deep table td {
+      border: 1px solid #d0d7de;
+      padding: 6px 13px;
+    }
+
+    ::ng-deep table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+
+    ::ng-deep img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    ::ng-deep :not(pre) > code:not([class*="language-"]) {
+      color: #24292f;
+      background-color: rgba(175, 184, 193, 0.2);
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+      font-size: 85%;
+    }
+
+    ::ng-deep pre[class*="language-"] {
+      border-radius: 6px;
+      line-height: 1.45;
+      overflow: auto;
+    }
+
+    ::ng-deep pre[class*="language-"] code,
+    ::ng-deep pre code[class*="language-"] {
+      background: transparent !important;
+      // color: #393a34 !important;
+      text-shadow: none !important;
+    }
+
+    ::ng-deep pre[class*="language-"] code * {
+      background: transparent !important;
+      text-shadow: none !important;
+    }
+
+    ::ng-deep pre:not([class*="language-"]) {
+      background: #ffffff;
+      border: 1px solid #dddddd;
+      border-radius: 6px;
+      padding: 1em;
+      overflow: auto;
+    }
+
+    ::ng-deep pre:not([class*="language-"]) code {
+      background: transparent !important;
+      color: #393a34 !important;
+      font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+      font-size: 0.9em;
+      line-height: 1.35;
+      padding: 0;
+    }
+
+    ::ng-deep iframe {
+      max-width: 100%;
+    }
+  }
+}
+
+@include media-breakpoint("lt-md") {
+  .docs-nav {
+    position: static;
+    border-right: 0;
+    border-bottom: 1px solid #d6dbe6;
+    height: auto;
+    max-height: none;
+  }
+
+  .docs-content {
+    min-height: auto;
+    max-height: none;
+  }
+}
