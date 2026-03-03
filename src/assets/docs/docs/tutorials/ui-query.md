@@ -1,6 +1,6 @@
 # Interactive Query UI Tutorial
 
-The Interactive Query UI can be accessed via browser from [https://annoq.org/search]({{site.annoq_search_url}})
+The Interactive Query UI can be accessed via browser from AnnoQ's [search](/search) page
 
 It is composed of 3 main panels, the Query Panel, Result Panel and Result Summary Panel
 

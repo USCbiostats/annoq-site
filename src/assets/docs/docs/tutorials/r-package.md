@@ -2,7 +2,7 @@
 
 An R package for programmatically accessing SNP data from the AnnoQ API.
 
-[GitHub Repo](https://github.com/USCbiostats/AnnoQR)
+[GitHub Repo](https://github.com/USCbiostats/AnnoQR/tree/annoq-site-19-update-for-topmed)
 
 ## Installation
 
@@ -31,7 +31,7 @@ snps <- regionQuery(
   chromosome_identifier = "1",
   start_position = 1,
   end_position = 100000,
-  fields = c("chr", "pos", "ref", "alt", "rs_dbSNP151")
+  fields = c("chr", "pos", "ref", "alt", "rs_dbSNP")
 )
 ```
 
@@ -87,7 +87,7 @@ snps <- regionQuery(
   chromosome_identifier = "1",
   start_position = 1,
   end_position = 100000,
-  fields = c("chr", "pos", "ref", "alt", "rs_dbSNP151")
+  fields = c("chr", "pos", "ref", "alt", "rs_dbSNP")
 )
 
 # Query the X chromosome from position 1,000 to 50,000 and get default fields
@@ -109,7 +109,7 @@ snps <- regionQuery(
   chromosome_identifier = "1",
   start_position = 1,
   end_position = 10000,
-  fields = c("chr", "pos", "ref", "alt", "rs_dbSNP151")
+  fields = c("chr", "pos", "ref", "alt", "rs_dbSNP")
 )
 ```
 
@@ -120,7 +120,7 @@ snps <- regionQuery(
   chromosome_identifier = "1",
   start_position = 1,
   end_position = 10000,
-  fields = '{"_source":["chr", "pos", "ref", "alt", "rs_dbSNP151"]}'
+  fields = '{"_source":["chr", "pos", "ref", "alt", "rs_dbSNP"]}'
 )
 ```
 
@@ -128,7 +128,7 @@ snps <- regionQuery(
 
 ```R
 # Export the config file: config.txt from Annoq
-# {"_source":["chr", "pos", "ref", "alt", "rs_dbSNP151"]}
+# {"_source":["chr", "pos", "ref", "alt", "rs_dbSNP"]}
 
 snps <- regionQuery(
   chromosome_identifier = "1",
@@ -220,7 +220,7 @@ snps <- rsidsQuery(
 ```R
 snps <- rsidsQuery(
   rsid_list = c("rs1219648", "rs2912774", "rs2981582"),
-  fields = c("chr", "pos", "ref", "alt", "rs_dbSNP151")
+  fields = c("chr", "pos", "ref", "alt", "rs_dbSNP")
 )
 ```
 
@@ -264,7 +264,7 @@ snps <- geneQuery(gene = "ENSG00000012048")
 ```R
 snps <- geneQuery(
   gene = "TP53",
-  fields = c("chr", "pos", "ref", "alt", "rs_dbSNP151"),
+  fields = c("chr", "pos", "ref", "alt", "rs_dbSNP"),
   filter_fields = c("ANNOVAR_ucsc_Transcript_ID")
 )
 ```
@@ -372,7 +372,7 @@ snps <- regionQuery(
   start_position = 1,
   end_position = 1000000,
   filter_fields = c("VEP_ensembl_Gene_ID"),
-  fields = c("chr", "pos", "ref", "alt", "rs_dbSNP151", "VEP_ensembl_Gene_ID")
+  fields = c("chr", "pos", "ref", "alt", "rs_dbSNP", "VEP_ensembl_Gene_ID")
 )
 ```
 
@@ -420,7 +420,7 @@ for (gene in genes) {
   
   all_gene_snps[[gene]] <- geneQuery(
     gene = gene,
-    fields = c("chr", "pos", "ref", "alt", "rs_dbSNP151"),
+    fields = c("chr", "pos", "ref", "alt", "rs_dbSNP"),
     fetch_all = TRUE
   )
 }
@@ -440,7 +440,7 @@ cat(sprintf("%d out of %d RSIDs found\n", count, length(rsids)))
 # Retrieve all matching SNPs
 snps <- rsidsQuery(
   rsid_list = rsids,
-  fields = c("chr", "pos", "ref", "alt", "rs_dbSNP151"),
+  fields = c("chr", "pos", "ref", "alt", "rs_dbSNP"),
   fetch_all = TRUE
 )
 ```
@@ -521,4 +521,4 @@ This package is licensed under the MIT License.
 
 ## Support
 
-For questions or issues related to AnnoQ itself, please visit the site [AnnoQ](https://annoq.org)
+For questions or issues related to AnnoQ itself, please visit the site [AnnoQ](/)

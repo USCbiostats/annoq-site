@@ -31,7 +31,7 @@ import { Component, OnInit } from '@angular/core';
           heading: 'Software Updates',
           items: [
             'A new <a href="https://api-v2.annoq.org/docs" target="_blank">API</a> has been released for the AnnoQ website. Refer to <a href="/docs/services">AnnoQ Services</a> for detailed information.',
-            'Two libraries <a href="https://github.com/USCbiostats/AnnoQR" target="_blank">AnnoQR</a> and <a href="https://github.com/USCbiostats/annoq-py" target="_blank">annoq-py</a> that utilize the API have also been released. Tutorials for the <a href="/docs/tutorials/r-package">R package</a> and <a href="/docs/tutorials/annoq-py">python package</a> are also available.',
+            'Two libraries <a href="https://github.com/USCbiostats/AnnoQR" target="_blank">AnnoQR</a> and <a href="https://github.com/USCbiostats/annoq-py/tree/annoq-site-19-update-for-topmedy" target="_blank">annoq-py</a> that utilize the API have also been released. Tutorials for the <a href="/docs/tutorials/r-package">R package</a> and <a href="/docs/tutorials/annoq-py">python package</a> are also available.',
             'The backend of the API has also been updated to optimize performance and the client UI has also been updated to use the new API.'
           ]
         }]

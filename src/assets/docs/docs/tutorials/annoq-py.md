@@ -9,7 +9,7 @@ A Python package for programmatically accessing SNP data from the AnnoQ API.
 Install directly from GitHub using pip:
 
 ```bash
-pip install git+https://github.com/USCbiostats/annoq-py.git
+pip install git+https://github.com/USCbiostats/annoq-py.git@annoq-site-19-update-for-topmed
 ```
 
 ## Requirements
@@ -29,7 +29,7 @@ snps = annoq.get_snps_by_chr(
     chromosome_identifier="1",
     start_position=1,
     end_position=100000,
-    fields=["chr", "pos", "ref", "alt", "rs_dbSNP151"]
+    fields=["chr", "pos", "ref", "alt", "rs_dbSNP"]
 )
 ```
 
@@ -84,7 +84,7 @@ snps = annoq.get_snps_by_chr(
     chromosome_identifier="1",
     start_position=1,
     end_position=100000,
-    fields=["chr", "pos", "ref", "alt", "rs_dbSNP151"]
+    fields=["chr", "pos", "ref", "alt", "rs_dbSNP"]
 )
 
 # Query the X chromosome from position 1,000 to 50,000 and get basic default fields
@@ -106,7 +106,7 @@ snps = annoq.get_snps_by_chr(
     chromosome_identifier="1",
     start_position=1,
     end_position=10000,
-    fields=["chr", "pos", "ref", "alt", "rs_dbSNP151"]
+    fields=["chr", "pos", "ref", "alt", "rs_dbSNP"]
 )
 ```
 
@@ -117,7 +117,7 @@ snps = annoq.get_snps_by_chr(
     chromosome_identifier="1",
     start_position=1,
     end_position=10000,
-    fields='{"_source":["chr", "pos", "ref", "alt", "rs_dbSNP151"]}'
+    fields='{"_source":["chr", "pos", "ref", "alt", "rs_dbSNP"]}'
 )
 ```
 
@@ -125,7 +125,7 @@ snps = annoq.get_snps_by_chr(
 
 ```python
 # Export the config file: config.txt from AnnoQ
-# {"_source":["chr", "pos", "ref", "alt", "rs_dbSNP151"]}
+# {"_source":["chr", "pos", "ref", "alt", "rs_dbSNP"]}
 
 snps = annoq.get_snps_by_chr(
     chromosome_identifier="1",
@@ -217,7 +217,7 @@ snps = annoq.get_snps_by_rsid_list(
 ```python
 snps = annoq.get_snps_by_rsid_list(
     rsid_list=["rs1219648", "rs2912774", "rs2981582"],
-    fields=["chr", "pos", "ref", "alt", "rs_dbSNP151"]
+    fields=["chr", "pos", "ref", "alt", "rs_dbSNP"]
 )
 ```
 
@@ -261,7 +261,7 @@ snps = annoq.get_snps_by_gene_product(gene="ENSG00000012048")
 ```python
 snps = annoq.get_snps_by_gene_product(
     gene="TP53",
-    fields=["chr", "pos", "ref", "alt", "rs_dbSNP151"],
+    fields=["chr", "pos", "ref", "alt", "rs_dbSNP"],
     filter_fields=["ANNOVAR_ucsc_Transcript_ID"]
 )
 ```
@@ -369,7 +369,7 @@ snps = annoq.get_snps_by_chr(
     start_position=1,
     end_position=1000000,
     filter_fields=["VEP_ensembl_Gene_ID"],
-    fields=["chr", "pos", "ref", "alt", "rs_dbSNP151", "VEP_ensembl_Gene_ID"]
+    fields=["chr", "pos", "ref", "alt", "rs_dbSNP", "VEP_ensembl_Gene_ID"]
 )
 ```
 
@@ -416,7 +416,7 @@ for gene in genes:
     
     all_gene_snps[gene] = annoq.get_snps_by_gene_product(
         gene=gene,
-        fields=["chr", "pos", "ref", "alt", "rs_dbSNP151"],
+        fields=["chr", "pos", "ref", "alt", "rs_dbSNP"],
         fetch_all=True
     )
 ```
@@ -435,7 +435,7 @@ print(f"{count} out of {len(rsids)} RSIDs found")
 # Retrieve all matching SNPs
 snps = annoq.get_snps_by_rsid_list(
     rsid_list=rsids,
-    fields=["chr", "pos", "ref", "alt", "rs_dbSNP151"],
+    fields=["chr", "pos", "ref", "alt", "rs_dbSNP"],
     fetch_all=True
 )
 ```
@@ -502,7 +502,7 @@ except requests.exceptions.HTTPError as e:
 
 ## Contributing
 
-Contributions are welcome! If you encounter any issues or have suggestions for improvements, please open an issue or submit a pull request on the [GitHub repository](https://github.com/USCbiostats/annoq-py).
+Contributions are welcome! If you encounter any issues or have suggestions for improvements, please open an issue or submit a pull request on the [GitHub repository](https://github.com/USCbiostats/annoq-py/tree/annoq-site-19-update-for-topmedy).
 
 ## License
 
