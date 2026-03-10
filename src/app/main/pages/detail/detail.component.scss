@@ -166,8 +166,17 @@
   }
 
   p {
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  a {
+    color: $annoq-primary-color-text;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   input[type="file"] {

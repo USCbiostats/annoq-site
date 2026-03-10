@@ -402,8 +402,17 @@
   }
 
   p {
-    font-size: 130%;
-    line-height: 160%;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  a {
+    color: $annoq-primary-color-text;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .annoq-version-table {
