@@ -1,10 +1,10 @@
 @import "src/@annoq/scss/annoq";
+@import "src/@annoq.common/scss/annoq.common";
 
 :host {
   display: block;
   width: 100%;
   height: 100%;
-  font-size: 16px;
 }
 
 .docs-page {
@@ -14,8 +14,8 @@
 }
 
 .docs-nav {
-  background: #f5f7fb;
-  border-right: 1px solid #d6dbe6;
+  background: rgba($annoq-primary-color, 0.05);
+  border-right: 1px solid rgba($annoq-primary-color, 0.15);
   padding: 24px 20px;
   position: sticky;
   top: 0;
@@ -26,6 +26,7 @@
   .docs-title {
     margin: 0 0 16px;
     font-size: 28px;
+    color: $annoq-primary-color;
   }
 
   .docs-section {
@@ -38,6 +39,11 @@
     padding: 7px 10px;
     border-radius: 2px;
     font-size: 16px;
+    color: $annoq-primary-color-2;
+
+    &:hover {
+      background: rgba($annoq-primary-color, 0.08);
+    }
   }
 
   .docs-child-link {
@@ -47,7 +53,8 @@
 
   .active {
     font-weight: 600;
-    background: #e7edf9;
+    background: rgba($annoq-primary-color, 0.12);
+    color: $annoq-primary-color;
   }
 }
 
@@ -55,18 +62,20 @@
   min-height: calc(100vh - 64px);
   max-height: calc(100vh - 64px);
   overflow-y: auto;
-  padding: 24px;
+  padding: 40px 24px;
 
   .docs-markdown {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #24292f;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: $annoq-primary-color-2;
     word-break: break-word;
 
     ::ng-deep .markdown-body {
-      color: #24292f;
-      font-size: 16px;
-      line-height: 1.6;
+      font-family: Roboto, "Helvetica Neue", sans-serif;
+      color: $annoq-primary-color-2;
+      font-size: 14px;
+      line-height: 20px;
       max-width: 980px;
     }
 
@@ -84,29 +93,31 @@
     ::ng-deep h4,
     ::ng-deep h5,
     ::ng-deep h6 {
-      color: #24292f;
+      color: $annoq-primary-color;
       line-height: 1.25;
       font-weight: 600;
       margin-top: 24px;
       margin-bottom: 16px;
     }
 
-    ::ng-deep h1,
-    ::ng-deep h2 {
-      padding-bottom: 0.3em;
-      border-bottom: 1px solid #d0d7de;
-    }
-
     ::ng-deep h1 {
-      font-size: 2em;
+      padding-bottom: 0.3em;
+      border-bottom: 1px solid rgba($annoq-primary-color, 0.2);
+      font-size: 40px;
+      font-weight: 400;
+      line-height: 56px;
     }
 
     ::ng-deep h2 {
-      font-size: 1.5em;
+      font-size: 40px;
+      font-weight: 400;
+      line-height: 56px;
     }
 
     ::ng-deep h3 {
-      font-size: 1.25em;
+      font-size: 20px;
+      font-weight: 400;
+      color: inherit;
     }
 
     ::ng-deep h4 {
@@ -119,7 +130,7 @@
 
     ::ng-deep h6 {
       font-size: 0.85em;
-      color: #57606a;
+      color: $annoq-primary-color-accent;
     }
 
     ::ng-deep p,
@@ -136,7 +147,8 @@
     ::ng-deep li,
     ::ng-deep td,
     ::ng-deep th {
-      font-size: 16px;
+      font-size: 14px;
+      line-height: 20px;
     }
 
     ::ng-deep ul,
@@ -148,10 +160,18 @@
       margin-top: 0.25em;
     }
 
+    ::ng-deep a {
+      color: $annoq-primary-color-text;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
     ::ng-deep blockquote {
       padding: 0 1em;
-      color: #57606a;
-      border-left: 0.25em solid #d0d7de;
+      color: $annoq-primary-color-accent;
+      border-left: 0.25em solid rgba($annoq-primary-color, 0.2);
     }
 
     ::ng-deep table {
@@ -165,12 +185,12 @@
 
     ::ng-deep table th,
     ::ng-deep table td {
-      border: 1px solid #d0d7de;
+      border: 1px solid rgba($annoq-primary-color, 0.2);
       padding: 6px 13px;
     }
 
     ::ng-deep table tr:nth-child(2n) {
-      background-color: #f6f8fa;
+      background-color: rgba($annoq-primary-color, 0.04);
     }
 
     ::ng-deep img {
@@ -179,8 +199,8 @@
     }
 
     ::ng-deep :not(pre) > code:not([class*="language-"]) {
-      color: #24292f;
-      background-color: rgba(175, 184, 193, 0.2);
+      color: $annoq-primary-color-2;
+      background-color: rgba($annoq-primary-color, 0.08);
       padding: 0.2em 0.4em;
       border-radius: 3px;
       font-size: 85%;
@@ -195,7 +215,6 @@
     ::ng-deep pre[class*="language-"] code,
     ::ng-deep pre code[class*="language-"] {
       background: transparent !important;
-      // color: #393a34 !important;
       text-shadow: none !important;
     }
 
@@ -206,7 +225,7 @@
 
     ::ng-deep pre:not([class*="language-"]) {
       background: #ffffff;
-      border: 1px solid #dddddd;
+      border: 1px solid rgba($annoq-primary-color, 0.15);
       border-radius: 6px;
       padding: 1em;
       overflow: auto;
@@ -214,7 +233,7 @@
 
     ::ng-deep pre:not([class*="language-"]) code {
       background: transparent !important;
-      color: #393a34 !important;
+      color: $annoq-primary-color-2 !important;
       font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
       font-size: 0.9em;
       line-height: 1.35;
@@ -231,7 +250,7 @@
   .docs-nav {
     position: static;
     border-right: 0;
-    border-bottom: 1px solid #d6dbe6;
+    border-bottom: 1px solid rgba($annoq-primary-color, 0.15);
     height: auto;
     max-height: none;
   }
