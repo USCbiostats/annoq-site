@@ -6,67 +6,111 @@
   width: 100%;
   height: 100%;
   font-size: 16px;
+
+  .annoq-section {
+    padding: 56px 10px 40px;
+
+    &.section-1 {
+      background-color: #fff;
+    }
+  }
 }
 
 .docs-page {
   width: 100%;
-  min-height: 100%;
   align-items: stretch;
+  justify-content: center;
+  gap: 24px;
+
+  &::after {
+    content: "";
+    flex: 0 0 304px;
+  }
 }
 
 .docs-nav {
-  background: #f5f7fb;
-  border-right: 1px solid #d6dbe6;
-  padding: 24px 20px;
+  background: #f8f9fc;
+  border: 1px solid #dde3ef;
+  border-radius: 6px;
+  box-shadow: 0 8px 20px rgba(24, 49, 83, 0.08);
+  padding: 22px 18px;
   position: sticky;
-  top: 0;
+  top: 24px;
   align-self: flex-start;
-  height: calc(100vh - 64px);
+  max-height: calc(100vh - 96px);
   overflow-y: auto;
 
   .docs-title {
-    margin: 0 0 16px;
-    font-size: 28px;
+    margin: 0 0 14px;
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 500;
   }
 
   .docs-section {
-    margin-bottom: 14px;
+    margin-bottom: 16px;
   }
 
   .docs-link {
     display: block;
     text-decoration: none;
-    padding: 7px 10px;
-    border-radius: 2px;
+    padding: 8px 10px;
+    border-radius: 4px;
     font-size: 16px;
+    line-height: 1.35;
+    color: #183153;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: rgba(24, 49, 83, 0.08);
+    }
   }
 
   .docs-child-link {
-    padding-left: 18px;
+    padding-left: 20px;
     font-size: 15px;
   }
 
   .active {
     font-weight: 600;
-    background: #e7edf9;
+    background: rgba(24, 49, 83, 0.14);
   }
 }
 
 .docs-content {
-  min-height: calc(100vh - 64px);
-  max-height: calc(100vh - 64px);
-  overflow-y: auto;
-  padding: 24px;
+  min-height: 0;
+  padding-top: 14px;
+  flex: 0 1 800px;
+  max-width: 800px;
 
   .docs-markdown {
     word-break: break-word;
 
     ::ng-deep .markdown-body {
-      max-width: 980px;
-    }
+      max-width: 100%;
+      margin: 0;
 
-    ::ng-deep .markdown-body > *:first-child {
-      margin-top: 0 !important;
+      h1 {
+        font-size: 40px;
+        margin-top: 0;
+      }
+
+      h2 {
+        font-size: 30px;
+      }
+
+      h3 {
+        font-size: 28px;
+      }
+
+      p,
+      li,
+      td,
+      th,
+      blockquote {
+        font-size: 18px;
+        line-height: 24px;
+      }
     }
 
     ::ng-deep .markdown-body > *:last-child {
@@ -128,16 +172,30 @@
 }
 
 @include media-breakpoint("lt-md") {
+  .docs-page {
+    gap: 16px;
+
+    &::after {
+      display: none;
+    }
+  }
+
   .docs-nav {
     position: static;
-    border-right: 0;
-    border-bottom: 1px solid #d6dbe6;
-    height: auto;
+    border: 1px solid #dde3ef;
     max-height: none;
+    margin-bottom: 8px;
   }
 
   .docs-content {
-    min-height: auto;
-    max-height: none;
+    padding: 0;
+    flex: 1 1 auto;
+    max-width: none;
+  }
+
+  .docs-markdown {
+    ::ng-deep .markdown-body {
+      max-width: 100%;
+    }
   }
 }
