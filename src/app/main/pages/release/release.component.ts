@@ -24,7 +24,7 @@ import { Component, OnInit } from '@angular/core';
 
     releases: ReleaseInfo[] = [
       {
-        date: 'February 20, 2026',
+        date: 'March 10, 2026',
         title: 'TopMed Freeze 8 release',
         version: '2.0-beta.1',
         description: [{
