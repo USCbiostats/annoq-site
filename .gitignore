@@ -39,5 +39,8 @@ testem.log
 .DS_Store
 Thumbs.db
 
+# Windows/WSL download artifacts
+*:Zone.Identifier
+
 # Temp docs
 md_docs/
