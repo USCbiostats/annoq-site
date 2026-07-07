@@ -1,28 +1,33 @@
-<div class="docs-page" fxLayout="row" fxLayout.lt-md="column">
-  <aside class="docs-nav" fxFlex="280px" fxFlex.lt-md="100">
-    <h2 class="docs-title">Documentation</h2>
+<div class="w-100-p" annoqPerfectScrollbar>
+  <div class="annoq-body annoq-section section-1">
+    <div class="docs-page" fxLayout="row" fxLayout.lt-md="column">
+      <aside class="docs-nav" fxFlex="280px" fxFlex.lt-md="100">
+        <h2 class="docs-title">Documentation</h2>
 
-    <div class="docs-section" *ngFor="let section of sections">
-      <a [routerLink]="[section.path]" class="docs-link docs-section-link" [class.active]="isActive(section.path)">
-        {{ section.title }}
-      </a>
+        <div class="docs-section" *ngFor="let section of sections">
+          <a [routerLink]="[section.path]" class="docs-link docs-section-link" [class.active]="isActive(section.path)">
+            {{ section.title }}
+          </a>
 
-      <div class="docs-children" *ngIf="section.links?.length">
-        <a
-          *ngFor="let link of section.links"
-          [routerLink]="[link.path]"
-          class="docs-link docs-child-link"
-          [class.active]="isActive(link.path)">
-          {{ link.title }}
-        </a>
-      </div>
+          <div class="docs-children" *ngIf="section.links?.length">
+            <a
+              *ngFor="let link of section.links"
+              [routerLink]="[link.path]"
+              class="docs-link docs-child-link"
+              [class.active]="isActive(link.path)">
+              {{ link.title }}
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      <main class="docs-content" fxFlex="1 1 auto" fxFlex.lt-md="100">
+        <mat-progress-bar *ngIf="loading" mode="indeterminate" color="accent"></mat-progress-bar>
+        <div class="docs-markdown" (click)="onContentClick($event)">
+          <markdown class="markdown-body" [data]="content"></markdown>
+        </div>
+      </main>
     </div>
-  </aside>
-
-  <main class="docs-content" fxFlex="1 1 auto" fxFlex.lt-md="100">
-    <mat-progress-bar *ngIf="loading" mode="indeterminate" color="accent"></mat-progress-bar>
-    <div class="docs-markdown" (click)="onContentClick($event)">
-      <markdown class="markdown-body" [data]="content"></markdown>
-    </div>
-  </main>
+  </div>
+  <annoq-footer></annoq-footer>
 </div>
