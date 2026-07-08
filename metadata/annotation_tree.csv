@@ -10,6 +10,7 @@ id,parent_id,leaf,name,label,detail,link,pmid,sort,root_url,sample_url,field_typ
 469,0,FALSE,disease related databases,,,,,,,,,,,
 495,0,FALSE,others,,,,,7,,,,,,dbNSFP v4.3c
 700,0,FALSE,HG19 Info,,Comparison from version hg19,,,8,,,,,,
+1200,0,FALSE,HRCr1-1 mapping information,,Mapping to HRCr1-1 information,,,9,,,,,,HRCr1-1
 2,1,TRUE,chr,,"Chromosome number of the variant.""",,,,,,text,TRUE,,TOPMed: Freeze 8
 3,1,TRUE,pos,,"""position (hg38)""",,,,,,long,,,TOPMed: Freeze 8
 4,1,TRUE,ref,,"""reference allele""",,,,,,text,TRUE,,TOPMed: Freeze 8
@@ -835,3 +836,5 @@ id,parent_id,leaf,name,label,detail,link,pmid,sort,root_url,sample_url,field_typ
 1058,495,TRUE,LIST-S2_score,,"""A deleteriousness preidction score for nonsynonymous SNVs. See https://doi.org/10.1093/nar/gkaa288. for details. The range of the score in dbNSFP is from 0 to 1. The higher the score, the more likely the variant is pathogenic. The author suggested cutoff between deleterious (""D"") and tolerated (""T"") is 0.85.""",,,,,,text,TRUE,,
 1059,495,TRUE,LIST-S2_rankscore,,"""LIST-S2 scores were ranked among all LIST-S2 scores in dbNSFP. The rankscore is the ratio of the rank of the score over the total number of LIST-S2 scores in dbNSFP.""",,,,,,text,TRUE,,
 1060,495,TRUE,LIST-S2_pred,,"""Prediction of LIST-S2 score based on the authors' recommendation, ""T(olerated)"" or ""D(amaging)"". The score cutoff between ""D"" and ""T"" is 0.85.""",,,,,,text,TRUE,,
+1201,700,TRUE,Mapped_in_HRC,," Y(es) If ref_hg19=ref_hg38 == 'Y' and chr_hg19, pos_hg19, ref_hg19 and alt_hg19 are in HRC r1.1.N(o) If ref_hg19=ref_hg38 == 'Y'  and not found in HRC r1.1. '.' If ref_hg19=ref_hg38 == 'N'",,,,,,text,TRUE,,
+1202,700,TRUE,HRC_rs_dbSNP151,,"HRC rs_dbSNP151 value, if Mapped_in_HRC = 'Y'.  Else ''",,,,,,text,TRUE,,
