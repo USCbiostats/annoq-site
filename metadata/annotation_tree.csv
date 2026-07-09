@@ -10,7 +10,6 @@ id,parent_id,leaf,name,label,detail,link,pmid,sort,root_url,sample_url,field_typ
 469,0,FALSE,disease related databases,,,,,,,,,,,
 495,0,FALSE,others,,,,,7,,,,,,dbNSFP v4.3c
 700,0,FALSE,HG19 Info,,Comparison from version hg19,,,8,,,,,,
-1200,0,FALSE,HRCr1-1 mapping information,,Mapping to HRCr1-1 information,,,9,,,,,,HRCr1-1
 2,1,TRUE,chr,,"Chromosome number of the variant.""",,,,,,text,TRUE,,TOPMed: Freeze 8
 3,1,TRUE,pos,,"""position (hg38)""",,,,,,long,,,TOPMed: Freeze 8
 4,1,TRUE,ref,,"""reference allele""",,,,,,text,TRUE,,TOPMed: Freeze 8
