@@ -17,6 +17,11 @@
       </button>
     </mat-menu>
   </div>
+  <div class="annoq-section-body annoq-search-hrc-row" fxLayout="column" fxLayoutAlign="start start">
+    <mat-checkbox class="annoq-search-hrc" formControlName="searchHRC">Search HRC data</mat-checkbox>
+    <small class="annoq-hrc-hint" *ngIf="annotationForm.get('searchHRC').value">Searching HRC r1.1 mapping —
+      coordinates are hg19 (GRCh37).</small>
+  </div>
   <div [ngSwitch]="snpService.inputTypes.selected.id" class="annoq-section-body" fxLayout="column"
     fxLayoutAlign="start stretch">
     <div *ngSwitchCase="snpService.inputType.chromosome.id">
@@ -32,11 +37,11 @@
       </div>
       <div class="annoq-section-body" fxLayout="row" fxLayoutAlign="start center">
         <mat-form-field class=mr-4 fxFlex="50">
-          <mat-label>Start</mat-label>
+          <mat-label>{{ annotationForm.get('searchHRC').value ? 'Start (hg19)' : 'Start' }}</mat-label>
           <input matInput formControlName="start" placeholder="Start">
         </mat-form-field>
         <mat-form-field class="example-full-width" fxFlex="50">
-          <mat-label>End</mat-label>
+          <mat-label>{{ annotationForm.get('searchHRC').value ? 'End (hg19)' : 'End' }}</mat-label>
           <input matInput formControlName="end" placeholder="End">
         </mat-form-field>
       </div>

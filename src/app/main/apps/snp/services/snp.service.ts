@@ -144,6 +144,7 @@ export class SnpService {
     getSnps(annotationQuery: any, page: number): any {
         const self = this;
         self.loading = true;
+        const search_hrc = !!annotationQuery.searchHRC;
 
         let headers = uniqBy([...['chr', 'pos', 'ref', 'alt', 'rs_dbSNP'], ...annotationQuery.source], (header) => {
             return header;
@@ -179,17 +180,20 @@ export class SnpService {
                 graphqlQuery.aggQuery.args = {
                     chr: annotationQuery.chrom,
                     start: parseInt(annotationQuery.start),
-                    end: parseInt(annotationQuery.end)
+                    end: parseInt(annotationQuery.end),
+                    search_hrc
                 };
                 graphqlQuery.countQuery.args = {
                     chr: annotationQuery.chrom,
                     start: parseInt(annotationQuery.start),
-                    end: parseInt(annotationQuery.end)
+                    end: parseInt(annotationQuery.end),
+                    search_hrc
                 };
                 graphqlQuery.snpQuery.args = {
                     chr: annotationQuery.chrom,
                     start: parseInt(annotationQuery.start),
                     end: parseInt(annotationQuery.end),
+                    search_hrc
                 };
                 graphqlQuery.queryFilterType = QueryFilterType.CHROMOSOME;
 
@@ -197,7 +201,7 @@ export class SnpService {
 
             case this.inputType.geneProduct:
 
-                const geneInfoQuery = gql(`query geneInfoQuery {geneInfo: ${GeneInfoQuery}(${this.formatGraphQLArgs({ gene: annotationQuery.geneProduct })}){${['contig', 'end', 'start', 'gene_id'].join(',')}}}`);
+                const geneInfoQuery = gql(`query geneInfoQuery {geneInfo: ${GeneInfoQuery}(${this.formatGraphQLArgs({ gene: annotationQuery.geneProduct, search_hrc })}){${['contig', 'end', 'start', 'gene_id'].join(',')}}}`);
                 this.apollo.watchQuery({ query: geneInfoQuery })
                     .valueChanges
                     .subscribe({
@@ -211,13 +215,16 @@ export class SnpService {
                             }
 
                             graphqlQuery.aggQuery.args = {
-                                gene: annotationQuery.geneProduct
+                                gene: annotationQuery.geneProduct,
+                                search_hrc
                             };
                             graphqlQuery.countQuery.args = {
-                                gene: annotationQuery.geneProduct
+                                gene: annotationQuery.geneProduct,
+                                search_hrc
                             };
                             graphqlQuery.snpQuery.args = {
                                 gene: annotationQuery.geneProduct,
+                                search_hrc
                             };
                             graphqlQuery.queryFilterType = QueryFilterType.GENE_PRODUCT;
 
@@ -234,13 +241,16 @@ export class SnpService {
 
             case this.inputType.rsID:
                 graphqlQuery.aggQuery.args = {
-                    rsID: annotationQuery.rsID
+                    rsID: annotationQuery.rsID,
+                    search_hrc
                 };
                 graphqlQuery.countQuery.args = {
-                    rsID: annotationQuery.rsID
+                    rsID: annotationQuery.rsID,
+                    search_hrc
                 };
                 graphqlQuery.snpQuery.args = {
                     rsID: annotationQuery.rsID,
+                    search_hrc
                 };
                 graphqlQuery.queryFilterType = QueryFilterType.RSID;
                 break;
@@ -256,13 +266,16 @@ export class SnpService {
                 });
 
                 graphqlQuery.aggQuery.args = {
-                    rsIDs
+                    rsIDs,
+                    search_hrc
                 };
                 graphqlQuery.countQuery.args = {
-                    rsIDs
+                    rsIDs,
+                    search_hrc
                 };
                 graphqlQuery.snpQuery.args = {
                     rsIDs,
+                    search_hrc
                 };
                 graphqlQuery.queryFilterType = QueryFilterType.RSIDS;
                 break;
@@ -279,13 +292,16 @@ export class SnpService {
                 });
 
                 graphqlQuery.aggQuery.args = {
-                    ids
+                    ids,
+                    search_hrc
                 };
                 graphqlQuery.countQuery.args = {
-                    ids
+                    ids,
+                    search_hrc
                 };
                 graphqlQuery.snpQuery.args = {
                     ids,
+                    search_hrc
                 };
                 graphqlQuery.queryFilterType = QueryFilterType.IDS;
                 break;

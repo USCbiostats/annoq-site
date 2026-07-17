@@ -98,18 +98,21 @@ export type Query = {
 export type QueryCount_SnPs_By_IDsArgs = {
   filter_args?: InputMaybe<FilterArgs>;
   ids: Array<Scalars['String']['input']>;
+  search_hrc?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 export type QueryCount_SnPs_By_RsIdArgs = {
   filter_args?: InputMaybe<FilterArgs>;
   rsID: Scalars['String']['input'];
+  search_hrc?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
 export type QueryCount_SnPs_By_RsIDsArgs = {
   filter_args?: InputMaybe<FilterArgs>;
   rsIDs: Array<Scalars['String']['input']>;
+  search_hrc?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -117,6 +120,7 @@ export type QueryCount_SnPs_By_ChromosomeArgs = {
   chr: Scalars['String']['input'];
   end: Scalars['Int']['input'];
   filter_args?: InputMaybe<FilterArgs>;
+  search_hrc?: InputMaybe<Scalars['Boolean']['input']>;
   start: Scalars['Int']['input'];
 };
 
@@ -124,6 +128,7 @@ export type QueryCount_SnPs_By_ChromosomeArgs = {
 export type QueryCount_SnPs_By_Gene_ProductArgs = {
   filter_args?: InputMaybe<FilterArgs>;
   gene: Scalars['String']['input'];
+  search_hrc?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -137,6 +142,7 @@ export type QueryDownload_SnPs_By_IDsArgs = {
   filter_args?: InputMaybe<FilterArgs>;
   ids: Array<Scalars['String']['input']>;
   page_args?: InputMaybe<PageArgs>;
+  search_hrc?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -145,6 +151,7 @@ export type QueryDownload_SnPs_By_RsIdArgs = {
   filter_args?: InputMaybe<FilterArgs>;
   page_args?: InputMaybe<PageArgs>;
   rsID: Scalars['String']['input'];
+  search_hrc?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -153,6 +160,7 @@ export type QueryDownload_SnPs_By_RsIDsArgs = {
   filter_args?: InputMaybe<FilterArgs>;
   page_args?: InputMaybe<PageArgs>;
   rsIDs: Array<Scalars['String']['input']>;
+  search_hrc?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -162,6 +170,7 @@ export type QueryDownload_SnPs_By_ChromosomeArgs = {
   fields: Array<Scalars['String']['input']>;
   filter_args?: InputMaybe<FilterArgs>;
   page_args?: InputMaybe<PageArgs>;
+  search_hrc?: InputMaybe<Scalars['Boolean']['input']>;
   start: Scalars['Int']['input'];
 };
 
@@ -171,6 +180,7 @@ export type QueryDownload_SnPs_By_Gene_ProductArgs = {
   filter_args?: InputMaybe<FilterArgs>;
   gene: Scalars['String']['input'];
   page_args?: InputMaybe<PageArgs>;
+  search_hrc?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -188,6 +198,7 @@ export type QueryDownload_AnnotationsArgs = {
 
 export type QueryGene_InfoArgs = {
   gene: Scalars['String']['input'];
+  search_hrc?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -196,6 +207,7 @@ export type QueryGet_SnPs_By_IDsArgs = {
   ids: Array<Scalars['String']['input']>;
   page_args?: InputMaybe<PageArgs>;
   query_type_option: QueryTypeOption;
+  search_hrc?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -204,6 +216,7 @@ export type QueryGet_SnPs_By_RsIdArgs = {
   page_args?: InputMaybe<PageArgs>;
   query_type_option: QueryTypeOption;
   rsID: Scalars['String']['input'];
+  search_hrc?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -212,6 +225,7 @@ export type QueryGet_SnPs_By_RsIDsArgs = {
   page_args?: InputMaybe<PageArgs>;
   query_type_option: QueryTypeOption;
   rsIDs: Array<Scalars['String']['input']>;
+  search_hrc?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -221,6 +235,7 @@ export type QueryGet_SnPs_By_ChromosomeArgs = {
   filter_args?: InputMaybe<FilterArgs>;
   page_args?: InputMaybe<PageArgs>;
   query_type_option: QueryTypeOption;
+  search_hrc?: InputMaybe<Scalars['Boolean']['input']>;
   start: Scalars['Int']['input'];
 };
 
@@ -230,6 +245,7 @@ export type QueryGet_SnPs_By_Gene_ProductArgs = {
   gene: Scalars['String']['input'];
   page_args?: InputMaybe<PageArgs>;
   query_type_option: QueryTypeOption;
+  search_hrc?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -245,6 +261,7 @@ export type QueryGet_Aggs_By_IDsArgs = {
   histogram?: InputMaybe<Histogram>;
   ids: Array<Scalars['String']['input']>;
   page_args?: InputMaybe<PageArgs>;
+  search_hrc?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -253,6 +270,7 @@ export type QueryGet_Aggs_By_RsIdArgs = {
   histogram?: InputMaybe<Histogram>;
   page_args?: InputMaybe<PageArgs>;
   rsID: Scalars['String']['input'];
+  search_hrc?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -261,6 +279,7 @@ export type QueryGet_Aggs_By_RsIDsArgs = {
   histogram?: InputMaybe<Histogram>;
   page_args?: InputMaybe<PageArgs>;
   rsIDs: Array<Scalars['String']['input']>;
+  search_hrc?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -270,6 +289,7 @@ export type QueryGet_Aggs_By_ChromosomeArgs = {
   filter_args?: InputMaybe<FilterArgs>;
   histogram?: InputMaybe<Histogram>;
   page_args?: InputMaybe<PageArgs>;
+  search_hrc?: InputMaybe<Scalars['Boolean']['input']>;
   start: Scalars['Int']['input'];
 };
 
@@ -279,6 +299,7 @@ export type QueryGet_Aggs_By_Gene_ProductArgs = {
   gene: Scalars['String']['input'];
   histogram?: InputMaybe<Histogram>;
   page_args?: InputMaybe<PageArgs>;
+  search_hrc?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -574,6 +595,8 @@ export type Snp = {
   HGVSp_VEP?: Maybe<Scalars['String']['output']>;
   /** "HGVS protein variant presentation from snpEff Multiple entries separated by ";", corresponds to Ensembl_proteinid" */
   HGVSp_snpEff?: Maybe<Scalars['String']['output']>;
+  /** HRC rs_dbSNP151 value, if Mapped_in_HRC = 'Y'.  Else '' */
+  HRC_rs_dbSNP151?: Maybe<Scalars['String']['output']>;
   /** "Prediction of LIST-S2 score based on the authors' recommendation, "T(olerated)" or "D(amaging)". The score cutoff between "D" and "T" is 0.85." */
   LIST_S2_pred?: Maybe<Scalars['String']['output']>;
   /** "LIST-S2 scores were ranked among all LIST-S2 scores in dbNSFP. The rankscore is the ratio of the rank of the score over the total number of LIST-S2 scores in dbNSFP." */
@@ -602,6 +625,8 @@ export type Snp = {
   M_CAP_rankscore?: Maybe<Scalars['String']['output']>;
   /** "M-CAP score (details in DOI: 10.1038/ng.3703). Scores range from 0 to 1. The larger the score the more likely the SNP has damaging effect." */
   M_CAP_score?: Maybe<Scalars['String']['output']>;
+  /**  Y(es) If ref_hg19=ref_hg38 == 'Y' and chr_hg19, pos_hg19, ref_hg19 and alt_hg19 are in HRC r1.1.N(o) If ref_hg19=ref_hg38 == 'Y'  and not found in HRC r1.1. '.' If ref_hg19=ref_hg38 == 'N' */
+  Mapped_in_HRC?: Maybe<Scalars['String']['output']>;
   /** "Prediction of our MetaLR based ensemble prediction score,"T(olerated)" or "D(amaging)". The score cutoff between "D" and "T" is 0.5. The rankscore cutoff between "D" and "T" is 0.81101." */
   MetaLR_pred?: Maybe<Scalars['String']['output']>;
   /** "MetaLR scores were ranked among all MetaLR scores in dbNSFP. The rankscore is the ratio of the rank of the score over the total number of MetaLR scores in dbNSFP. The scores range from 0 to 1." */
@@ -1906,7 +1931,7 @@ export type Snp = {
   gnomAD_genomes_non_topmed_SAS_nhomalt?: Maybe<Scalars['Int']['output']>;
   /** "Count of individuals with homozygous alternative allele in the non_topmed subset of whole gnomAD genome samples v3.1" */
   gnomAD_genomes_non_topmed_nhomalt?: Maybe<Scalars['Int']['output']>;
-  id?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
   /** "whether the target gene is a network hub based on funseq-0.1" */
   network_hub?: Maybe<Scalars['String']['output']>;
   /** "position (hg38)" */
@@ -2075,6 +2100,7 @@ export type SnpAggs = {
   HGVSp_ANNOVAR?: Maybe<AggregationItem>;
   HGVSp_VEP?: Maybe<AggregationItem>;
   HGVSp_snpEff?: Maybe<AggregationItem>;
+  HRC_rs_dbSNP151?: Maybe<AggregationItem>;
   LIST_S2_pred?: Maybe<AggregationItem>;
   LIST_S2_rankscore?: Maybe<AggregationItem>;
   LIST_S2_score?: Maybe<AggregationItem>;
@@ -2089,6 +2115,7 @@ export type SnpAggs = {
   M_CAP_pred?: Maybe<AggregationItem>;
   M_CAP_rankscore?: Maybe<AggregationItem>;
   M_CAP_score?: Maybe<AggregationItem>;
+  Mapped_in_HRC?: Maybe<AggregationItem>;
   MetaLR_pred?: Maybe<AggregationItem>;
   MetaLR_rankscore?: Maybe<AggregationItem>;
   MetaLR_score?: Maybe<AggregationItem>;

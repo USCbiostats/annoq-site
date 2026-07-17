@@ -85,6 +85,7 @@ export class AnnotationComponent implements OnInit {
       start: new FormControl(this.snpService.initialSearchParams.start || 1),
       end: new FormControl(this.snpService.initialSearchParams.end || 500000),
       all: new FormControl(false),
+      searchHRC: new FormControl(false),
       uploadList: new FormGroup({
         ids: new FormControl(),
         browse: new FormControl(),
