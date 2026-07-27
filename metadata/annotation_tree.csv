@@ -369,7 +369,7 @@ id,parent_id,leaf,name,label,detail,link,pmid,sort,root_url,sample_url,field_typ
 467,330,TRUE,gnomAD_genomes_flag,,"""information from gnomAD genome data indicating whether the variant falling within low-complexity v3.1 or decoy regions. The flag can be either ""."" for high-quality PASS or not reported/polymorphic in gnomAD exomes, ""lcr"" for within lcr, ""segdup"" for within segdup, or ""decoy"" for with decoy region.""",,,,,,text,TRUE,,
 468,330,TRUE,gnomAD_genomes_nhomalt,,"""Count of individuals with homozygous alternative allele in the whole gnomAD genome samples v3.1""",,,,,,long,,,
 470,469,FALSE,clinvar,,DNA variants related to human diseases/phenotypes,https://www.ncbi.nlm.nih.gov/clinvar/,31777943,,,,,,,4/25/2022
-480,469,FALSE,COSMIC,,Catalogue Of Somatic Mutations In Cancer--Somatic coding variants discovered in cancer,https://cancer.sanger.ac.uk/cosmic/,30371878,,,,,,,v90
+480,469,FALSE,COSMIC,,Catalogue Of Somatic Mutations In Cancer--Somatic coding variants discovered in cancer,https://cancer.sanger.ac.uk/cosmic/,30371878,,,,,,,v96
 483,469,FALSE,GWAS_catalog,,DNA variants associated with human diseases/phenotypes discovered in GWAS Catalogue.,https://www.genome.gov/gwastudies/,,,,,,,,e105_r2022-04-07
 488,469,FALSE,GRASP2,,"Genome-Wide Repository of Associations Between SNPs and Phenotypes -- DNA variants associated with human diseases/phenotypes discovered in GWAS studies, including eQTLs and other quantitative trait scans",https://grasp.nhlbi.nih.gov/Overview.aspx,24931982,,,,,,,
 471,470,TRUE,clinvar_MedGen_id,,"""MedGen ID of the trait/disease the clinvar_trait referring to""",,,,,,text,TRUE,,
