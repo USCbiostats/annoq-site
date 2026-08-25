@@ -6,8 +6,10 @@ Standing context for Claude Code sessions in this repo. Terse; read the files it
 
 **annoq-site** is the **current** AnnoQ web UI (Angular 9) — stage 4 of the pipeline
 `annoq-data-builder → annoq-database → annoq-api-v2 → annoq-site`. It queries **annoq-api-v2**
-(FastAPI + Strawberry GraphQL). `annoq-site-v2` (React) is a separate, **unreleased** next-gen UI —
-not this repo.
+(FastAPI + Strawberry GraphQL). `annoq-site-v2` (**React** + TypeScript) is a separate repo that
+**will replace this one** as stage 4 — it is **not yet released**, so annoq-site remains the
+production UI and the place UI work lands today. Long-lived UI changes may need re-implementing
+in annoq-site-v2.
 
 - GraphQL is called via **apollo-angular** with **inline `gql` template strings** (no `.graphql`
   files). The main query builder is `src/app/main/apps/snp/services/snp.service.ts`; the search form

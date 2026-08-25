@@ -19,11 +19,11 @@ verbatim in GraphQL documents — **do not camelCase**.
 - **Behavior when `search_hrc: true`:**
   - Adds the subset filter `Mapped_in_HRC == "Y"`.
   - **Coordinate basis flips to hg19.** Chromosome `start`/`end` are matched against `pos_hg19`
-    (and `chr_hg19`); gene regions resolve to hg19; VCF-id search matches hg19 position/ref/alt;
-    RsID search matches `HRC_rs_dbSNP151` instead of the normal rsID field.
+    (and `chr_hg19`); gene regions resolve to hg19; VCF-id search matches `HRC_chr_pos_ref_alt`
+    (hg19 `chr:posREF>ALT`, e.g. `18:10005A>T`); RsID search matches the normal `rs_dbSNP` field.
   - **Response shape is unchanged** — the flag only changes *which documents match*. To *display*
     hg19 data you must explicitly select the (already-existing) SNP fields:
-    `Mapped_in_HRC`, `HRC_rs_dbSNP151`, `chr_hg19`, `pos_hg19`, `ref_hg19`, `alt_hg19`.
+    `Mapped_in_HRC`, `HRC_chr_pos`, `HRC_chr_pos_ref_alt`, `chr_pos`, `chr_hg19`, `pos_hg19`, `ref_hg19`, `alt_hg19`.
 - **REST parity** (if any REST calls are used): `?search_hrc=true` on `/snp/chr`, `/snp/rsidList`,
   `/snp/gene_product` and their `/count/*` and `/download` variants. No REST IDs/keyword endpoint.
 
@@ -37,7 +37,7 @@ query ChrHRC($chr: String!, $start: Int!, $end: Int!, $hrc: Boolean) {
     page_args: { from: 0, size: 50 },
     search_hrc: $hrc
   ) {
-    snps { id chr pos chr_hg19 pos_hg19 Mapped_in_HRC HRC_rs_dbSNP151 }
+    snps { id chr pos chr_hg19 pos_hg19 Mapped_in_HRC HRC_chr_pos HRC_chr_pos_ref_alt }
   }
 }
 ```
@@ -62,7 +62,7 @@ Variables: `{ "chr": "18", "start": 100, "end": 200, "hrc": true }`. (Note `page
    IDs / gene_product** modes only (NOT keyword). `formatGraphQLArgs` serializes args automatically —
    just keep the key exactly `search_hrc` (no camelCase). Boolean serializes as `true`/`false`.
 
-4. **Display hg19 / HRC fields.** Add `Mapped_in_HRC`, `HRC_rs_dbSNP151`, `chr_hg19`, `pos_hg19`
+4. **Display hg19 / HRC fields.** Add `Mapped_in_HRC`, `HRC_chr_pos`, `HRC_chr_pos_ref_alt`, `chr_pos`, `chr_hg19`, `pos_hg19`
    (verbatim) to the SNP selection set and the results table/column config so users can see the HRC
    status and hg19 coordinates when the box is checked.
 
