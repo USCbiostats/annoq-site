@@ -33,7 +33,8 @@ export class SnpService {
 
     initialSearchParams: UrlQueryParams = new UrlQueryParams();
 
-    initialSelectedIds = [2, 3, 4, 5, 6]
+    // Basic Info: chr, pos, ref, alt, rs ID (rs_dbSNP)
+    initialSelectedIds = [2, 3, 4, 5, 756]
 
     inputType: any = {
         chromosome: {

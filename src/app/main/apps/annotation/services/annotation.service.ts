@@ -201,10 +201,11 @@ export class AnnotationService {
 
 
     selectItemsById(ids: number[]) {
-        console.log(ids)
+        const idSet = new Set(ids.map(id => String(id)));
         this.treeControl.dataNodes.forEach(item => {
-            if (ids.toString().includes(item.id as unknown as string)) {
+            if (idSet.has(String(item.id))) {
                 this.checklistSelection.select(item);
+                this.checkAllParentsSelection(item);
             }
         });
     }
