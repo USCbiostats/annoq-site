@@ -595,8 +595,10 @@ export type Snp = {
   HGVSp_VEP?: Maybe<Scalars['String']['output']>;
   /** "HGVS protein variant presentation from snpEff Multiple entries separated by ";", corresponds to Ensembl_proteinid" */
   HGVSp_snpEff?: Maybe<Scalars['String']['output']>;
-  /** HRC rs_dbSNP151 value, if Mapped_in_HRC = 'Y'.  Else '' */
-  HRC_rs_dbSNP151?: Maybe<Scalars['String']['output']>;
+  /** hg19 chr:pos (chr_hg19:pos_hg19) if Mapped_in_HRC = 'Y'.  Else ''. */
+  HRC_chr_pos?: Maybe<Scalars['String']['output']>;
+  /** hg19 chr:pos ref>alt (e.g. 18:10005A>T, A=ref T=alt) if Mapped_in_HRC = 'Y'.  Else ''. */
+  HRC_chr_pos_ref_alt?: Maybe<Scalars['String']['output']>;
   /** "Prediction of LIST-S2 score based on the authors' recommendation, "T(olerated)" or "D(amaging)". The score cutoff between "D" and "T" is 0.85." */
   LIST_S2_pred?: Maybe<Scalars['String']['output']>;
   /** "LIST-S2 scores were ranked among all LIST-S2 scores in dbNSFP. The rankscore is the ratio of the rank of the score over the total number of LIST-S2 scores in dbNSFP." */
@@ -1031,6 +1033,8 @@ export type Snp = {
   chr?: Maybe<Scalars['String']['output']>;
   /** "chromosome number based on human reference sequence version hg19 (GRCh19)" */
   chr_hg19?: Maybe<Scalars['String']['output']>;
+  /** chr:pos (hg38) of the variant. */
+  chr_pos?: Maybe<Scalars['String']['output']>;
   /** "MedGen ID of the trait/disease the clinvar_trait referring to" */
   clinvar_MedGen_id?: Maybe<Scalars['String']['output']>;
   /** "OMIM ID of the trait/disease the clinvar_trait referring to" */
@@ -2100,7 +2104,8 @@ export type SnpAggs = {
   HGVSp_ANNOVAR?: Maybe<AggregationItem>;
   HGVSp_VEP?: Maybe<AggregationItem>;
   HGVSp_snpEff?: Maybe<AggregationItem>;
-  HRC_rs_dbSNP151?: Maybe<AggregationItem>;
+  HRC_chr_pos?: Maybe<AggregationItem>;
+  HRC_chr_pos_ref_alt?: Maybe<AggregationItem>;
   LIST_S2_pred?: Maybe<AggregationItem>;
   LIST_S2_rankscore?: Maybe<AggregationItem>;
   LIST_S2_score?: Maybe<AggregationItem>;
@@ -2318,6 +2323,7 @@ export type SnpAggs = {
   cds_strand?: Maybe<AggregationItem>;
   chr?: Maybe<AggregationItem>;
   chr_hg19?: Maybe<AggregationItem>;
+  chr_pos?: Maybe<AggregationItem>;
   clinvar_MedGen_id?: Maybe<AggregationItem>;
   clinvar_OMIM_id?: Maybe<AggregationItem>;
   clinvar_Orphanet_id?: Maybe<AggregationItem>;
