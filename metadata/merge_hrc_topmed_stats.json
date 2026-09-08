@@ -1,0 +1,232 @@
+{
+  "1": {
+    "hrc_snp_rows": 3069931,
+    "topmed_rows": 57577226,
+    "hrc_vs_topmed_pct": 5.3318,
+    "mapped_Y": 2992535,
+    "mapped_N": 51568979,
+    "mapped_dot": 3015712,
+    "topmed_file": "chr1.vcf",
+    "hrc_file": "1.vcf"
+  },
+  "10": {
+    "hrc_snp_rows": 1927503,
+    "topmed_rows": 34039169,
+    "hrc_vs_topmed_pct": 5.6626,
+    "mapped_Y": 1876436,
+    "mapped_N": 30712108,
+    "mapped_dot": 1450625,
+    "topmed_file": "chr10.vcf",
+    "hrc_file": "10.vcf"
+  },
+  "11": {
+    "hrc_snp_rows": 1936990,
+    "topmed_rows": 35116087,
+    "hrc_vs_topmed_pct": 5.516,
+    "mapped_Y": 1888356,
+    "mapped_N": 31591863,
+    "mapped_dot": 1635868,
+    "topmed_file": "chr11.vcf",
+    "hrc_file": "11.vcf"
+  },
+  "12": {
+    "hrc_snp_rows": 1848117,
+    "topmed_rows": 33594199,
+    "hrc_vs_topmed_pct": 5.5013,
+    "mapped_Y": 1812160,
+    "mapped_N": 30499633,
+    "mapped_dot": 1282406,
+    "topmed_file": "chr12.vcf",
+    "hrc_file": "12.vcf"
+  },
+  "13": {
+    "hrc_snp_rows": 1385433,
+    "topmed_rows": 25226068,
+    "hrc_vs_topmed_pct": 5.4921,
+    "mapped_Y": 1359178,
+    "mapped_N": 22484834,
+    "mapped_dot": 1382056,
+    "topmed_file": "chr13.vcf",
+    "hrc_file": "13.vcf"
+  },
+  "14": {
+    "hrc_snp_rows": 1270436,
+    "topmed_rows": 22267236,
+    "hrc_vs_topmed_pct": 5.7054,
+    "mapped_Y": 1242797,
+    "mapped_N": 20912450,
+    "mapped_dot": 111989,
+    "topmed_file": "chr14.vcf",
+    "hrc_file": "14.vcf"
+  },
+  "15": {
+    "hrc_snp_rows": 1139215,
+    "topmed_rows": 20974445,
+    "hrc_vs_topmed_pct": 5.4314,
+    "mapped_Y": 1109442,
+    "mapped_N": 19351151,
+    "mapped_dot": 513852,
+    "topmed_file": "chr15.vcf",
+    "hrc_file": "15.vcf"
+  },
+  "16": {
+    "hrc_snp_rows": 1281297,
+    "topmed_rows": 23665360,
+    "hrc_vs_topmed_pct": 5.4142,
+    "mapped_Y": 1251867,
+    "mapped_N": 21749700,
+    "mapped_dot": 663793,
+    "topmed_file": "chr16.vcf",
+    "hrc_file": "16.vcf"
+  },
+  "17": {
+    "hrc_snp_rows": 1090072,
+    "topmed_rows": 20260822,
+    "hrc_vs_topmed_pct": 5.3802,
+    "mapped_Y": 1068295,
+    "mapped_N": 18487116,
+    "mapped_dot": 705411,
+    "topmed_file": "chr17.vcf",
+    "hrc_file": "17.vcf"
+  },
+  "18": {
+    "hrc_snp_rows": 1104755,
+    "topmed_rows": 20199166,
+    "hrc_vs_topmed_pct": 5.4693,
+    "mapped_Y": 1083368,
+    "mapped_N": 17634737,
+    "mapped_dot": 1481061,
+    "topmed_file": "chr18.vcf",
+    "hrc_file": "18.vcf"
+  },
+  "19": {
+    "hrc_snp_rows": 868554,
+    "topmed_rows": 15126485,
+    "hrc_vs_topmed_pct": 5.7419,
+    "mapped_Y": 851073,
+    "mapped_N": 14246062,
+    "mapped_dot": 29350,
+    "topmed_file": "chr19.vcf",
+    "hrc_file": "19.vcf"
+  },
+  "2": {
+    "hrc_snp_rows": 3392237,
+    "topmed_rows": 61727855,
+    "hrc_vs_topmed_pct": 5.4955,
+    "mapped_Y": 3320470,
+    "mapped_N": 57065590,
+    "mapped_dot": 1341795,
+    "topmed_file": "chr2.vcf",
+    "hrc_file": "2.vcf"
+  },
+  "20": {
+    "hrc_snp_rows": 884983,
+    "topmed_rows": 16274345,
+    "hrc_vs_topmed_pct": 5.4379,
+    "mapped_Y": 868341,
+    "mapped_N": 14072529,
+    "mapped_dot": 1333475,
+    "topmed_file": "chr20.vcf",
+    "hrc_file": "20.vcf"
+  },
+  "21": {
+    "hrc_snp_rows": 531276,
+    "topmed_rows": 9663610,
+    "hrc_vs_topmed_pct": 5.4977,
+    "mapped_Y": 513077,
+    "mapped_N": 8478725,
+    "mapped_dot": 671808,
+    "topmed_file": "chr21.vcf",
+    "hrc_file": "21.vcf"
+  },
+  "22": {
+    "hrc_snp_rows": 524544,
+    "topmed_rows": 10117751,
+    "hrc_vs_topmed_pct": 5.1844,
+    "mapped_Y": 510771,
+    "mapped_N": 8813678,
+    "mapped_dot": 793302,
+    "topmed_file": "chr22.vcf",
+    "hrc_file": "22.vcf"
+  },
+  "3": {
+    "hrc_snp_rows": 2821894,
+    "topmed_rows": 50368782,
+    "hrc_vs_topmed_pct": 5.6025,
+    "mapped_Y": 2764965,
+    "mapped_N": 46501213,
+    "mapped_dot": 1102604,
+    "topmed_file": "chr3.vcf",
+    "hrc_file": "3.vcf"
+  },
+  "4": {
+    "hrc_snp_rows": 2787581,
+    "topmed_rows": 48490718,
+    "hrc_vs_topmed_pct": 5.7487,
+    "mapped_Y": 2731367,
+    "mapped_N": 45244732,
+    "mapped_dot": 514619,
+    "topmed_file": "chr4.vcf",
+    "hrc_file": "4.vcf"
+  },
+  "5": {
+    "hrc_snp_rows": 2588168,
+    "topmed_rows": 45439747,
+    "hrc_vs_topmed_pct": 5.6958,
+    "mapped_Y": 2536624,
+    "mapped_N": 42286048,
+    "mapped_dot": 617075,
+    "topmed_file": "chr5.vcf",
+    "hrc_file": "5.vcf"
+  },
+  "6": {
+    "hrc_snp_rows": 2460111,
+    "topmed_rows": 42027327,
+    "hrc_vs_topmed_pct": 5.8536,
+    "mapped_Y": 2405182,
+    "mapped_N": 38991349,
+    "mapped_dot": 630796,
+    "topmed_file": "chr6.vcf",
+    "hrc_file": "6.vcf"
+  },
+  "7": {
+    "hrc_snp_rows": 2289305,
+    "topmed_rows": 40659953,
+    "hrc_vs_topmed_pct": 5.6304,
+    "mapped_Y": 2235309,
+    "mapped_N": 37514986,
+    "mapped_dot": 909658,
+    "topmed_file": "chr7.vcf",
+    "hrc_file": "7.vcf"
+  },
+  "8": {
+    "hrc_snp_rows": 2242705,
+    "topmed_rows": 39139389,
+    "hrc_vs_topmed_pct": 5.73,
+    "mapped_Y": 2195324,
+    "mapped_N": 36698904,
+    "mapped_dot": 245161,
+    "topmed_file": "chr8.vcf",
+    "hrc_file": "8.vcf"
+  },
+  "9": {
+    "hrc_snp_rows": 1686471,
+    "topmed_rows": 32559922,
+    "hrc_vs_topmed_pct": 5.1796,
+    "mapped_Y": 1646301,
+    "mapped_N": 28807585,
+    "mapped_dot": 2106036,
+    "topmed_file": "chr9.vcf",
+    "hrc_file": "9.vcf"
+  },
+  "X": {
+    "hrc_snp_rows": 1273927,
+    "topmed_rows": 29114100,
+    "hrc_vs_topmed_pct": 4.3756,
+    "mapped_Y": 1259283,
+    "mapped_N": 27484340,
+    "mapped_dot": 370477,
+    "topmed_file": "chrX.vcf",
+    "hrc_file": "X.vcf"
+  }
+}

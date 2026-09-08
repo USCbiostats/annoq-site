@@ -18,6 +18,12 @@ Currently, comma separated file with the following information:
 
 
 This file will be modified in the future to support sorting of columns based on rank. Format may also change.  This file is used to generate JSON and pickle files that have to be copied into the following locations:
-1. https://github.com/USCbiostats/annoq-api/blob/main/data/anno_tree.json generated via https://github.com/USCbiostats/annoq-data-builder/blob/master/tools/annotation_tree_gen.py
-2. https://github.com/USCbiostats/annoq-database/blob/master/data/annoq_mappings.json generated via https://github.com/USCbiostats/annoq-data-builder/blob/master/tools/annotation_tree_gen.py
-3. https://github.com/USCbiostats/annoq-database/blob/master/data/doc_type.pkl generated via https://github.com/USCbiostats/annoq-data-builder/blob/master/tools/mappings_data_type_gen.py
+1. https://github.com/USCbiostats/annoq-api-v2/blob/main/data/anno_tree.json generated via https://github.com/USCbiostats/annoq-data-builder/blob/master/tools/annotation_tree_gen.py
+2. https://github.com/USCbiostats/annoq-api-v2/blob/main/data/api_mapping_anno_tree.json generated via https://github.com/USCbiostats/annoq-data-builder/blob/master/tools/annotation_tree_gen.py
+3. https://github.com/USCbiostats/annoq-database/blob/master/data/annoq_mappings.json generated via https://github.com/USCbiostats/annoq-data-builder/blob/master/tools/annotation_tree_gen.py
+4. https://github.com/USCbiostats/annoq-database/blob/master/data/doc_type.pkl generated via https://github.com/USCbiostats/annoq-data-builder/blob/master/tools/mappings_data_type_gen.py
+
+
+
+# merge_hrc_topmed_stats.json
+This file is generated when HRC mapping information is added.
