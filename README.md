@@ -2,16 +2,9 @@
 
 # AnnoQ Site
 
-This repo is the **TOPMed beta UI**, served at [topmed.annoq.org](https://topmed.annoq.org/)
-(TOPMed: Freeze 8).
+AnnoQ site is located [here](https://annoq.org/)
 
-> **Stage 4 is split by stack.** The **production** UI at [annoq.org](https://annoq.org/)
-> (HRC r1.1) is now [**annoq-site-v2**](https://github.com/USCbiostats/annoq-site-v2) (React) —
-> annoq-site is **superseded on HRC** but is still the TOPMed beta UI, pending the **TOPMed
-> cutover**. This repo is *not* deprecated; TOPMed UI work still lands here, and anything
-> long-lived should be implemented in annoq-site-v2 as well.
-
-Documentation is integrated into the app at [here](https://topmed.annoq.org/docs)
+Documentation is integrated into the app at [here](http://annoq.org/docs)
 
 
 ## Development
