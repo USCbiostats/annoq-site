@@ -1,5 +1,22 @@
 Collection of metadata files used by the Annoq website
 
+> ## This directory is moving to annoq-site-v2
+>
+> `annotation_tree.csv` is the hand-maintained source of truth for the annotation tree, consumed at
+> build time by [annoq-data-builder](https://github.com/USCbiostats/annoq-data-builder). Now that
+> [annoq-site-v2](https://github.com/USCbiostats/annoq-site-v2) serves
+> [annoq.org](https://annoq.org), the directory has been **replicated** to
+> `annoq-site-v2/metadata/` and will become canonical there.
+>
+> **This copy is still the authoritative one** — keep editing it here until
+> [#78](https://github.com/USCbiostats/annoq-site/issues/78) merges to `master`. The copy in
+> annoq-site-v2 is seeded from this repo's `master` (558 rows) and is intentionally behind this
+> branch's version (840 rows, which adds the HRC mapping columns).
+>
+> After #78 merges: refresh `annoq-site-v2/metadata/annotation_tree.csv` from the merged `master`,
+> repoint the generator docs, and this copy becomes the stale one. Checklist in
+> [annoq-proj](https://github.com/USCbiostats/annoq-proj) → `.claude/skills/annoq-data-build/SKILL.md`.
+
 # annotation_tree.csv
 Content:
 Currently, comma separated file with the following information:
