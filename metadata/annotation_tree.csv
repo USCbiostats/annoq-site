@@ -14,7 +14,7 @@ id,parent_id,leaf,name,label,detail,link,pmid,sort,root_url,sample_url,field_typ
 3,1,TRUE,pos,,"""position (hg38)""",,,,,,long,,,TOPMed: Freeze 8
 4,1,TRUE,ref,,"""reference allele""",,,,,,text,TRUE,,TOPMed: Freeze 8
 5,1,TRUE,alt,,"""alternative allele""",,,,,,text,TRUE,,TOPMed: Freeze 8
-1204,1,TRUE,chr_pos,,chr:pos (hg38) of the variant.,,,,,,text,TRUE,,
+1204,1,TRUE,chr_pos,,chr:pos (hg38) of the variant.,,,,,,text,TRUE,,TOPMed: Freeze 8
 9,7,TRUE,enhancer_linked_GO_biological_process_complete_list_id,PEREGRINE enhancer linked GO biological process complete,"When the variant is located in an enhancer region, the complete GO biological process annotations of its target genes inferred from the enhancer-gene links in the PEREGRINE project are populated here.",https://www.peregrineproj.org/,33320871,,http://amigo.geneontology.org/amigo/term/,,text,TRUE,term_id,GO database released 2026-04-28
 11,7,TRUE,enhancer_linked_GO_cellular_component_complete_list_id,PEREGRINE enhancer linked GO cellular component complete,"When the variant is located in an enhancer region, the complete GO cellular component annotations of its target genes inferred from the enhancer-gene links in the PEREGRINE project are populated here.",https://www.peregrineproj.org/,33320871,,http://amigo.geneontology.org/amigo/term/,,text,TRUE,term_id,GO database released 2026-04-28
 13,7,TRUE,enhancer_linked_GO_molecular_function_complete_list_id,PEREGRINE enhancer linked GO molecular function complete,"When the variant is located in an enhancer region, the complete GO molecular function annotations of its target genes inferred from the enhancer-gene links in the PEREGRINE project are populated here.",https://www.peregrineproj.org/,33320871,,http://amigo.geneontology.org/amigo/term/,,text,TRUE,term_id,GO database released 2026-04-28
@@ -836,5 +836,5 @@ id,parent_id,leaf,name,label,detail,link,pmid,sort,root_url,sample_url,field_typ
 1059,495,TRUE,LIST-S2_rankscore,,"""LIST-S2 scores were ranked among all LIST-S2 scores in dbNSFP. The rankscore is the ratio of the rank of the score over the total number of LIST-S2 scores in dbNSFP.""",,,,,,text,TRUE,,
 1060,495,TRUE,LIST-S2_pred,,"""Prediction of LIST-S2 score based on the authors' recommendation, ""T(olerated)"" or ""D(amaging)"". The score cutoff between ""D"" and ""T"" is 0.85.""",,,,,,text,TRUE,,
 1201,700,TRUE,Mapped_in_HRC,," Y(es) If ref_hg19=ref_hg38 == 'Y' and chr_hg19, pos_hg19, ref_hg19 and alt_hg19 are in HRC r1.1.N(o) If ref_hg19=ref_hg38 == 'Y'  and not found in HRC r1.1. '.' If ref_hg19=ref_hg38 == 'N'",,,,,,text,TRUE,,
-1202,700,TRUE,HRC_chr_pos,,hg19 chr:pos (chr_hg19:pos_hg19) if Mapped_in_HRC = 'Y'.  Else ''.,,,,,,text,TRUE,, HRC.r1-1
-1203,700,TRUE,HRC_chr_pos_ref_alt,,"hg19 chr:pos ref>alt (e.g. 18:10005A>T, A=ref T=alt) if Mapped_in_HRC = 'Y'.  Else ''.",,,,,,text,TRUE,, HRC.r1-1
+1202,700,TRUE,HRC_chr_pos,,hg19 chr:pos (chr_hg19:pos_hg19) if Mapped_in_HRC = 'Y'.  Else ''.,,,,,,text,TRUE,,HRC.r1-1
+1203,700,TRUE,HRC_chr_pos_ref_alt,,"hg19 chr:pos ref>alt (e.g. 18:10005A>T, A=ref T=alt) if Mapped_in_HRC = 'Y'.  Else ''.",,,,,,text,TRUE,,HRC.r1-1
