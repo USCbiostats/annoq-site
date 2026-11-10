@@ -5,7 +5,7 @@ id,parent_id,leaf,name,label,detail,link,pmid,sort,root_url,sample_url,field_typ
 208,0,FALSE,SnpEff,,SnpEff is a program for annotating and predicting the effects of single nucleotide polymorphisms,http://pcingola.github.io/SnpEff/,22728672,3,,,,,,4.3t
 132,0,FALSE,VEP,,"Variant Effect Predictor (VEP) is developed by Ensembl and it determines the effect of the variants (SNPs, insertions, deletions, CNVs or structural variants) on genes, transcripts, and protein sequence, as well as regulatory regions. ",https://uswest.ensembl.org/info/docs/tools/vep/index.html,27268795,4,,,,,,ensembl-vep-release-107
 83,0,FALSE,AnnoQ Functional Annotations,PANTHER Functional Annotation,Functional annotation of a variant through PANTHER API.,https://pantherdb.org,33290554,5,,,,,,PANTHER UPL 19
-7,0,FALSE,IMAGE Enhancer Linked Functional Annotations,PEREGRINE Functional Annotations,"When the variant is located in an enhancer region, the functions of its target gene inferred from the enhancer-gene links in the PEREGRINE project The ontology terms are annotated here.",https://www.peregrineproj.org/,33320871,6,,,,,,Initial Release
+7,0,FALSE,IMAGE Enhancer Linked Functional Annotations,PEREGRINE Functional Annotations,"When the variant is located in an enhancer region, the functions of its target gene inferred from the enhancer-gene links in the PEREGRINE project The ontology terms are annotated here.",https://www.peregrineproj.org/,33320871,6,,,,,,PEREGRINE enhancer-gene links updated 2026-11-05
 288,0,FALSE,allele frequencies,,,,,,,,,,,
 469,0,FALSE,disease related databases,,,,,,,,,,,
 495,0,FALSE,others,,,,,,,,,,,dbNSFP v4.3c
